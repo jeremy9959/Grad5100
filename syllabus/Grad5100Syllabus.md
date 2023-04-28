@@ -59,15 +59,13 @@ Students, faculty, and staff are bound by the university's [policy against discr
 1.  Setting up a data science working environment
 2.  Probability and Statistics: the normal distribution
 3.  Working with Data in R and Python
-4.  Discrete Probability and Bayes Theorem
-5.  Slicing and Dicing data in R and Python
-6.  Linear Algebra
-7.  Partial derivatives, level curves, and gradients
-8.  Gradient Descent
-9.  Visualization tools in R and Python
-10. Statistical Models
-11. Hypothesis Testing
-12. Linear and Logistic Regression
-13. Version Control
-14. Data Structures and Object Oriented Programming
-15. Databases
+4.  Linear Algebra: vectors, matrices, the dot product
+5.  Partial derivatives and the gradient; matrix calculus
+6.  Slicing and dicing data in R and Python
+7.  Statistical Models
+8.  Hypothesis Testing
+9.  Data Structures and Object Oriented Programming
+10. Visualization tools in R and Python
+11. Version Control
+12. Databases
+13. Additional topics as time permits

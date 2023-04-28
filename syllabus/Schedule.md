@@ -31,7 +31,7 @@
     - p-values, statistical significance and confidence intervals (for univariate normally distributed populations)
   - illustrated with examples in R and Python
 
-## Week 3 Programming with Data in R and Python
+## Week 3 More on programming with data in R and Python
 
 - Key tools
   - R dataframes and the tidyverse
@@ -41,31 +41,14 @@
 - pandas Series and dataframe basics (reading files, indices, selecting, summarizing data)
 - R factors and dataframes (reading files, indices, selecting, summarizing)
 
-## Week 4 Discrete Probability and Bayes Theorem
-
-- Discrete probability;
-  - events and outcomes;
-  - mean and variance
-  - independent events;
-  - conditional probability and Bayes theorem in the discrete case
-  - bernoulli and binomial distributions
-  - false positives, false negatives, versions of the base rate fallacy
-  - discusssion of the Naive Bayes spam filter (?)
-  - illustrated with R and Python examples
-
-## Week 5 Slicing and dicing data in R and Python
-
-- One day on pandas grouping, summarizing, selecting data
-- One day on R grouping, summarizing, selecting data (tidyverse)
-
-## Week 6 Linear Algebra
+## Week 4 Linear Algebra
 
 - Geometry of n-dimensional space, vectors, addition and scalar multiplication of vectors, the dot product, orthogonality
 - Matrices, matrix multiplication, column space of a matrix
 - Ordinary Least Squares as an illustration(?) of geometry and linear algebra
 - computational examples in both R and Python (numpy)
 
-## Week 7-8 Multivariate calculus
+## Week 5 Partial derivatives and the gradient
 
 - discussion of functions of several variables:
   - graphs of functions
@@ -73,41 +56,25 @@
 - review of the derivative in one dimension; rates of change
 - partial derivatives
 - directional derivatives and the gradient
-- relationship of the gradient to the level curves
-- Use of calculus to solve the OLS problem done by linear algebra in week 5 (exact solution)
-- Use of gradient descent to solve OLS problem
-- includes programming examples for gradient descent in the least squares case
+- contour plotting
 
-## Week 9 A deeper dive into Visualization
+## Week 6 Slicing and dicing data in R and Python
 
-- more on ggplot and its capabilities
-- python plotting packages (seaborn? bokeh?)
+- One day on pandas grouping, summarizing, selecting data
+- One day on R grouping, summarizing, selecting data (tidyverse)
 
-## Week 10 Statistical models
+## Week 7-8 Statistical models and hypothesis testing
 
 - What is a statistical model?
 - Likelihood and model parameters
-- Maximum likelihood estimation and gradient descent
-- Illustrated with OLS and Logistic Regression?
-
-## Week 11-12 More on Statistics
-
+- Maximum likelihood
 - Another look at the normal distribution; the multivariate normal
 - covariance, correlation
-- estimation of parameters for linear regression and logistic regression
 - significance and confidence intervals
 - null and alternative hypotheses
 - p-values
 
-## Week 13 Version Control
-
-- Git as a tool (command line and through R studio)
-- commits, branches
-- remotes and github
-- using github to host a web page for a project
-- collaboration using Git -- pull requests; contributing to open source projects
-
-## Week 14 Advanced topics in programming
+## Week 9 Advanced topics in programming
 
 - Data structures; object oriented concepts
 - Essential notions from data structures:
@@ -115,7 +82,39 @@
 - Python classes
   - data attributes and methods
 
-## Week 14 Databases
+## Week 10 A deeper dive into visualization
+
+- more on ggplot and its capabilities, dashboards
+- python plotting packages and dashboards
+
+## Week 11 Version Control
+
+- Git as a tool (command line and through R studio)
+- commits, branches
+- remotes and github
+- using github to host a web page for a project
+- collaboration using Git -- pull requests; contributing to open source projects
+
+## Week 12 Databases
 
 - What is a relational database? tables, keys, indices, joins
 - Basic SQL for getting data from a database
+
+## Additional topics as time permits
+
+### Discrete Probability and Bayes Theorem
+
+- Discrete probability;
+  - events and outcomes;
+  - mean and variance
+  - independent events;
+  - conditional probability and Bayes theorem in the discrete case
+  - bernoulli and binomial distributions
+  - false positives, false negatives, versions of the base rate fallacy and simpson's paradox
+  - illustrated with R and Python examples
+
+### More advanced topics in Linear Algebra
+
+- Eigenvalues and Eigenvectors
+- Orthogonality and orthogonal projection
+- The spectral theorem for real symmetric matrices
