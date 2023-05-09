@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-99.9.9">
 
   <meta name="author" content="Jeremy Teitelbaum">
-  <title>Setting up a Project</title>
+  <title>1. Essential Software</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -388,7 +388,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Setting up a Project</h1>
+  <h1 class="title">1. Essential Software</h1>
   <p class="subtitle">Fundamentals of Data Science</p>
 
 <div class="quarto-title-authors">
@@ -400,75 +400,83 @@ Jeremy Teitelbaum
 </div>
 
 </section>
-<section>
-<section id="key-software-tools" class="title-slide slide level1 center">
-<h1>Key Software Tools</h1>
+<section id="essential-software" class="slide level2">
+<h2>Essential Software</h2>
+<ul>
+<li>the <a href="http://www.anaconda.com">anaconda</a> distribution including python v3.10 or higher</li>
+<li>the <a href="http://code.visualstudio.com">vscode</a> development environment</li>
+<li>the <a href="https://cran.wustl.edu/">R</a> language</li>
+<li>the <a href="https://posit.co/download/rstudio-desktop/">Rstudio</a> integrated development environment</li>
+</ul>
+</section>
+<section id="anaconda" class="slide level2">
+<h2>Anaconda</h2>
+<p>Anaconda is a data science software package that includes:</p>
+<ul>
+<li><p>An up-to-date version of the <code>python</code> language.</p></li>
+<li><p>A package manager (<code>conda</code>) for managing python libraries, and a collection of those libraries</p></li>
+<li><p>A GUI interface (<code>anaconda-navigator</code>) for launching many of the data science tools.</p></li>
+<li><p>You can install other tools (such as <code>R</code> and <code>Rstudio</code>) through <code>anaconda-navigator</code> but we won’t go that route.</p></li>
+</ul>
+</section>
+<section id="anaconda-setup" class="slide level2">
+<h2>Anaconda Setup</h2>
+<ol type="1">
+<li><p>Download the <a href="https://www.anaconda.com/download#downloads">appropriate anaconda package</a> for your operating system.</p></li>
+<li><p>Run the installer.</p></li>
+<li><p>Start anaconda-navigator to verify that it was installed.</p></li>
+<li><p>Run an instance of <code>JupyterLab</code> to verify that it starts properly.</p></li>
+</ol>
+</section>
+<section id="anaconda-navigator" class="slide level2">
+<h2>Anaconda Navigator</h2>
 
+<img data-src="img/navigator.png" class="r-stretch"></section>
+<section id="vscode" class="slide level2">
+<h2>VSCode</h2>
+<p><code>VSCode</code>, or “Visual Studio Code”, is a powerful code editor developed by Microsoft.</p>
+<p>It offers many tools to help write and maintain code and text.</p>
+<ol type="1">
+<li><p>Download and install vscode from the <a href="http://code.visualstudio.com">home page</a>.</p></li>
+<li><p>Start <code>VSCode</code> to make sure that it works. Use the start menu (on Windows), the finder (on MacOS), or open a shell window and type:</p></li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">$</span> code </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="anaconda-install-for-python" class="slide level2">
-<h2>Anaconda Install for Python</h2>
-<ul>
-<li>Download from <a href="https://www.anaconda.com">https://www.anaconda.com</a></li>
-</ul>
-<p>Anaconda includes:</p>
-<ul>
-<li>python</li>
-<li>jupyter: notebook working environment</li>
-<li>python libraries: ML, visualization, I/O and others</li>
-<li>conda package manager: for dealing with multiple versions of libraries</li>
-<li>anaconda navigator: a GUI gateway to anaconda tools</li>
-<li>lots of other stuff</li>
-</ul>
+<section id="vscode-1" class="slide level2">
+<h2>VSCode</h2>
+
+<img data-src="img/vscode.png" class="r-stretch"></section>
+<section id="r" class="slide level2">
+<h2>R</h2>
+<p><code>R</code> is a programming language that is highly optimized for statistical modeling.</p>
+<p>Install <code>R</code> by following the instructions on the <a href="https://cran.wustl.edu/">home page</a>.</p>
 </section>
-<section id="verify-anaconda" class="slide level2">
-<h2>Verify Anaconda</h2>
+<section id="r-1" class="slide level2">
+<h2>R</h2>
+<p>Verify that <code>R</code> works by starting it:</p>
 <ul>
-<li>Verify JupyterLab</li>
+<li><p>On MacOS, there is a graphical version of <code>R</code> called <code>R.app</code></p></li>
+<li><p>The installation process on Windows creates a desktop shortcut to start <code>R.</code></p></li>
+<li><p>On Linux, you start <code>R</code> from a desktop shortcut or the command line</p></li>
 </ul>
-<p>From a command line</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">$</span> jupyter lab </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>or use anaconda navigator to launch jupyterlab.</p>
-<ul>
-<li>Verify python version</li>
-</ul>
-<p>From a command line</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">$</span> python <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>or inside a jupyter notebook cell:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> sys</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="bu">print</span>(sys.version)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">$</span> R </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that you quit <code>R</code> with</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="sc">&gt;</span> <span class="fu">q</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="r-and-rstudio-install-for-r" class="slide level2">
-<h2>R and Rstudio Install for R</h2>
-<ul>
-<li><p>R is an open source language for statistical computations.</p></li>
-<li><p>Rstudio is a working environment for the R language.</p></li>
-<li><p>R and Rstudio need to be installed separately.</p></li>
-<li><p>R is available at <a href="https://cran.r-project.org">https://cran.r-project.org</a></p></li>
-<li><p>Rstudio is available at <a href="https://posit.co/download/rstudio-desktop">https://posit.co/download/rstudio-desktop</a></p></li>
-</ul>
+<section id="rstudio" class="slide level2">
+<h2>Rstudio</h2>
+<p><code>Rstudio</code> is a development environment for <code>R</code> (and for other languages if you prefer it).</p>
+<p>Install <code>Rstudio</code> from the <a href="https://posit.co/download/rstudio-desktop/">home page</a>.</p>
+<p>Start <code>Rstudio</code> by double clicking a shortcut on Windows or Mac, or from the command line:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">$</span> rstudio</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="verify-r-and-rstudio" class="slide level2">
-<h2>Verify R and Rstudio</h2>
-<p>For R, From a command line:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">$</span> R </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>For Rstudio, use the icon/shortcut or from a command line:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">$</span> rstudio </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="setting-up-a-project" class="slide level2">
-<h2>Setting up a Project</h2>
-<ul>
-<li>Create a project directory</li>
-<li>Subdirectories
-<ul>
-<li>data</li>
-<li>docs</li>
-<li>others?</li>
-</ul></li>
-</ul>
-<div class="footer footer-default">
+<section id="rstudio-1" class="slide level2">
+<h2>Rstudio</h2>
+
+<img data-src="img/rstudio.png" class="r-stretch"><div class="footer footer-default">
 
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
