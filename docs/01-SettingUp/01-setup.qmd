@@ -72,7 +72,14 @@ $ rstudio
     - data for data files
     - docs for notes and documentation
     - others?
+- Create a README.md file 
 
-Use the finder or the command line
+For the directories:
+- the finder or File Manager
+- the command line
+
+For the README file:
+- a text editor such as `nano` or notepad 
+- jupyter or Rstudio (as we will see soon)
 
 
