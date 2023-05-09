@@ -11,6 +11,7 @@ title-block-style: plain
 1. Use the 'text editor' feature in Jupyter Lab to create your README.md file.
 2. **RENAME YOUR NOTEBOOK FILE IMMEDIATELY** to something relevant
 3. CTRL-ENTER executes a cell.
+4. See [this sample code](downloads/02-example.tgz)
 
 ## Markdown cells
 
@@ -43,14 +44,15 @@ print("Hello World!")
     - True, False, and None
 3. Variables, variable names, and assignment
     - **caution:** order of cell execution is what matters
+4. Formatted print with variables
 
 ## Ingredients continued 
 
-4. Arithmetic operations
-5. Logical operations
-6. Operations on strings and lists
-7. Slicing
-8. Libraries
+5. Arithmetic operations
+6. Logical operations
+7. Operations on strings and lists
+8. Slicing
+9. Libraries
 
 
 
