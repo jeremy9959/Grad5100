@@ -1,6 +1,8 @@
 ---
 title: "R Notebook Walkthrough"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
 Start out with a code cell saying "Hello World"
@@ -31,10 +33,13 @@ students <- c("Jeremy", "Phillip","Sara", "Molly")
 HotDog <- TRUE  #note all caps unlike Python; false is FALSE
 ```
 In R, you can give names to the elements of a vector.
+```{r}
+print("hello")
+```
 
 ```{r}
 names(students)<-c("President", "Vice President", "Treasurer", "Secretary")
-print(names(students))
+print(names(students))   
 print(students["President"])
 print(students)
 ```
@@ -76,31 +81,37 @@ a<- c(1,2,3,4,5)
 b<- 4
 a+b
 ```
+
 ```{r}
 a<-c(1,2,3,4,5,6)
 b<-c(10,11)
 a+b
 ```
+
 ```{r}
 a<-c(1,2,3,4,5)
 b<-c(1,2)
 a+b
 ```
+
 ```{r}
 a/5
 ```
+
 ```{r}
 # integer division (// in python)
 a<-5L
 b<-3
 a%/%b
 ```
+
 ```{r}
 # remainder (% in python)
 a<-5
 b<-3
 a%%b
 ```
+
 ```{r}
 a<-c(1,2,3,4,5)
 a^2
@@ -168,6 +179,9 @@ The tidyverse library is something we will use a lot.
 
 ```{r}
 library(tidyverse)
+```
+```{r}
+
 ```
 
 
