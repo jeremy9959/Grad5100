@@ -12,6 +12,7 @@ title-block-style: plain
 2. **RENAME YOUR NOTEBOOK FILE IMMEDIATELY** to something relevant
 3. CTRL-ENTER executes a cell.
 4. See [this sample code](downloads/02-example.tgz)
+    
 
 ## Markdown cells
 
