@@ -54,6 +54,7 @@ print("Hello World!")
 7. Operations on strings and lists
 8. Slicing
 9. Libraries
+10. matplotlib plotting (bare minimum)
 
 
 ## Some other things to look at

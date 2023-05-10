@@ -184,4 +184,36 @@ library(tidyverse)
 
 ```
 
+## Plotting
+```{r}
+library(ggplot2)
+```
+
+
+```{r}
+x<-seq(-10,10,.1)
+y<-x**2
+data <- tibble("x"=x,"y"=y)
+```
+
+```{r}
+ggplot(data=data,aes(x=x)) +
+  geom_point(aes(y=y),color="red") +
+  ggtitle("A Parabola") + 
+  scale_x_continuous(breaks=seq(-10,10,1)) + 
+  scale_y_continuous(breaks=seq(0,100,20))
+```
+
+
+
+```{r}
+x<-seq(-10,10,.1)
+y<-cos(x)
+data <- tibble("x"=x,"y"=y)
+ggplot(data=data,aes(x=x)) +
+  geom_line(aes(y=y),color='darkgreen') +
+  ggtitle("A Cosine Curve") + 
+  scale_x_continuous(breaks=seq(-10,10,1)) + 
+  scale_y_continuous(breaks=seq(-1,1,5))
+```
 
