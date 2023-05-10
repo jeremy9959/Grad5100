@@ -51,7 +51,6 @@ print("Hello World!")
 5. Arithmetic operations
 6. Logical operations
 7. Operations on strings and lists
-    - +, len
 8. Slicing
 9. Libraries
 
