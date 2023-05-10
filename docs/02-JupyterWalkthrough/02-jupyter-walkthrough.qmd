@@ -22,6 +22,7 @@ In a markdown cell:
 - Italics are marked \*make me italic\* like *this*.
 - Math can be typeset with \LaTeX if you know it:  $$f(x)=e^{-x}\cos(x)$$
 - Bulleted lists are marked with \-.
+- Links are entered as \[name of link\]\(url to link\)
 
 ## Code Cells
 
@@ -55,5 +56,8 @@ print("Hello World!")
 9. Libraries
 
 
+## Some other things to look at
+
+- s.upper(), s.isupper(); s.lower(), s.islower()
 
 
