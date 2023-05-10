@@ -11,8 +11,7 @@ title-block-style: plain
 1. Use the 'text editor' feature in Jupyter Lab to create your README.md file.
 2. **RENAME YOUR NOTEBOOK FILE IMMEDIATELY** to something relevant
 3. CTRL-ENTER executes a cell.
-4. See [this sample code](downloads/02-example.tgz)
-    
+4. See [notebook](notebooks/JupyterWalkthrough.ipynb)
 
 ## Markdown cells
 
@@ -23,6 +22,7 @@ In a markdown cell:
 - Italics are marked \*make me italic\* like *this*.
 - Math can be typeset with \LaTeX if you know it:  $$f(x)=e^{-x}\cos(x)$$
 - Bulleted lists are marked with \-.
+- Links are entered as \[name of link\]\(url to link\)
 
 ## Code Cells
 
@@ -54,7 +54,11 @@ print("Hello World!")
 7. Operations on strings and lists
 8. Slicing
 9. Libraries
+10. matplotlib plotting (bare minimum)
 
 
+## Some other things to look at
+
+- s.upper(), s.isupper(); s.lower(), s.islower()
 
 
