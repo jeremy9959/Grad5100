@@ -11,7 +11,7 @@ title-block-style: plain
 1. Use the 'text editor' feature in Jupyter Lab to create your README.md file.
 2. **RENAME YOUR NOTEBOOK FILE IMMEDIATELY** to something relevant
 3. CTRL-ENTER executes a cell.
-4. See [this sample code](downloads/02-example.tgz)
+4. See [notebook](notebooks/JupyterWalkthrough.ipynb)
 
 ## Markdown cells
 
