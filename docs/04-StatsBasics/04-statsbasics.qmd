@@ -1,0 +1,11 @@
+---
+title: "Key Ideas from Statistics and Probability"
+subtitle: "Fundamentals of Data Science"
+author: "Jeremy Teitelbaum"
+format: revealjs
+title-block-style: plain
+---
+## Quantification of Uncertainty
+
+## Populations and Samples
+
