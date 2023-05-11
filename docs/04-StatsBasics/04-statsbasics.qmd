@@ -7,5 +7,47 @@ title-block-style: plain
 ---
 ## Quantification of Uncertainty
 
+Randomness as an intrinsic aspect of our knowledge
+We experience the world as a mixture of pattern and variation
+the weather in the Spring is warmer than the weather in the winter - a general pattern
+- but the weather on any given day is unpredictable
+
+Science can recognize more fundamental patterns with varying degrees of success:
+predict solar eclipses, motion of the planets, behavior of projectiles, 
+characteristics of offspring in reproduction of organisms, spread of diseases in Populations
+Such behaviors come from *mathematical models*
+Example Newton's laws, relativity, mendel's laws of inheritance, differential equations for disease spread
+even in finance (Black-Scholes equation)
+Statistics attempts to blend mathematical models with an understanding of randomness in a way
+that enables one to make predictions with a known, or quantified, amount of uncertainty.
+
+But our ability to quantify uncertainty is limited in many ways:
+
+-- model uncertainty
+-- measurement uncertainty
+
+Example: coin flipping
+we believe Prob of a head is 1/2
+design experiments to find evidence or not
+model says coin gives either heads or tails with equal chance, but this ignores weird edge
+cases, how the "flipping" is done, slight variation in weight of head/tails that might bias the coin
+different people doing experiment might get different results
+we might misrecord a H/T or miss a flip or read our data incorrectly
+
+
+-- parameter uncertainty
+
+motion of the planets depends on the gravitational constant, various masses, all of which have
+some uncertainty built in
+
+-- algorithmic uncertainty
+
+computations done numerically on a computer are subject to roundoff error, which can be a source
+of uncertainty.
+
+
+
+
+
 ## Populations and Samples
 
