@@ -5,21 +5,35 @@ author: "Jeremy Teitelbaum"
 format: revealjs
 title-block-style: plain
 ---
-## Quantification of Uncertainty
 
-Randomness as an intrinsic aspect of our knowledge
-We experience the world as a mixture of pattern and variation
-the weather in the Spring is warmer than the weather in the winter - a general pattern
-- but the weather on any given day is unpredictable
+# Quantification of Uncertainty
 
-Science can recognize more fundamental patterns with varying degrees of success:
-predict solar eclipses, motion of the planets, behavior of projectiles, 
-characteristics of offspring in reproduction of organisms, spread of diseases in Populations
-Such behaviors come from *mathematical models*
-Example Newton's laws, relativity, mendel's laws of inheritance, differential equations for disease spread
-even in finance (Black-Scholes equation)
-Statistics attempts to blend mathematical models with an understanding of randomness in a way
-that enables one to make predictions with a known, or quantified, amount of uncertainty.
+## Pattern and Randomness
+
+Randomness is an intrinsic aspect of our knowledge of the world.
+
+We experience the world as a mixture of pattern and variation.
+
+**Example:** The weather in the Spring is warmer than the weather in the winter but the weather on any given day is unpredictable
+
+## Pattern is explained by scientific/mathematical models
+
+- Newton's Laws and Theory of Gravity predict solar eclipses, motion of the planets, behavior of projectiles
+
+- Mendel's laws and the central dogma of biology explains how DNA
+controls characteristics of offspring in reproduction of organisms, 
+
+- Mathematical epidemiology can predict spread of diseases in populations
+
+- Behavior of options pricing governed by the Black-Scholes equation
+
+## Statistical models
+
+Statistics attempts to blend mathematical models with an understanding of randomness.
+
+Make predictions with a known, or quantified, amount of uncertainty.
+
+## Types of Uncertainty
 
 But our ability to quantify uncertainty is limited in many ways:
 
