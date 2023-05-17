@@ -1,0 +1,28 @@
+```{r}
+library(tidyverse)
+
+values <- seq(-2, 2, length.out = 100)
+result <- 3 * values + 2
+probabilities <- 1 / (1 + exp(-result))
+bernoulli_values <- rbinom(length(probabilities), 1, probabilities)
+
+df <- tibble(values = values, probabilities=probabilities, bernoulli_values = bernoulli_values)
+model <- glm(bernoulli_values ~ values, data = df, family = binomial(link = "logit"))
+intercept <- coefficients(model)[1]
+slope <- coefficients(model)[2]
+predicted_logits <- slope*values+intercept
+predicted_probs <- 1/(1+exp(-predicted_logits))
+df <- df |> mutate("predicted"=predicted_probs)
+print(summary(model))
+```
+
+```{r}
+plt <- ggplot(data=df)+
+    geom_line(aes(x=`values`,y=`probabilities`,color="True"))+
+    geom_line(aes(x=`values`,y=`predicted`,color='Predicted'))+
+    scale_color_manual(name="True/Predicted", values=c("True"="blue","Predicted"="red")) +
+    geom_point(aes(x=`values`,y=`bernoulli_values`)) + 
+    ggtitle("Logistic Data vs Fit")
+plt
+```
+

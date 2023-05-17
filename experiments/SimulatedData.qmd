@@ -1,0 +1,49 @@
+# Let's use R to generate some simulated data for regression.
+
+The final result is in @fig-one below. 
+
+## Load Libraries
+
+```{r}
+library(tidyverse)
+```
+
+## Linear case
+
+Our model is going to be specified by a slope, an intercept, and the variance of the error.
+
+```{r}
+simulated_data<-function(a,b,v) {
+    x <- runif(1000,-5,5)
+    y <- a*x+b+rnorm(1000,0,sqrt(v))
+    tibble(x=x,y=y)
+}
+```
+
+Let's test this.
+
+```{r}
+data <- simulated_data(3,2,1)
+plt <- ggplot(data=data)+geom_point(aes(x=`x`,y=`y`),color='blue',size=2)+ggtitle("Plot of Simulated Data")
+plt
+```
+
+Now let's fit a line to the data.
+
+```{r}
+model <- lm(`y`~`x`,data=data)
+model
+```
+
+We can add the line to the plot.
+
+```{r}
+#| fig-cap: Simple Plot
+#| label: fig-one
+b<-coefficients(model)[1]
+a<-coefficients(model)[2]
+plt <- plt+geom_abline(intercept=b, slope=a,color='purple',linewidth=2)
+plt
+```
+
+
