@@ -60,8 +60,5 @@ computations done numerically on a computer are subject to roundoff error, which
 of uncertainty.
 
 
-
-
-
 ## Populations and Samples
 
