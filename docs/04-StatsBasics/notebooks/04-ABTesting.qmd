@@ -1,6 +1,5 @@
 ## Experiments with A/B testing in R
 
-
 ### Setup
 ```{r}
 library(tidyverse)
