@@ -73,8 +73,18 @@ A continuous random variable takes values in a range.
 - Mass of a penguin is continuous
 - Species of penguin is discrete
 
+## Example
 
+```{r echo=TRUE}
+library(tidyverse)
+house <- tibble(read.csv("data/house_sales.csv",sep='\t'))
+```
 
+Whether or not a house is "New Construction" is a discrete property.
+
+```{r}
+house |> count(`NewConstruction`)
+```
 
 
 
