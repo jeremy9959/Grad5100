@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="04-statsbasics_files/libs/clipboard/clipboard.min.js"></script>
-<script src="04-statsbasics_files/libs/quarto-html/tabby.min.js"></script>
-<script src="04-statsbasics_files/libs/quarto-html/popper.min.js"></script>
-<script src="04-statsbasics_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="04-statsbasics_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="04-statsbasics_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="04-statsbasics_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="05-probability_files/libs/clipboard/clipboard.min.js"></script>
+<script src="05-probability_files/libs/quarto-html/tabby.min.js"></script>
+<script src="05-probability_files/libs/quarto-html/popper.min.js"></script>
+<script src="05-probability_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="05-probability_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="05-probability_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="05-probability_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-99.9.9">
 
   <meta name="author" content="Jeremy Teitelbaum">
-  <title>Key Ideas from Statistics and Probability</title>
+  <title>Probability</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="04-statsbasics_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="04-statsbasics_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="05-probability_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="05-probability_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -29,11 +29,11 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="04-statsbasics_files/libs/revealjs/dist/theme/quarto.css" id="theme">
-  <link href="04-statsbasics_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="04-statsbasics_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="04-statsbasics_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="04-statsbasics_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="05-probability_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link href="05-probability_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="05-probability_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="05-probability_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="05-probability_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -324,7 +324,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Key Ideas from Statistics and Probability</h1>
+  <h1 class="title">Probability</h1>
   <p class="subtitle">Fundamentals of Data Science</p>
 
 <div class="quarto-title-authors">
@@ -337,42 +337,72 @@ Jeremy Teitelbaum
 
 </section>
 <section>
-<section id="quantification-of-uncertainty" class="title-slide slide level1 center">
-<h1>Quantification of Uncertainty</h1>
+<section id="populations-and-samples" class="title-slide slide level1 center">
+<h1>Populations and Samples</h1>
 
 </section>
-<section id="pattern-and-randomness" class="slide level2">
-<h2>Pattern and Randomness</h2>
-<p>Randomness is an intrinsic aspect of our knowledge of the world.</p>
-<p>We experience the world as a mixture of pattern and variation.</p>
-<p><strong>Example:</strong> The weather in the Spring is warmer than the weather in the winter but the weather on any given day is unpredictable</p>
-</section>
-<section id="pattern-is-explained-by-scientificmathematical-models" class="slide level2">
-<h2>Pattern is explained by scientific/mathematical models</h2>
+<section id="probability" class="slide level2">
+<h2>Probability</h2>
+<p>Probability theory is based on:</p>
 <ul>
-<li><p>Newton’s Laws and Theory of Gravity predict solar eclipses, motion of the planets, behavior of projectiles</p></li>
-<li><p>Mendel’s laws and the central dogma of biology explains how DNA controls characteristics of offspring in reproduction of organisms,</p></li>
-<li><p>Mathematical epidemiology can predict spread of diseases in populations</p></li>
-<li><p>Behavior of options pricing governed by the Black-Scholes equation</p></li>
+<li>An underlying collection <span class="math inline">\(S\)</span> of all possible outcomes (a <em>population</em> or <em>sample space</em>) of an experiment.</li>
+<li>A rule <span class="math inline">\(P\)</span> that assigns a number between zero and one to each subset of the sample space satisfying certain rules.</li>
 </ul>
 </section>
-<section id="statistical-models" class="slide level2">
-<h2>Statistical models</h2>
-<p>Statistics attempts to blend mathematical models with an understanding of randomness.</p>
-<p>Make predictions with a known, or quantified, amount of uncertainty.</p>
+<section id="sample-space" class="slide level2">
+<h2>Sample Space</h2>
+<p>For example:</p>
+<ul>
+<li><p>For a flip of a single coin, the possible outcomes are Heads and Tails and the sample space has two elements. For multiple flips, the outcomes are sequences of Heads and Tails.</p></li>
+<li><p>For a measurement of temperature, we might model the possible outcomes, or the sample space, as all real numbers, recognizing that only some of them are actually possible results of the experiment.</p></li>
+</ul>
 </section>
-<section id="types-of-uncertainty" class="slide level2">
-<h2>Types of Uncertainty</h2>
-<p>But our ability to quantify uncertainty is limited in many ways:</p>
-<p>– model uncertainty – measurement uncertainty</p>
-<p>Example: coin flipping we believe Prob of a head is 1/2 design experiments to find evidence or not model says coin gives either heads or tails with equal chance, but this ignores weird edge cases, how the “flipping” is done, slight variation in weight of head/tails that might bias the coin different people doing experiment might get different results we might misrecord a H/T or miss a flip or read our data incorrectly</p>
-<p>– parameter uncertainty</p>
-<p>motion of the planets depends on the gravitational constant, various masses, all of which have some uncertainty built in</p>
-<p>– algorithmic uncertainty</p>
-<p>computations done numerically on a computer are subject to roundoff error, which can be a source of uncertainty.</p>
+<section id="simple-events" class="slide level2">
+<h2>Simple Events</h2>
+<p>The elements of the sample space or population are the <em>outcomes</em> or <em>simple events</em> or <em>sample points</em>.</p>
+<ul>
+<li><p>For a flip of a coin, the possible outcomes are Heads or Tails. For multiple flips, the possible outcomes are particular sequences of Heads or Tails.</p></li>
+<li><p>For a measurement of temperature, a simple event would be a particular number obtained at a particular time.</p></li>
+</ul>
 </section>
-<section id="populations-and-samples" class="slide level2">
-<h2>Populations and Samples</h2>
+<section id="events" class="slide level2">
+<h2>Events</h2>
+<p>Subsets of the population make up events or outcomes.</p>
+<ul>
+<li><p>Among the population made up of sequences of 10 coin flips, the subset consisting of sequences containing at least 3 heads is an event.</p></li>
+<li><p>Among the measurements of temperature, a measurement lying between say 22 and 25 degrees celsius would be an event.</p></li>
+</ul>
+</section>
+<section id="probability-1" class="slide level2">
+<h2>Probability</h2>
+<p>The last element of probability theory is the function P that assigns a number between 0 and 1 to every event such that</p>
+<ul>
+<li><span class="math inline">\(P(\emptyset)=0\)</span></li>
+<li><span class="math inline">\(P(S)=1\)</span>.</li>
+<li>If <span class="math inline">\(A\cap B=\emptyset\)</span> then <span class="math inline">\(P(A\cup B)=P(A)+P(B)\)</span>. This is also required to hold for <em>infinite</em> collections of disjoint sets but we won’t worry much about the foundations of probability.</li>
+</ul>
+</section>
+<section id="random-variables" class="slide level2">
+<h2>Random Variables</h2>
+<p>A <em>random variable</em> is a rule that assigns a number to an event.</p>
+<ul>
+<li>We can assign the value 1 to heads and 0 to tails. This is a <em>bernoulli</em> random variable.</li>
+<li>Our sample space can be sets of 10 coin flips. The number of heads is a random variable.</li>
+<li>The measurement of temperature yields a number.<br>
+</li>
+<li>If we pick a person at random, we can assign the value 1 if they wear glasses and 0 if not.</li>
+</ul>
+</section>
+<section id="discrete-vs-continuous-random-variables" class="slide level2">
+<h2>Discrete vs Continuous Random Variables</h2>
+<p>A discrete random variables takes “separate” values depending on the event. A continuous random variable takes values in a range.</p>
+<ul>
+<li>Bernoulli random variable is discrete (0/1)</li>
+<li>Number of heads in 10 flips is discrete (takes values 0,…,10)</li>
+<li>Temperature is continuous (in principle can get any reading)</li>
+<li>Mass of a penguin is continuous</li>
+<li>Species of penguin is discrete</li>
+</ul>
 <div class="footer footer-default">
 
 </div>
@@ -381,19 +411,19 @@ Jeremy Teitelbaum
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="04-statsbasics_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="05-probability_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="04-statsbasics_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="04-statsbasics_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="04-statsbasics_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="04-statsbasics_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="04-statsbasics_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="05-probability_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="05-probability_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="05-probability_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="05-probability_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="05-probability_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="04-statsbasics_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="04-statsbasics_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="04-statsbasics_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="04-statsbasics_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="05-probability_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="05-probability_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="05-probability_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="05-probability_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>

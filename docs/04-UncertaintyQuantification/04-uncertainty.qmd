@@ -1,5 +1,5 @@
 ---
-title: "Key Ideas from Statistics and Probability"
+title: "Uncertainty Quantification"
 subtitle: "Fundamentals of Data Science"
 author: "Jeremy Teitelbaum"
 format: revealjs
@@ -37,28 +37,41 @@ Make predictions with a known, or quantified, amount of uncertainty.
 
 But our ability to quantify uncertainty is limited in many ways:
 
--- model uncertainty
--- measurement uncertainty
+- model uncertainty
+- measurement uncertainty
+- algorithmic uncertainty
 
-Example: coin flipping
-we believe Prob of a head is 1/2
-design experiments to find evidence or not
-model says coin gives either heads or tails with equal chance, but this ignores weird edge
-cases, how the "flipping" is done, slight variation in weight of head/tails that might bias the coin
-different people doing experiment might get different results
-we might misrecord a H/T or miss a flip or read our data incorrectly
+## Model Uncertainty
 
+Example: Coin flipping
 
--- parameter uncertainty
+- We believe the chance  of a head is 1/2
+- Our model says coin gives either heads or tails with equal chance
 
-motion of the planets depends on the gravitational constant, various masses, all of which have
-some uncertainty built in
+## Model Uncertainty
 
--- algorithmic uncertainty
+We ignore:
 
-computations done numerically on a computer are subject to roundoff error, which can be a source
-of uncertainty.
+- weird edge cases, 
+- how the "flipping" is done,
+- slight variation in weight of head/tails that might bias the coin
+- different people doing experiment might get different results
+- we might misrecord a H/T or miss a flip or read our data incorrectly
 
+## Parameter Uncertainty
 
-## Populations and Samples
+Motion of the planets depends on:
+
+- the gravitational constant
+- various masses
+
+deduced from measurements --  all of which have inherent errors. 
+
+## Algorithmic Uncertainty
+
+Computations done numerically on a computer are subject to roundoff error
+
+Algorithms for solving things like differential equations or computing integrals
+are inherently approximations
+
 

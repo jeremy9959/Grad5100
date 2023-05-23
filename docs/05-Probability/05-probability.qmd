@@ -1,0 +1,80 @@
+---
+title: "Probability"
+subtitle: "Fundamentals of Data Science"
+author: "Jeremy Teitelbaum"
+format: revealjs
+title-block-style: plain
+---
+
+# Populations and Samples
+
+## Probability Theory
+
+Probability theory is based on:
+
+- An underlying collection $S$ of all possible outcomes  (a *population* or *sample space*) of an experiment. 
+- A rule $P$ that assigns a number between zero and one to each subset of the sample space satisfying certain rules. 
+
+## Sample Space
+
+
+For example:
+
+- For a flip of a single coin, the possible outcomes are Heads and Tails and the sample
+space has two elements. For multiple flips, the outcomes are sequences of Heads and Tails.
+
+- For a measurement of temperature, we might model the possible outcomes, or the sample space,   as all real numbers, recognizing that only some of them are actually possible results of the experiment.
+
+
+## Simple Events
+
+The elements of the sample space or population are the *outcomes* or *simple events* or *sample points*. 
+
+- For a flip of a coin, the possible outcomes are Heads or Tails.  For multiple flips,
+the possible outcomes are particular sequences of Heads or Tails.
+
+- For a measurement of temperature, a simple event would be a particular number obtained
+at a particular time. 
+
+## Events
+
+Subsets of the population make up events or outcomes.
+
+- Among the population made up of sequences of 10 coin flips, the subset consisting of
+sequences containing at least 3 heads is an event. 
+
+- Among the measurements of temperature, a measurement lying between say 22 and 25 degrees celsius would be an event. 
+
+## Probability Measure
+
+The last element of probability theory is the function P that assigns a number between 0 and 1 to every event such that
+
+- $P(\emptyset)=0$
+- $P(S)=1$. 
+- If $A\cap B=\emptyset$ then $P(A\cup B)=P(A)+P(B)$.  This is also required to hold for *infinite* collections of disjoint sets but we won't worry much about the foundations of probability. 
+
+## Random Variables
+
+A *random variable* is a rule that assigns a number to an event. 
+
+- We can assign the value 1 to heads and 0 to tails.  This is a *bernoulli* random variable.
+- Our sample space can be sets of 10 coin flips.  The number of heads is a random variable. 
+- The measurement of temperature yields a number.  
+- If we pick a person at random, we can assign the value 1 if they wear glasses and 0 if not.
+
+## Discrete vs Continuous Random Variables
+
+A discrete random variables takes "separate" values depending on the event.
+A continuous random variable takes values in a range.
+
+- Bernoulli random variable is discrete (0/1)
+- Number of heads in 10 flips is discrete (takes values 0,...,10)
+- Temperature is continuous (in principle can get any reading)
+- Mass of a penguin is continuous
+- Species of penguin is discrete
+
+
+
+
+
+
