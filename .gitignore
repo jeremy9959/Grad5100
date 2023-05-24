@@ -2,3 +2,5 @@
 .ipynb_checkpoints/
 resources/
 .Rproj.user
+
+/.quarto/

@@ -75,16 +75,18 @@ A continuous random variable takes values in a range.
 
 ## Example
 
-```{r echo=TRUE}
-library(tidyverse)
-house <- tibble(read.csv("data/house_sales.csv",sep='\t'))
-```
-
-Whether or not a house is "New Construction" is a discrete property.
-
 ```{r}
-house |> count(`NewConstruction`)
+house <- read.csv("docs/05-Probability/notebooks/data/house_sales.csv",sep='\t')
 ```
 
+
+
+
+
+<!--
+some things to talk about:
+fisher exact test  (likelihood of results at random)
+datatypes and types of random variables (ints are discrete/continuous?)
+-->
 
 
