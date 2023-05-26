@@ -185,12 +185,13 @@ Let's do an experiment, and draw 1000 samples of 10 elements from a normal popul
 
 ```{r}
 # sample() returns the mean of a sample of n elements
-sample <- function(n=10) {
+sample <- function(n = 10) {
     mean(rnorm(n))
 }
-data <- replicate(1000,sample(10))
-ggplot()+geom_histogram(aes(x=data,y=..density..),binwidth=.1) +
-    labs(title=paste("Average sample mean=",mean(data)))
+data <- replicate(1000, sample(10))
+ggplot() +
+    geom_histogram(aes(x = data, y = ..density..), binwidth = .1) +
+    labs(title = paste("Average sample mean=", mean(data)))
 ```
 
 As you can see from this picture, the sample means cluster around 0,
@@ -203,19 +204,22 @@ a bit smaller than the standard deviation of the raw data, which is 1.
 So this is another piece of evidence that sample means cluster around the population mean with less variance than the individual values.   
 
 ```{r}
-q<-quantile(data)
-q25=q["25%"]
-q75=q["75%"]
-print(paste("The middle 50% of the data lies between ",format(q25,digits=2,nsmall=2)," and ",format(q75,digits=2,nsmall=2)))
+q <- quantile(data)
+q25 <- q["25%"]
+q75 <- q["75%"]
+print(paste("The middle 50% of the data lies between ", format(q25, digits = 2, nsmall = 2), " and ", format(q75, digits = 2, nsmall = 2)))
 ```
 
 Statistical theory tells us that the distribution of the sample means is governed by a relative of the normal distribution called the $t$-distribution. There is actually a separate $t$ distribution for each sample size.  For smaller sample sizes, the $t$ distribution is "fatter" than the normal distribution.
 
 ```{r}
-normal <- dnorm(seq(-3,3,length.out=100))
-student <- dt(seq(-3,3,length.out=100),df=9)
-ggplot()+geom_line(aes(x=seq(-3,3,length.out=100),y=normal,color="Normal"))+geom_line(aes(x=seq(-3,3,length.out=100),y=student, color="t"))+scale_color_manual(values=c("Normal"="blue","t"="red")) +
-labs(title="Normal dist vs t-dist with 9 degrees of freedom")
+normal <- dnorm(seq(-3, 3, length.out = 100))
+student <- dt(seq(-3, 3, length.out = 100), df = 9)
+ggplot() +
+    geom_line(aes(x = seq(-3, 3, length.out = 100), y = normal, color = "Normal")) +
+    geom_line(aes(x = seq(-3, 3, length.out = 100), y = student, color = "t")) +
+    scale_color_manual(values = c("Normal" = "blue", "t" = "red")) +
+    labs(title = "Normal dist vs t-dist with 9 degrees of freedom")
 ```
 
 Furthermore, as the sample size increases:
@@ -227,8 +231,9 @@ Let's look at samples of size 50 for comparison.
 
 ```{r}
 data50 <- replicate(1000, sample(50))
-plt<-ggplot()+geom_histogram(aes(x=data50,y=..density..),binwidth=.1) +
-    labs(title=paste("Average sample mean for samples of size 50=",format(mean(data50),digits=2,nsmall=2)))
+plt <- ggplot() +
+    geom_histogram(aes(x = data50, y = ..density..), binwidth = .1) +
+    labs(title = paste("Average sample mean for samples of size 50=", format(mean(data50), digits = 2, nsmall = 2)))
 plt
 ```
 
@@ -237,10 +242,10 @@ Notice that these samples cluster much more tightly around the "true" mean of ze
 The standard deviation of the sample means is .145.
 
 ```{r}
-q<-quantile(data50,c(.25,.75))
-q25=q["25%"]
-q75=q["75%"]
-print(paste("The middle 50% of the data lies between ",format(q25,digits=2,nsmall=2)," and ",format(q75,digits=2,nsmall=2)))
+q <- quantile(data50, c(.25, .75))
+q25 <- q["25%"]
+q75 <- q["75%"]
+print(paste("The middle 50% of the data lies between ", format(q25, digits = 2, nsmall = 2), " and ", format(q75, digits = 2, nsmall = 2)))
 ```
 
 ## Sample means: summary
@@ -259,21 +264,23 @@ us the following:
 What about estimating the variance of the population?  Let's draw samples from a normal distribution and see how the variance  behaves. Remember that the variance (the square of the standard deviation) is always positive. 
 
 ```{r}
-sample_var <- function(n=10) {
+sample_var <- function(n = 10) {
     return(var(rnorm(n)))
 }
-var_samples <- replicate(100,sample_var(10))
-ggplot()+geom_histogram(aes(x=var_samples, y=..density..),bins=25) +
-    labs(title="Distribution of variance of 10 element samples from standard normal")
+var_samples <- replicate(100, sample_var(10))
+ggplot() +
+    geom_histogram(aes(x = var_samples, y = ..density..), bins = 25) +
+    labs(title = "Distribution of variance of 10 element samples\n from standard normal")
 ```
 
 One thing to notice is that the distribution of the variance is not symmetric.  The mean of these standard deviations is close to the true
 variance (namely 1) but there is a longer tail off to the right.  This is more clearly seen with many more samples. 
 
 ```{r}
-var_samples <- replicate(10000,sample_var(10))
-ggplot()+geom_histogram(aes(x=var_samples, y=..density..),bins=50) +
-    labs(title="Distribution of sd of 10 element samples from standard normal")
+var_samples <- replicate(10000, sample_var(10))
+ggplot() +
+    geom_histogram(aes(x = var_samples, y = ..density..), bins = 50) +
+    labs(title = "Distribution of variance of 10 element samples\n from standard normal")
 ```
 
 In fact, half of the samples are between .66 and 1.3, which is not symmetric
@@ -283,19 +290,30 @@ The theory tells us that the variance follows a "chi-square" distribution;
 there is a different chi-square distribution for each sample size. 
 
 ```{r}
-
-x <- seq(0, 4, length.out=100)
-df5 <- 5*dchisq(5*x, df=5)
-df10 <- 10*dchisq(10*x, df=10)
-df30 <- 30*dchisq(30*x, df=30)
+x <- seq(0, 4, length.out = 100)
+df5 <- 5 * dchisq(5 * x, df = 5)
+df10 <- 10 * dchisq(10 * x, df = 10)
+df30 <- 30 * dchisq(30 * x, df = 30)
 df <- tibble(x, df5, df10, df30)
 
-ggplot(df, aes(x=x)) + 
-  geom_line(aes(y=df5, color="df=5")) + 
-  geom_line(aes(y=df10, color="df=10")) + 
-  geom_line(aes(y=df30, color="df=30")) + 
-  scale_color_manual(values=c("df=5"="blue", "df=10"="red", "df=30"="orange")) +
-  labs(title="Chi-Square Distributions", x="x", y="Density")
+ggplot(df, aes(x = x)) +
+    geom_line(aes(y = df5, color = "df=5")) +
+    geom_line(aes(y = df10, color = "df=10")) +
+    geom_line(aes(y = df30, color = "df=30")) +
+    scale_color_manual(values = c("df=5" = "blue", "df=10" = "red", "df=30" = "orange")) +
+    labs(title = "Chi-Square Distributions", x = "x", y = "Density")
+```
+
+To drive home the point, let's superimpose the chi-square density with 10 degrees of freedom on the histogram of samples.
+
+```{r}
+x <- seq(0, 4, length.out = 100)
+df10 <- 10 * dchisq(10 * x, df = 10)
+var_samples <- replicate(10000, sample_var(10))
+ggplot() +
+    geom_histogram(aes(x = var_samples, y = ..density..), bins = 50, alpha = .5) +
+    labs(title = "Variance of 10 element samples from standard normal\n with chi-square density") +
+    geom_line(aes(x = x, y = df10))
 ```
 
 ## Sample variance: summary
@@ -305,4 +323,5 @@ The sample variances cluster around the true variance.
 - Their mean clusters around the true variance
 - The sample variances (for samples of size $k$) are distributed by a chi-square distribution with $k-1$ degrees of freedom.
 - The relevant version of this distribution in the R language
-is `k*dchisq(x/k,df=k)`.
+is `k*dchisq(x/k,df=k)`.  This is because the `dchisq(x, df=k)` function
+computes a chi-square variable with mean k and we want one with mean 1. 

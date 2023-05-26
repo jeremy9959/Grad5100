@@ -184,14 +184,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Out of 1000 draws, "</span>, <span class="fu">sum</span>(<span class="fu">count</span>()), <span class="st">" were between 0 and 1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Out of 1000 draws,  342  were between 0 and 1"</code></pre>
+<pre><code>[1] "Out of 1000 draws,  354  were between 0 and 1"</code></pre>
 </div>
 </div>
 <p>Now let’s do this experiment 1000 times and record the results.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>draws <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">count</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>On average, we got 342.286 values between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, which is very close to what we’d expect.</p>
+<p>On average, we got 341.479 values between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, which is very close to what we’d expect.</p>
 <p>Let’s look at a histogram of the result of these 100 draws. The vertical line indicates the mean.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>hist <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
@@ -277,7 +277,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>count <span class="ot">&lt;-</span> <span class="fu">sum</span>(data <span class="sc">&lt;</span> .<span class="dv">674</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(count, <span class="st">" draws out of 10000 are less than .674"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "7471  draws out of 10000 are less than .674"</code></pre>
+<pre><code>[1] "7448  draws out of 10000 are less than .674"</code></pre>
 </div>
 </div>
 </section>
@@ -313,12 +313,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Let’s do an experiment, and draw 1000 samples of 10 elements from a normal population and look at the means of our samples.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample() returns the mean of a sample of n elements</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n=</span><span class="dv">10</span>) {</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">10</span>) {</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(<span class="fu">rnorm</span>(n))</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>,<span class="fu">sample</span>(<span class="dv">10</span>))</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x=</span>data,<span class="at">y=</span>..density..),<span class="at">binwidth=</span>.<span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title=</span><span class="fu">paste</span>(<span class="st">"Average sample mean="</span>,<span class="fu">mean</span>(data)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">sample</span>(<span class="dv">10</span>))</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> data, <span class="at">y =</span> ..density..), <span class="at">binwidth =</span> .<span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"Average sample mean="</span>, <span class="fu">mean</span>(data)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="normal_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -326,20 +327,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>As you can see from this picture, the sample means cluster around 0, and the <em>average of the sample averages</em> is close to zero. But there is quite a bit of variability here – half of the averages lie between about -.2 and .2. Still, in the standard normal distribution, 50% of the data lies between .67 and .67, so the means cluster around the true mean more closely than the data does.</p>
 <p>The standard deviation of these sample means is roughly <span class="math inline">\(.31\)</span>, which is quite a bit smaller than the standard deviation of the raw data, which is 1. So this is another piece of evidence that sample means cluster around the population mean with less variance than the individual values.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>q<span class="ot">&lt;-</span><span class="fu">quantile</span>(data)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>q25<span class="ot">=</span>q[<span class="st">"25%"</span>]</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>q75<span class="ot">=</span>q[<span class="st">"75%"</span>]</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"The middle 50% of the data lies between "</span>,<span class="fu">format</span>(q25,<span class="at">digits=</span><span class="dv">2</span>,<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">" and "</span>,<span class="fu">format</span>(q75,<span class="at">digits=</span><span class="dv">2</span>,<span class="at">nsmall=</span><span class="dv">2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">quantile</span>(data)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>q25 <span class="ot">&lt;-</span> q[<span class="st">"25%"</span>]</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>q75 <span class="ot">&lt;-</span> q[<span class="st">"75%"</span>]</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"The middle 50% of the data lies between "</span>, <span class="fu">format</span>(q25, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">nsmall =</span> <span class="dv">2</span>), <span class="st">" and "</span>, <span class="fu">format</span>(q75, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">nsmall =</span> <span class="dv">2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "The middle 50% of the data lies between  -0.23  and  0.19"</code></pre>
+<pre><code>[1] "The middle 50% of the data lies between  -0.21  and  0.20"</code></pre>
 </div>
 </div>
 <p>Statistical theory tells us that the distribution of the sample means is governed by a relative of the normal distribution called the <span class="math inline">\(t\)</span>-distribution. There is actually a separate <span class="math inline">\(t\)</span> distribution for each sample size. For smaller sample sizes, the <span class="math inline">\(t\)</span> distribution is “fatter” than the normal distribution.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>normal <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>,<span class="at">length.out=</span><span class="dv">100</span>))</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>student <span class="ot">&lt;-</span> <span class="fu">dt</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>,<span class="at">length.out=</span><span class="dv">100</span>),<span class="at">df=</span><span class="dv">9</span>)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span><span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>,<span class="at">length.out=</span><span class="dv">100</span>),<span class="at">y=</span>normal,<span class="at">color=</span><span class="st">"Normal"</span>))<span class="sc">+</span><span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>,<span class="at">length.out=</span><span class="dv">100</span>),<span class="at">y=</span>student, <span class="at">color=</span><span class="st">"t"</span>))<span class="sc">+</span><span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"Normal"</span><span class="ot">=</span><span class="st">"blue"</span>,<span class="st">"t"</span><span class="ot">=</span><span class="st">"red"</span>)) <span class="sc">+</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Normal dist vs t-dist with 9 degrees of freedom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>normal <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="at">length.out =</span> <span class="dv">100</span>))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>student <span class="ot">&lt;-</span> <span class="fu">dt</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="at">length.out =</span> <span class="dv">100</span>), <span class="at">df =</span> <span class="dv">9</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="at">length.out =</span> <span class="dv">100</span>), <span class="at">y =</span> normal, <span class="at">color =</span> <span class="st">"Normal"</span>)) <span class="sc">+</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="at">length.out =</span> <span class="dv">100</span>), <span class="at">y =</span> student, <span class="at">color =</span> <span class="st">"t"</span>)) <span class="sc">+</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Normal"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"t"</span> <span class="ot">=</span> <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Normal dist vs t-dist with 9 degrees of freedom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="normal_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -352,9 +356,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Let’s look at samples of size 50 for comparison.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>data50 <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">sample</span>(<span class="dv">50</span>))</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>plt<span class="ot">&lt;-</span><span class="fu">ggplot</span>()<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x=</span>data50,<span class="at">y=</span>..density..),<span class="at">binwidth=</span>.<span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title=</span><span class="fu">paste</span>(<span class="st">"Average sample mean for samples of size 50="</span>,<span class="fu">format</span>(<span class="fu">mean</span>(data50),<span class="at">digits=</span><span class="dv">2</span>,<span class="at">nsmall=</span><span class="dv">2</span>)))</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>plt <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> data50, <span class="at">y =</span> ..density..), <span class="at">binwidth =</span> .<span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"Average sample mean for samples of size 50="</span>, <span class="fu">format</span>(<span class="fu">mean</span>(data50), <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">nsmall =</span> <span class="dv">2</span>)))</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="normal_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -362,12 +367,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Notice that these samples cluster much more tightly around the “true” mean of zero. In fact 50% of the data lies between -.1 and .1.</p>
 <p>The standard deviation of the sample means is .145.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>q<span class="ot">&lt;-</span><span class="fu">quantile</span>(data50,<span class="fu">c</span>(.<span class="dv">25</span>,.<span class="dv">75</span>))</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>q25<span class="ot">=</span>q[<span class="st">"25%"</span>]</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>q75<span class="ot">=</span>q[<span class="st">"75%"</span>]</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"The middle 50% of the data lies between "</span>,<span class="fu">format</span>(q25,<span class="at">digits=</span><span class="dv">2</span>,<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">" and "</span>,<span class="fu">format</span>(q75,<span class="at">digits=</span><span class="dv">2</span>,<span class="at">nsmall=</span><span class="dv">2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">quantile</span>(data50, <span class="fu">c</span>(.<span class="dv">25</span>, .<span class="dv">75</span>))</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>q25 <span class="ot">&lt;-</span> q[<span class="st">"25%"</span>]</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>q75 <span class="ot">&lt;-</span> q[<span class="st">"75%"</span>]</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"The middle 50% of the data lies between "</span>, <span class="fu">format</span>(q25, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">nsmall =</span> <span class="dv">2</span>), <span class="st">" and "</span>, <span class="fu">format</span>(q75, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">nsmall =</span> <span class="dv">2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "The middle 50% of the data lies between  -0.089  and  0.10"</code></pre>
+<pre><code>[1] "The middle 50% of the data lies between  -0.095  and  0.091"</code></pre>
 </div>
 </div>
 </section>
@@ -386,21 +391,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="sample-variance">Sample variance</h2>
 <p>What about estimating the variance of the population? Let’s draw samples from a normal distribution and see how the variance behaves. Remember that the variance (the square of the standard deviation) is always positive.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>sample_var <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n=</span><span class="dv">10</span>) {</span>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>sample_var <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">10</span>) {</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">var</span>(<span class="fu">rnorm</span>(n)))</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>var_samples <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">100</span>,<span class="fu">sample_var</span>(<span class="dv">10</span>))</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x=</span>var_samples, <span class="at">y=</span>..density..),<span class="at">bins=</span><span class="dv">25</span>) <span class="sc">+</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Distribution of variance of 10 element samples from standard normal"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>var_samples <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">100</span>, <span class="fu">sample_var</span>(<span class="dv">10</span>))</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> var_samples, <span class="at">y =</span> ..density..), <span class="at">bins =</span> <span class="dv">25</span>) <span class="sc">+</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of variance of 10 element samples</span><span class="sc">\n</span><span class="st"> from standard normal"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="normal_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>One thing to notice is that the distribution of the variance is not symmetric. The mean of these standard deviations is close to the true variance (namely 1) but there is a longer tail off to the right. This is more clearly seen with many more samples.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>var_samples <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">10000</span>,<span class="fu">sample_var</span>(<span class="dv">10</span>))</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x=</span>var_samples, <span class="at">y=</span>..density..),<span class="at">bins=</span><span class="dv">50</span>) <span class="sc">+</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Distribution of sd of 10 element samples from standard normal"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>var_samples <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">10000</span>, <span class="fu">sample_var</span>(<span class="dv">10</span>))</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> var_samples, <span class="at">y =</span> ..density..), <span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of variance of 10 element samples</span><span class="sc">\n</span><span class="st"> from standard normal"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="normal_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -408,20 +415,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In fact, half of the samples are between .66 and 1.3, which is not symmetric about the origin – the values are <em>more likely to underestimate the variance</em> but there are samples that greatly <em>overestimate</em> it.</p>
 <p>The theory tells us that the variance follows a “chi-square” distribution; there is a different chi-square distribution for each sample size.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">4</span>, <span class="at">length.out=</span><span class="dv">100</span>)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>df5 <span class="ot">&lt;-</span> <span class="dv">5</span><span class="sc">*</span><span class="fu">dchisq</span>(<span class="dv">5</span><span class="sc">*</span>x, <span class="at">df=</span><span class="dv">5</span>)</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>df10 <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">*</span><span class="fu">dchisq</span>(<span class="dv">10</span><span class="sc">*</span>x, <span class="at">df=</span><span class="dv">10</span>)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>df30 <span class="ot">&lt;-</span> <span class="dv">30</span><span class="sc">*</span><span class="fu">dchisq</span>(<span class="dv">30</span><span class="sc">*</span>x, <span class="at">df=</span><span class="dv">30</span>)</span>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">4</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>df5 <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="sc">*</span> <span class="fu">dchisq</span>(<span class="dv">5</span> <span class="sc">*</span> x, <span class="at">df =</span> <span class="dv">5</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>df10 <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="sc">*</span> <span class="fu">dchisq</span>(<span class="dv">10</span> <span class="sc">*</span> x, <span class="at">df =</span> <span class="dv">10</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>df30 <span class="ot">&lt;-</span> <span class="dv">30</span> <span class="sc">*</span> <span class="fu">dchisq</span>(<span class="dv">30</span> <span class="sc">*</span> x, <span class="at">df =</span> <span class="dv">30</span>)</span>
 <span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(x, df5, df10, df30)</span>
 <span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>x)) <span class="sc">+</span> </span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>df5, <span class="at">color=</span><span class="st">"df=5"</span>)) <span class="sc">+</span> </span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>df10, <span class="at">color=</span><span class="st">"df=10"</span>)) <span class="sc">+</span> </span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>df30, <span class="at">color=</span><span class="st">"df=30"</span>)) <span class="sc">+</span> </span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"df=5"</span><span class="ot">=</span><span class="st">"blue"</span>, <span class="st">"df=10"</span><span class="ot">=</span><span class="st">"red"</span>, <span class="st">"df=30"</span><span class="ot">=</span><span class="st">"orange"</span>)) <span class="sc">+</span></span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Chi-Square Distributions"</span>, <span class="at">x=</span><span class="st">"x"</span>, <span class="at">y=</span><span class="st">"Density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> df5, <span class="at">color =</span> <span class="st">"df=5"</span>)) <span class="sc">+</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> df10, <span class="at">color =</span> <span class="st">"df=10"</span>)) <span class="sc">+</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> df30, <span class="at">color =</span> <span class="st">"df=30"</span>)) <span class="sc">+</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"df=5"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"df=10"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"df=30"</span> <span class="ot">=</span> <span class="st">"orange"</span>)) <span class="sc">+</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Chi-Square Distributions"</span>, <span class="at">x =</span> <span class="st">"x"</span>, <span class="at">y =</span> <span class="st">"Density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="normal_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>To drive home the point, let’s superimpose the chi-square density with 10 degrees of freedom on the histogram of samples.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">4</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>df10 <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="sc">*</span> <span class="fu">dchisq</span>(<span class="dv">10</span> <span class="sc">*</span> x, <span class="at">df =</span> <span class="dv">10</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>var_samples <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">10000</span>, <span class="fu">sample_var</span>(<span class="dv">10</span>))</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> var_samples, <span class="at">y =</span> ..density..), <span class="at">bins =</span> <span class="dv">50</span>, <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Variance of 10 element samples from standard normal</span><span class="sc">\n</span><span class="st"> with chi-square density"</span>) <span class="sc">+</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> df10))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="normal_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -431,7 +451,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Their mean clusters around the true variance</li>
 <li>The sample variances (for samples of size <span class="math inline">\(k\)</span>) are distributed by a chi-square distribution with <span class="math inline">\(k-1\)</span> degrees of freedom.</li>
-<li>The relevant version of this distribution in the R language is <code>k*dchisq(x/k,df=k)</code>.</li>
+<li>The relevant version of this distribution in the R language is <code>k*dchisq(x/k,df=k)</code>. This is because the <code>dchisq(x, df=k)</code> function computes a chi-square variable with mean k and we want one with mean 1.</li>
 </ul>
 </section>
 

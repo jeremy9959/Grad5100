@@ -82,6 +82,8 @@ A continuous random variable takes values in a range.
 some things to talk about:
 fisher exact test  (likelihood of results at random)
 datatypes and types of random variables (ints are discrete/continuous?)
+relationship between *density function* and *histogram*
+empirical distribution
 -->
 
 
