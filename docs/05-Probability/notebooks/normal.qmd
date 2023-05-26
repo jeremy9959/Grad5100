@@ -307,6 +307,8 @@ ggplot(df, aes(x = x)) +
 To drive home the point, let's superimpose the chi-square density with 10 degrees of freedom on the histogram of samples.
 
 ```{r}
+
+
 x <- seq(0, 4, length.out = 100)
 df10 <- 10 * dchisq(10 * x, df = 10)
 var_samples <- replicate(10000, sample_var(10))
