@@ -73,11 +73,6 @@ A continuous random variable takes values in a range.
 - Mass of a penguin is continuous
 - Species of penguin is discrete
 
-## Example
-
-```{r}
-house <- read.csv("docs/05-Probability/notebooks/data/house_sales.csv",sep='\t')
-```
 
 
 

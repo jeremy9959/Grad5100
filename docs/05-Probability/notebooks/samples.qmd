@@ -1,0 +1,65 @@
+## The normal distribution
+
+```{r}
+library(tidyverse)
+```
+
+The normal distribution is governed by the famous bell-shaped curve.  
+
+```{r}
+normal <- tibble(x = seq(-3, 3, .01), y = dnorm(x, 0, 1), y2 = dnorm(x, 0, .5))
+plt <- ggplot(data = normal) +
+    geom_line(aes(x = x, y = y, color = "mu=0, sd=1")) +
+    labs(title = "The Normal Curve with Mean 0 and SD 1")
+plt
+```
+
+The two key parameters are the mean and the standard deviation, which govern the position of the peak and the "spread" of the curve respectively.
+
+```{r}
+normal |> mutate(y2 = dnorm(`x`, 0, .5))
+plt <- plt + geom_line(aes(x = x, y = y2, color = "mu=0, sd=.5")) +  
+       scale_color_manual(
+            values = c("mu=0, sd=1" = "red", "mu=0, sd=.5" = "darkgreen")
+        ) + 
+        labs(title = "Normal Curves")
+plt
+```
+
+## Probabilities
+
+The normal curve is a *probability density.*  This means that the chance that a number $x$ drawn from a population with a normal distribution with mean $\mu$ and
+standard deviation $\sigma$ lies between $a$ and $b$ is the area under the curve between $x=a$ and $x=b$. 
+
+```{r}
+area <- pnorm(1) - pnorm(0)
+plt <- ggplot(data = normal) +
+    geom_line(aes(x = x, y = y)) +
+    geom_ribbon(
+        aes(x = x, ymin = ifelse(x > 0 & x < 1, 0, y), ymax = y),
+        fill = "gray",
+        alpha = .4
+    ) +
+    labs(title = paste("Shaded area is ", format(area, nsmall = 2, digits = 2)))
+plt
+```
+
+In the example above, the shaded area between 0 and 1 is $.34$.
+Let's draw $1000$ numbers from the normal distribution.
+
+```{r}
+# count draws a 1000 points from a standard normal
+# and counts how many lie between 0 and 1
+# this is a binomal variable with N=1000 and p=.34
+
+count <- function() {
+    x <- rnorm(1000, 0, 1)
+    sum(x >= 0 & x <= 1)
+}
+
+# now we do the experiment 100 times and record the results
+draws <- replicate(100, count())
+```
+
+
+
