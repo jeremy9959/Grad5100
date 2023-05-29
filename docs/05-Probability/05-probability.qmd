@@ -74,6 +74,50 @@ A continuous random variable takes values in a range.
 - Species of penguin is discrete
 
 
+## Events and Random Variables
+
+Specifying a value, or a range of values, for a random variable defines an event.
+
+## Bernoulli example
+
+- Sample space is $\{H,T\}$
+- $P(H)=p$
+- $X$ is the random variable with $X(H)=1$ and $X(T)=0$
+
+Then:
+
+- $X=1$ is the same as the event $H$
+- $P(X=1)$=p
+
+## Continuous example
+
+- Sample space is the possible temperatures at a particular point in space and time.
+- Random variable $T$ is a measure of temperature.
+- $P(21<T<22)$ is the probability that the temperature is between 21 and 22 degrees.
+
+## Probability density functions
+
+In the continuous case, probability is measured by a probability density function $P(x)$. The classic example is the normal (bell-shaped) curve.
+
+
+## Area gives probability
+
+```{r echo=FALSE}
+library(tidyverse)
+temperature<-seq(21,23,.001)
+density<-dnorm(temperature,22,.2)
+p<-pnorm(22.3,22,.2)-pnorm(21.7,22,.2)
+ggplot()+
+    geom_line(aes(x=temperature,y=density))+
+    geom_ribbon(aes(x=temperature,ymin=0,ymax=if_else(temperature>=21.7 & temperature<=22.3,density,0)),fill='gray')
+```
+
+If $P(x)$ is the density function, then:
+
+> the probability that $x$ lies between $a$ and $b$ is the area under density function between $a$ and $b$.
+
+The shaded area gives probability `r format(p,digits=2,nsmall=2)` for temp between 21.7 and 22.3.
+
 
 
 
