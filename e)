@@ -1,0 +1,9 @@
+Data sets in package ‘palmerpenguins’:
+
+penguins                Size measurements for adult foraging penguins
+                        near Palmer Station, Antarctica
+penguins_raw (penguins)
+                        Penguin size, clutch, and blood isotope data
+                        for foraging adults near Palmer Station,
+                        Antarctica
+
