@@ -31,3 +31,8 @@ samples<-replicate(1000,bootstrap_mean(adelie|>select("bill_length_mm")))
 ```{r}
 ggplot() + stat_ecdf(aes(x=samples))+labs(title="ECDF for bootstrap means",x="Sample Mean", y="Quantile")
 ```
+
+```{r}
+ggplot(data=adelie)+stat_qq(aes(sample=`bill_length_mm`))+
+    labs(title="QQ plot for Bill Length (mm)")
+```
