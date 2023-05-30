@@ -10,6 +10,8 @@ adelie <- penguins |>
     drop_na()
 ```
 
+## Histogram and ECDF
+
 ```{r}
 hist<-ggplot(data=adelie)+geom_histogram(aes(x=`bill_length_mm`,y=after_stat(density)),binwidth=.2,color='white',fill='blue',alpha=.5)+
 labs(x="Bill Length (mm)",y="Density", title="Histogram")
@@ -18,6 +20,8 @@ ecdf <-ggplot(data=adelie)+stat_ecdf(aes(x=`bill_length_mm`),color='red')+labs(x
 grid.arrange(hist, ecdf, ncol = 2)
 ```
 
+
+## Bootstrap means histogram
 ```{r}
 bootstrap_mean <- function(data) {
     sample <- data |> sample_frac(1,replace=TRUE)
@@ -26,11 +30,17 @@ bootstrap_mean <- function(data) {
 }
 
 samples<-replicate(1000,bootstrap_mean(adelie|>select("bill_length_mm")))
+ggplot()+geom_histogram(aes(x=samples,y=after_stat(density)))+labs(title='Bootstrap Means')
 ```
 
+
+## Bootstrap means ECDF
 ```{r}
 ggplot() + stat_ecdf(aes(x=samples))+labs(title="ECDF for bootstrap means",x="Sample Mean", y="Quantile")
 ```
+
+
+## QQ plot
 
 ```{r}
 ggplot(data=adelie)+stat_qq(aes(sample=`bill_length_mm`))+
