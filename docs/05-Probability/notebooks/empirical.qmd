@@ -5,8 +5,8 @@ library(gridExtra)
 ```
 
 ```{r}
-adelie <- penguins |> 
-    filter(`species`=="Adelie") |>
+adelie <- penguins |>
+    filter(`species` == "Adelie") |>
     drop_na()
 ```
 
@@ -15,7 +15,7 @@ hist<-ggplot(data=adelie)+geom_histogram(aes(x=`bill_length_mm`,y=after_stat(den
 labs(x="Bill Length (mm)",y="Density", title="Histogram")
 ecdf <-ggplot(data=adelie)+stat_ecdf(aes(x=`bill_length_mm`),color='red')+labs(x="Bill Length (mm)",y="Cumulative Density", title="ECDF")
 
-grid.arrange(hist,ecdf,ncol=2)
+grid.arrange(hist, ecdf, ncol = 2)
 ```
 
 ```{r}
