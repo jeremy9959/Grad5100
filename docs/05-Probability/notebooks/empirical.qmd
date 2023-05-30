@@ -17,3 +17,17 @@ ecdf <-ggplot(data=adelie)+stat_ecdf(aes(x=`bill_length_mm`),color='red')+labs(x
 
 grid.arrange(hist,ecdf,ncol=2)
 ```
+
+```{r}
+bootstrap_mean <- function(data) {
+    sample <- data |> sample_frac(1,replace=TRUE)
+    return(mean(pull(sample)))
+    
+}
+
+samples<-replicate(1000,bootstrap_mean(adelie|>select("bill_length_mm")))
+```
+
+```{r}
+ggplot() + stat_ecdf(aes(x=samples))+labs(title="ECDF for bootstrap means",x="Sample Mean", y="Quantile")
+```
