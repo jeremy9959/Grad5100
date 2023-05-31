@@ -36,3 +36,12 @@ ggplot() + stat_ecdf(aes(x=samples))+labs(title="ECDF for bootstrap means",x="Sa
 ggplot(data=adelie)+stat_qq(aes(sample=`bill_length_mm`))+
     labs(title="QQ plot for Bill Length (mm)")
 ```
+
+```{r}
+show <- function(data, column) {
+    hist<-ggplot(data=data)+geom_histogram(aes(x={{column}},y=after_stat(density)),binwidth=.2,color='white',fill='blue',alpha=.5)
+    ecdf <-ggplot(data=data)+stat_ecdf(aes(x={{column}}),color='red')
+    return(list(hist,ecdf))
+}
+grid.arrange(grobs=show(adelie,bill_length_mm),ncol=1)
+```

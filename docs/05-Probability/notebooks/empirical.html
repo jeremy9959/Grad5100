@@ -166,6 +166,17 @@ The following object is masked from 'package:dplyr':
 <p><img src="empirical_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>show <span class="ot">&lt;-</span> <span class="cf">function</span>(data, column) {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    hist<span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data=</span>data)<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x=</span>{{column}},<span class="at">y=</span><span class="fu">after_stat</span>(density)),<span class="at">binwidth=</span>.<span class="dv">2</span>,<span class="at">color=</span><span class="st">'white'</span>,<span class="at">fill=</span><span class="st">'blue'</span>,<span class="at">alpha=</span>.<span class="dv">5</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    ecdf <span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data=</span>data)<span class="sc">+</span><span class="fu">stat_ecdf</span>(<span class="fu">aes</span>(<span class="at">x=</span>{{column}}),<span class="at">color=</span><span class="st">'red'</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(hist,ecdf))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(<span class="at">grobs=</span><span class="fu">show</span>(adelie,bill_length_mm),<span class="at">ncol=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="empirical_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 
 </main>
 <!-- /main column -->
