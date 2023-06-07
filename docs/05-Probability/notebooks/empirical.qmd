@@ -1,8 +1,12 @@
+## Empirical distribution
+
 ```{r echo=FALSE}
 library(tidyverse)
 library(palmerpenguins)
 library(gridExtra)
 ```
+
+## Work with some penguin data
 
 ```{r}
 adelie <- penguins |>
@@ -11,6 +15,17 @@ adelie <- penguins |>
 ```
 
 ## Histogram and ECDF
+
+A *histogram* of a random variable gives the number of samples in ranges 
+$$
+a\le x\le a+u
+$$
+
+Each range is sometimes called a bin.  A histogram *approximates the probability density.*
+
+The *empirical cumulative distribution* (ECDF) shows, for each value $a$ of a random variable $x$, the fraction of sample points where $x\le a$. The ECDF
+*approximates the cumulative distribution*.
+
 
 ```{r}
 hist<-ggplot(data=adelie)+geom_histogram(aes(x=`bill_length_mm`,y=after_stat(density)),binwidth=.2,color='white',fill='blue',alpha=.5)+
@@ -21,23 +36,6 @@ grid.arrange(hist, ecdf, ncol = 2)
 ```
 
 
-## Bootstrap means histogram
-```{r}
-bootstrap_mean <- function(data) {
-    sample <- data |> sample_frac(1,replace=TRUE)
-    return(mean(pull(sample)))
-    
-}
-
-samples<-replicate(1000,bootstrap_mean(adelie|>select("bill_length_mm")))
-ggplot()+geom_histogram(aes(x=samples,y=after_stat(density)))+labs(title='Bootstrap Means')
-```
-
-
-## Bootstrap means ECDF
-```{r}
-ggplot() + stat_ecdf(aes(x=samples))+labs(title="ECDF for bootstrap means",x="Sample Mean", y="Quantile")
-```
 
 
 ## QQ plot

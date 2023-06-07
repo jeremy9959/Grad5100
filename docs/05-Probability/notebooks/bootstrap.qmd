@@ -1,0 +1,32 @@
+## Bootstrap means histogram
+
+```{r echo=FALSE, output=FALSE}
+library(tidyverse)
+library(palmerpenguins)
+library(gridExtra)
+```
+```{r}
+adelie <- penguins |>
+    filter(`species` == "Adelie") |>
+    drop_na()
+```
+
+```{r}
+bootstrap_mean <- function(data) {
+    sample <- data |> sample_frac(1, replace = TRUE)
+    return(mean(pull(sample)))
+}
+
+samples <- replicate(1000, bootstrap_mean(adelie |> select("bill_length_mm")))
+ggplot() +
+    geom_histogram(aes(x = samples, y = after_stat(density))) +
+    labs(title = "Bootstrap Means")
+```
+
+
+## Bootstrap means ECDF
+```{r}
+ggplot() +
+    stat_ecdf(aes(x = samples)) +
+    labs(title = "ECDF for bootstrap means", x = "Sample Mean", y = "Quantile")
+```
