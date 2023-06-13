@@ -57,16 +57,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="pandas_files/libs/clipboard/clipboard.min.js"></script>
-<script src="pandas_files/libs/quarto-html/quarto.js"></script>
-<script src="pandas_files/libs/quarto-html/popper.min.js"></script>
-<script src="pandas_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="pandas_files/libs/quarto-html/anchor.min.js"></script>
-<link href="pandas_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="pandas_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="pandas_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="pandas_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="pandas_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="pandas_penguins_files/libs/clipboard/clipboard.min.js"></script>
+<script src="pandas_penguins_files/libs/quarto-html/quarto.js"></script>
+<script src="pandas_penguins_files/libs/quarto-html/popper.min.js"></script>
+<script src="pandas_penguins_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="pandas_penguins_files/libs/quarto-html/anchor.min.js"></script>
+<link href="pandas_penguins_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="pandas_penguins_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="pandas_penguins_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="pandas_penguins_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="pandas_penguins_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
@@ -1209,7 +1209,7 @@ Categories (2, object): ['FEMALE', 'MALE']</code></pre>
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>penguins_by_species <span class="op">=</span> penguins.groupby(<span class="st">'Species'</span>)</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>penguins_by_species</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
-<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x11f4769d0&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x13ff10910&gt;</code></pre>
 </div>
 </div>
 </section>
@@ -1626,6 +1626,22 @@ Categories (2, object): ['FEMALE', 'MALE']</code></pre>
 </table>
 
 </div>
+</div>
+</div>
+</section>
+<section id="pandas-plotting" class="level2">
+<h2 class="anchored" data-anchor-id="pandas-plotting">Pandas plotting</h2>
+<p>Some simple plots are available directly from pandas.</p>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>penguins[penguins[<span class="st">'Species'</span>].<span class="bu">str</span>.startswith(<span class="st">"Adel"</span>)].groupby([<span class="st">'Sex'</span>])[<span class="st">'Body Mass (g)'</span>].hist(bins<span class="op">=</span><span class="dv">30</span>,legend<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<pre><code>Sex
+FEMALE    Axes(0.125,0.11;0.775x0.77)
+MALE      Axes(0.125,0.11;0.775x0.77)
+Name: Body Mass (g), dtype: object</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="pandas_penguins_files/figure-html/cell-35-output-2.png" width="558" height="411"></p>
 </div>
 </div>
 </section>
