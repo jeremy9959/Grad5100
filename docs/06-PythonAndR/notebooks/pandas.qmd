@@ -255,7 +255,8 @@ penguins['Body Mass (kg)'] = penguins['Body Mass (g)']/1000
 ## Sorting
 
 ```{python}
-penguins.sort_values('Body Mass (g)')
+penguins_small = penguins[['Species','Island','Body Mass (g)']]
+penguins_small.sort_values('Body Mass (g)')
 # ascending = False for descending order
 # na_position = 'first' or 'last' (default is 'last')
 # can also provide a key which is a function of prototype Series -> Series
@@ -265,7 +266,44 @@ penguins.sort_values('Body Mass (g)')
 
 ## Grouping
 
+Grouping is a powerful tool.  Let's first
+group our penguins by species.  The result is a "grouped" object which needs to pass through a summarize operation to
+be useful. 
+
+```{python}
+penguins_by_species = penguins.groupby('Species')
+penguins_by_species
+```
+
 ## Summarizing
 
-## Functions
+```{python}
+# describe computes basic descriptive statistics
+penguins_by_species['Body Mass (g)'].describe()
+```
+
+```{python}
+# this fails because some columns aren't numeric
+penguins_by_species.mean(numeric_only=True)
+```
+
+
+```{python}
+penguins_by_species.count()
+```
+
+
+
+## MultiIndex
+
+```{python}
+penguins_by_sex_and_species = penguins.groupby(['Sex','Species'])
+penguins_by_sex_and_species['Body Mass (g)'].describe().round()
+```
+
+```{python}
+# pivot tables
+penguins_by_sex_and_species['Body Mass (g)'].mean().reset_index().pivot(index='Sex',columns='Species',values='Body Mass (g)')
+```
+
 
