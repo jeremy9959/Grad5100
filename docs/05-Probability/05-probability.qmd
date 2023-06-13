@@ -104,12 +104,12 @@ In the continuous case, probability is measured by a probability density functio
 
 ```{r echo=FALSE}
 library(tidyverse)
-temperature<-seq(21,23,.001)
-density<-dnorm(temperature,22,.2)
-p<-pnorm(22.3,22,.2)-pnorm(21.7,22,.2)
-ggplot()+
-    geom_line(aes(x=temperature,y=density))+
-    geom_ribbon(aes(x=temperature,ymin=0,ymax=if_else(temperature>=21.7 & temperature<=22.3,density,0)),fill='gray')
+temperature <- seq(21, 23, .001)
+density <- dnorm(temperature, 22, .2)
+p <- pnorm(22.3, 22, .2) - pnorm(21.7, 22, .2)
+ggplot() +
+    geom_line(aes(x = temperature, y = density)) +
+    geom_ribbon(aes(x = temperature, ymin = 0, ymax = if_else(temperature >= 21.7 & temperature <= 22.3, density, 0)), fill = "gray")
 ```
 
 If $P(x)$ is the density function, then:
@@ -119,8 +119,78 @@ If $P(x)$ is the density function, then:
 The shaded area gives probability `r format(p,digits=2,nsmall=2)` for temp between 21.7 and 22.3.
 
 
+## Standard Normal
+
+A normal curve is defined by two parameters:
+
+- the mean $\mu$, which sets the *location*
+- the standard deviation $\sigma$ or its square, the variance $\sigma^2$, which sets the *scale*.
+
+If $x$ is a normal random variable with mean $\mu$ and variance $\sigma^2$, then
+$$
+z = \frac{x-\mu}{\sigma}
+$$
+is a normal random variable with mean $0$ and variance $1$.  This is called a $z$-score or a *standard normal* variable. 
+
+## Cumulative Distribution
+
+The cumulative distribution is a function $f(x)$ such that $f(x)$ is the the percentage of samples that  are less than $x$.  
+
+```{r}
+samples <- rnorm(100, 22, .2)
+true_cdf <- pnorm(temperature, 22, .2)
+ggplot() +
+    stat_ecdf(aes(x = samples, color = "Empirical CDF")) +
+    geom_line(aes(x = temperature, y = true_cdf, color = "True CDF")) +
+    scale_color_manual(values = c("Empirical CDF" = "black", "True CDF" = "red")) +
+    geom_hline(yintercept = .5) +
+    geom_vline(xintercept = median(samples))
+```
+
+So the median of the samples occurs where the $y$-axis is $.5$.
+
+## Quantiles
+
+If $q$ is between $0$ and $1$, then the $q^{th}$ quantile $Q$ of a random variable $x$ is the value of
+$x$ such that the fraction of the population with $x<Q$
+is $q$.
+
+The median of $x$ is the $.5$ quantile for $x$ because half of the population has values less than the median.
+
+One can read quantiles from the cumulative distribution.
+
+## Order Statistics
+
+The sample median and the sample quantiles (such as the 25th percentile or 75th percentile) are examples of *order statistics.*
+
+The smallest element, the second smallest element, and so on are other examples of *order statistics*.
+
+## Order Statistics example
+
+We take 100 samples from a normal distribution and compute the median, minimum, and maximum.  Then we do that 10000 times and produce a histogram. 
+
+```{r}
+minima <- replicate(10000, min(rnorm(100, 0, 1)))
+maxima <- replicate(10000, max(rnorm(100, 0, 1)))
+medians <- replicate(10000, median(rnorm(100, 0, 1)))
+ggplot() +
+    geom_histogram(aes(x = minima, y = after_stat(density), color = "Minimum"), bins = 100) +
+    geom_histogram(aes(x = maxima, y = after_stat(density), color = "Maximum"), bins = 100) +
+    geom_histogram(aes(x = medians, y = after_stat(density), color = "Medians"), bins = 100) +
+    scale_color_manual(values = c("Minimum" = "red", "Maximum" = "green", "Medians" = "blue"))
+```
 
 
+## The multinomial distribution
+
+The multinomial distribution arises when you have $n$ outcomes for your experiment, say $x_1,\ldots, x_n$;
+and the probability of getting $x_i$ is $p_i$.  Here
+we have to have
+$$
+\sum p_{i}=1.
+$$
+
+This generalizes the bernoulli distribution.
 
 <!--
 some things to talk about:
