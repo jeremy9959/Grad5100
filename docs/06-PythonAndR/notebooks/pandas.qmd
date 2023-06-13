@@ -1,0 +1,156 @@
+--- 
+title: "Pandas basics"
+jupyter: 
+    kernelspec: 
+        name: "pandas20"
+        language: "python"
+        display_name: "python3 with pandas 2.0"
+---
+
+## Loading the key libraries
+```{python}
+import sys
+import pandas as pd
+import numpy as np
+
+
+print(f"pandas version {pd.__version__}")
+print(f"numpy version {np.__version__}")
+print("\n".join(f"Python {sys.version}".split("|")))
+
+```
+
+## A comment on file formats
+
+The most common simple format for tabular data is comma separated or tab separated (`csv` or `tsv`).
+
+Newer formats such as `arrow` and `parquet` are more efficient in storage and faster to load.
+
+Pandas 2.0 can handle these newer formats.
+
+
+## Reading a dataframe
+
+```{python}
+# read from a csv file
+penguins = pd.read_csv("data/penguins-raw.csv")
+# read from a url
+# url = "https://raw.githubusercontent.com/mcnakhaee/palmerpenguins/master/palmerpenguins/data/penguins-raw.csv"
+# penguins = pd.read_csv(url)
+# read from an excel file
+# penguins = pd.read_excel('file.xlsx')
+rows, cols = penguins.shape
+print(f"Rows: {rows}, Columns: {cols}")
+print(f"Columns:", "\n".join(penguins.columns))
+```
+
+## Series 
+
+Each column of a dataframe is a series accessed by name.
+
+```{python}
+penguins["Culmen Length (mm)"]
+```
+Note the last row:
+- Name
+- Length
+- dtype
+
+Types are "inferred" by the read_csv function.
+
+## Another example
+
+```{python}
+penguins['Date Egg']
+```
+Here the type is "object" which is the generic python object.  But these are clearly supposed to be dates. We'll fix that later.
+
+## Alternative syntax
+
+```{python}
+# if the column name is simple, you can use a simpler syntax.
+penguins.Sex
+```
+
+## Value Counts
+
+The `value_counts` method returns a summary series.
+
+```{python}
+penguins['Island'].value_counts()
+```
+```{python}
+penguins['Species'].value_counts()
+```
+
+## Selecting a subset of columns
+
+```{python}
+simpler = penguins[['Species', 'Body Mass (g)', 'Flipper Length (mm)']]
+simpler.head()
+```
+
+## Index
+
+A dataframe has an index, which can be just the numbers from 0 to N as in this case.
+
+```{python}
+penguins.index
+```
+
+## Columns and Rows
+
+`loc` allows you to access individual elements.
+
+```{python}
+# The 23rd row
+penguins.loc[23,:]
+```
+
+```{python}
+penguins.loc[23,'Culmen Length (mm)']
+```
+
+```{python}
+penguins.loc[23:28,['Sex','Date Egg']]
+```
+
+
+## Filtering
+
+Filtering is done by using a boolean series as an index.  
+
+```{python}
+penguins['Sex']=='FEMALE'
+```
+
+```{python}
+females = penguins[penguins['Sex']=='FEMALE']
+females.head()
+```
+
+An alternative syntax is to use query.  The quoting rules here can be tricky.
+The query is a string, and column names are set off by backticks.  Using
+two different types of quotes allows the query to include a string.
+
+```{python}
+females = penguins.query("`Sex`=='FEMALE'")
+females.head()
+```
+
+## Fancier filtering
+
+```{python}
+penguins[penguins["Flipper Length (mm)"]>penguins["Body Mass (g)"]/20]
+```
+
+## Missing values
+
+
+
+## Grouping
+
+## Summarizing
+
+## Functions
+
