@@ -192,7 +192,7 @@ Comments</code></pre>
 <p>Each column of a dataframe is a series accessed by name.</p>
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>penguins[<span class="st">"Culmen Length (mm)"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>0      39.1
 1      39.5
 2      40.3
@@ -214,7 +214,7 @@ Name: Culmen Length (mm), Length: 344, dtype: float64</code></pre>
 <h2 class="anchored" data-anchor-id="another-example">Another example</h2>
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>penguins[<span class="st">'Date Egg'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>0      2007-11-11
 1      2007-11-11
 2      2007-11-16
@@ -231,12 +231,33 @@ Name: Date Egg, Length: 344, dtype: object</code></pre>
 </div>
 <p>Here the type is “object” which is the generic python object. But these are clearly supposed to be dates. We’ll fix that later.</p>
 </section>
+<section id="alternative-syntax" class="level2">
+<h2 class="anchored" data-anchor-id="alternative-syntax">Alternative syntax</h2>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if the column name is simple, you can use a simpler syntax.</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>penguins.Sex</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>0        MALE
+1      FEMALE
+2      FEMALE
+3         NaN
+4      FEMALE
+        ...  
+339      MALE
+340    FEMALE
+341      MALE
+342      MALE
+343    FEMALE
+Name: Sex, Length: 344, dtype: object</code></pre>
+</div>
+</div>
+</section>
 <section id="value-counts" class="level2">
 <h2 class="anchored" data-anchor-id="value-counts">Value Counts</h2>
 <p>The <code>value_counts</code> method returns a summary series.</p>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>penguins[<span class="st">'Island'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>penguins[<span class="st">'Island'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>Island
 Biscoe       168
 Dream        124
@@ -244,9 +265,9 @@ Torgersen     52
 Name: count, dtype: int64</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>penguins[<span class="st">'Species'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>penguins[<span class="st">'Species'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>Species
 Adelie Penguin (Pygoscelis adeliae)          152
 Gentoo penguin (Pygoscelis papua)            124
@@ -257,10 +278,10 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="selecting-a-subset-of-columns" class="level2">
 <h2 class="anchored" data-anchor-id="selecting-a-subset-of-columns">Selecting a subset of columns</h2>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>simpler <span class="op">=</span> penguins[[<span class="st">'Species'</span>, <span class="st">'Body Mass (g)'</span>, <span class="st">'Flipper Length (mm)'</span>]]</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>simpler.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>simpler <span class="op">=</span> penguins[[<span class="st">'Species'</span>, <span class="st">'Body Mass (g)'</span>, <span class="st">'Flipper Length (mm)'</span>]]</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>simpler.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
 
 <div>
 
@@ -313,9 +334,9 @@ Name: count, dtype: int64</code></pre>
 <section id="index" class="level2">
 <h2 class="anchored" data-anchor-id="index">Index</h2>
 <p>A dataframe has an index, which can be just the numbers from 0 to N as in this case.</p>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>penguins.index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>penguins.index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>RangeIndex(start=0, stop=344, step=1)</code></pre>
 </div>
 </div>
@@ -323,10 +344,10 @@ Name: count, dtype: int64</code></pre>
 <section id="columns-and-rows" class="level2">
 <h2 class="anchored" data-anchor-id="columns-and-rows">Columns and Rows</h2>
 <p><code>loc</code> allows you to access individual elements.</p>
-<div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The 23rd row</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>penguins.loc[<span class="dv">23</span>,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="19">
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The 23rd row</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>penguins.loc[<span class="dv">23</span>,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>studyName                                          PAL0708
 Sample Number                                           24
 Species                Adelie Penguin (Pygoscelis adeliae)
@@ -347,15 +368,15 @@ Comments                                               NaN
 Name: 23, dtype: object</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>penguins.loc[<span class="dv">23</span>,<span class="st">'Culmen Length (mm)'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>penguins.loc[<span class="dv">23</span>,<span class="st">'Culmen Length (mm)'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>38.2</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>penguins.loc[<span class="dv">23</span>:<span class="dv">28</span>,[<span class="st">'Sex'</span>,<span class="st">'Date Egg'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="21">
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>penguins.loc[<span class="dv">23</span>:<span class="dv">28</span>,[<span class="st">'Sex'</span>,<span class="st">'Date Egg'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
 
 <div>
 
@@ -406,9 +427,694 @@ Name: 23, dtype: object</code></pre>
 </section>
 <section id="filtering" class="level2">
 <h2 class="anchored" data-anchor-id="filtering">Filtering</h2>
+<p>Filtering is done by using a boolean series as an index.</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>penguins[<span class="st">'Sex'</span>]<span class="op">==</span><span class="st">'FEMALE'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>0      False
+1       True
+2       True
+3      False
+4       True
+       ...  
+339    False
+340     True
+341    False
+342    False
+343     True
+Name: Sex, Length: 344, dtype: bool</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>females <span class="op">=</span> penguins[penguins[<span class="st">'Sex'</span>]<span class="op">==</span><span class="st">'FEMALE'</span>]</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>females.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>studyName</th>
+      <th>Sample Number</th>
+      <th>Species</th>
+      <th>Region</th>
+      <th>Island</th>
+      <th>Stage</th>
+      <th>Individual ID</th>
+      <th>Clutch Completion</th>
+      <th>Date Egg</th>
+      <th>Culmen Length (mm)</th>
+      <th>Culmen Depth (mm)</th>
+      <th>Flipper Length (mm)</th>
+      <th>Body Mass (g)</th>
+      <th>Sex</th>
+      <th>Delta 15 N (o/oo)</th>
+      <th>Delta 13 C (o/oo)</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>PAL0708</td>
+      <td>2</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N1A2</td>
+      <td>Yes</td>
+      <td>2007-11-11</td>
+      <td>39.5</td>
+      <td>17.4</td>
+      <td>186.0</td>
+      <td>3800.0</td>
+      <td>FEMALE</td>
+      <td>8.94956</td>
+      <td>-24.69454</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>PAL0708</td>
+      <td>3</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N2A1</td>
+      <td>Yes</td>
+      <td>2007-11-16</td>
+      <td>40.3</td>
+      <td>18.0</td>
+      <td>195.0</td>
+      <td>3250.0</td>
+      <td>FEMALE</td>
+      <td>8.36821</td>
+      <td>-25.33302</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>PAL0708</td>
+      <td>5</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N3A1</td>
+      <td>Yes</td>
+      <td>2007-11-16</td>
+      <td>36.7</td>
+      <td>19.3</td>
+      <td>193.0</td>
+      <td>3450.0</td>
+      <td>FEMALE</td>
+      <td>8.76651</td>
+      <td>-25.32426</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>PAL0708</td>
+      <td>7</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N4A1</td>
+      <td>No</td>
+      <td>2007-11-15</td>
+      <td>38.9</td>
+      <td>17.8</td>
+      <td>181.0</td>
+      <td>3625.0</td>
+      <td>FEMALE</td>
+      <td>9.18718</td>
+      <td>-25.21799</td>
+      <td>Nest never observed with full clutch.</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>PAL0708</td>
+      <td>13</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N7A1</td>
+      <td>Yes</td>
+      <td>2007-11-15</td>
+      <td>41.1</td>
+      <td>17.6</td>
+      <td>182.0</td>
+      <td>3200.0</td>
+      <td>FEMALE</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Not enough blood for isotopes.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>An alternative syntax is to use query. The quoting rules here can be tricky. The query is a string, and column names are set off by backticks. Using two different types of quotes allows the query to include a string.</p>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>females <span class="op">=</span> penguins.query(<span class="st">"`Sex`=='FEMALE'"</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>females.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>studyName</th>
+      <th>Sample Number</th>
+      <th>Species</th>
+      <th>Region</th>
+      <th>Island</th>
+      <th>Stage</th>
+      <th>Individual ID</th>
+      <th>Clutch Completion</th>
+      <th>Date Egg</th>
+      <th>Culmen Length (mm)</th>
+      <th>Culmen Depth (mm)</th>
+      <th>Flipper Length (mm)</th>
+      <th>Body Mass (g)</th>
+      <th>Sex</th>
+      <th>Delta 15 N (o/oo)</th>
+      <th>Delta 13 C (o/oo)</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>PAL0708</td>
+      <td>2</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N1A2</td>
+      <td>Yes</td>
+      <td>2007-11-11</td>
+      <td>39.5</td>
+      <td>17.4</td>
+      <td>186.0</td>
+      <td>3800.0</td>
+      <td>FEMALE</td>
+      <td>8.94956</td>
+      <td>-24.69454</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>PAL0708</td>
+      <td>3</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N2A1</td>
+      <td>Yes</td>
+      <td>2007-11-16</td>
+      <td>40.3</td>
+      <td>18.0</td>
+      <td>195.0</td>
+      <td>3250.0</td>
+      <td>FEMALE</td>
+      <td>8.36821</td>
+      <td>-25.33302</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>PAL0708</td>
+      <td>5</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N3A1</td>
+      <td>Yes</td>
+      <td>2007-11-16</td>
+      <td>36.7</td>
+      <td>19.3</td>
+      <td>193.0</td>
+      <td>3450.0</td>
+      <td>FEMALE</td>
+      <td>8.76651</td>
+      <td>-25.32426</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>PAL0708</td>
+      <td>7</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N4A1</td>
+      <td>No</td>
+      <td>2007-11-15</td>
+      <td>38.9</td>
+      <td>17.8</td>
+      <td>181.0</td>
+      <td>3625.0</td>
+      <td>FEMALE</td>
+      <td>9.18718</td>
+      <td>-25.21799</td>
+      <td>Nest never observed with full clutch.</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>PAL0708</td>
+      <td>13</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N7A1</td>
+      <td>Yes</td>
+      <td>2007-11-15</td>
+      <td>41.1</td>
+      <td>17.6</td>
+      <td>182.0</td>
+      <td>3200.0</td>
+      <td>FEMALE</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Not enough blood for isotopes.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="fancier-filtering" class="level2">
+<h2 class="anchored" data-anchor-id="fancier-filtering">Fancier filtering</h2>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>penguins[penguins[<span class="st">"Flipper Length (mm)"</span>]<span class="op">&gt;</span>penguins[<span class="st">"Body Mass (g)"</span>]<span class="op">/</span><span class="dv">20</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>studyName</th>
+      <th>Sample Number</th>
+      <th>Species</th>
+      <th>Region</th>
+      <th>Island</th>
+      <th>Stage</th>
+      <th>Individual ID</th>
+      <th>Clutch Completion</th>
+      <th>Date Egg</th>
+      <th>Culmen Length (mm)</th>
+      <th>Culmen Depth (mm)</th>
+      <th>Flipper Length (mm)</th>
+      <th>Body Mass (g)</th>
+      <th>Sex</th>
+      <th>Delta 15 N (o/oo)</th>
+      <th>Delta 13 C (o/oo)</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>PAL0708</td>
+      <td>3</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N2A1</td>
+      <td>Yes</td>
+      <td>2007-11-16</td>
+      <td>40.3</td>
+      <td>18.0</td>
+      <td>195.0</td>
+      <td>3250.0</td>
+      <td>FEMALE</td>
+      <td>8.36821</td>
+      <td>-25.33302</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>PAL0708</td>
+      <td>5</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N3A1</td>
+      <td>Yes</td>
+      <td>2007-11-16</td>
+      <td>36.7</td>
+      <td>19.3</td>
+      <td>193.0</td>
+      <td>3450.0</td>
+      <td>FEMALE</td>
+      <td>8.76651</td>
+      <td>-25.32426</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>PAL0708</td>
+      <td>6</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N3A2</td>
+      <td>Yes</td>
+      <td>2007-11-16</td>
+      <td>39.3</td>
+      <td>20.6</td>
+      <td>190.0</td>
+      <td>3650.0</td>
+      <td>MALE</td>
+      <td>8.66496</td>
+      <td>-25.29805</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>PAL0708</td>
+      <td>9</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N5A1</td>
+      <td>Yes</td>
+      <td>2007-11-09</td>
+      <td>34.1</td>
+      <td>18.1</td>
+      <td>193.0</td>
+      <td>3475.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>No blood sample obtained.</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>PAL0708</td>
+      <td>11</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N6A1</td>
+      <td>Yes</td>
+      <td>2007-11-09</td>
+      <td>37.8</td>
+      <td>17.1</td>
+      <td>186.0</td>
+      <td>3300.0</td>
+      <td>NaN</td>
+      <td>8.63243</td>
+      <td>-25.21315</td>
+      <td>No blood sample obtained for sexing.</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>339</th>
+      <td>PAL0910</td>
+      <td>64</td>
+      <td>Chinstrap penguin (Pygoscelis antarctica)</td>
+      <td>Anvers</td>
+      <td>Dream</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N98A2</td>
+      <td>Yes</td>
+      <td>2009-11-19</td>
+      <td>55.8</td>
+      <td>19.8</td>
+      <td>207.0</td>
+      <td>4000.0</td>
+      <td>MALE</td>
+      <td>9.70465</td>
+      <td>-24.53494</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>340</th>
+      <td>PAL0910</td>
+      <td>65</td>
+      <td>Chinstrap penguin (Pygoscelis antarctica)</td>
+      <td>Anvers</td>
+      <td>Dream</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N99A1</td>
+      <td>No</td>
+      <td>2009-11-21</td>
+      <td>43.5</td>
+      <td>18.1</td>
+      <td>202.0</td>
+      <td>3400.0</td>
+      <td>FEMALE</td>
+      <td>9.37608</td>
+      <td>-24.40753</td>
+      <td>Nest never observed with full clutch.</td>
+    </tr>
+    <tr>
+      <th>341</th>
+      <td>PAL0910</td>
+      <td>66</td>
+      <td>Chinstrap penguin (Pygoscelis antarctica)</td>
+      <td>Anvers</td>
+      <td>Dream</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N99A2</td>
+      <td>No</td>
+      <td>2009-11-21</td>
+      <td>49.6</td>
+      <td>18.2</td>
+      <td>193.0</td>
+      <td>3775.0</td>
+      <td>MALE</td>
+      <td>9.46180</td>
+      <td>-24.70615</td>
+      <td>Nest never observed with full clutch.</td>
+    </tr>
+    <tr>
+      <th>342</th>
+      <td>PAL0910</td>
+      <td>67</td>
+      <td>Chinstrap penguin (Pygoscelis antarctica)</td>
+      <td>Anvers</td>
+      <td>Dream</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N100A1</td>
+      <td>Yes</td>
+      <td>2009-11-21</td>
+      <td>50.8</td>
+      <td>19.0</td>
+      <td>210.0</td>
+      <td>4100.0</td>
+      <td>MALE</td>
+      <td>9.98044</td>
+      <td>-24.68741</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>343</th>
+      <td>PAL0910</td>
+      <td>68</td>
+      <td>Chinstrap penguin (Pygoscelis antarctica)</td>
+      <td>Anvers</td>
+      <td>Dream</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N100A2</td>
+      <td>Yes</td>
+      <td>2009-11-21</td>
+      <td>50.2</td>
+      <td>18.7</td>
+      <td>198.0</td>
+      <td>3775.0</td>
+      <td>FEMALE</td>
+      <td>9.39305</td>
+      <td>-24.25255</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>147 rows × 17 columns</p>
+</div>
+</div>
+</div>
 </section>
 <section id="missing-values" class="level2">
 <h2 class="anchored" data-anchor-id="missing-values">Missing values</h2>
+<p>Dealing with missing values is a central problem in data science. One way to identify how many misssing values are out there is as follows:</p>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Uses the fact that logical True counts as one, False as zero</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co">## sum() method sums by columns</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>penguins.isna().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>studyName                0
+Sample Number            0
+Species                  0
+Region                   0
+Island                   0
+Stage                    0
+Individual ID            0
+Clutch Completion        0
+Date Egg                 0
+Culmen Length (mm)       2
+Culmen Depth (mm)        2
+Flipper Length (mm)      2
+Body Mass (g)            2
+Sex                     11
+Delta 15 N (o/oo)       14
+Delta 13 C (o/oo)       13
+Comments               290
+dtype: int64</code></pre>
+</div>
+</div>
+<p>Nearly all of the comments are empty. What are they?</p>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>comments <span class="op">=</span> penguins[<span class="st">'Comments'</span>].value_counts()</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>comments</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>Comments
+Nest never observed with full clutch.                                   34
+Not enough blood for isotopes.                                           7
+Sexing primers did not amplify.                                          4
+No blood sample obtained.                                                2
+No blood sample obtained for sexing.                                     2
+Adult not sampled.                                                       1
+Nest never observed with full clutch. Not enough blood for isotopes.     1
+Sexing primers did not amplify. Not enough blood for isotopes.           1
+Adult not sampled. Nest never observed with full clutch.                 1
+No delta15N data received from lab.                                      1
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+<p>Let’s save the comments separately and look at the rest.</p>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># drop normally drops rows, but with axis=1 it drops columns</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> penguins.drop(<span class="st">'Comments'</span>,axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Various options: - drop rows with missing values - impute the missing values somehow</p>
+</section>
+<section id="drop-rows-with-missing-values" class="level2">
+<h2 class="anchored" data-anchor-id="drop-rows-with-missing-values">Drop rows with missing values</h2>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This makes a boolean where a row is True provided at least one of its entries are NA</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>na_rows <span class="op">=</span> (penguins.isna().<span class="bu">any</span>(axis<span class="op">=</span><span class="dv">1</span>))</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>na_rows<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss"> rows have NA somewhere outside of comments"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>20 rows have NA somewhere outside of comments</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># here we keep rows only if no NA's.  Can also use notna().</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>penguins_nona <span class="op">=</span> penguins.loc[<span class="op">~</span>na_rows,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="imputation" class="level2">
+<h2 class="anchored" data-anchor-id="imputation">Imputation</h2>
+<p>We saw above that culmen length has 2 missing values. We can use <code>fillna</code> to replace the missing values with something (like the mean or median or zero).</p>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using equality w/o copy creates another reference.</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>penguins_imputed <span class="op">=</span> penguins.copy()</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>culmen_mean <span class="op">=</span> penguins_imputed[<span class="st">'Culmen Length (mm)'</span>].mean() <span class="co"># how does this handle NA values?</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Culmen length mean is </span><span class="sc">{</span>culmen_mean<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>penguins_imputed[<span class="st">'Culmen Length (mm)'</span>] <span class="op">=</span> penguins_imputed[<span class="st">'Culmen Length (mm)'</span>].fillna(culmen_mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Culmen length mean is 43.9219298245614</code></pre>
+</div>
+</div>
+<p>There are many other imputation methods. For example, if the data is ordered, you can fill missing data with linear interpolation. (See the <code>interpolate</code> method).</p>
+</section>
+<section id="data-types" class="level2">
+<h2 class="anchored" data-anchor-id="data-types">Data types</h2>
+<p>As we saw above, the types of the columns are inferred when the data is read. But it’s not always correct. For example, the “Date Egg” column is supposed to be a date but it’s shown as a generic python object.</p>
+<p>Using the correct type can greatly improve performance as generic Python arguments are inefficient.</p>
+<p>In pandas 1.0 strings are always treated as objects but in pandas 2.0 there is a <code>StringDtype</code>.</p>
+<p>The most common types are: - object - float64 - datetime (datetime64[ns]) - int64 - bool</p>
+<p>One may also find categorical types.</p>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>penguins.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<pre><code>studyName               object
+Sample Number            int64
+Species                 object
+Region                  object
+Island                  object
+Stage                   object
+Individual ID           object
+Clutch Completion       object
+Date Egg                object
+Culmen Length (mm)     float64
+Culmen Depth (mm)      float64
+Flipper Length (mm)    float64
+Body Mass (g)          float64
+Sex                     object
+Delta 15 N (o/oo)      float64
+Delta 13 C (o/oo)      float64
+dtype: object</code></pre>
+</div>
+</div>
+</section>
+<section id="setting-datatypes" class="level2">
+<h2 class="anchored" data-anchor-id="setting-datatypes">Setting datatypes</h2>
+<p>Here’s an example where we manually make sex a categorical type.</p>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> penguins.astype({<span class="st">'Sex'</span>:<span class="st">'category'</span>})</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>penguins[<span class="st">'Sex'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<pre><code>0        MALE
+1      FEMALE
+2      FEMALE
+3         NaN
+4      FEMALE
+        ...  
+339      MALE
+340    FEMALE
+341      MALE
+342      MALE
+343    FEMALE
+Name: Sex, Length: 344, dtype: category
+Categories (2, object): ['FEMALE', 'MALE']</code></pre>
+</div>
+</div>
+<p>One can also pass a dictionary setting the types of columns as an argument when you read them from the csv file.</p>
 </section>
 <section id="grouping" class="level2">
 <h2 class="anchored" data-anchor-id="grouping">Grouping</h2>

@@ -146,6 +146,96 @@ penguins[penguins["Flipper Length (mm)"]>penguins["Body Mass (g)"]/20]
 
 ## Missing values
 
+Dealing with missing values is a central problem in data science.  One way to identify how many misssing values are out there is as follows:
+
+```{python}
+## Uses the fact that logical True counts as one, False as zero
+## sum() method sums by columns
+penguins.isna().sum()
+```
+
+Nearly all of the comments are empty.  What are they?
+
+```{python}
+comments = penguins['Comments'].value_counts()
+comments
+```
+
+Let's save the comments separately and look at the rest.
+
+```{python}
+# drop normally drops rows, but with axis=1 it drops columns
+penguins = penguins.drop('Comments',axis=1)
+```
+
+Various options:
+- drop rows with missing values
+- impute the missing values somehow
+
+## Drop rows with missing values
+
+```{python}
+# This makes a boolean where a row is True provided at least one of its entries are NA
+na_rows = (penguins.isna().any(axis=1))
+print(f"{na_rows.sum()} rows have NA somewhere outside of comments")
+```
+
+```{python}
+# here we keep rows only if no NA's.  Can also use notna().
+penguins_nona = penguins.loc[~na_rows,:]
+```
+
+## Imputation
+
+We saw above that culmen length has 2 missing values. We can use `fillna` to
+replace the missing values with something (like the mean or median or zero).
+
+```{python}
+# using equality w/o copy creates another reference.
+penguins_imputed = penguins.copy()
+culmen_mean = penguins_imputed['Culmen Length (mm)'].mean() # how does this handle NA values?
+print(f"Culmen length mean is {culmen_mean}")
+penguins_imputed['Culmen Length (mm)'] = penguins_imputed['Culmen Length (mm)'].fillna(culmen_mean)
+```
+
+There are many other imputation methods.  For example, if the data is ordered, you can fill 
+missing data with linear interpolation. (See the `interpolate` method).
+
+## Data types
+
+As we saw above, the types of the columns are inferred when the data is read.  But it's not always correct.  For example, the "Date Egg" column is supposed to be a date but it's shown as a generic python object. 
+
+Using the correct type can greatly improve performance as generic Python arguments
+are inefficient.
+
+In pandas 1.0 strings are always treated as objects but in pandas 2.0 there is a `StringDtype`.
+
+The most common types are:
+- object
+- float64
+- datetime (datetime64[ns])
+- int64
+- bool 
+
+One may also find categorical types. 
+
+```{python}
+penguins.dtypes
+```
+
+## Setting datatypes
+
+Here's an example where we manually make sex a categorical type.
+
+```{python}
+penguins = penguins.astype({'Sex':'category'})
+penguins['Sex']
+```
+
+One can also pass a dictionary setting the types of columns as an argument when
+you read them from the csv file.
+
+
 
 
 ## Grouping
