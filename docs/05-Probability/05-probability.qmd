@@ -136,7 +136,7 @@ is a normal random variable with mean $0$ and variance $1$.  This is called a $z
 
 The cumulative distribution is a function $f(x)$ such that $f(x)$ is the the percentage of samples that  are less than $x$.  
 
-```{r}
+```{r echo=FALSE}
 samples <- rnorm(100, 22, .2)
 true_cdf <- pnorm(temperature, 22, .2)
 ggplot() +
@@ -169,7 +169,7 @@ The smallest element, the second smallest element, and so on are other examples 
 
 We take 100 samples from a normal distribution and compute the median, minimum, and maximum.  Then we do that 10000 times and produce a histogram. 
 
-```{r}
+```{r echo=FALSE}
 minima <- replicate(10000, min(rnorm(100, 0, 1)))
 maxima <- replicate(10000, max(rnorm(100, 0, 1)))
 medians <- replicate(10000, median(rnorm(100, 0, 1)))
