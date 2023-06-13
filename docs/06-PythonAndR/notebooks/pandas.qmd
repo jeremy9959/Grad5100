@@ -51,6 +51,7 @@ Each column of a dataframe is a series accessed by name.
 ```{python}
 penguins["Culmen Length (mm)"]
 ```
+
 Note the last row:
 - Name
 - Length
@@ -306,4 +307,10 @@ penguins_by_sex_and_species['Body Mass (g)'].describe().round()
 penguins_by_sex_and_species['Body Mass (g)'].mean().reset_index().pivot(index='Sex',columns='Species',values='Body Mass (g)')
 ```
 
+## Pandas plotting
 
+Some simple plots are available directly from pandas.
+
+```{python}
+penguins[penguins['Species'].str.startswith("Adel")].groupby(['Sex'])['Body Mass (g)'].hist(bins=30,legend=True)
+```
