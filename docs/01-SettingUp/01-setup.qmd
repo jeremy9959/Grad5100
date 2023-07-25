@@ -97,3 +97,40 @@ For the README file:
 - vscode
 
 
+## Using vscode
+
+VSCode (visual studio code) is a freely distributed code editor/IDE distributed by microsoft.
+
+It is extremely capable and well-suited for software development in python and other languages.
+
+It is perhaps not as optimized for R as Rstudio but it does work.
+
+It has one huge advantage:
+
+    You can access github copilot a version of chatGPT optimized for code, inside vscode in a straightforward way.
+
+## Installing vscode
+
+[The software is available here](https://code.visualstudio.com).
+
+You need a [github account](https://github.com) to use github copilot, and you need
+to sign in to that account from inside vscode.
+
+![](./vscode.png)
+
+## Overview of vscode
+
+- Opening folders (as projects)
+- Opening files
+- Install Extensions:
+    - python
+    - R
+    - many others
+- The command palette
+- jupyter notebooks inside vscode with github copilot
+- Interactive python with code cells (# %%)
+- The terminal
+
+
+
+

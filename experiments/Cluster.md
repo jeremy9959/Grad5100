@@ -1,7 +1,6 @@
 ## To start jupyter on the cluster
 
 
-
 1. **On your local machine:** Login to the login node:
 
 ```bash
@@ -50,3 +49,22 @@ $ ssh -NL localhost:8888:node:port netID@hpc2.storrs.hpc.uconn.edu
 5. **On your local machine:** Open a web browser and point it at localhost:8888.
 
 With luck, you're running jupyter on a node in the cluster!
+
+## Moving a file to the cluster
+
+If you can login to the cluster successfully using `ssh` then you can transfer a file
+to the cluster from your laptop using `rsync`.  From a shell on your **local machine:**
+
+```bash
+rsync filename <netID>@hpc2.storrs.hpc.uconn.edu
+```
+
+
+## Getting a file from the cluster
+
+To transfer a file from the cluster to your local machine, run the following command from a shell
+*on your local machine.*
+
+```bash
+rsync <netID>@hpc2.storrs.hpc.uconn.edu:filename .
+```

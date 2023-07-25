@@ -102,8 +102,10 @@ In the continuous case, probability is measured by a probability density functio
 
 ## Area gives probability
 
-```{r echo=FALSE}
+```{r echo=FALSE, output=FALSE}
 library(tidyverse)
+```
+```{r echo=FALSE}
 temperature <- seq(21, 23, .001)
 density <- dnorm(temperature, 22, .2)
 p <- pnorm(22.3, 22, .2) - pnorm(21.7, 22, .2)
@@ -191,6 +193,55 @@ $$
 $$
 
 This generalizes the bernoulli distribution.
+
+## Mean 
+The mean  of a random variable is perhaps the most important statistic
+associated with a probability space.
+
+The mean is the "average value" of the random variable. 
+
+## Mean -- discrete case
+
+In the discrete case:
+
+$$
+\overline{x}=\sum_{a\in X} x(a)p(a)
+$$
+
+In other words, the mean of $\overline{x}$ is the sum of $x$ at each event, weighted by the probability of that event.
+
+## Mean of a bernoulli random variable
+
+If $x$ is bernoulli, with $p(x=1)=p$, then the mean of $x$ is
+$$
+p(1)+(1-p)(0)=p.
+$$
+
+## Mean of a binomial random variable
+
+If $x$ is binomial, corresponding to the sum of $N$ bernoulli random variables
+with probability $p$, then
+$$
+\overline{x} = \sum_{0\le i\le N} i\binom{N}{i}p^{i}(1-p)^{N-i}=Np
+$$
+
+## Mean -- continuous case
+
+The mean of a continuous random variable is given by an integral:
+
+$$
+\overline{x} = \int_{X} xp(x) dx
+$$
+
+where $p(x)$ is the probability density.  This is the limiting case of the formula in the discrete case.
+
+## Mean of standard normal
+
+The mean of the standard normal is zero. 
+
+## Variance and standard deviation
+
+
 
 <!--
 some things to talk about:

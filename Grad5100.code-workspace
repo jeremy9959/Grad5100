@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"r.rterm.linux": "/home/jet08013/anaconda3/bin/radian"
+	}
+}
