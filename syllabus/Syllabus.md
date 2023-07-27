@@ -62,8 +62,8 @@ stackoverflow.  Make sure to register for the site.
 
 Course grades will be based on:
 
--   periodic homework assignments (60 %)
--   a final presentation (40 %)
+-   biweekly homework assignments (60 %)
+-   a final exam (40 %)
 
 ## Disclaimer
 
