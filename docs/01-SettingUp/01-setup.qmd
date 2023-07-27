@@ -65,6 +65,15 @@ For Rstudio, use the icon/shortcut or from a command line:
 $ rstudio 
 ```
 
+## VSCode
+
+- vscode is a very powerful "IDE" (integrated development environment).
+- it can integrate jupyter notebooks and r workbooks, though it takes some setting up
+- vscode is integrated with GitHub copilot, a version of ChatGPT-3 that helps write code.
+- vscode is available at [http://code.visualstudio.com](http://code.visualstudio.com) for windows, linux, and macOS.
+
+
+
 ## Setting up a Project
 
 - Create a project directory
@@ -74,13 +83,18 @@ $ rstudio
     - others?
 - Create a README.md file 
 
+## Tools
+
 For the directories:
+
 - the finder or File Manager
 - the command line
 
 For the README file:
+
 - a text editor such as `nano` or notepad 
 - jupyter or Rstudio (as we will see soon)
+- vscode
 
 
 ## Using vscode

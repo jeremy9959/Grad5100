@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="01-setup_files/libs/clipboard/clipboard.min.js"></script>
-<script src="01-setup_files/libs/quarto-html/tabby.min.js"></script>
-<script src="01-setup_files/libs/quarto-html/popper.min.js"></script>
-<script src="01-setup_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="01-setup_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="01-setup_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="01-setup_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="07-LinearAlgebra_files/libs/clipboard/clipboard.min.js"></script>
+<script src="07-LinearAlgebra_files/libs/quarto-html/tabby.min.js"></script>
+<script src="07-LinearAlgebra_files/libs/quarto-html/popper.min.js"></script>
+<script src="07-LinearAlgebra_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="07-LinearAlgebra_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="07-LinearAlgebra_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="07-LinearAlgebra_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-99.9.9">
 
   <meta name="author" content="Jeremy Teitelbaum">
-  <title>Setting up a Project</title>
+  <title>Essential Linear Algebra</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="01-setup_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="01-setup_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="07-LinearAlgebra_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="07-LinearAlgebra_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -28,76 +28,12 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="01-setup_files/libs/revealjs/dist/theme/quarto.css" id="theme">
-  <link href="01-setup_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="01-setup_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="01-setup_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="01-setup_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="07-LinearAlgebra_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link href="07-LinearAlgebra_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="07-LinearAlgebra_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="07-LinearAlgebra_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="07-LinearAlgebra_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -388,7 +324,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Setting up a Project</h1>
+  <h1 class="title">Essential Linear Algebra</h1>
   <p class="subtitle">Fundamentals of Data Science</p>
 
 <div class="quarto-title-authors">
@@ -400,126 +336,93 @@ Jeremy Teitelbaum
 </div>
 
 </section>
-<section>
-<section id="key-software-tools" class="title-slide slide level1 center">
-<h1>Key Software Tools</h1>
-
-</section>
-<section id="anaconda-install-for-python" class="slide level2">
-<h2>Anaconda Install for Python</h2>
+<section id="vectors-and-scalars" class="slide level2">
+<h2>Vectors and Scalars</h2>
+<p><span class="math inline">\(\mathbf{R}^{n}\)</span> is the set of vectors (ordered tuples) of real numbers of length <span class="math inline">\(n\)</span>. A <em>scalar</em> is a real number.</p>
 <ul>
-<li>Download from <a href="https://www.anaconda.com">https://www.anaconda.com</a></li>
-</ul>
-<p>Anaconda includes:</p>
-<ul>
-<li>python</li>
-<li>jupyter: notebook working environment</li>
-<li>python libraries: ML, visualization, I/O and others</li>
-<li>conda package manager: for dealing with multiple versions of libraries</li>
-<li>anaconda navigator: a GUI gateway to anaconda tools</li>
-<li>lots of other stuff</li>
+<li>Vectors are <em>added</em> componentwise.</li>
+<li>A vector can be multiplied by a scalar.</li>
 </ul>
 </section>
-<section id="verify-anaconda" class="slide level2">
-<h2>Verify Anaconda</h2>
-<ul>
-<li>Verify JupyterLab</li>
-</ul>
-<p>From a command line</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">$</span> jupyter lab </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>or use anaconda navigator to launch jupyterlab.</p>
-<ul>
-<li>Verify python version</li>
-</ul>
-<p>From a command line</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">$</span> python <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>or inside a jupyter notebook cell:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> sys</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="bu">print</span>(sys.version)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="addition" class="slide level2">
+<h2>Addition</h2>
+<div class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<p><img data-src="07-LinearAlgebra_files/figure-revealjs/cell-3-output-1.png" width="415" height="431"></p>
+</div>
+</div>
 </section>
-<section id="r-and-rstudio-install-for-r" class="slide level2">
-<h2>R and Rstudio Install for R</h2>
+<section id="scalar-multiplication" class="slide level2">
+<h2>Scalar Multiplication</h2>
+<div class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<p><img data-src="07-LinearAlgebra_files/figure-revealjs/cell-4-output-1.png" width="415" height="431"></p>
+</div>
+</div>
+</section>
+<section id="geometric-interpretation-in-2-and-3-dimensions" class="slide level2">
+<h2>Geometric Interpretation in 2 and 3 dimensions</h2>
+</section>
+<section id="feature-space" class="slide level2">
+<h2>Feature Space</h2>
 <ul>
-<li><p>R is an open source language for statistical computations.</p></li>
-<li><p>Rstudio is a working environment for the R language.</p></li>
-<li><p>R and Rstudio need to be installed separately.</p></li>
-<li><p>R is available at <a href="https://cran.r-project.org">https://cran.r-project.org</a></p></li>
-<li><p>Rstudio is available at <a href="https://posit.co/download/rstudio-desktop">https://posit.co/download/rstudio-desktop</a></p></li>
+<li>examples including word2vec and embeddings</li>
+<li>maybe polynomial regression?</li>
 </ul>
 </section>
-<section id="verify-r-and-rstudio" class="slide level2">
-<h2>Verify R and Rstudio</h2>
-<p>For R, From a command line:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">$</span> R </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>For Rstudio, use the icon/shortcut or from a command line:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">$</span> rstudio </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="linear-dependence-and-linear-independence-basis" class="slide level2">
+<h2>Linear Dependence and Linear Independence; basis</h2>
 </section>
-<section id="setting-up-a-project" class="slide level2">
-<h2>Setting up a Project</h2>
-<ul>
-<li>Create a project directory</li>
-<li>Subdirectories
-<ul>
-<li>data for data files</li>
-<li>docs for notes and documentation</li>
-<li>others?</li>
-</ul></li>
-<li>Create a README.md file</li>
-</ul>
-<p>For the directories: - the finder or File Manager - the command line</p>
-<p>For the README file: - a text editor such as <code>nano</code> or notepad - jupyter or Rstudio (as we will see soon)</p>
+<section id="subspaces-hyperplanes-and-dimension" class="slide level2">
+<h2>Subspaces, hyperplanes, and dimension</h2>
 </section>
-<section id="using-vscode" class="slide level2">
-<h2>Using vscode</h2>
-<p>VSCode (visual studio code) is a freely distributed code editor/IDE distributed by microsoft.</p>
-<p>It is extremely capable and well-suited for software development in python and other languages.</p>
-<p>It is perhaps not as optimized for R as Rstudio but it does work.</p>
-<p>It has one huge advantage:</p>
-<pre><code>You can access github copilot a version of chatGPT optimized for code, inside vscode in a straightforward way.</code></pre>
+<section id="linear-maps-and-matrices" class="slide level2">
+<h2>Linear Maps and Matrices</h2>
 </section>
-<section id="installing-vscode" class="slide level2">
-<h2>Installing vscode</h2>
-<p><a href="https://code.visualstudio.com">The software is available here</a>.</p>
-<p>You need a <a href="https://github.com">github account</a> to use github copilot, and you need to sign in to that account from inside vscode.</p>
-
-<img data-src="./vscode.png" class="r-stretch"></section>
-<section id="overview-of-vscode" class="slide level2">
-<h2>Overview of vscode</h2>
-<ul>
-<li>Opening folders (as projects)</li>
-<li>Opening files</li>
-<li>Install Extensions:
-<ul>
-<li>python</li>
-<li>R</li>
-<li>many others</li>
-</ul></li>
-<li>The command palette</li>
-<li>jupyter notebooks inside vscode with github copilot</li>
-<li>Interactive python with code cells (# %%)</li>
-<li>The terminal</li>
-</ul>
+<section id="rank-and-invertibility" class="slide level2">
+<h2>Rank and invertibility</h2>
+</section>
+<section id="matrix-multiplication" class="slide level2">
+<h2>Matrix multiplication</h2>
+</section>
+<section id="linear-systems" class="slide level2">
+<h2>Linear Systems</h2>
+</section>
+<section id="separating-hyperplanes-convex-sets" class="slide level2">
+<h2>Separating hyperplanes, convex sets</h2>
+</section>
+<section id="distances-and-the-euclidean-norm" class="slide level2">
+<h2>Distances and the euclidean norm</h2>
+</section>
+<section id="the-dot-product-orthogonality-cauchy-schwartz" class="slide level2">
+<h2>The dot product, orthogonality, cauchy-schwartz</h2>
+</section>
+<section id="orthogonal-projection-minimum-distance-to-a-hyperspace" class="slide level2">
+<h2>orthogonal projection, minimum distance to a hyperspace</h2>
+</section>
+<section id="transpose-of-a-matrix-covariance-matrix-principal-directions" class="slide level2">
+<h2>Transpose of a matrix, covariance matrix, principal directions</h2>
 <div class="footer footer-default">
 
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="01-setup_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="07-LinearAlgebra_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="01-setup_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="01-setup_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="01-setup_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="01-setup_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="01-setup_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="07-LinearAlgebra_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="07-LinearAlgebra_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="07-LinearAlgebra_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="07-LinearAlgebra_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="07-LinearAlgebra_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="01-setup_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="01-setup_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="01-setup_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="01-setup_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="07-LinearAlgebra_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="07-LinearAlgebra_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="07-LinearAlgebra_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="07-LinearAlgebra_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
