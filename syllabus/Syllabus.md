@@ -57,7 +57,7 @@ More advanced technical references include:
 Course grades will be based on:
 
 -   biweekly homework assignments (60 %)
--   a take home final exam (40 %)
+-   a final exam (40 %)
 
 ## Disclaimer
 
