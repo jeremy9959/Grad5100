@@ -127,6 +127,9 @@ to sign in to that account from inside vscode.
     - R
     - many others
 - The command palette
+
+## More on vscode
+
 - jupyter notebooks inside vscode with github copilot
 - Interactive python with code cells (# %%)
 - The terminal
