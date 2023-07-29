@@ -52,12 +52,18 @@ More advanced technical references include:
     Learning](https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf)
     by Bishop
 
+## CampusWire
+
+We will use the [campuswire](https://campuswire.com/c/G121DA3CC) Q&A site for class
+discussions and question asking/answering.  Campuswire is like a private version of 
+stackoverflow.  Make sure to register for the site. 
+
 ## Assessment
 
 Course grades will be based on:
 
 -   biweekly homework assignments (60 %)
--   a take home final exam (40 %)
+-   a final exam (40 %)
 
 ## Disclaimer
 

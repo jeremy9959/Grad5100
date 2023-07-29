@@ -128,6 +128,9 @@ GitHub copilot is free to students, but you need to sign up for the [student dev
     - R
     - many others
 - The command palette
+
+## More on vscode
+
 - jupyter notebooks inside vscode with github copilot
 - Interactive python with code cells (# %%)
 - The terminal
