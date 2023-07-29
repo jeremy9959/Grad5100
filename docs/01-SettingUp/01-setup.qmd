@@ -2,7 +2,7 @@
 title: "Setting up a Project"
 subtitle: "Fundamentals of Data Science"
 author: "Jeremy Teitelbaum"
-format: revealjs
+format: html
 title-block-style: plain
 ---
 
@@ -115,6 +115,7 @@ It has one huge advantage:
 
 You need a [github account](https://github.com) to use github copilot, and you need
 to sign in to that account from inside vscode.
+GitHub copilot is free to students, but you need to sign up for the [student developer pack.](https://education.github.com/benefits?type=student).
 
 ![](./vscode.png)
 
@@ -132,5 +133,25 @@ to sign in to that account from inside vscode.
 - The terminal
 
 
+## Setting up a Project
 
+- Create a project directory
+- Subdirectories
+    - data for data files
+    - docs for notes and documentation
+    - others?
+- Create a README.md file 
+
+## Tools
+
+For the directories:
+
+- the finder or File Manager
+- the command line
+
+For the README file:
+
+- a text editor such as `nano` or notepad 
+- jupyter or Rstudio (as we will see soon)
+- vscode
 
