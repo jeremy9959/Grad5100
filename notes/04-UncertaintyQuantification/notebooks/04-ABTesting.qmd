@@ -1,0 +1,87 @@
+## Experiments with A/B testing in R
+
+### Setup
+```{r}
+library(tidyverse)
+data <- read_csv("data/cookie_cats.csv")
+
+## Utility functions to run fisher test
+fisher_setup <- function(x,y) {
+    result <- x |> select(`version`,{{y}}) |>
+        group_by(`version`) |>
+        count({{y}}) |>
+        pivot_wider(names_from={{y}},values_from =`n`)|>
+        ungroup() 
+    return (result)
+}
+fisher_test<-function(x,y) {
+    setup <- fisher_setup(x,{{y}})
+    result <- fisher.test(setup |> select(-`version`))
+    return(result$p.value)
+}
+```
+
+
+### Column Descriptions
+
+- userid: A unique number that identifies each player.
+- version: Whether the player was put in the control group (gate_30 - a gate at level 30) or the group with the moved gate (gate_40 - a gate at level 40).
+- sum_gamerounds: the number of game rounds played by the player during the first 14 days after install.
+- retention_1: Did the player come back and play 1 day after installing?
+- retention_7: Did the player come back and play 7 days after installing?
+
+```{r}
+print(head(data))
+```
+
+### Analysis
+
+Let's compare retention rates for the two versions.
+One thing to note is that there are many people who install the game and never play it. 
+
+```{r}
+non_players <-data|> filter(`sum_gamerounds`==0)
+n_non_players <- pull(non_players|>count())
+print(paste("Non-players:" ,n_non_players))
+```
+
+We should exclude them, since the treatment has no effect on people who don't play the game.
+
+```{r}
+players <- data |> filter(`sum_gamerounds`>0)
+```
+
+Now we compare the retention at day 1 for the two treatment classes.
+
+```{r}
+players |> group_by(`version`) |> summarize(p1=mean(`retention_1`))
+```
+
+So players in the original gate_30 group are very slightly more likely to be retained. Let's use Fisher's exact test to see if this difference is most likely due to chance. 
+
+```{r}
+p_1<- fisher_test(players,retention_1)
+print(paste("p-value: ",p_1))
+```
+
+The p-value of 10% says that even if the two groups were identical the difference we observe would occur 10% of the time. 
+
+Now let's look at Day 7.  Here, we only include people who were retained on Day 1. 
+
+```{r}
+continuers <- players |> filter(`retention_1`==TRUE)
+continuers |> group_by(`version`) |> summarize(p7=mean(`retention_7`))
+```
+
+Here there is a more noticeable difference; we lose somehat more to the gate_40 among continuers. 
+
+
+
+```{r}
+p_7<- fisher_test(players,retention_7)
+print(paste("p-value: ",p_7))
+```
+
+Here the p-value says this difference is very unlikely to occur by chance if the two groups were really the same.
+
+So our conclusion is that gate_30 is a better choice.
