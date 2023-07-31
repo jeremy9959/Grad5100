@@ -1,4 +1,4 @@
-# Week by Week Schedule
+# Week by Week Schedule (Tentative)
 
 ## Week 1 Setting up a data science working environment
 

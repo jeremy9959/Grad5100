@@ -1,0 +1,48 @@
+---
+title: "R Project Walkthrough"
+subtitle: "Fundamentals of Data Science"
+author: "Jeremy Teitelbaum"
+format: html
+title-block-style: plain
+---
+
+# R Project Walkthrough
+
+1. Use Rstudio to "start a new project in a brand new working directory"
+2. Create a new "R Notebook" with your preferred title
+3. **Rename YOUR NOTEBOOK FILE** using "save as...".  The title from part (2) is *not* the filename.
+4. See [notebook](notebooks/RstudioNotebookWalkthrough.Rmd)
+
+## Structure of an R notebook
+
+1. Stuff you type is by default treated as markdown, just as in the Jupyter case. 
+2. You create an R code cell like this, and run it by clicking the arrow or using Ctrl-Shift-Enter or Cmd-Shift-Enter.
+
+````{r}
+#| echo: fenced
+print("hello world")
+````
+3. See [notebook](notebooks)
+
+## Ingredients
+
+1. The print statement
+2. Basic datatypes (everything in R is a vector)
+
+    - numbers 
+    - strings
+    - arrays (notice implicit type conversions) and names
+    - booleans (TRUE, FALSE)
+
+3. Variable names and assignment (<-)
+4. Formatted print 
+
+## More Ingredients
+
+5. Arithmetic operations (vectorization)
+6. Logical operations
+7. Strings and arrays operations
+8. Slicing and ranges
+9. Libraries and packages
+
+
