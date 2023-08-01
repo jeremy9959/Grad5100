@@ -468,7 +468,7 @@ probs8 <- dbinom(seq(0, 20), 20, .8)
 sum(probs8[1:15])
 ```
 
-We have only a 20% chance of a Type II error so there's an 80% chance we'll detect the problem.
+We have only a 20% chance of a Type II error so there's an 80% chance we'll detect the difference.
 
 Now suppose we use $100$ flips.
 

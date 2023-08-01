@@ -212,14 +212,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Out of 1000 draws, "</span>, <span class="fu">sum</span>(<span class="fu">count</span>()), <span class="st">" were between 0 and 1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Out of 1000 draws,  340  were between 0 and 1"</code></pre>
+<pre><code>[1] "Out of 1000 draws,  366  were between 0 and 1"</code></pre>
 </div>
 </div>
 <p>Now let’s do this experiment 1000 times and record the results.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>draws <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">count</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>On average, we got 341.42 values between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, which is very close to what we’d expect.</p>
+<p>On average, we got 341.346 values between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, which is very close to what we’d expect.</p>
 <p>Let’s look at a histogram of the result of these 100 draws. The vertical line indicates the mean.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>hist <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
@@ -305,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>count <span class="ot">&lt;-</span> <span class="fu">sum</span>(data <span class="sc">&lt;</span> .<span class="dv">674</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(count, <span class="st">" draws out of 10000 are less than .674"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "7454  draws out of 10000 are less than .674"</code></pre>
+<pre><code>[1] "7511  draws out of 10000 are less than .674"</code></pre>
 </div>
 </div>
 </section>
@@ -360,7 +360,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>q75 <span class="ot">&lt;-</span> q[<span class="st">"75%"</span>]</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"The middle 50% of the data lies between "</span>, <span class="fu">format</span>(q25, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">nsmall =</span> <span class="dv">2</span>), <span class="st">" and "</span>, <span class="fu">format</span>(q75, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">nsmall =</span> <span class="dv">2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "The middle 50% of the data lies between  -0.19  and  0.22"</code></pre>
+<pre><code>[1] "The middle 50% of the data lies between  -0.21  and  0.21"</code></pre>
 </div>
 </div>
 <p>Statistical theory tells us that the distribution of the sample means is governed by a relative of the normal distribution called the <span class="math inline">\(t\)</span>-distribution. There is actually a separate <span class="math inline">\(t\)</span> distribution for each sample size. For smaller sample sizes, the <span class="math inline">\(t\)</span> distribution is “fatter” than the normal distribution.</p>
@@ -400,7 +400,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>q75 <span class="ot">&lt;-</span> q[<span class="st">"75%"</span>]</span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"The middle 50% of the data lies between "</span>, <span class="fu">format</span>(q25, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">nsmall =</span> <span class="dv">2</span>), <span class="st">" and "</span>, <span class="fu">format</span>(q75, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">nsmall =</span> <span class="dv">2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "The middle 50% of the data lies between  -0.11  and  0.10"</code></pre>
+<pre><code>[1] "The middle 50% of the data lies between  -0.091  and  0.11"</code></pre>
 </div>
 </div>
 </section>
