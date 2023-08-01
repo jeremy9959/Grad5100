@@ -89,6 +89,29 @@ Then:
 - $X=1$ is the same as the event $H$
 - $P(X=1)$=p
 
+## Binomial Example
+
+A binomial random variable (with parameters $n$ and $p$) is the sum of $n$
+bernoulli random variables with probability $p$.  It corresponds
+to flipping a coin (with $P(H)=p$) $n$ times and counting up the heads.
+
+The probability of getting $k$ heads is
+$$
+P(k)=\binom{n}{k}p^k(1-p)^{n-k}
+$$
+
+```{r}
+library(ggplot2)
+x <- dbinom(seq(0, 10), 10, .3)
+ggplot() +
+    geom_bar(aes(x = seq(0, 10), y = x), stat = "identity") +
+    scale_x_continuous(breaks = seq(0, 10)) +
+    xlab("Number of Heads") +
+    ylab("Probability") +
+    ggtitle("10 Flips, P(H)=.3")
+```
+
+
 ## Continuous example
 
 - Sample space is the possible temperatures at a particular point in space and time.
@@ -235,13 +258,153 @@ $$
 
 where $p(x)$ is the probability density.  This is the limiting case of the formula in the discrete case.
 
+
+
 ## Mean of standard normal
 
 The mean of the standard normal is zero. 
 
 ## Variance and standard deviation
 
+The variance of a random variable measures how it is distributed around its mean value.
 
+In the case of a discrete random variable with outcomes values $x$ having probability $p(x)$, the variance is
+$$
+\sum_{x} (x-\overline{x})^2p(x)
+$$
+
+
+This is the same as 
+
+$$
+\sigma^2 = \overline{x^2}-(\overline{x})^2
+$$
+
+The standard deviation is the square root of the variance.
+
+## Variance of Bernoulli
+
+In the Bernoulli case, the variance is 
+$$
+(1-p)^2p+p^2(1-p)=p(1-p).
+$$
+
+Notice that the maximum variance happens when $p=1/2$.  
+
+## Variance of Binomial
+
+A binomial random variable with probability $p$ and $n$ trials is a sum of $n$ bernoulli random variables with probability $p$.  Using the formula
+you get
+$$
+\sigma^2 = \sum_{i=0}^{n}(i-np)^2\binom{n}{i}p^{i}(1-p)^{n-i}
+$$
+
+This turns out to be
+$$
+\sigma^2 = np(1-p).
+$$
+
+## Hypothesis Testing
+
+A *statistical hypothesis* is a claim about a particular population. A *hypothesis test* is a method to determine which of two contradictory hypotheses is supported by the data.
+
+Underlying idea: a lot of surprising things happen by chance.  If you do an experiment and observe an effect, that might be the result of pure chance. Can
+you quantify that?
+
+## An example
+
+Suppose we have a coin and we'd like to do some testing to determine if we 
+have reason to suspect that the coin is biased.  Put another way, you'd like
+to know if this coin behaves differently from a reference, standard coin that is fair. 
+
+Note this is more common than you might think. It might arise in the following
+circumstance in "real life." You have two web pages, your current one and a proposed new one.  You'd like to know if seeing the proposed one increases the chance of a viewer clicking through to something.  This is called A/B testing and it amounts
+to comparing the probability of click-through in the reference case to the proposed case. 
+
+## Null (and alternative) hypotheses
+
+The Null hypothesis is the hypotheses that our coin is fair, or that our two web pages yield the same results, or more generally that the observations we make
+are accounted for only by chance and not by some underlying effect. So our null hypothesis for our coin is "P=.5".
+
+An alternative hypothesis is a statement that contradicts the null hypothesis.  For example, "P>.5" or "P<.5" or "P is different from .5."
+
+## Test statistic
+
+A test statistic is a measurement of the data used to draw conclusions about the sample.
+
+## Back to our example
+
+For our test statistic, we are going to use the fraction of times we get a head
+in N flips.
+
+In the A/B testing situation, our test statistic would be the fraction of times a person "clicked through" when given the proposed web site.
+
+Intuitively, if the fraction of heads differs significantly from the expected fraction of heads (.5) then we take that as strong evidence for the unfairness of our coin (or the increased value of our proposed web page).
+
+How can we quantify this?
+
+## Rejection region and "significance"
+
+To make things concrete, suppose the coin is fair (in other words, the null hypothesis is true) we flip the coin $10$ times.  If the coin is far, we expect to get
+roughly 5 heads.  
+
+There's a long tradition of saying something unlikely is "significant" if the
+chance of it occurring, assuming the null hypothesis, is less than .05 or one in twenty.  
+
+The chance of getting $0$, $1$, $9$, or $10$ heads is $.02$.  If we allow
+$2$ or $8$ heads in addition, the chance is about $11%$, so if we set our significance level at $.05$ we *reject the null hypothesis* if our experiment yields $0$, $1$, $9$,
+or $10$ heads.
+
+This is the "rejection region."
+```{r}
+library(ggplot2)
+rejection2 <- function(n,d=10) {
+    results <- data.frame(x=seq(0,n),y=dbinom(seq(0,n),n,.5),keep=sapply(seq(0,n),function(x) (x<qbinom(.025,n,.5)) | (x>qbinom(.975,n,.5))))
+    ggplot(data=results,aes(x=x,y=y,fill=keep))+geom_bar(stat="identity")+
+    scale_x_continuous(breaks=seq(0,n,d))+ggtitle("Two sided rejection region at alpha=.05")
+
+}
+rejection1 <-function(n,d=10) {
+    results <- data.frame(x=seq(0,n),y=dbinom(seq(0,n),n,.5),keep=sapply(seq(0,n),function(x) (x>qbinom(.95,n,.5))))
+    ggplot(data=results,aes(x=x,y=y,fill=keep))+geom_bar(stat="identity")+
+    scale_x_continuous(breaks=seq(0,n,d))+ggtitle("One sided rejection region at alpha=.05")
+}
+```
+
+```{r}
+rejection2(10, 1)
+
+```
+
+## One-sided test
+
+Suppose you want evidence that your coin is *more likely* to get heads. So your null hypothesis is that your coin has $p=.5$.  Your alternative hypothesis is $p>.5$.
+
+The probability of getting 0,1,2 heads is $.054$, which is a bit larger than
+$.05$.  So the one-sided test would reach significance only at 0 or 1 heads
+same as the two-sided test.  But with more samples, the "one-sided" rejection
+region would be wider on the left than the two-sided one.
+
+But suppose we did 50 flips? Then the one- and two-sided limits are slightly different. 
+
+
+```{r}
+rejection2(50,1)
+```
+```{r}
+rejection1(50,1)
+```
+## Errors
+
+Two things can go wrong:
+
+Type I error: You reject the null hypothesis, but the null hypothesis is true.
+The probability of a Type I error is something you choose when you set the significance level.  This is usually called $\alpha$.
+
+Type II error: You accept the null hypothesis when it is false.  In this case, 
+you've *missed* an actual effect. This is called $\beta$. Typically, if you
+make $\alpha$ smaller (thus reducing the chance of a Type I error) you make
+$\beta$ bigger (increasing the chance of a type II error). 
 
 <!--
 some things to talk about:
