@@ -5,6 +5,9 @@ author: "Jeremy Teitelbaum"
 format: html
 title-block-style: plain
 ---
+```{r echo=FALSE}
+library(glue)
+```
 
 # Populations and Samples
 
