@@ -602,6 +602,9 @@ Of the 4600 who see ad B, 1133 click through.
 
 Is Ad B better than Ad A or is this explained by chance?
 
+
+## More on AB example 
+
 Null hypothesis: the two ads are the same, and of the 9400 who see an ad, 2108 click through.
 This is a probabiility of 22.4%.
 
@@ -611,8 +614,10 @@ rate is significantly higher.  Similarly the 975 out of 4800 is significantly lo
 So ad B is better than ad A at the .05 significance level.  In fact the odds of getting a number as high as 1133 is more like 1
 in 10^4 so the evidence for ad b is overwhelming.
 
+## Simulation
+
 By simulation:
-```{r}
+```{r echo=TRUE}
 simulated <- rbinom(10000, 4600, .224)
 sum(simulated >= 1133)
 ```

@@ -835,13 +835,38 @@ p(1)+(1-p)(0)=p.
 <pre><code>[1] 0.3032601</code></pre>
 </div>
 </div>
-<p>Now we have a 70% chance of detecting the difference unfairness of <span class="math inline">\(p=.6\)</span>. <!--
+<p>Now we have a 70% chance of detecting the difference unfairness of <span class="math inline">\(p=.6\)</span>.</p>
+</section></section>
+<section>
+<section id="an-ab-example" class="title-slide slide level1 center">
+<h1>An AB example</h1>
+<p>Baseline situation: We show two different web ads to customers at random, and measure how often the visitor clicks through the ad.</p>
+<p>Of the 4800 who see ad A, 975 click through. Of the 4600 who see ad B, 1133 click through.</p>
+<p>Is Ad B better than Ad A or is this explained by chance?</p>
+</section>
+<section id="more-on-ab-example" class="slide level2">
+<h2>More on AB example</h2>
+<p>Null hypothesis: the two ads are the same, and of the 9400 who see an ad, 2108 click through. This is a probabiility of 22.4%.</p>
+<p>The .95 quantile for the binomial distribution with n=4600 and p=.224 is 1077. Thus the 1133 click through rate is significantly higher. Similarly the 975 out of 4800 is significantly lower.</p>
+<p>So ad B is better than ad A at the .05 significance level. In fact the odds of getting a number as high as 1133 is more like 1 in 10^4 so the evidence for ad b is overwhelming.</p>
+</section>
+<section id="simulation" class="slide level2">
+<h2>Simulation</h2>
+<p>By simulation:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>simulated <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">10000</span>, <span class="dv">4600</span>, .<span class="dv">224</span>)</span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">sum</span>(simulated <span class="sc">&gt;=</span> <span class="dv">1133</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+<!--
 some things to talk about:
 fisher exact test  (likelihood of results at random)
 datatypes and types of random variables (ints are discrete/continuous?)
 relationship between *density function* and *histogram*
 empirical distribution
---></p>
+-->
 <div class="footer footer-default">
 
 </div>
