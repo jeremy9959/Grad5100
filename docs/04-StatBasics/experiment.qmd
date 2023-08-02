@@ -49,3 +49,20 @@ So ad B is better than ad A at the .05 significance level.
 qbinom(.95, 4600, .224)
 ```
 
+```{r}
+# power for binomial testing
+# null hypothesis: probability q
+# significance level alpha
+# number of samples N
+# null hypothesis accepted if flips <= rejection
+# rejected if flips>rejection
+# conditional on true probability p, this is
+# pbinom(rejection, N,p)
+power <- function(N, alpha, q, p) {
+    rejection <- qbinom(1 - alpha, N, q)
+    accept <- pbinom(rejection, N, p)
+    1 - accept
+}
+power(64, .05, .5, .6)
+```
+
