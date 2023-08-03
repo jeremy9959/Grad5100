@@ -10,7 +10,6 @@ project:
 
 website:
   title: "Fundamentals of Machine Learning"
-  search: false
   sidebar:
     style: "floating"
     contents:
