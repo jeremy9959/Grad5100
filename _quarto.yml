@@ -10,18 +10,16 @@ project:
 
 website:
   title: "Fundamentals of Machine Learning"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - href: chapters/01-SettingUp/setting-up.qmd  
-        text: Setting Up
-      - href: chapters/02-JupyterBasics/jupyter-walkthrough.qmd
-        text: Jupyter Basics
-      - href: chapters/03-RBasics/r-walkthrough.qmd
-        text: R Basics
-      - href: chapters/04-StatBasics/stat-basics.qmd  
-        text: Statistics Basics
+  sidebar:
+    style: "floating"
+    contents:
+      - section: "Contents"
+        contents:
+        - index.qmd
+        - chapters/01-SettingUp/setting-up.qmd  
+        - chapters/02-JupyterBasics/jupyter-walkthrough.qmd
+        - chapters/03-RBasics/r-walkthrough.qmd
+        - chapters/04-StatBasics/stat-basics.qmd  
   
 
   
