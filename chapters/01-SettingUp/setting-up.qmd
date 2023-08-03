@@ -1,5 +1,5 @@
 ---
-title: "Key Tools"
+title: "Key Tools for Data Science"
 subtitle: "Fundamentals of Data Science"
 author: "Jeremy Teitelbaum"
 format: html

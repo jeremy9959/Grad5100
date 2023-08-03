@@ -10,12 +10,12 @@ project:
 
 website:
   title: "Fundamentals of Machine Learning"
+  search: false
   sidebar:
     style: "floating"
     contents:
       - section: "Contents"
         contents:
-        - index.qmd
         - chapters/01-SettingUp/setting-up.qmd  
         - chapters/02-JupyterBasics/jupyter-walkthrough.qmd
         - chapters/03-RBasics/r-walkthrough.qmd
