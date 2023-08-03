@@ -156,6 +156,9 @@ A normal curve is defined by two parameters:
 - the mean $\mu$, which sets the *location*
 - the standard deviation $\sigma$ or its square, the variance $\sigma^2$, which sets the *scale*.
 
+
+## Z-score
+
 If $x$ is a normal random variable with mean $\mu$ and variance $\sigma^2$, then
 $$
 z = \frac{x-\mu}{\sigma}
@@ -184,13 +187,13 @@ So the median of the samples occurs where the $y$-axis is $.5$.
 
 ## Quantiles
 
-If $q$ is between $0$ and $1$, then the $q^{th}$ quantile $Q$ of a random variable $x$ is the value of
+- If $q$ is between $0$ and $1$, then the $q^{th}$ quantile $Q$ of a random variable $x$ is the value of
 $x$ such that the fraction of the population with $x<Q$
 is $q$.
 
-The median of $x$ is the $.5$ quantile for $x$ because half of the population has values less than the median.
+- The median of $x$ is the $.5$ quantile for $x$ because half of the population has values less than the median.
 
-One can read quantiles from the cumulative distribution.
+- One can read quantiles from the cumulative distribution.
 
 ## Order Statistics
 
@@ -526,6 +529,8 @@ The probability of a Type I error is something you choose when you set the signi
 
 - Type II error: You accept the null hypothesis when it is false.  In this case, 
 you've *missed* an actual effect. This probability of this is called $\beta$. 
+
+## Tradeoff between error types
 
 Other things equal, if you
 make $\alpha$ smaller (thus reducing the chance of a Type I error) you make

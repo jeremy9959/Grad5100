@@ -536,6 +536,9 @@ P(k)=\binom{n}{k}p^k(1-p)^{n-k}
 <li>the mean <span class="math inline">\(\mu\)</span>, which sets the <em>location</em></li>
 <li>the standard deviation <span class="math inline">\(\sigma\)</span> or its square, the variance <span class="math inline">\(\sigma^2\)</span>, which sets the <em>scale</em>.</li>
 </ul>
+</section>
+<section id="z-score" class="slide level2">
+<h2>Z-score</h2>
 <p>If <span class="math inline">\(x\)</span> is a normal random variable with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>, then <span class="math display">\[
 z = \frac{x-\mu}{\sigma}
 \]</span> is a normal random variable with mean <span class="math inline">\(0\)</span> and variance <span class="math inline">\(1\)</span>. This is called a <span class="math inline">\(z\)</span>-score or a <em>standard normal</em> variable.</p>
@@ -551,9 +554,11 @@ z = \frac{x-\mu}{\sigma}
 </section>
 <section id="quantiles" class="slide level2">
 <h2>Quantiles</h2>
-<p>If <span class="math inline">\(q\)</span> is between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, then the <span class="math inline">\(q^{th}\)</span> quantile <span class="math inline">\(Q\)</span> of a random variable <span class="math inline">\(x\)</span> is the value of <span class="math inline">\(x\)</span> such that the fraction of the population with <span class="math inline">\(x&lt;Q\)</span> is <span class="math inline">\(q\)</span>.</p>
-<p>The median of <span class="math inline">\(x\)</span> is the <span class="math inline">\(.5\)</span> quantile for <span class="math inline">\(x\)</span> because half of the population has values less than the median.</p>
-<p>One can read quantiles from the cumulative distribution.</p>
+<ul>
+<li><p>If <span class="math inline">\(q\)</span> is between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, then the <span class="math inline">\(q^{th}\)</span> quantile <span class="math inline">\(Q\)</span> of a random variable <span class="math inline">\(x\)</span> is the value of <span class="math inline">\(x\)</span> such that the fraction of the population with <span class="math inline">\(x&lt;Q\)</span> is <span class="math inline">\(q\)</span>.</p></li>
+<li><p>The median of <span class="math inline">\(x\)</span> is the <span class="math inline">\(.5\)</span> quantile for <span class="math inline">\(x\)</span> because half of the population has values less than the median.</p></li>
+<li><p>One can read quantiles from the cumulative distribution.</p></li>
+</ul>
 </section>
 <section id="order-statistics" class="slide level2">
 <h2>Order Statistics</h2>
@@ -780,6 +785,9 @@ p(1)+(1-p)(0)=p.
 <li><p>Type I error: You reject the null hypothesis, but the null hypothesis is true. The probability of a Type I error is something you choose when you set the significance level. This is usually called <span class="math inline">\(\alpha\)</span>.</p></li>
 <li><p>Type II error: You accept the null hypothesis when it is false. In this case, you’ve <em>missed</em> an actual effect. This probability of this is called <span class="math inline">\(\beta\)</span>.</p></li>
 </ul>
+</section>
+<section id="tradeoff-between-error-types" class="slide level2">
+<h2>Tradeoff between error types</h2>
 <p>Other things equal, if you make <span class="math inline">\(\alpha\)</span> smaller (thus reducing the chance of a Type I error) you make <span class="math inline">\(\beta\)</span> bigger (increasing the chance of a type II error).</p>
 </section>
 <section id="statistical-power" class="slide level2">
@@ -864,7 +872,7 @@ p(1)+(1-p)(0)=p.
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>simulated <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">10000</span>, <span class="dv">4600</span>, .<span class="dv">224</span>)</span>
 <span id="cb14-2"><a href="#cb14-2"></a><span class="fu">sum</span>(simulated <span class="sc">&gt;=</span> <span class="dv">1133</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
+<pre><code>[1] 3</code></pre>
 </div>
 </div>
 <!--
