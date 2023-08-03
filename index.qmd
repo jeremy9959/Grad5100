@@ -1,6 +1,5 @@
 # Fundamentals of Machine Learning
 
-
 1. [Setting Up](chapters/01-SettingUp/setting-up.html)
 2. [Jupyter and Python Basics](chapters/02-JupyterBasics/jupyter-walkthrough.html)
 3. [R Basics](chapters/03-RBasics/r-walkthrough.html)
