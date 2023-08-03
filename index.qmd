@@ -1,5 +1,3 @@
-# Preface {.unnumbered}
+# Fundamentals of Machine Learning
 
-
-
-Notes and resources
+This site contains resources for UConn's "Fundamentals of Machine Learning" Course.

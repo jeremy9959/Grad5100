@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jeremy Teitelbaum">
 
-<title>Fundamentals of Machine Learning - 4&nbsp; Probability</title>
+<title>Fundamentals of Machine Learning - Statistical Basics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -94,7 +94,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/03-RBasics/r-walkthrough.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -128,13 +127,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Probability</span></h1>
+      <h1 class="quarto-secondary-nav-title">Statistical Basics</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -157,112 +156,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Contents</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  <a href="../../chapters/01-SettingUp/setting-up.html" class="sidebar-item-text sidebar-link">Key Tools for Data Science</a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/01-SettingUp/setting-up.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Key Tools</span></a>
+  <a href="../../chapters/02-JupyterBasics/jupyter-walkthrough.html" class="sidebar-item-text sidebar-link">Jupyter Lab and Python Walkthrough</a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-JupyterBasics/jupyter-walkthrough.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Jupyter Lab Project Walkthrough</span></a>
+  <a href="../../chapters/03-RBasics/r-walkthrough.html" class="sidebar-item-text sidebar-link">R Notebook Walkthrough</a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-RBasics/r-walkthrough.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Notebook Walkthrough</span></a>
+  <a href="../../chapters/04-StatBasics/stat-basics.html" class="sidebar-item-text sidebar-link active">Statistical Basics</a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/04-StatBasics/stat-basics.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Probability</span></a>
+  <a href="../../chapters/05-WorkingWithData/pythonAndR.html" class="sidebar-item-text sidebar-link">Data Structures in R and Python</a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#populations-and-samples" id="toc-populations-and-samples" class="nav-link active" data-scroll-target="#populations-and-samples"><span class="toc-section-number">5</span>  Populations and Samples</a>
-  <ul class="collapse">
-  <li><a href="#probability-theory" id="toc-probability-theory" class="nav-link" data-scroll-target="#probability-theory"><span class="toc-section-number">5.1</span>  Probability Theory</a></li>
-  <li><a href="#sample-space" id="toc-sample-space" class="nav-link" data-scroll-target="#sample-space"><span class="toc-section-number">5.2</span>  Sample Space</a></li>
-  <li><a href="#simple-events" id="toc-simple-events" class="nav-link" data-scroll-target="#simple-events"><span class="toc-section-number">5.3</span>  Simple Events</a></li>
-  <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events"><span class="toc-section-number">5.4</span>  Events</a></li>
-  <li><a href="#probability-measure" id="toc-probability-measure" class="nav-link" data-scroll-target="#probability-measure"><span class="toc-section-number">5.5</span>  Probability Measure</a></li>
-  <li><a href="#random-variables" id="toc-random-variables" class="nav-link" data-scroll-target="#random-variables"><span class="toc-section-number">5.6</span>  Random Variables</a></li>
-  <li><a href="#discrete-vs-continuous-random-variables" id="toc-discrete-vs-continuous-random-variables" class="nav-link" data-scroll-target="#discrete-vs-continuous-random-variables"><span class="toc-section-number">5.7</span>  Discrete vs Continuous Random Variables</a></li>
-  <li><a href="#events-and-random-variables" id="toc-events-and-random-variables" class="nav-link" data-scroll-target="#events-and-random-variables"><span class="toc-section-number">5.8</span>  Events and Random Variables</a></li>
-  <li><a href="#bernoulli-example" id="toc-bernoulli-example" class="nav-link" data-scroll-target="#bernoulli-example"><span class="toc-section-number">5.9</span>  Bernoulli example</a></li>
-  <li><a href="#binomial-example" id="toc-binomial-example" class="nav-link" data-scroll-target="#binomial-example"><span class="toc-section-number">5.10</span>  Binomial Example</a></li>
-  <li><a href="#binomial-distribution" id="toc-binomial-distribution" class="nav-link" data-scroll-target="#binomial-distribution"><span class="toc-section-number">5.11</span>  Binomial Distribution</a></li>
-  <li><a href="#continuous-example" id="toc-continuous-example" class="nav-link" data-scroll-target="#continuous-example"><span class="toc-section-number">5.12</span>  Continuous example</a></li>
-  <li><a href="#probability-density-functions" id="toc-probability-density-functions" class="nav-link" data-scroll-target="#probability-density-functions"><span class="toc-section-number">5.13</span>  Probability density functions</a></li>
-  <li><a href="#density-functions" id="toc-density-functions" class="nav-link" data-scroll-target="#density-functions"><span class="toc-section-number">5.14</span>  Density Functions</a></li>
-  <li><a href="#area-gives-probability" id="toc-area-gives-probability" class="nav-link" data-scroll-target="#area-gives-probability"><span class="toc-section-number">5.15</span>  Area gives probability</a></li>
-  <li><a href="#standard-normal" id="toc-standard-normal" class="nav-link" data-scroll-target="#standard-normal"><span class="toc-section-number">5.16</span>  Standard Normal</a></li>
-  <li><a href="#cumulative-distribution" id="toc-cumulative-distribution" class="nav-link" data-scroll-target="#cumulative-distribution"><span class="toc-section-number">5.17</span>  Cumulative Distribution</a></li>
-  <li><a href="#cumulative-distribution-1" id="toc-cumulative-distribution-1" class="nav-link" data-scroll-target="#cumulative-distribution-1"><span class="toc-section-number">5.18</span>  Cumulative Distribution</a></li>
-  <li><a href="#quantiles" id="toc-quantiles" class="nav-link" data-scroll-target="#quantiles"><span class="toc-section-number">5.19</span>  Quantiles</a></li>
-  <li><a href="#order-statistics" id="toc-order-statistics" class="nav-link" data-scroll-target="#order-statistics"><span class="toc-section-number">5.20</span>  Order Statistics</a></li>
-  <li><a href="#order-statistics-example" id="toc-order-statistics-example" class="nav-link" data-scroll-target="#order-statistics-example"><span class="toc-section-number">5.21</span>  Order Statistics example</a></li>
-  <li><a href="#order-statistics-histogram" id="toc-order-statistics-histogram" class="nav-link" data-scroll-target="#order-statistics-histogram"><span class="toc-section-number">5.22</span>  Order Statistics Histogram</a></li>
-  <li><a href="#the-multinomial-distribution" id="toc-the-multinomial-distribution" class="nav-link" data-scroll-target="#the-multinomial-distribution"><span class="toc-section-number">5.23</span>  The multinomial distribution</a></li>
-  <li><a href="#mean" id="toc-mean" class="nav-link" data-scroll-target="#mean"><span class="toc-section-number">5.24</span>  Mean</a></li>
-  <li><a href="#mean-discrete-case" id="toc-mean-discrete-case" class="nav-link" data-scroll-target="#mean-discrete-case"><span class="toc-section-number">5.25</span>  Mean – discrete case</a></li>
-  <li><a href="#mean-of-a-bernoulli-random-variable" id="toc-mean-of-a-bernoulli-random-variable" class="nav-link" data-scroll-target="#mean-of-a-bernoulli-random-variable"><span class="toc-section-number">5.26</span>  Mean of a bernoulli random variable</a></li>
-  <li><a href="#mean-of-a-binomial-random-variable" id="toc-mean-of-a-binomial-random-variable" class="nav-link" data-scroll-target="#mean-of-a-binomial-random-variable"><span class="toc-section-number">5.27</span>  Mean of a binomial random variable</a></li>
-  <li><a href="#mean-continuous-case" id="toc-mean-continuous-case" class="nav-link" data-scroll-target="#mean-continuous-case"><span class="toc-section-number">5.28</span>  Mean – continuous case</a></li>
-  <li><a href="#mean-of-standard-normal" id="toc-mean-of-standard-normal" class="nav-link" data-scroll-target="#mean-of-standard-normal"><span class="toc-section-number">5.29</span>  Mean of standard normal</a></li>
-  <li><a href="#variance-and-standard-deviation" id="toc-variance-and-standard-deviation" class="nav-link" data-scroll-target="#variance-and-standard-deviation"><span class="toc-section-number">5.30</span>  Variance and standard deviation</a></li>
-  <li><a href="#variance-alternative-formula" id="toc-variance-alternative-formula" class="nav-link" data-scroll-target="#variance-alternative-formula"><span class="toc-section-number">5.31</span>  Variance alternative formula</a></li>
-  <li><a href="#variance-of-bernoulli" id="toc-variance-of-bernoulli" class="nav-link" data-scroll-target="#variance-of-bernoulli"><span class="toc-section-number">5.32</span>  Variance of Bernoulli</a></li>
-  <li><a href="#variance-of-binomial" id="toc-variance-of-binomial" class="nav-link" data-scroll-target="#variance-of-binomial"><span class="toc-section-number">5.33</span>  Variance of Binomial</a></li>
-  <li><a href="#sampling" id="toc-sampling" class="nav-link" data-scroll-target="#sampling"><span class="toc-section-number">5.34</span>  Sampling</a></li>
-  <li><a href="#sampling-1" id="toc-sampling-1" class="nav-link" data-scroll-target="#sampling-1"><span class="toc-section-number">5.35</span>  Sampling</a></li>
-  <li><a href="#hypothesis-testing" id="toc-hypothesis-testing" class="nav-link" data-scroll-target="#hypothesis-testing"><span class="toc-section-number">5.36</span>  Hypothesis Testing</a></li>
-  <li><a href="#an-example" id="toc-an-example" class="nav-link" data-scroll-target="#an-example"><span class="toc-section-number">5.37</span>  An example</a></li>
-  <li><a href="#null-and-alternative-hypotheses" id="toc-null-and-alternative-hypotheses" class="nav-link" data-scroll-target="#null-and-alternative-hypotheses"><span class="toc-section-number">5.38</span>  Null (and alternative) hypotheses</a></li>
-  <li><a href="#test-statistic" id="toc-test-statistic" class="nav-link" data-scroll-target="#test-statistic"><span class="toc-section-number">5.39</span>  Test statistic</a></li>
-  <li><a href="#back-to-our-example" id="toc-back-to-our-example" class="nav-link" data-scroll-target="#back-to-our-example"><span class="toc-section-number">5.40</span>  Back to our example</a></li>
-  <li><a href="#rejection-region-and-significance" id="toc-rejection-region-and-significance" class="nav-link" data-scroll-target="#rejection-region-and-significance"><span class="toc-section-number">5.41</span>  Rejection region and “significance”</a></li>
-  <li><a href="#rejection-region-plot-code" id="toc-rejection-region-plot-code" class="nav-link" data-scroll-target="#rejection-region-plot-code"><span class="toc-section-number">5.42</span>  Rejection Region (plot code)</a></li>
-  <li><a href="#more-code" id="toc-more-code" class="nav-link" data-scroll-target="#more-code"><span class="toc-section-number">5.43</span>  More code</a></li>
-  <li><a href="#rejection-region-plotted" id="toc-rejection-region-plotted" class="nav-link" data-scroll-target="#rejection-region-plotted"><span class="toc-section-number">5.44</span>  Rejection Region (plotted)</a></li>
-  <li><a href="#one-sided-test" id="toc-one-sided-test" class="nav-link" data-scroll-target="#one-sided-test"><span class="toc-section-number">5.45</span>  One-sided test</a></li>
-  <li><a href="#one-sided-rejection-region" id="toc-one-sided-rejection-region" class="nav-link" data-scroll-target="#one-sided-rejection-region"><span class="toc-section-number">5.46</span>  One-sided rejection region</a></li>
-  <li><a href="#one-sided-rejection-region-1" id="toc-one-sided-rejection-region-1" class="nav-link" data-scroll-target="#one-sided-rejection-region-1"><span class="toc-section-number">5.47</span>  One-sided rejection region</a></li>
-  <li><a href="#normal-approximation" id="toc-normal-approximation" class="nav-link" data-scroll-target="#normal-approximation"><span class="toc-section-number">5.48</span>  Normal approximation</a></li>
-  <li><a href="#normal-and-binomial-distribution" id="toc-normal-and-binomial-distribution" class="nav-link" data-scroll-target="#normal-and-binomial-distribution"><span class="toc-section-number">5.49</span>  Normal and binomial distribution</a></li>
-  <li><a href="#errors" id="toc-errors" class="nav-link" data-scroll-target="#errors"><span class="toc-section-number">5.50</span>  Errors</a></li>
-  <li><a href="#statistical-power" id="toc-statistical-power" class="nav-link" data-scroll-target="#statistical-power"><span class="toc-section-number">5.51</span>  Statistical Power</a></li>
-  <li><a href="#power" id="toc-power" class="nav-link" data-scroll-target="#power"><span class="toc-section-number">5.52</span>  Power</a></li>
-  <li><a href="#power-computations" id="toc-power-computations" class="nav-link" data-scroll-target="#power-computations"><span class="toc-section-number">5.53</span>  Power Computations</a></li>
-  <li><a href="#power-1" id="toc-power-1" class="nav-link" data-scroll-target="#power-1"><span class="toc-section-number">5.54</span>  Power</a></li>
-  <li><a href="#power-2" id="toc-power-2" class="nav-link" data-scroll-target="#power-2"><span class="toc-section-number">5.55</span>  Power</a></li>
-  </ul></li>
-  <li><a href="#an-ab-example" id="toc-an-ab-example" class="nav-link" data-scroll-target="#an-ab-example"><span class="toc-section-number">6</span>  An AB example</a>
-  <ul class="collapse">
-  <li><a href="#more-on-ab-example" id="toc-more-on-ab-example" class="nav-link" data-scroll-target="#more-on-ab-example"><span class="toc-section-number">6.1</span>  More on AB example</a></li>
-  <li><a href="#simulation" id="toc-simulation" class="nav-link" data-scroll-target="#simulation"><span class="toc-section-number">6.2</span>  Simulation</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Probability</span></h1>
+<h1 class="title d-none d-lg-block">Statistical Basics</h1>
 <p class="subtitle lead">Fundamentals of Data Science</p>
 </div>
 
@@ -298,42 +237,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
 </div>
-<section id="populations-and-samples" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Populations and Samples</h1>
-<section id="probability-theory" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="probability-theory"><span class="header-section-number">5.1</span> Probability Theory</h2>
+<section id="populations-and-samples" class="level1">
+<h1>Populations and Samples</h1>
+<section id="probability-theory" class="level2">
+<h2 class="anchored" data-anchor-id="probability-theory">Probability Theory</h2>
 <p>Probability theory is based on:</p>
 <ul>
 <li>An underlying collection <span class="math inline">\(S\)</span> of all possible outcomes (a <em>population</em> or <em>sample space</em>) of an experiment.</li>
 <li>A rule <span class="math inline">\(P\)</span> that assigns a number between zero and one to each subset of the sample space satisfying certain rules.</li>
 </ul>
 </section>
-<section id="sample-space" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="sample-space"><span class="header-section-number">5.2</span> Sample Space</h2>
+<section id="sample-space" class="level2">
+<h2 class="anchored" data-anchor-id="sample-space">Sample Space</h2>
 <p>For example:</p>
 <ul>
 <li><p>For a flip of a single coin, the possible outcomes are Heads and Tails and the sample space has two elements. For multiple flips, the outcomes are sequences of Heads and Tails.</p></li>
 <li><p>For a measurement of temperature, we might model the possible outcomes, or the sample space, as all real numbers, recognizing that only some of them are actually possible results of the experiment.</p></li>
 </ul>
 </section>
-<section id="simple-events" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="simple-events"><span class="header-section-number">5.3</span> Simple Events</h2>
+<section id="simple-events" class="level2">
+<h2 class="anchored" data-anchor-id="simple-events">Simple Events</h2>
 <p>The elements of the sample space or population are the <em>outcomes</em> or <em>simple events</em> or <em>sample points</em>.</p>
 <ul>
 <li><p>For a flip of a coin, the possible outcomes are Heads or Tails. For multiple flips, the possible outcomes are particular sequences of Heads or Tails.</p></li>
 <li><p>For a measurement of temperature, a simple event would be a particular number obtained at a particular time.</p></li>
 </ul>
 </section>
-<section id="events" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="events"><span class="header-section-number">5.4</span> Events</h2>
+<section id="events" class="level2">
+<h2 class="anchored" data-anchor-id="events">Events</h2>
 <p>Subsets of the population make up events or outcomes.</p>
 <ul>
 <li><p>Among the population made up of sequences of 10 coin flips, the subset consisting of sequences containing at least 3 heads is an event.</p></li>
 <li><p>Among the measurements of temperature, a measurement lying between say 22 and 25 degrees celsius would be an event.</p></li>
 </ul>
 </section>
-<section id="probability-measure" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="probability-measure"><span class="header-section-number">5.5</span> Probability Measure</h2>
+<section id="probability-measure" class="level2">
+<h2 class="anchored" data-anchor-id="probability-measure">Probability Measure</h2>
 <p>The last element of probability theory is the function P that assigns a number between 0 and 1 to every event such that</p>
 <ul>
 <li><span class="math inline">\(P(\emptyset)=0\)</span></li>
@@ -341,8 +280,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>If <span class="math inline">\(A\cap B=\emptyset\)</span> then <span class="math inline">\(P(A\cup B)=P(A)+P(B)\)</span>. This is also required to hold for <em>infinite</em> collections of disjoint sets but we won’t worry much about the foundations of probability.</li>
 </ul>
 </section>
-<section id="random-variables" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="random-variables"><span class="header-section-number">5.6</span> Random Variables</h2>
+<section id="random-variables" class="level2">
+<h2 class="anchored" data-anchor-id="random-variables">Random Variables</h2>
 <p>A <em>random variable</em> is a rule that assigns a number to an event.</p>
 <ul>
 <li>We can assign the value 1 to heads and 0 to tails. This is a <em>bernoulli</em> random variable.</li>
@@ -352,8 +291,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>If we pick a person at random, we can assign the value 1 if they wear glasses and 0 if not.</li>
 </ul>
 </section>
-<section id="discrete-vs-continuous-random-variables" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="discrete-vs-continuous-random-variables"><span class="header-section-number">5.7</span> Discrete vs Continuous Random Variables</h2>
+<section id="discrete-vs-continuous-random-variables" class="level2">
+<h2 class="anchored" data-anchor-id="discrete-vs-continuous-random-variables">Discrete vs Continuous Random Variables</h2>
 <p>A discrete random variables takes “separate” values depending on the event. A continuous random variable takes values in a range.</p>
 <ul>
 <li>Bernoulli random variable is discrete (0/1)</li>
@@ -363,12 +302,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Species of penguin is discrete</li>
 </ul>
 </section>
-<section id="events-and-random-variables" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="events-and-random-variables"><span class="header-section-number">5.8</span> Events and Random Variables</h2>
+<section id="events-and-random-variables" class="level2">
+<h2 class="anchored" data-anchor-id="events-and-random-variables">Events and Random Variables</h2>
 <p>Specifying a value, or a range of values, for a random variable defines an event.</p>
 </section>
-<section id="bernoulli-example" class="level2" data-number="5.9">
-<h2 data-number="5.9" class="anchored" data-anchor-id="bernoulli-example"><span class="header-section-number">5.9</span> Bernoulli example</h2>
+<section id="bernoulli-example" class="level2">
+<h2 class="anchored" data-anchor-id="bernoulli-example">Bernoulli example</h2>
 <ul>
 <li>Sample space is <span class="math inline">\(\{H,T\}\)</span></li>
 <li><span class="math inline">\(P(H)=p\)</span></li>
@@ -380,15 +319,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><span class="math inline">\(P(X=1)\)</span>=p</li>
 </ul>
 </section>
-<section id="binomial-example" class="level2" data-number="5.10">
-<h2 data-number="5.10" class="anchored" data-anchor-id="binomial-example"><span class="header-section-number">5.10</span> Binomial Example</h2>
+<section id="binomial-example" class="level2">
+<h2 class="anchored" data-anchor-id="binomial-example">Binomial Example</h2>
 <p>A binomial random variable (with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>) is the sum of <span class="math inline">\(n\)</span> bernoulli random variables with probability <span class="math inline">\(p\)</span>. It corresponds to flipping a coin (with <span class="math inline">\(P(H)=p\)</span>) <span class="math inline">\(n\)</span> times and counting up the heads.</p>
 <p>The probability of getting <span class="math inline">\(k\)</span> heads is <span class="math display">\[
 P(k)=\binom{n}{k}p^k(1-p)^{n-k}
 \]</span></p>
 </section>
-<section id="binomial-distribution" class="level2" data-number="5.11">
-<h2 data-number="5.11" class="anchored" data-anchor-id="binomial-distribution"><span class="header-section-number">5.11</span> Binomial Distribution</h2>
+<section id="binomial-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="binomial-distribution">Binomial Distribution</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>), <span class="dv">10</span>, .<span class="dv">3</span>)</span>
@@ -403,27 +342,27 @@ P(k)=\binom{n}{k}p^k(1-p)^{n-k}
 </div>
 </div>
 </section>
-<section id="continuous-example" class="level2" data-number="5.12">
-<h2 data-number="5.12" class="anchored" data-anchor-id="continuous-example"><span class="header-section-number">5.12</span> Continuous example</h2>
+<section id="continuous-example" class="level2">
+<h2 class="anchored" data-anchor-id="continuous-example">Continuous example</h2>
 <ul>
 <li>Sample space is the possible temperatures at a particular point in space and time.</li>
 <li>Random variable <span class="math inline">\(T\)</span> is a measure of temperature.</li>
 <li><span class="math inline">\(P(21&lt;T&lt;22)\)</span> is the probability that the temperature is between 21 and 22 degrees.</li>
 </ul>
 </section>
-<section id="probability-density-functions" class="level2" data-number="5.13">
-<h2 data-number="5.13" class="anchored" data-anchor-id="probability-density-functions"><span class="header-section-number">5.13</span> Probability density functions</h2>
+<section id="probability-density-functions" class="level2">
+<h2 class="anchored" data-anchor-id="probability-density-functions">Probability density functions</h2>
 <p>In the continuous case, probability is measured by a probability density function <span class="math inline">\(P(x)\)</span>. The classic example is the normal (bell-shaped) curve.</p>
 </section>
-<section id="density-functions" class="level2" data-number="5.14">
-<h2 data-number="5.14" class="anchored" data-anchor-id="density-functions"><span class="header-section-number">5.14</span> Density Functions</h2>
+<section id="density-functions" class="level2">
+<h2 class="anchored" data-anchor-id="density-functions">Density Functions</h2>
 <p>If <span class="math inline">\(P(x)\)</span> is the density function, then:</p>
 <blockquote class="blockquote">
 <p>the probability that <span class="math inline">\(x\)</span> lies between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> is the area under density function between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>.</p>
 </blockquote>
 </section>
-<section id="area-gives-probability" class="level2" data-number="5.15">
-<h2 data-number="5.15" class="anchored" data-anchor-id="area-gives-probability"><span class="header-section-number">5.15</span> Area gives probability</h2>
+<section id="area-gives-probability" class="level2">
+<h2 class="anchored" data-anchor-id="area-gives-probability">Area gives probability</h2>
 <div class="cell">
 
 </div>
@@ -434,23 +373,26 @@ P(k)=\binom{n}{k}p^k(1-p)^{n-k}
 </div>
 <p>The shaded area gives probability 0.87 for temp between 21.7 and 22.3.</p>
 </section>
-<section id="standard-normal" class="level2" data-number="5.16">
-<h2 data-number="5.16" class="anchored" data-anchor-id="standard-normal"><span class="header-section-number">5.16</span> Standard Normal</h2>
+<section id="standard-normal" class="level2">
+<h2 class="anchored" data-anchor-id="standard-normal">Standard Normal</h2>
 <p>A normal curve is defined by two parameters:</p>
 <ul>
 <li>the mean <span class="math inline">\(\mu\)</span>, which sets the <em>location</em></li>
 <li>the standard deviation <span class="math inline">\(\sigma\)</span> or its square, the variance <span class="math inline">\(\sigma^2\)</span>, which sets the <em>scale</em>.</li>
 </ul>
+</section>
+<section id="z-score" class="level2">
+<h2 class="anchored" data-anchor-id="z-score">Z-score</h2>
 <p>If <span class="math inline">\(x\)</span> is a normal random variable with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>, then <span class="math display">\[
 z = \frac{x-\mu}{\sigma}
 \]</span> is a normal random variable with mean <span class="math inline">\(0\)</span> and variance <span class="math inline">\(1\)</span>. This is called a <span class="math inline">\(z\)</span>-score or a <em>standard normal</em> variable.</p>
 </section>
-<section id="cumulative-distribution" class="level2" data-number="5.17">
-<h2 data-number="5.17" class="anchored" data-anchor-id="cumulative-distribution"><span class="header-section-number">5.17</span> Cumulative Distribution</h2>
+<section id="cumulative-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="cumulative-distribution">Cumulative Distribution</h2>
 <p>The cumulative distribution is a function <span class="math inline">\(f(x)\)</span> such that <span class="math inline">\(f(x)\)</span> is the the percentage of samples that are less than <span class="math inline">\(x\)</span>.</p>
 </section>
-<section id="cumulative-distribution-1" class="level2" data-number="5.18">
-<h2 data-number="5.18" class="anchored" data-anchor-id="cumulative-distribution-1"><span class="header-section-number">5.18</span> Cumulative Distribution</h2>
+<section id="cumulative-distribution-1" class="level2">
+<h2 class="anchored" data-anchor-id="cumulative-distribution-1">Cumulative Distribution</h2>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="stat-basics_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
@@ -458,77 +400,79 @@ z = \frac{x-\mu}{\sigma}
 </div>
 <p>So the median of the samples occurs where the <span class="math inline">\(y\)</span>-axis is <span class="math inline">\(.5\)</span>.</p>
 </section>
-<section id="quantiles" class="level2" data-number="5.19">
-<h2 data-number="5.19" class="anchored" data-anchor-id="quantiles"><span class="header-section-number">5.19</span> Quantiles</h2>
-<p>If <span class="math inline">\(q\)</span> is between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, then the <span class="math inline">\(q^{th}\)</span> quantile <span class="math inline">\(Q\)</span> of a random variable <span class="math inline">\(x\)</span> is the value of <span class="math inline">\(x\)</span> such that the fraction of the population with <span class="math inline">\(x&lt;Q\)</span> is <span class="math inline">\(q\)</span>.</p>
-<p>The median of <span class="math inline">\(x\)</span> is the <span class="math inline">\(.5\)</span> quantile for <span class="math inline">\(x\)</span> because half of the population has values less than the median.</p>
-<p>One can read quantiles from the cumulative distribution.</p>
+<section id="quantiles" class="level2">
+<h2 class="anchored" data-anchor-id="quantiles">Quantiles</h2>
+<ul>
+<li><p>If <span class="math inline">\(q\)</span> is between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, then the <span class="math inline">\(q^{th}\)</span> quantile <span class="math inline">\(Q\)</span> of a random variable <span class="math inline">\(x\)</span> is the value of <span class="math inline">\(x\)</span> such that the fraction of the population with <span class="math inline">\(x&lt;Q\)</span> is <span class="math inline">\(q\)</span>.</p></li>
+<li><p>The median of <span class="math inline">\(x\)</span> is the <span class="math inline">\(.5\)</span> quantile for <span class="math inline">\(x\)</span> because half of the population has values less than the median.</p></li>
+<li><p>One can read quantiles from the cumulative distribution.</p></li>
+</ul>
 </section>
-<section id="order-statistics" class="level2" data-number="5.20">
-<h2 data-number="5.20" class="anchored" data-anchor-id="order-statistics"><span class="header-section-number">5.20</span> Order Statistics</h2>
+<section id="order-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="order-statistics">Order Statistics</h2>
 <p>The sample median and the sample quantiles (such as the 25th percentile or 75th percentile) are examples of <em>order statistics.</em></p>
 <p>The smallest element, the second smallest element, and so on are other examples of <em>order statistics</em>.</p>
 </section>
-<section id="order-statistics-example" class="level2" data-number="5.21">
-<h2 data-number="5.21" class="anchored" data-anchor-id="order-statistics-example"><span class="header-section-number">5.21</span> Order Statistics example</h2>
+<section id="order-statistics-example" class="level2">
+<h2 class="anchored" data-anchor-id="order-statistics-example">Order Statistics example</h2>
 <p>We take 100 samples from a normal distribution and compute the median, minimum, and maximum. Then we do that 10000 times and produce a histogram.</p>
 </section>
-<section id="order-statistics-histogram" class="level2" data-number="5.22">
-<h2 data-number="5.22" class="anchored" data-anchor-id="order-statistics-histogram"><span class="header-section-number">5.22</span> Order Statistics Histogram</h2>
+<section id="order-statistics-histogram" class="level2">
+<h2 class="anchored" data-anchor-id="order-statistics-histogram">Order Statistics Histogram</h2>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="stat-basics_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
-<section id="the-multinomial-distribution" class="level2" data-number="5.23">
-<h2 data-number="5.23" class="anchored" data-anchor-id="the-multinomial-distribution"><span class="header-section-number">5.23</span> The multinomial distribution</h2>
+<section id="the-multinomial-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="the-multinomial-distribution">The multinomial distribution</h2>
 <p>The multinomial distribution arises when you have <span class="math inline">\(n\)</span> outcomes for your experiment, say <span class="math inline">\(x_1,\ldots, x_n\)</span>; and the probability of getting <span class="math inline">\(x_i\)</span> is <span class="math inline">\(p_i\)</span>. Here we have to have <span class="math display">\[
 \sum p_{i}=1.
 \]</span></p>
 <p>This generalizes the bernoulli distribution.</p>
 </section>
-<section id="mean" class="level2" data-number="5.24">
-<h2 data-number="5.24" class="anchored" data-anchor-id="mean"><span class="header-section-number">5.24</span> Mean</h2>
+<section id="mean" class="level2">
+<h2 class="anchored" data-anchor-id="mean">Mean</h2>
 <p>The mean of a random variable is perhaps the most important statistic associated with a probability space.</p>
 <p>The mean is the “average value” of the random variable.</p>
 <p>The mean of <span class="math inline">\(x\)</span> is denoted <span class="math inline">\(\overline{x}\)</span> .</p>
 <p>Expectation or expected value is another name for the mean, and so the mean is also denoted <span class="math inline">\(E(x)\)</span>.</p>
 </section>
-<section id="mean-discrete-case" class="level2" data-number="5.25">
-<h2 data-number="5.25" class="anchored" data-anchor-id="mean-discrete-case"><span class="header-section-number">5.25</span> Mean – discrete case</h2>
+<section id="mean-discrete-case" class="level2">
+<h2 class="anchored" data-anchor-id="mean-discrete-case">Mean – discrete case</h2>
 <p>In the discrete case:</p>
 <p><span class="math display">\[
 \overline{x}=\sum_{a\in X} x(a)p(a)
 \]</span></p>
 <p>In other words, the mean of <span class="math inline">\(\overline{x}\)</span> is the sum of <span class="math inline">\(x\)</span> at each event, weighted by the probability of that event.</p>
 </section>
-<section id="mean-of-a-bernoulli-random-variable" class="level2" data-number="5.26">
-<h2 data-number="5.26" class="anchored" data-anchor-id="mean-of-a-bernoulli-random-variable"><span class="header-section-number">5.26</span> Mean of a bernoulli random variable</h2>
+<section id="mean-of-a-bernoulli-random-variable" class="level2">
+<h2 class="anchored" data-anchor-id="mean-of-a-bernoulli-random-variable">Mean of a bernoulli random variable</h2>
 <p>If <span class="math inline">\(x\)</span> is bernoulli, with <span class="math inline">\(p(x=1)=p\)</span>, then the mean of <span class="math inline">\(x\)</span> is <span class="math display">\[
 p(1)+(1-p)(0)=p.
 \]</span></p>
 </section>
-<section id="mean-of-a-binomial-random-variable" class="level2" data-number="5.27">
-<h2 data-number="5.27" class="anchored" data-anchor-id="mean-of-a-binomial-random-variable"><span class="header-section-number">5.27</span> Mean of a binomial random variable</h2>
+<section id="mean-of-a-binomial-random-variable" class="level2">
+<h2 class="anchored" data-anchor-id="mean-of-a-binomial-random-variable">Mean of a binomial random variable</h2>
 <p>If <span class="math inline">\(x\)</span> is binomial, corresponding to the sum of <span class="math inline">\(N\)</span> bernoulli random variables with probability <span class="math inline">\(p\)</span>, then <span class="math display">\[
 \overline{x} = \sum_{0\le i\le N} i\binom{N}{i}p^{i}(1-p)^{N-i}=Np
 \]</span></p>
 </section>
-<section id="mean-continuous-case" class="level2" data-number="5.28">
-<h2 data-number="5.28" class="anchored" data-anchor-id="mean-continuous-case"><span class="header-section-number">5.28</span> Mean – continuous case</h2>
+<section id="mean-continuous-case" class="level2">
+<h2 class="anchored" data-anchor-id="mean-continuous-case">Mean – continuous case</h2>
 <p>The mean of a continuous random variable is given by an integral:</p>
 <p><span class="math display">\[
 \overline{x} = \int_{X} xp(x) dx
 \]</span></p>
 <p>where <span class="math inline">\(p(x)\)</span> is the probability density. This is the limiting case of the formula in the discrete case.</p>
 </section>
-<section id="mean-of-standard-normal" class="level2" data-number="5.29">
-<h2 data-number="5.29" class="anchored" data-anchor-id="mean-of-standard-normal"><span class="header-section-number">5.29</span> Mean of standard normal</h2>
+<section id="mean-of-standard-normal" class="level2">
+<h2 class="anchored" data-anchor-id="mean-of-standard-normal">Mean of standard normal</h2>
 <p>The mean of the standard normal is zero.</p>
 </section>
-<section id="variance-and-standard-deviation" class="level2" data-number="5.30">
-<h2 data-number="5.30" class="anchored" data-anchor-id="variance-and-standard-deviation"><span class="header-section-number">5.30</span> Variance and standard deviation</h2>
+<section id="variance-and-standard-deviation" class="level2">
+<h2 class="anchored" data-anchor-id="variance-and-standard-deviation">Variance and standard deviation</h2>
 <p>The variance of a random variable measures how it is distributed around its mean value.</p>
 <p>The variance is the average value of the difference between <span class="math inline">\(x\)</span> and its mean.</p>
 <p><span class="math display">\[
@@ -538,23 +482,23 @@ p(1)+(1-p)(0)=p.
 \sum_{x} (x-\overline{x})^2p(x)
 \]</span></p>
 </section>
-<section id="variance-alternative-formula" class="level2" data-number="5.31">
-<h2 data-number="5.31" class="anchored" data-anchor-id="variance-alternative-formula"><span class="header-section-number">5.31</span> Variance alternative formula</h2>
+<section id="variance-alternative-formula" class="level2">
+<h2 class="anchored" data-anchor-id="variance-alternative-formula">Variance alternative formula</h2>
 <p>This is the same as</p>
 <p><span class="math display">\[
 \sigma^2 = \overline{x^2}-(\overline{x})^2
 \]</span></p>
 <p>The standard deviation is the square root of the variance.</p>
 </section>
-<section id="variance-of-bernoulli" class="level2" data-number="5.32">
-<h2 data-number="5.32" class="anchored" data-anchor-id="variance-of-bernoulli"><span class="header-section-number">5.32</span> Variance of Bernoulli</h2>
+<section id="variance-of-bernoulli" class="level2">
+<h2 class="anchored" data-anchor-id="variance-of-bernoulli">Variance of Bernoulli</h2>
 <p>In the Bernoulli case, the variance is <span class="math display">\[
 (1-p)^2p+p^2(1-p)=p(1-p).
 \]</span></p>
 <p>Notice that the maximum variance happens when <span class="math inline">\(p=1/2\)</span>.</p>
 </section>
-<section id="variance-of-binomial" class="level2" data-number="5.33">
-<h2 data-number="5.33" class="anchored" data-anchor-id="variance-of-binomial"><span class="header-section-number">5.33</span> Variance of Binomial</h2>
+<section id="variance-of-binomial" class="level2">
+<h2 class="anchored" data-anchor-id="variance-of-binomial">Variance of Binomial</h2>
 <p>A binomial random variable with probability <span class="math inline">\(p\)</span> and <span class="math inline">\(n\)</span> trials is a sum of <span class="math inline">\(n\)</span> bernoulli random variables with probability <span class="math inline">\(p\)</span>. Using the formula you get <span class="math display">\[
 \sigma^2 = \sum_{i=0}^{n}(i-np)^2\binom{n}{i}p^{i}(1-p)^{n-i}
 \]</span></p>
@@ -563,12 +507,12 @@ p(1)+(1-p)(0)=p.
 \]</span></p>
 <p>Note: there are easier ways to get this formula.</p>
 </section>
-<section id="sampling" class="level2" data-number="5.34">
-<h2 data-number="5.34" class="anchored" data-anchor-id="sampling"><span class="header-section-number">5.34</span> Sampling</h2>
+<section id="sampling" class="level2">
+<h2 class="anchored" data-anchor-id="sampling">Sampling</h2>
 <p>In practice we study random variables through samples. A sample of a random variable is a choice of values distributed according to the associated probability. So for example a sample of a Bernoulli random variable is a coin flip where <span class="math inline">\(P(H)=p\)</span>.</p>
 </section>
-<section id="sampling-1" class="level2" data-number="5.35">
-<h2 data-number="5.35" class="anchored" data-anchor-id="sampling-1"><span class="header-section-number">5.35</span> Sampling</h2>
+<section id="sampling-1" class="level2">
+<h2 class="anchored" data-anchor-id="sampling-1">Sampling</h2>
 <p>If we draw <span class="math inline">\(N\)</span> sample values <span class="math inline">\(x_i\)</span> ofa random variable, then the mean and variance of those sampled values, computed by</p>
 <p><span class="math display">\[
 \overline{x} = \frac{1}{N}\sum x_{i}
@@ -593,41 +537,41 @@ p(1)+(1-p)(0)=p.
 <p>)</p>
 <p>By looking at sample means (or other <em>sample statistics</em>) we can try to uncover information about the underlying probability distribution.</p>
 </section>
-<section id="hypothesis-testing" class="level2" data-number="5.36">
-<h2 data-number="5.36" class="anchored" data-anchor-id="hypothesis-testing"><span class="header-section-number">5.36</span> Hypothesis Testing</h2>
+<section id="hypothesis-testing" class="level2">
+<h2 class="anchored" data-anchor-id="hypothesis-testing">Hypothesis Testing</h2>
 <p>A <em>statistical hypothesis</em> is a claim about a particular population. A <em>hypothesis test</em> is a method to determine which of two contradictory hypotheses is supported by the data.</p>
 <p>Underlying idea: a lot of surprising things happen by chance. If you do an experiment and observe an effect, that might be the result of pure chance. Can you quantify that?</p>
 </section>
-<section id="an-example" class="level2" data-number="5.37">
-<h2 data-number="5.37" class="anchored" data-anchor-id="an-example"><span class="header-section-number">5.37</span> An example</h2>
+<section id="an-example" class="level2">
+<h2 class="anchored" data-anchor-id="an-example">An example</h2>
 <p>Suppose we have a coin and we’d like to do some testing to determine if we have reason to suspect that the coin is biased. Put another way, you’d like to know if this coin behaves differently from a reference, standard coin that is fair.</p>
 <p>Note this is more common than you might think. It might arise in the following circumstance in “real life.” You have two web pages, your current one and a proposed new one. You’d like to know if seeing the proposed one increases the chance of a viewer clicking through to something. This is called A/B testing and it amounts to comparing the probability of click-through in the reference case to the proposed case.</p>
 </section>
-<section id="null-and-alternative-hypotheses" class="level2" data-number="5.38">
-<h2 data-number="5.38" class="anchored" data-anchor-id="null-and-alternative-hypotheses"><span class="header-section-number">5.38</span> Null (and alternative) hypotheses</h2>
+<section id="null-and-alternative-hypotheses" class="level2">
+<h2 class="anchored" data-anchor-id="null-and-alternative-hypotheses">Null (and alternative) hypotheses</h2>
 <p>The Null hypothesis is the hypotheses that our coin is fair, or that our two web pages yield the same results, or more generally that the observations we make are accounted for only by chance and not by some underlying effect. So our null hypothesis for our coin is “P=.5”.</p>
 <p>An alternative hypothesis is a statement that contradicts the null hypothesis. For example, “P&gt;.5” or “P&lt;.5” or “P is different from .5.”</p>
 </section>
-<section id="test-statistic" class="level2" data-number="5.39">
-<h2 data-number="5.39" class="anchored" data-anchor-id="test-statistic"><span class="header-section-number">5.39</span> Test statistic</h2>
+<section id="test-statistic" class="level2">
+<h2 class="anchored" data-anchor-id="test-statistic">Test statistic</h2>
 <p>A test statistic is a measurement of the data used to draw conclusions about the sample.</p>
 </section>
-<section id="back-to-our-example" class="level2" data-number="5.40">
-<h2 data-number="5.40" class="anchored" data-anchor-id="back-to-our-example"><span class="header-section-number">5.40</span> Back to our example</h2>
+<section id="back-to-our-example" class="level2">
+<h2 class="anchored" data-anchor-id="back-to-our-example">Back to our example</h2>
 <p>For our test statistic, we are going to use the fraction of times we get a head in N flips.</p>
 <p>In the A/B testing situation, our test statistic would be the fraction of times a person “clicked through” when given the proposed web site.</p>
 <p>Intuitively, if the fraction of heads differs significantly from the expected fraction of heads (.5) then we take that as strong evidence for the unfairness of our coin (or the increased value of our proposed web page).</p>
 <p>How can we quantify this?</p>
 </section>
-<section id="rejection-region-and-significance" class="level2" data-number="5.41">
-<h2 data-number="5.41" class="anchored" data-anchor-id="rejection-region-and-significance"><span class="header-section-number">5.41</span> Rejection region and “significance”</h2>
+<section id="rejection-region-and-significance" class="level2">
+<h2 class="anchored" data-anchor-id="rejection-region-and-significance">Rejection region and “significance”</h2>
 <p>To make things concrete, suppose the coin is fair (in other words, the null hypothesis is true) we flip the coin <span class="math inline">\(10\)</span> times. If the coin is far, we expect to get roughly 5 heads.</p>
 <p>There’s a long tradition of saying something unlikely is “significant” if the chance of it occurring, assuming the null hypothesis, is less than .05 or one in twenty.</p>
 <p>The chance of getting <span class="math inline">\(0\)</span>, <span class="math inline">\(1\)</span>, <span class="math inline">\(9\)</span>, or <span class="math inline">\(10\)</span> heads is <span class="math inline">\(.02\)</span>. If we allow <span class="math inline">\(2\)</span> or <span class="math inline">\(8\)</span> heads in addition, the chance is about <span class="math inline">\(11%\)</span>, so if we set our significance level at <span class="math inline">\(.05\)</span> we <em>reject the null hypothesis</em> if our experiment yields <span class="math inline">\(0\)</span>, <span class="math inline">\(1\)</span>, <span class="math inline">\(9\)</span>, or <span class="math inline">\(10\)</span> heads.</p>
 <p>This is the “rejection region.”</p>
 </section>
-<section id="rejection-region-plot-code" class="level2" data-number="5.42">
-<h2 data-number="5.42" class="anchored" data-anchor-id="rejection-region-plot-code"><span class="header-section-number">5.42</span> Rejection Region (plot code)</h2>
+<section id="rejection-region-plot-code" class="level2">
+<h2 class="anchored" data-anchor-id="rejection-region-plot-code">Rejection Region (plot code)</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># two-sided</span></span>
@@ -647,8 +591,8 @@ p(1)+(1-p)(0)=p.
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="more-code" class="level2" data-number="5.43">
-<h2 data-number="5.43" class="anchored" data-anchor-id="more-code"><span class="header-section-number">5.43</span> More code</h2>
+<section id="more-code" class="level2">
+<h2 class="anchored" data-anchor-id="more-code">More code</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rejection1 <span class="ot">&lt;-</span><span class="cf">function</span>(n,<span class="at">d=</span><span class="dv">10</span>) {</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
@@ -662,8 +606,8 @@ p(1)+(1-p)(0)=p.
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="rejection-region-plotted" class="level2" data-number="5.44">
-<h2 data-number="5.44" class="anchored" data-anchor-id="rejection-region-plotted"><span class="header-section-number">5.44</span> Rejection Region (plotted)</h2>
+<section id="rejection-region-plotted" class="level2">
+<h2 class="anchored" data-anchor-id="rejection-region-plotted">Rejection Region (plotted)</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rejection2</span>(<span class="dv">10</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -671,8 +615,8 @@ p(1)+(1-p)(0)=p.
 </div>
 </div>
 </section>
-<section id="one-sided-test" class="level2" data-number="5.45">
-<h2 data-number="5.45" class="anchored" data-anchor-id="one-sided-test"><span class="header-section-number">5.45</span> One-sided test</h2>
+<section id="one-sided-test" class="level2">
+<h2 class="anchored" data-anchor-id="one-sided-test">One-sided test</h2>
 <p>Suppose you want evidence that your coin is <em>more likely</em> to get heads.</p>
 <p>-Your null hypothesis is that your coin has <span class="math inline">\(p=.5\)</span>. Your alternative hypothesis is <span class="math inline">\(p&gt;.5\)</span>.</p>
 <ul>
@@ -680,8 +624,8 @@ p(1)+(1-p)(0)=p.
 <li><p>But suppose we did 50 flips? Then the one- and two-sided limits are slightly different on the right.</p></li>
 </ul>
 </section>
-<section id="one-sided-rejection-region" class="level2" data-number="5.46">
-<h2 data-number="5.46" class="anchored" data-anchor-id="one-sided-rejection-region"><span class="header-section-number">5.46</span> One-sided rejection region</h2>
+<section id="one-sided-rejection-region" class="level2">
+<h2 class="anchored" data-anchor-id="one-sided-rejection-region">One-sided rejection region</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rejection2</span>(<span class="dv">50</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -689,8 +633,8 @@ p(1)+(1-p)(0)=p.
 </div>
 </div>
 </section>
-<section id="one-sided-rejection-region-1" class="level2" data-number="5.47">
-<h2 data-number="5.47" class="anchored" data-anchor-id="one-sided-rejection-region-1"><span class="header-section-number">5.47</span> One-sided rejection region</h2>
+<section id="one-sided-rejection-region-1" class="level2">
+<h2 class="anchored" data-anchor-id="one-sided-rejection-region-1">One-sided rejection region</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rejection1</span>(<span class="dv">50</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -698,12 +642,12 @@ p(1)+(1-p)(0)=p.
 </div>
 </div>
 </section>
-<section id="normal-approximation" class="level2" data-number="5.48">
-<h2 data-number="5.48" class="anchored" data-anchor-id="normal-approximation"><span class="header-section-number">5.48</span> Normal approximation</h2>
+<section id="normal-approximation" class="level2">
+<h2 class="anchored" data-anchor-id="normal-approximation">Normal approximation</h2>
 <p>For large <span class="math inline">\(n\)</span>, the binomial distribution distribution with probability <span class="math inline">\(p\)</span> becomes a version of the normal distribution with mean <span class="math inline">\(Np\)</span> and standard deviation <span class="math inline">\(\sqrt{Np(1-p)}\)</span>.</p>
 </section>
-<section id="normal-and-binomial-distribution" class="level2" data-number="5.49">
-<h2 data-number="5.49" class="anchored" data-anchor-id="normal-and-binomial-distribution"><span class="header-section-number">5.49</span> Normal and binomial distribution</h2>
+<section id="normal-and-binomial-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="normal-and-binomial-distribution">Normal and binomial distribution</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>compare <span class="ot">&lt;-</span> <span class="cf">function</span>(n, <span class="at">p =</span> .<span class="dv">5</span>) {</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="dv">0</span>, n), <span class="at">y =</span> <span class="fu">dbinom</span>(<span class="fu">seq</span>(<span class="dv">0</span>, n), n, p), <span class="at">z =</span> <span class="fu">dnorm</span>(<span class="fu">seq</span>(<span class="dv">0</span>, n), <span class="at">mean =</span> p <span class="sc">*</span> n, <span class="at">sd =</span> <span class="fu">sqrt</span>(n <span class="sc">*</span> p <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p))))</span>
@@ -723,26 +667,29 @@ p(1)+(1-p)(0)=p.
 </div>
 <p>So one can use the normal distribution to determine the rejection region if <span class="math inline">\(n\)</span> is large.</p>
 </section>
-<section id="errors" class="level2" data-number="5.50">
-<h2 data-number="5.50" class="anchored" data-anchor-id="errors"><span class="header-section-number">5.50</span> Errors</h2>
+<section id="errors" class="level2">
+<h2 class="anchored" data-anchor-id="errors">Errors</h2>
 <p>Two things can go wrong:</p>
 <ul>
 <li><p>Type I error: You reject the null hypothesis, but the null hypothesis is true. The probability of a Type I error is something you choose when you set the significance level. This is usually called <span class="math inline">\(\alpha\)</span>.</p></li>
 <li><p>Type II error: You accept the null hypothesis when it is false. In this case, you’ve <em>missed</em> an actual effect. This probability of this is called <span class="math inline">\(\beta\)</span>.</p></li>
 </ul>
+</section>
+<section id="tradeoff-between-error-types" class="level2">
+<h2 class="anchored" data-anchor-id="tradeoff-between-error-types">Tradeoff between error types</h2>
 <p>Other things equal, if you make <span class="math inline">\(\alpha\)</span> smaller (thus reducing the chance of a Type I error) you make <span class="math inline">\(\beta\)</span> bigger (increasing the chance of a type II error).</p>
 </section>
-<section id="statistical-power" class="level2" data-number="5.51">
-<h2 data-number="5.51" class="anchored" data-anchor-id="statistical-power"><span class="header-section-number">5.51</span> Statistical Power</h2>
+<section id="statistical-power" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-power">Statistical Power</h2>
 <p>Informally, statistical power measures the ability of an experiment to detect a real effect. If a study has high power, then you are very unlikely to make a Type II error.</p>
 <p>For example, return to the coin flipping problem (or the A/B testing problem).</p>
 </section>
-<section id="power" class="level2" data-number="5.52">
-<h2 data-number="5.52" class="anchored" data-anchor-id="power"><span class="header-section-number">5.52</span> Power</h2>
+<section id="power" class="level2">
+<h2 class="anchored" data-anchor-id="power">Power</h2>
 <p>Suppose we flip our coin <span class="math inline">\(20\)</span> times and our null hypothesis is that <span class="math inline">\(p=.5\)</span> If our significance level is <span class="math inline">\(.05\)</span>, we will reject the null hypothesis and conclude that the coin is <em>not</em> fair (and biased towards heads) provided we get <span class="math inline">\(15\)</span> or more heads.</p>
 </section>
-<section id="power-computations" class="level2" data-number="5.53">
-<h2 data-number="5.53" class="anchored" data-anchor-id="power-computations"><span class="header-section-number">5.53</span> Power Computations</h2>
+<section id="power-computations" class="level2">
+<h2 class="anchored" data-anchor-id="power-computations">Power Computations</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the probability density for this case</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>probs <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>), <span class="dv">20</span>, .<span class="dv">5</span>)</span>
@@ -760,8 +707,8 @@ p(1)+(1-p)(0)=p.
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The chance of $15-20$ heads is greater than $.05$.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="power-1" class="level2" data-number="5.54">
-<h2 data-number="5.54" class="anchored" data-anchor-id="power-1"><span class="header-section-number">5.54</span> Power</h2>
+<section id="power-1" class="level2">
+<h2 class="anchored" data-anchor-id="power-1">Power</h2>
 <p>Now suppose the coin is <em>not</em> fair and <span class="math inline">\(p=.6\)</span>. What is the chance that we <em>accept</em> the null hypothesis and conclude, falsely, that the coin is fair? It is the chance that we get <span class="math inline">\(14\)</span> or fewer heads when <span class="math inline">\(p=.6\)</span>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>probs6 <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>), <span class="dv">20</span>, .<span class="dv">6</span>)</span>
@@ -772,8 +719,8 @@ p(1)+(1-p)(0)=p.
 </div>
 <p>This is <span class="math inline">\(87\)</span> percent! In other words, our experiment is very <em>unlikely</em> to detect the unfairness of the coin if the unfairness is only the difference between <span class="math inline">\(p=.6\)</span> and <span class="math inline">\(p=.5\)</span></p>
 </section>
-<section id="power-2" class="level2" data-number="5.55">
-<h2 data-number="5.55" class="anchored" data-anchor-id="power-2"><span class="header-section-number">5.55</span> Power</h2>
+<section id="power-2" class="level2">
+<h2 class="anchored" data-anchor-id="power-2">Power</h2>
 <p>But if the coin is <em>very</em> unfair, with, say <span class="math inline">\(p=.8\)</span>, then we find:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>probs8 <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>), <span class="dv">20</span>, .<span class="dv">8</span>)</span>
@@ -795,25 +742,25 @@ p(1)+(1-p)(0)=p.
 <p>Now we have a 70% chance of detecting the difference unfairness of <span class="math inline">\(p=.6\)</span>.</p>
 </section>
 </section>
-<section id="an-ab-example" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> An AB example</h1>
+<section id="an-ab-example" class="level1">
+<h1>An AB example</h1>
 <p>Baseline situation: We show two different web ads to customers at random, and measure how often the visitor clicks through the ad.</p>
 <p>Of the 4800 who see ad A, 975 click through. Of the 4600 who see ad B, 1133 click through.</p>
 <p>Is Ad B better than Ad A or is this explained by chance?</p>
-<section id="more-on-ab-example" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="more-on-ab-example"><span class="header-section-number">6.1</span> More on AB example</h2>
+<section id="more-on-ab-example" class="level2">
+<h2 class="anchored" data-anchor-id="more-on-ab-example">More on AB example</h2>
 <p>Null hypothesis: the two ads are the same, and of the 9400 who see an ad, 2108 click through. This is a probabiility of 22.4%.</p>
 <p>The .95 quantile for the binomial distribution with n=4600 and p=.224 is 1077. Thus the 1133 click through rate is significantly higher. Similarly the 975 out of 4800 is significantly lower.</p>
 <p>So ad B is better than ad A at the .05 significance level. In fact the odds of getting a number as high as 1133 is more like 1 in 10^4 so the evidence for ad b is overwhelming.</p>
 </section>
-<section id="simulation" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="simulation"><span class="header-section-number">6.2</span> Simulation</h2>
+<section id="simulation" class="level2">
+<h2 class="anchored" data-anchor-id="simulation">Simulation</h2>
 <p>By simulation:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>simulated <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">10000</span>, <span class="dv">4600</span>, .<span class="dv">224</span>)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(simulated <span class="sc">&gt;=</span> <span class="dv">1133</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 3</code></pre>
+<pre><code>[1] 1</code></pre>
 </div>
 </div>
 <!--
@@ -962,21 +909,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../chapters/03-RBasics/r-walkthrough.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Notebook Walkthrough</span></span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-  </div>
-</nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-      <div class="nav-footer-center">Jeremy Teitelbaum | Fundamentals of Machine Learning | CC BY-SA 4.0</div>
-  </div>
-</footer>
 
 
 
