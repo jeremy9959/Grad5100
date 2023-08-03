@@ -2,7 +2,7 @@
 title: "Probability"
 subtitle: "Fundamentals of Data Science"
 author: "Jeremy Teitelbaum"
-format: revealjs
+format: html
 title-block-style: plain
 ---
 

@@ -62,10 +62,19 @@ ax = draw_arrow(0,0,6,10,ax,color='red',alpha=.5)
 
 - examples including word2vec and embeddings
 - maybe polynomial regression?
+- images as vectors
+- one-hot encoding of categorical vectors
 
-## Linear Dependence and Linear Independence; basis
+## Linear Dependence and Linear Independence; basis; scores
+
+- dependent, or almost dependent features, don't add new information
+- linear combinations of features yield new features (scores)
+- different bases give different points of view on the same data
+(for example rescaling data to standard z-scores)
 
 ## Subspaces, hyperplanes, and dimension
+
+
 
 ## Linear Maps and Matrices
 
