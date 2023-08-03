@@ -1,3 +1,5 @@
+# Render the quarto web page
+
 publish:
 	quarto render
 	git add .
