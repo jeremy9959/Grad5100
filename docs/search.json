@@ -7,199 +7,556 @@
     "text": "Preface\nNotes and resources"
   },
   {
-    "objectID": "01-SettingUp/setting-up.html",
-    "href": "01-SettingUp/setting-up.html",
+    "objectID": "chapters/01-SettingUp/setting-up.html",
+    "href": "chapters/01-SettingUp/setting-up.html",
     "title": "1  Key Tools",
     "section": "",
     "text": "2 Key Software Tools"
   },
   {
-    "objectID": "01-SettingUp/setting-up.html#anaconda-install-for-python",
-    "href": "01-SettingUp/setting-up.html#anaconda-install-for-python",
+    "objectID": "chapters/01-SettingUp/setting-up.html#anaconda-install-for-python",
+    "href": "chapters/01-SettingUp/setting-up.html#anaconda-install-for-python",
     "title": "1  Key Tools",
     "section": "2.1 Anaconda Install for Python",
     "text": "2.1 Anaconda Install for Python\n\nDownload from https://www.anaconda.com\n\nAnaconda includes:\n\npython\njupyter: notebook working environment\npython libraries: ML, visualization, I/O and others\nconda package manager: for dealing with multiple versions of libraries\nanaconda navigator: a GUI gateway to anaconda tools\nlots of other stuff"
   },
   {
-    "objectID": "01-SettingUp/setting-up.html#verify-anaconda",
-    "href": "01-SettingUp/setting-up.html#verify-anaconda",
+    "objectID": "chapters/01-SettingUp/setting-up.html#verify-anaconda",
+    "href": "chapters/01-SettingUp/setting-up.html#verify-anaconda",
     "title": "1  Key Tools",
     "section": "2.2 Verify Anaconda",
     "text": "2.2 Verify Anaconda\n\nVerify JupyterLab\n\nFrom a command line\n$ jupyter lab \nor use anaconda navigator to launch jupyterlab.\n\n\nVerify python version\n\nFrom a command line\n$ python --version\nor inside a jupyter notebook cell:\nimport sys\n\nprint(sys.version)"
   },
   {
-    "objectID": "01-SettingUp/setting-up.html#r-and-rstudio-install-for-r",
-    "href": "01-SettingUp/setting-up.html#r-and-rstudio-install-for-r",
+    "objectID": "chapters/01-SettingUp/setting-up.html#r-and-rstudio-install-for-r",
+    "href": "chapters/01-SettingUp/setting-up.html#r-and-rstudio-install-for-r",
     "title": "1  Key Tools",
     "section": "2.3 R and Rstudio Install for R",
     "text": "2.3 R and Rstudio Install for R\n\nR is an open source language for statistical computations.\nRstudio is a working environment for the R language.\nR and Rstudio need to be installed separately.\nR is available at https://cran.r-project.org\nRstudio is available at https://posit.co/download/rstudio-desktop"
   },
   {
-    "objectID": "01-SettingUp/setting-up.html#verify-r-and-rstudio",
-    "href": "01-SettingUp/setting-up.html#verify-r-and-rstudio",
+    "objectID": "chapters/01-SettingUp/setting-up.html#verify-r-and-rstudio",
+    "href": "chapters/01-SettingUp/setting-up.html#verify-r-and-rstudio",
     "title": "1  Key Tools",
     "section": "2.4 Verify R and Rstudio",
     "text": "2.4 Verify R and Rstudio\nFor R, From a command line:\n$ R \nFor Rstudio, use the icon/shortcut or from a command line:\n$ rstudio"
   },
   {
-    "objectID": "01-SettingUp/setting-up.html#vscode",
-    "href": "01-SettingUp/setting-up.html#vscode",
+    "objectID": "chapters/01-SettingUp/setting-up.html#vscode",
+    "href": "chapters/01-SettingUp/setting-up.html#vscode",
     "title": "1  Key Tools",
     "section": "2.5 VSCode",
     "text": "2.5 VSCode\n\nvscode is a very powerful “IDE” (integrated development environment).\nit can integrate jupyter notebooks and r workbooks, though it takes some setting up\nvscode is integrated with GitHub copilot, a version of ChatGPT-3 that helps write code.\nvscode is available at http://code.visualstudio.com for windows, linux, and macOS."
   },
   {
-    "objectID": "01-SettingUp/setting-up.html#setting-up-a-project",
-    "href": "01-SettingUp/setting-up.html#setting-up-a-project",
-    "title": "1  Key Tools",
-    "section": "2.10 Setting up a Project",
-    "text": "2.10 Setting up a Project\n\nCreate a project directory\nSubdirectories\n\ndata for data files\ndocs for notes and documentation\nothers?\n\nCreate a README.md file"
-  },
-  {
-    "objectID": "01-SettingUp/setting-up.html#tools",
-    "href": "01-SettingUp/setting-up.html#tools",
-    "title": "1  Key Tools",
-    "section": "2.11 Tools",
-    "text": "2.11 Tools\nFor the directories:\n\nthe finder or File Manager\nthe command line\n\nFor the README file:\n\na text editor such as nano or notepad\njupyter or Rstudio (as we will see soon)\nvscode"
-  },
-  {
-    "objectID": "01-SettingUp/setting-up.html#using-vscode",
-    "href": "01-SettingUp/setting-up.html#using-vscode",
+    "objectID": "chapters/01-SettingUp/setting-up.html#using-vscode",
+    "href": "chapters/01-SettingUp/setting-up.html#using-vscode",
     "title": "1  Key Tools",
     "section": "2.6 Using vscode",
     "text": "2.6 Using vscode\nVSCode (visual studio code) is a freely distributed code editor/IDE distributed by microsoft.\nIt is extremely capable and well-suited for software development in python and other languages.\nIt is perhaps not as optimized for R as Rstudio but it does work.\nYou can access github copilot a version of chatGPT optimized for code, inside vscode in a straightforward way."
   },
   {
-    "objectID": "01-SettingUp/setting-up.html#installing-vscode",
-    "href": "01-SettingUp/setting-up.html#installing-vscode",
+    "objectID": "chapters/01-SettingUp/setting-up.html#installing-vscode",
+    "href": "chapters/01-SettingUp/setting-up.html#installing-vscode",
     "title": "1  Key Tools",
     "section": "2.7 Installing vscode",
     "text": "2.7 Installing vscode\nThe software is available here.\nYou need a github account to use github copilot, and you need to sign in to that account from inside vscode. GitHub copilot is free to students, but you need to sign up for the student developer pack.."
   },
   {
-    "objectID": "01-SettingUp/setting-up.html#overview-of-vscode",
-    "href": "01-SettingUp/setting-up.html#overview-of-vscode",
+    "objectID": "chapters/01-SettingUp/setting-up.html#overview-of-vscode",
+    "href": "chapters/01-SettingUp/setting-up.html#overview-of-vscode",
     "title": "1  Key Tools",
     "section": "2.8 Overview of vscode",
     "text": "2.8 Overview of vscode\n\nOpening folders (as projects)\nOpening files\nInstall Extensions:\n\npython\nR\nmany others\n\nThe command palette"
   },
   {
-    "objectID": "01-SettingUp/setting-up.html#more-on-vscode",
-    "href": "01-SettingUp/setting-up.html#more-on-vscode",
+    "objectID": "chapters/01-SettingUp/setting-up.html#more-on-vscode",
+    "href": "chapters/01-SettingUp/setting-up.html#more-on-vscode",
     "title": "1  Key Tools",
     "section": "2.9 More on vscode",
     "text": "2.9 More on vscode\n\njupyter notebooks inside vscode with github copilot\nInteractive python with code cells (# %%)\nThe terminal"
   },
   {
-    "objectID": "01-SettingUp/setting-up.html#setting-up-a-project-1",
-    "href": "01-SettingUp/setting-up.html#setting-up-a-project-1",
+    "objectID": "chapters/01-SettingUp/setting-up.html#setting-up-a-project",
+    "href": "chapters/01-SettingUp/setting-up.html#setting-up-a-project",
     "title": "1  Key Tools",
-    "section": "2.12 Setting up a Project",
-    "text": "2.12 Setting up a Project\n\nCreate a project directory\nSubdirectories\n\ndata for data files\ndocs for notes and documentation\nothers?\n\nCreate a README.md file"
+    "section": "2.10 Setting up a Project",
+    "text": "2.10 Setting up a Project\n\nCreate a project directory\nSubdirectories\n\ndata for data files\ndocs for notes and documentation\nothers?\n\nCreate a README.md file"
   },
   {
-    "objectID": "01-SettingUp/setting-up.html#tools-1",
-    "href": "01-SettingUp/setting-up.html#tools-1",
+    "objectID": "chapters/01-SettingUp/setting-up.html#tools",
+    "href": "chapters/01-SettingUp/setting-up.html#tools",
     "title": "1  Key Tools",
-    "section": "2.13 Tools",
-    "text": "2.13 Tools\nFor the directories:\n\nthe finder or File Manager\nthe command line\n\nFor the README file:\n\na text editor such as nano or notepad\njupyter or Rstudio (as we will see soon)\nvscode"
+    "section": "2.11 Tools",
+    "text": "2.11 Tools\nFor the directories:\n\nthe finder or File Manager\nthe command line\n\nFor the README file:\n\na text editor such as nano or notepad\njupyter or Rstudio (as we will see soon)\nvscode"
   },
   {
-    "objectID": "02-JupyterBasics/jupyter-walkthrough.html",
-    "href": "02-JupyterBasics/jupyter-walkthrough.html",
-    "title": "3  Jupyter Lab Project Walkthrough",
-    "section": "",
-    "text": "4 Jupyter Lab Project Walkthrough"
-  },
-  {
-    "objectID": "02-JupyterBasics/jupyter-walkthrough.html#markdown-cells",
-    "href": "02-JupyterBasics/jupyter-walkthrough.html#markdown-cells",
+    "objectID": "chapters/02-JupyterBasics/jupyter-walkthrough.html#markdown-cells",
+    "href": "chapters/02-JupyterBasics/jupyter-walkthrough.html#markdown-cells",
     "title": "2  Jupyter Lab Project Walkthrough",
     "section": "2.1 Markdown cells",
-    "text": "2.1 Markdown cells\nThis is a markdown cell:\n\nHeadings are #, ##, etc.\nBold is marked **make me bold** like this.\nItalics are marked *make me italic* like this.\nMath can be typeset with if you know it: \\[f(x)=e^{-x}\\cos(x)\\]\nBulleted lists are marked with -.\n\n\n# code cells\n## Code cells contain python code that gets executed.\n# indicates a comment that is ignored.\nprint(\"Hello World!\")\n\nHello World!\n\n\nIn this walkthrough we will look at the following elements of Python in a jupyter notebook.\nThe print statement\n\nprint(\"hello world!\")\n\nhello world!\n\n\nVariables, variable names, and assignment/datatypes\n\ncount = 5  # an integer\nname = \"Jeremy Teitelbaum\"  # a string\nparagraph = \"\"\"This is how you enter a multiline string\nin python. It is enclosed in triple quotes.\"\"\"\npi = 3.14159  # a float\nepsilon = 1.0e-6  # a float\nstudents = [\"Jeremy\", \"Phillip\", \"Sara\", \"Molly\"]  # a list\nHotDog = True\n\n\nprint(students)\n\n['Jeremy', 'Phillip', 'Sara', 'Molly']\n\n\nCompare print for multiline strings with the string value. (\\n means newline)\n\nprint(paragraph)\n\nThis is how you enter a multiline string\nin python. It is enclosed in triple quotes.\n\n\n\nparagraph\n\n'This is how you enter a multiline string\\nin python. It is enclosed in triple quotes.'\n\n\nArithmetic operations\n\nprint(count)\ncount = count + 1\nprint(count)\n\n5\n6\n\n\n\n1 / pi\n\n0.31831015504887655\n\n\n\nprint(2**3)  # exponent\nprint(1 / 2)  # division (converts integer to float)\nprint(1 / (1 / 2))  # 2 becomes 2.0\n\n8\n0.5\n2.0\n\n\n\nquotient = 5 // 3  # integer division\nremainder = 5 % 3  # remainder\nprint(quotient, remainder)\n\n1 2\n\n\nOperations on strings and lists\n\n\"Jeremy\" + \" Teitelbaum\"\n\n'Jeremy Teitelbaum'\n\n\n\n[\"a\", \"b\", \"c\"] + [\"d\"]\n\n['a', 'b', 'c', 'd']\n\n\n\nlen(\"Jeremy\")\n\n6\n\n\n\nlen([\"Jeremy\", \"Teitelbaum\"])\n\n2\n\n\n\nfirstName = \"Jeremy\"\nlastName = \"Teitelbaum\"\nfullName = firstName + \" \" + lastName\n\nSome fancier printing\n\nprint(f\"The first name is {firstName}\")\nprint(f\"The last name is {lastName}\")\nprint(f\"The full name is {firstName} {lastName}\")\nprint(firstName, lastName, sep=\",\")\nprint(firstName, lastName, sep=\":\")\n\nThe first name is Jeremy\nThe last name is Teitelbaum\nThe full name is Jeremy Teitelbaum\nJeremy,Teitelbaum\nJeremy:Teitelbaum\n\n\nSlicing\nIn python, we always count from zero!!!\n\nfirstName[0]\n\n'J'\n\n\n\nlastName[1]\n\n'e'\n\n\n\n# [a:b] means from a to b-1 inclusive\n\nprint(firstName[0:3])\nprint(firstName[3:])\nprint(firstName[3:5])\n\nJer\nemy\nem\n\n\n\n# negative indices count from the end\nprint(firstName[-1])  # the last element\nprint(firstName[-3:-1])  # elements -3 and -2, but not -1\n\ny\nem\n\n\n\n# [a:b:c] means from a to b-1 in steps of c\n# missing numbers mean (beginnging):(end)\nprint(firstName[:5:2])\nprint(firstName[::2])\nprint(firstName[::-1])  # reverse the string\nprint(firstName[3::-1])  # 3,2,1,0\nprint(firstName[3:0:-1])  # 3,2,1\n\nJrm\nJrm\nymereJ\nereJ\nere\n\n\nSlices work the same on list elements\n\nprint(students[0])\nprint(students[-1])\nevery_other_student = students[::2]\nprint(every_other_student)\n\nJeremy\nMolly\n['Jeremy', 'Sara']\n\n\nLibraries\n\nimport math\n\n\nmath.log(23)\n\n3.1354942159291497\n\n\n\nmath.pi\n\n3.141592653589793\n\n\n\nmath.cos(math.pi / 2)  # should be zero\n\n6.123233995736766e-17\n\n\n\nmath.cos(math.pi / 2) == 0\n\nFalse\n\n\n\nabs(math.cos(math.pi / 2)) < 1e-6\n\nTrue\n\n\n\nmath.pi == pi\n\nFalse\n\n\n\nimport numpy as np\n\n\nprint(np.random.randint(0, 10))\n\n7\n\n\n\nprint(np.__version__)\n\n1.24.2\n\n\n\nfrom numpy.random import randint\n\n\nrandint(1, 10)\n\n8"
+    "text": "2.1 Markdown cells\nThis is a markdown cell:\n\nHeadings are #, ##, etc.\nBold is marked **make me bold** like this.\nItalics are marked *make me italic* like this.\nMath can be typeset with if you know it: \\[f(x)=e^{-x}\\cos(x)\\]\nBulleted lists are marked with -.\n\n\n# code cells\n## Code cells contain python code that gets executed.\n# indicates a comment that is ignored.\nprint(\"Hello World!\")\n\nHello World!\n\n\nIn this walkthrough we will look at the following elements of Python in a jupyter notebook.\nThe print statement\n\nprint(\"hello world!\")\n\nhello world!\n\n\nVariables, variable names, and assignment/datatypes\n\ncount = 5  # an integer\nname = \"Jeremy Teitelbaum\"  # a string\nparagraph = \"\"\"This is how you enter a multiline string\nin python. It is enclosed in triple quotes.\"\"\"\npi = 3.14159  # a float\nepsilon = 1.0e-6  # a float\nstudents = [\"Jeremy\", \"Phillip\", \"Sara\", \"Molly\"]  # a list\nHotDog = True\n\n\nprint(students)\n\n['Jeremy', 'Phillip', 'Sara', 'Molly']\n\n\nCompare print for multiline strings with the string value. (\\n means newline)\n\nprint(paragraph)\n\nThis is how you enter a multiline string\nin python. It is enclosed in triple quotes.\n\n\n\nparagraph\n\n'This is how you enter a multiline string\\nin python. It is enclosed in triple quotes.'\n\n\nArithmetic operations\n\nprint(count)\ncount = count + 1\nprint(count)\n\n5\n6\n\n\n\n1 / pi\n\n0.31831015504887655\n\n\n\nprint(2**3)  # exponent\nprint(1 / 2)  # division (converts integer to float)\nprint(1 / (1 / 2))  # 2 becomes 2.0\n\n8\n0.5\n2.0\n\n\n\nquotient = 5 // 3  # integer division\nremainder = 5 % 3  # remainder\nprint(quotient, remainder)\n\n1 2\n\n\nOperations on strings and lists\n\n\"Jeremy\" + \" Teitelbaum\"\n\n'Jeremy Teitelbaum'\n\n\n\n[\"a\", \"b\", \"c\"] + [\"d\"]\n\n['a', 'b', 'c', 'd']\n\n\n\nlen(\"Jeremy\")\n\n6\n\n\n\nlen([\"Jeremy\", \"Teitelbaum\"])\n\n2\n\n\n\nfirstName = \"Jeremy\"\nlastName = \"Teitelbaum\"\nfullName = firstName + \" \" + lastName\n\nSome fancier printing\n\nprint(f\"The first name is {firstName}\")\nprint(f\"The last name is {lastName}\")\nprint(f\"The full name is {firstName} {lastName}\")\nprint(firstName, lastName, sep=\",\")\nprint(firstName, lastName, sep=\":\")\n\nThe first name is Jeremy\nThe last name is Teitelbaum\nThe full name is Jeremy Teitelbaum\nJeremy,Teitelbaum\nJeremy:Teitelbaum\n\n\nSlicing\nIn python, we always count from zero!!!\n\nfirstName[0]\n\n'J'\n\n\n\nlastName[1]\n\n'e'\n\n\n\n# [a:b] means from a to b-1 inclusive\n\nprint(firstName[0:3])\nprint(firstName[3:])\nprint(firstName[3:5])\n\nJer\nemy\nem\n\n\n\n# negative indices count from the end\nprint(firstName[-1])  # the last element\nprint(firstName[-3:-1])  # elements -3 and -2, but not -1\n\ny\nem\n\n\n\n# [a:b:c] means from a to b-1 in steps of c\n# missing numbers mean (beginnging):(end)\nprint(firstName[:5:2])\nprint(firstName[::2])\nprint(firstName[::-1])  # reverse the string\nprint(firstName[3::-1])  # 3,2,1,0\nprint(firstName[3:0:-1])  # 3,2,1\n\nJrm\nJrm\nymereJ\nereJ\nere\n\n\nSlices work the same on list elements\n\nprint(students[0])\nprint(students[-1])\nevery_other_student = students[::2]\nprint(every_other_student)\n\nJeremy\nMolly\n['Jeremy', 'Sara']\n\n\nLibraries\n\nimport math\n\n\nmath.log(23)\n\n3.1354942159291497\n\n\n\nmath.pi\n\n3.141592653589793\n\n\n\nmath.cos(math.pi / 2)  # should be zero\n\n6.123233995736766e-17\n\n\n\nmath.cos(math.pi / 2) == 0\n\nFalse\n\n\n\nabs(math.cos(math.pi / 2)) < 1e-6\n\nTrue\n\n\n\nmath.pi == pi\n\nFalse\n\n\n\nimport numpy as np\n\n\nprint(np.random.randint(0, 10))\n\n9\n\n\n\nprint(np.__version__)\n\n1.21.5\n\n\n\nfrom numpy.random import randint\n\n\nrandint(1, 10)\n\n3"
   },
   {
-    "objectID": "02-JupyterBasics/jupyter-walkthrough.html#code-cells",
-    "href": "02-JupyterBasics/jupyter-walkthrough.html#code-cells",
-    "title": "3  Jupyter Lab Project Walkthrough",
-    "section": "4.2 Code Cells",
-    "text": "4.2 Code Cells\n# code cells\n## Code cells contain python code that gets executed.  \n# indicates a comment that is ignored.\nprint(\"Hello World!\")\nHello World!"
-  },
-  {
-    "objectID": "02-JupyterBasics/jupyter-walkthrough.html#ingredients",
-    "href": "02-JupyterBasics/jupyter-walkthrough.html#ingredients",
-    "title": "3  Jupyter Lab Project Walkthrough",
-    "section": "4.3 Ingredients",
-    "text": "4.3 Ingredients\n\nThe print statement\nBasic datatypes:\n\nnumbers (integers and floats)\nstrings\nlists\nTrue, False, and None\n\nVariables, variable names, and assignment\n\ncaution: order of cell execution is what matters\n\nFormatted print with variables"
-  },
-  {
-    "objectID": "02-JupyterBasics/jupyter-walkthrough.html#ingredients-continued",
-    "href": "02-JupyterBasics/jupyter-walkthrough.html#ingredients-continued",
-    "title": "3  Jupyter Lab Project Walkthrough",
-    "section": "4.4 Ingredients continued",
-    "text": "4.4 Ingredients continued\n\nArithmetic operations\nLogical operations\nOperations on strings and lists\nSlicing\nLibraries\nmatplotlib plotting (bare minimum)"
-  },
-  {
-    "objectID": "02-JupyterBasics/jupyter-walkthrough.html#some-other-things-to-look-at",
-    "href": "02-JupyterBasics/jupyter-walkthrough.html#some-other-things-to-look-at",
-    "title": "3  Jupyter Lab Project Walkthrough",
-    "section": "4.5 Some other things to look at",
-    "text": "4.5 Some other things to look at\n\ns.upper(), s.isupper(); s.lower(), s.islower()"
-  },
-  {
-    "objectID": "02-JupyterBasics/jupyter-walkthrough.html#numpy-arrays",
-    "href": "02-JupyterBasics/jupyter-walkthrough.html#numpy-arrays",
+    "objectID": "chapters/02-JupyterBasics/jupyter-walkthrough.html#numpy-arrays",
+    "href": "chapters/02-JupyterBasics/jupyter-walkthrough.html#numpy-arrays",
     "title": "2  Jupyter Lab Project Walkthrough",
     "section": "2.2 Numpy arrays",
     "text": "2.2 Numpy arrays\nA numpy array is like a list, but:\n- it's itended for use with numbers\n- it's designed for fast arithmetic and numerical operations\n- it can be multi-dimensional -- like a table or matrix -- although we won't use that here.\n\nx = np.array([1, 2, 3, 4, 5, 6])\nprint(x)\n\n[1 2 3 4 5 6]\n\n\nYou access arrays like lists, and can use slices; indices start at zero.\n\nx[2:4]\n\narray([3, 4])\n\n\nWhen you apply an operation to an array, it gets applied to every element of the array.\n\nprint(f\"Square of x is {x**2}\")\nprint(f\"1/x is {1/x}\")\nprint(f\"cos(x) is {np.cos(x)}\")\n\nSquare of x is [ 1  4  9 16 25 36]\n1/x is [1.         0.5        0.33333333 0.25       0.2        0.16666667]\ncos(x) is [ 0.54030231 -0.41614684 -0.9899925  -0.65364362  0.28366219  0.96017029]\n\n\nSome special arrays.\n\nx = np.zeros(10)  # 10 zeros\ny = np.ones(20)  # 20 ones\nz = np.linspace(0, 10, 100)  # 100 equally spaced numbers from 0 to 10 **inclusive**\nw = np.array(list(range(-10, 10, 2)))\n\n\nprint(w)\n\n[-10  -8  -6  -4  -2   0   2   4   6   8]\n\n\n\nprint(z)\n\n[ 0.          0.1010101   0.2020202   0.3030303   0.4040404   0.50505051\n  0.60606061  0.70707071  0.80808081  0.90909091  1.01010101  1.11111111\n  1.21212121  1.31313131  1.41414141  1.51515152  1.61616162  1.71717172\n  1.81818182  1.91919192  2.02020202  2.12121212  2.22222222  2.32323232\n  2.42424242  2.52525253  2.62626263  2.72727273  2.82828283  2.92929293\n  3.03030303  3.13131313  3.23232323  3.33333333  3.43434343  3.53535354\n  3.63636364  3.73737374  3.83838384  3.93939394  4.04040404  4.14141414\n  4.24242424  4.34343434  4.44444444  4.54545455  4.64646465  4.74747475\n  4.84848485  4.94949495  5.05050505  5.15151515  5.25252525  5.35353535\n  5.45454545  5.55555556  5.65656566  5.75757576  5.85858586  5.95959596\n  6.06060606  6.16161616  6.26262626  6.36363636  6.46464646  6.56565657\n  6.66666667  6.76767677  6.86868687  6.96969697  7.07070707  7.17171717\n  7.27272727  7.37373737  7.47474747  7.57575758  7.67676768  7.77777778\n  7.87878788  7.97979798  8.08080808  8.18181818  8.28282828  8.38383838\n  8.48484848  8.58585859  8.68686869  8.78787879  8.88888889  8.98989899\n  9.09090909  9.19191919  9.29292929  9.39393939  9.49494949  9.5959596\n  9.6969697   9.7979798   9.8989899  10.        ]\n\n\n\n## Plotting with matplotlib\n\n\nimport matplotlib.pyplot as plt\n\n\nplt.plot(z, z**2)\n\n\n\n\n\nz = np.linspace(-10, 10, 100)\nplt.axes()\nplt.plot(z, np.cos(z), color=\"red\")\nplt.title(\"A cosine curve\")\nplt.grid()\nplt.xlim(-10, 10)\nplt.ylim(-10, 10)\nplt.xticks(list(range(-10, 11)))\nplt.xlabel(\"x\")\nplt.ylabel(\"y\")\n\nText(0, 0.5, 'y')"
   },
   {
-    "objectID": "03-RBasics/r-walkthrough.html#variables-types-and-assignment",
-    "href": "03-RBasics/r-walkthrough.html#variables-types-and-assignment",
+    "objectID": "chapters/03-RBasics/r-walkthrough.html#variables-types-and-assignment",
+    "href": "chapters/03-RBasics/r-walkthrough.html#variables-types-and-assignment",
     "title": "3  R Notebook Walkthrough",
     "section": "3.1 Variables, Types, and Assignment",
     "text": "3.1 Variables, Types, and Assignment\nIn R, the assignment operator is <-, not =. This takes some getting used to.\n\ncount <- 5\nname <- \"Jeremy Teitelbaum\" # string types are called chr for character\nparagraph <- \"Far across the misty mountains cold,\nto dungeons deep and caverns cold,\nwe must away,\nere break of day\nto seek our long forgotten gold.\"\npi <- 3.14159 # R doesn't use integer types unless you force it to, numbers are \"num\" # nolint: line_length_linter.\nepsilon <- 1e-6\ncount <- 5L # this forces an integer\nstudents <- c(\"Jeremy\", \"Phillip\", \"Sara\", \"Molly\")\nhot_dog <- TRUE # note all caps unlike Python; false is FALSE\n\nIn R, you can give names to the elements of a vector.\n\nprint(\"hello\")\n\n[1] \"hello\"\n\n\n\nnames(students) <- c(\"President\", \"Vice President\", \"Treasurer\", \"Secretary\")\nprint(names(students))\n\n[1] \"President\"      \"Vice President\" \"Treasurer\"      \"Secretary\"     \n\nprint(students[\"President\"])\n\nPresident \n \"Jeremy\" \n\nprint(students)\n\n     President Vice President      Treasurer      Secretary \n      \"Jeremy\"      \"Phillip\"         \"Sara\"        \"Molly\" \n\n\nThe cat command is a print command that “concatenates” its arguments; it needs an explicit newline.\n\nprint(students)\n\n     President Vice President      Treasurer      Secretary \n      \"Jeremy\"      \"Phillip\"         \"Sara\"        \"Molly\" \n\nprint(count)\n\n[1] 5\n\ncat(\"Students:\", students, \"\\n\")\n\nStudents: Jeremy Phillip Sara Molly \n\nprint(epsilon)\n\n[1] 1e-06\n\ncat(\"The value of epsilon is:\", epsilon, \"\\n\")\n\nThe value of epsilon is: 1e-06 \n\nprint(paragraph)\n\n[1] \"Far across the misty mountains cold,\\nto dungeons deep and caverns cold,\\nwe must away,\\nere break of day\\nto seek our long forgotten gold.\"\n\ncat(paragraph)\n\nFar across the misty mountains cold,\nto dungeons deep and caverns cold,\nwe must away,\nere break of day\nto seek our long forgotten gold.\n\n\nThe [1] at the beginning of each of these things reflects the fact that in R everything is a vector. So it is telling you that the first thing there is element 1 of the vector.\nThe c() command makes a vector of its arguments. It forces everything to be of the same type.\n\nstr_list <- c(\"Jeremy\", 25, 1.34, FALSE) # everything becomes a string\nint_list <- c(1, 2, 3, 4, 5)\nfloat_list <- c(1, 2, 3.5, 4)"
   },
   {
-    "objectID": "03-RBasics/r-walkthrough.html#arithmetic",
-    "href": "03-RBasics/r-walkthrough.html#arithmetic",
+    "objectID": "chapters/03-RBasics/r-walkthrough.html#arithmetic",
+    "href": "chapters/03-RBasics/r-walkthrough.html#arithmetic",
     "title": "3  R Notebook Walkthrough",
     "section": "3.2 Arithmetic",
     "text": "3.2 Arithmetic\nR does all arithmetic on vectors/lists. It one is shorter than the other, it repeats the shorter one, but the length of the longer has to be a multiple of the shorter.\n\na <- 1\nb <- 2\na + b\n\n[1] 3\n\n\n\na <- c(1, 2, 3, 4, 5)\nb <- 4\na + b\n\n[1] 5 6 7 8 9\n\n\n\na <- c(1, 2, 3, 4, 5, 6)\nb <- c(10, 11)\na + b\n\n[1] 11 13 13 15 15 17\n\n\n\na <- c(1, 2, 3, 4, 5)\nb <- c(1, 2)\na + b\n\nWarning in a + b: longer object length is not a multiple of shorter object\nlength\n\n\n[1] 2 4 4 6 6\n\n\n\na / 5\n\n[1] 0.2 0.4 0.6 0.8 1.0\n\n\n\n# integer division (// in python)\na <- 5L\nb <- 3\na %/% b\n\n[1] 1\n\n\n\n# remainder (% in python)\na <- 5\nb <- 3\na %% b\n\n[1] 2\n\n\n\na <- c(1, 2, 3, 4, 5)\na^2\n\n[1]  1  4  9 16 25\n\n\n\nprint(a^2 == a)\n\n[1]  TRUE FALSE FALSE FALSE FALSE\n\nprint(a^2 > a)\n\n[1] FALSE  TRUE  TRUE  TRUE  TRUE\n\nprint(a^2 == 4)\n\n[1] FALSE  TRUE FALSE FALSE FALSE"
   },
   {
-    "objectID": "03-RBasics/r-walkthrough.html#operations-on-strings-and-lists",
-    "href": "03-RBasics/r-walkthrough.html#operations-on-strings-and-lists",
+    "objectID": "chapters/03-RBasics/r-walkthrough.html#operations-on-strings-and-lists",
+    "href": "chapters/03-RBasics/r-walkthrough.html#operations-on-strings-and-lists",
     "title": "3  R Notebook Walkthrough",
     "section": "3.3 Operations on strings and lists",
     "text": "3.3 Operations on strings and lists\n\nfirst_name <- \"Jeremy\"\nlast_name <- \"Teitelbaum\"\nnchar(first_name)\n\n[1] 6\n\n\n\npaste(first_name, last_name) # spaces by default\n\n[1] \"Jeremy Teitelbaum\"\n\n\n\npaste(first_name, last_name, sep = \"\") # no space\n\n[1] \"JeremyTeitelbaum\"\n\n\n\npaste(c(1, 2, 3), \"Jeremy\") # remember functions work across vectors\n\n[1] \"1 Jeremy\" \"2 Jeremy\" \"3 Jeremy\""
   },
   {
-    "objectID": "03-RBasics/r-walkthrough.html#substrings",
-    "href": "03-RBasics/r-walkthrough.html#substrings",
+    "objectID": "chapters/03-RBasics/r-walkthrough.html#substrings",
+    "href": "chapters/03-RBasics/r-walkthrough.html#substrings",
     "title": "3  R Notebook Walkthrough",
     "section": "3.4 Substrings",
     "text": "3.4 Substrings\nIn R, you always count from 1 (big difference from python)\n\nfirst_name[1] # another difference from Python\n\n[1] \"Jeremy\"\n\n\n\na <- substr(\"Jeremy\", 1, 1)\nb <- substr(\"Jeremy\", 1, 3)\ncat(a, b, paste(a, b, sep = \"\"))\n\nJ Jer JJer"
   },
   {
-    "objectID": "03-RBasics/r-walkthrough.html#slicing-lists",
-    "href": "03-RBasics/r-walkthrough.html#slicing-lists",
+    "objectID": "chapters/03-RBasics/r-walkthrough.html#slicing-lists",
+    "href": "chapters/03-RBasics/r-walkthrough.html#slicing-lists",
     "title": "3  R Notebook Walkthrough",
     "section": "3.5 Slicing lists",
     "text": "3.5 Slicing lists\n\nnums <- 0:10 # generates a sequence from 0 to 10 INCLUSIVE (compare python)\nprint(nums)\n\n [1]  0  1  2  3  4  5  6  7  8  9 10\n\nprint(nums[c(1, 3)]) # you can pass a list of indices to a subscript\n\n[1] 0 2\n\n\n\nsqrs <- nums^2\nsqrs[seq(1, 10, 2)]\n\n[1]  0  4 16 36 64\n\n\nIn R, negative numbers in seq mean “omit” so this means omit entries 2 through 5. You can’t mix positive and negative numbers\n\nrev <- nums[seq(-2, -5)]\nprint(rev)\n\n[1]  0  5  6  7  8  9 10\n\n\n\nrev(nums) # reverses the list\n\n [1] 10  9  8  7  6  5  4  3  2  1  0"
   },
   {
-    "objectID": "03-RBasics/r-walkthrough.html#libraries-and-packages",
-    "href": "03-RBasics/r-walkthrough.html#libraries-and-packages",
+    "objectID": "chapters/03-RBasics/r-walkthrough.html#libraries-and-packages",
+    "href": "chapters/03-RBasics/r-walkthrough.html#libraries-and-packages",
     "title": "3  R Notebook Walkthrough",
     "section": "3.6 Libraries and packages",
     "text": "3.6 Libraries and packages\nUse the Rstudio package manager to add libraries to your installation, but to use them you need to use the library function. The tidyverse library is something we will use a lot.\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.1     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors"
   },
   {
-    "objectID": "03-RBasics/r-walkthrough.html#plotting",
-    "href": "03-RBasics/r-walkthrough.html#plotting",
+    "objectID": "chapters/03-RBasics/r-walkthrough.html#plotting",
+    "href": "chapters/03-RBasics/r-walkthrough.html#plotting",
     "title": "3  R Notebook Walkthrough",
     "section": "3.7 Plotting",
     "text": "3.7 Plotting\n\nlibrary(ggplot2)\n\n\nx <- seq(-10, 10, .1)\ny <- x**2\ndata <- tibble(\"x\" = x, \"y\" = y)\n\n\nggplot(data = data, aes(x = x)) +\n    geom_point(aes(y = y), color = \"red\") +\n    ggtitle(\"A Parabola\") +\n    scale_x_continuous(breaks = seq(-10, 10, 1)) +\n    scale_y_continuous(breaks = seq(0, 100, 20))\n\n\n\n\n\nx <- seq(-10, 10, .1)\ny <- cos(x)\ndata <- tibble(\"x\" = x, \"y\" = y)\nggplot(data = data, aes(x = x)) +\n    geom_line(aes(y = y), color = \"darkgreen\") +\n    ggtitle(\"A Cosine Curve\") +\n    scale_x_continuous(breaks = seq(-10, 10, 1)) +\n    scale_y_continuous(breaks = seq(-1, 1, 5))"
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html",
+    "href": "chapters/04-StatBasics/stat-basics.html",
+    "title": "4  Probability",
+    "section": "",
+    "text": "5 Populations and Samples\nBaseline situation: We show two different web ads to customers at random, and measure how often the visitor clicks through the ad.\nOf the 4800 who see ad A, 975 click through. Of the 4600 who see ad B, 1133 click through.\nIs Ad B better than Ad A or is this explained by chance?"
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#probability-theory",
+    "href": "chapters/04-StatBasics/stat-basics.html#probability-theory",
+    "title": "4  Probability",
+    "section": "5.1 Probability Theory",
+    "text": "5.1 Probability Theory\nProbability theory is based on:\n\nAn underlying collection \\(S\\) of all possible outcomes (a population or sample space) of an experiment.\nA rule \\(P\\) that assigns a number between zero and one to each subset of the sample space satisfying certain rules."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#sample-space",
+    "href": "chapters/04-StatBasics/stat-basics.html#sample-space",
+    "title": "4  Probability",
+    "section": "5.2 Sample Space",
+    "text": "5.2 Sample Space\nFor example:\n\nFor a flip of a single coin, the possible outcomes are Heads and Tails and the sample space has two elements. For multiple flips, the outcomes are sequences of Heads and Tails.\nFor a measurement of temperature, we might model the possible outcomes, or the sample space, as all real numbers, recognizing that only some of them are actually possible results of the experiment."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#simple-events",
+    "href": "chapters/04-StatBasics/stat-basics.html#simple-events",
+    "title": "4  Probability",
+    "section": "5.3 Simple Events",
+    "text": "5.3 Simple Events\nThe elements of the sample space or population are the outcomes or simple events or sample points.\n\nFor a flip of a coin, the possible outcomes are Heads or Tails. For multiple flips, the possible outcomes are particular sequences of Heads or Tails.\nFor a measurement of temperature, a simple event would be a particular number obtained at a particular time."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#events",
+    "href": "chapters/04-StatBasics/stat-basics.html#events",
+    "title": "4  Probability",
+    "section": "5.4 Events",
+    "text": "5.4 Events\nSubsets of the population make up events or outcomes.\n\nAmong the population made up of sequences of 10 coin flips, the subset consisting of sequences containing at least 3 heads is an event.\nAmong the measurements of temperature, a measurement lying between say 22 and 25 degrees celsius would be an event."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#probability-measure",
+    "href": "chapters/04-StatBasics/stat-basics.html#probability-measure",
+    "title": "4  Probability",
+    "section": "5.5 Probability Measure",
+    "text": "5.5 Probability Measure\nThe last element of probability theory is the function P that assigns a number between 0 and 1 to every event such that\n\n\\(P(\\emptyset)=0\\)\n\\(P(S)=1\\).\nIf \\(A\\cap B=\\emptyset\\) then \\(P(A\\cup B)=P(A)+P(B)\\). This is also required to hold for infinite collections of disjoint sets but we won’t worry much about the foundations of probability."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#random-variables",
+    "href": "chapters/04-StatBasics/stat-basics.html#random-variables",
+    "title": "4  Probability",
+    "section": "5.6 Random Variables",
+    "text": "5.6 Random Variables\nA random variable is a rule that assigns a number to an event.\n\nWe can assign the value 1 to heads and 0 to tails. This is a bernoulli random variable.\nOur sample space can be sets of 10 coin flips. The number of heads is a random variable.\nThe measurement of temperature yields a number.\n\nIf we pick a person at random, we can assign the value 1 if they wear glasses and 0 if not."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#discrete-vs-continuous-random-variables",
+    "href": "chapters/04-StatBasics/stat-basics.html#discrete-vs-continuous-random-variables",
+    "title": "4  Probability",
+    "section": "5.7 Discrete vs Continuous Random Variables",
+    "text": "5.7 Discrete vs Continuous Random Variables\nA discrete random variables takes “separate” values depending on the event. A continuous random variable takes values in a range.\n\nBernoulli random variable is discrete (0/1)\nNumber of heads in 10 flips is discrete (takes values 0,…,10)\nTemperature is continuous (in principle can get any reading)\nMass of a penguin is continuous\nSpecies of penguin is discrete"
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#events-and-random-variables",
+    "href": "chapters/04-StatBasics/stat-basics.html#events-and-random-variables",
+    "title": "4  Probability",
+    "section": "5.8 Events and Random Variables",
+    "text": "5.8 Events and Random Variables\nSpecifying a value, or a range of values, for a random variable defines an event."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#bernoulli-example",
+    "href": "chapters/04-StatBasics/stat-basics.html#bernoulli-example",
+    "title": "4  Probability",
+    "section": "5.9 Bernoulli example",
+    "text": "5.9 Bernoulli example\n\nSample space is \\(\\{H,T\\}\\)\n\\(P(H)=p\\)\n\\(X\\) is the random variable with \\(X(H)=1\\) and \\(X(T)=0\\)\n\nThen:\n\n\\(X=1\\) is the same as the event \\(H\\)\n\\(P(X=1)\\)=p"
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#binomial-example",
+    "href": "chapters/04-StatBasics/stat-basics.html#binomial-example",
+    "title": "4  Probability",
+    "section": "5.10 Binomial Example",
+    "text": "5.10 Binomial Example\nA binomial random variable (with parameters \\(n\\) and \\(p\\)) is the sum of \\(n\\) bernoulli random variables with probability \\(p\\). It corresponds to flipping a coin (with \\(P(H)=p\\)) \\(n\\) times and counting up the heads.\nThe probability of getting \\(k\\) heads is \\[\nP(k)=\\binom{n}{k}p^k(1-p)^{n-k}\n\\]"
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#binomial-distribution",
+    "href": "chapters/04-StatBasics/stat-basics.html#binomial-distribution",
+    "title": "4  Probability",
+    "section": "5.11 Binomial Distribution",
+    "text": "5.11 Binomial Distribution\n\nlibrary(ggplot2)\nx <- dbinom(seq(0, 10), 10, .3)\nggplot() +\n    geom_bar(aes(x = seq(0, 10), y = x), stat = \"identity\") +\n    scale_x_continuous(breaks = seq(0, 10)) +\n    xlab(\"Number of Heads\") +\n    ylab(\"Probability\") +\n    ggtitle(\"10 Flips, P(H)=.3\")"
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#continuous-example",
+    "href": "chapters/04-StatBasics/stat-basics.html#continuous-example",
+    "title": "4  Probability",
+    "section": "5.12 Continuous example",
+    "text": "5.12 Continuous example\n\nSample space is the possible temperatures at a particular point in space and time.\nRandom variable \\(T\\) is a measure of temperature.\n\\(P(21<T<22)\\) is the probability that the temperature is between 21 and 22 degrees."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#probability-density-functions",
+    "href": "chapters/04-StatBasics/stat-basics.html#probability-density-functions",
+    "title": "4  Probability",
+    "section": "5.13 Probability density functions",
+    "text": "5.13 Probability density functions\nIn the continuous case, probability is measured by a probability density function \\(P(x)\\). The classic example is the normal (bell-shaped) curve."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#density-functions",
+    "href": "chapters/04-StatBasics/stat-basics.html#density-functions",
+    "title": "4  Probability",
+    "section": "5.14 Density Functions",
+    "text": "5.14 Density Functions\nIf \\(P(x)\\) is the density function, then:\n\nthe probability that \\(x\\) lies between \\(a\\) and \\(b\\) is the area under density function between \\(a\\) and \\(b\\)."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#area-gives-probability",
+    "href": "chapters/04-StatBasics/stat-basics.html#area-gives-probability",
+    "title": "4  Probability",
+    "section": "5.15 Area gives probability",
+    "text": "5.15 Area gives probability\n\n\n\n\n\n\n\n\nThe shaded area gives probability 0.87 for temp between 21.7 and 22.3."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#standard-normal",
+    "href": "chapters/04-StatBasics/stat-basics.html#standard-normal",
+    "title": "4  Probability",
+    "section": "5.16 Standard Normal",
+    "text": "5.16 Standard Normal\nA normal curve is defined by two parameters:\n\nthe mean \\(\\mu\\), which sets the location\nthe standard deviation \\(\\sigma\\) or its square, the variance \\(\\sigma^2\\), which sets the scale.\n\nIf \\(x\\) is a normal random variable with mean \\(\\mu\\) and variance \\(\\sigma^2\\), then \\[\nz = \\frac{x-\\mu}{\\sigma}\n\\] is a normal random variable with mean \\(0\\) and variance \\(1\\). This is called a \\(z\\)-score or a standard normal variable."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#cumulative-distribution",
+    "href": "chapters/04-StatBasics/stat-basics.html#cumulative-distribution",
+    "title": "4  Probability",
+    "section": "5.17 Cumulative Distribution",
+    "text": "5.17 Cumulative Distribution\nThe cumulative distribution is a function \\(f(x)\\) such that \\(f(x)\\) is the the percentage of samples that are less than \\(x\\)."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#cumulative-distribution-1",
+    "href": "chapters/04-StatBasics/stat-basics.html#cumulative-distribution-1",
+    "title": "4  Probability",
+    "section": "5.18 Cumulative Distribution",
+    "text": "5.18 Cumulative Distribution\n\n\n\n\n\nSo the median of the samples occurs where the \\(y\\)-axis is \\(.5\\)."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#quantiles",
+    "href": "chapters/04-StatBasics/stat-basics.html#quantiles",
+    "title": "4  Probability",
+    "section": "5.19 Quantiles",
+    "text": "5.19 Quantiles\nIf \\(q\\) is between \\(0\\) and \\(1\\), then the \\(q^{th}\\) quantile \\(Q\\) of a random variable \\(x\\) is the value of \\(x\\) such that the fraction of the population with \\(x<Q\\) is \\(q\\).\nThe median of \\(x\\) is the \\(.5\\) quantile for \\(x\\) because half of the population has values less than the median.\nOne can read quantiles from the cumulative distribution."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#order-statistics",
+    "href": "chapters/04-StatBasics/stat-basics.html#order-statistics",
+    "title": "4  Probability",
+    "section": "5.20 Order Statistics",
+    "text": "5.20 Order Statistics\nThe sample median and the sample quantiles (such as the 25th percentile or 75th percentile) are examples of order statistics.\nThe smallest element, the second smallest element, and so on are other examples of order statistics."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#order-statistics-example",
+    "href": "chapters/04-StatBasics/stat-basics.html#order-statistics-example",
+    "title": "4  Probability",
+    "section": "5.21 Order Statistics example",
+    "text": "5.21 Order Statistics example\nWe take 100 samples from a normal distribution and compute the median, minimum, and maximum. Then we do that 10000 times and produce a histogram."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#order-statistics-histogram",
+    "href": "chapters/04-StatBasics/stat-basics.html#order-statistics-histogram",
+    "title": "4  Probability",
+    "section": "5.22 Order Statistics Histogram",
+    "text": "5.22 Order Statistics Histogram"
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#the-multinomial-distribution",
+    "href": "chapters/04-StatBasics/stat-basics.html#the-multinomial-distribution",
+    "title": "4  Probability",
+    "section": "5.23 The multinomial distribution",
+    "text": "5.23 The multinomial distribution\nThe multinomial distribution arises when you have \\(n\\) outcomes for your experiment, say \\(x_1,\\ldots, x_n\\); and the probability of getting \\(x_i\\) is \\(p_i\\). Here we have to have \\[\n\\sum p_{i}=1.\n\\]\nThis generalizes the bernoulli distribution."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#mean",
+    "href": "chapters/04-StatBasics/stat-basics.html#mean",
+    "title": "4  Probability",
+    "section": "5.24 Mean",
+    "text": "5.24 Mean\nThe mean of a random variable is perhaps the most important statistic associated with a probability space.\nThe mean is the “average value” of the random variable.\nThe mean of \\(x\\) is denoted \\(\\overline{x}\\) .\nExpectation or expected value is another name for the mean, and so the mean is also denoted \\(E(x)\\)."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#mean-discrete-case",
+    "href": "chapters/04-StatBasics/stat-basics.html#mean-discrete-case",
+    "title": "4  Probability",
+    "section": "5.25 Mean – discrete case",
+    "text": "5.25 Mean – discrete case\nIn the discrete case:\n\\[\n\\overline{x}=\\sum_{a\\in X} x(a)p(a)\n\\]\nIn other words, the mean of \\(\\overline{x}\\) is the sum of \\(x\\) at each event, weighted by the probability of that event."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#mean-of-a-bernoulli-random-variable",
+    "href": "chapters/04-StatBasics/stat-basics.html#mean-of-a-bernoulli-random-variable",
+    "title": "4  Probability",
+    "section": "5.26 Mean of a bernoulli random variable",
+    "text": "5.26 Mean of a bernoulli random variable\nIf \\(x\\) is bernoulli, with \\(p(x=1)=p\\), then the mean of \\(x\\) is \\[\np(1)+(1-p)(0)=p.\n\\]"
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#mean-of-a-binomial-random-variable",
+    "href": "chapters/04-StatBasics/stat-basics.html#mean-of-a-binomial-random-variable",
+    "title": "4  Probability",
+    "section": "5.27 Mean of a binomial random variable",
+    "text": "5.27 Mean of a binomial random variable\nIf \\(x\\) is binomial, corresponding to the sum of \\(N\\) bernoulli random variables with probability \\(p\\), then \\[\n\\overline{x} = \\sum_{0\\le i\\le N} i\\binom{N}{i}p^{i}(1-p)^{N-i}=Np\n\\]"
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#mean-continuous-case",
+    "href": "chapters/04-StatBasics/stat-basics.html#mean-continuous-case",
+    "title": "4  Probability",
+    "section": "5.28 Mean – continuous case",
+    "text": "5.28 Mean – continuous case\nThe mean of a continuous random variable is given by an integral:\n\\[\n\\overline{x} = \\int_{X} xp(x) dx\n\\]\nwhere \\(p(x)\\) is the probability density. This is the limiting case of the formula in the discrete case."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#mean-of-standard-normal",
+    "href": "chapters/04-StatBasics/stat-basics.html#mean-of-standard-normal",
+    "title": "4  Probability",
+    "section": "5.29 Mean of standard normal",
+    "text": "5.29 Mean of standard normal\nThe mean of the standard normal is zero."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#variance-and-standard-deviation",
+    "href": "chapters/04-StatBasics/stat-basics.html#variance-and-standard-deviation",
+    "title": "4  Probability",
+    "section": "5.30 Variance and standard deviation",
+    "text": "5.30 Variance and standard deviation\nThe variance of a random variable measures how it is distributed around its mean value.\nThe variance is the average value of the difference between \\(x\\) and its mean.\n\\[\n\\sigma^2=E((x-\\overline{x})^2)\n\\]\nIn the case of a discrete random variable with outcomes values \\(x\\) having probability \\(p(x)\\), the variance is \\[\n\\sum_{x} (x-\\overline{x})^2p(x)\n\\]"
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#variance-alternative-formula",
+    "href": "chapters/04-StatBasics/stat-basics.html#variance-alternative-formula",
+    "title": "4  Probability",
+    "section": "5.31 Variance alternative formula",
+    "text": "5.31 Variance alternative formula\nThis is the same as\n\\[\n\\sigma^2 = \\overline{x^2}-(\\overline{x})^2\n\\]\nThe standard deviation is the square root of the variance."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#variance-of-bernoulli",
+    "href": "chapters/04-StatBasics/stat-basics.html#variance-of-bernoulli",
+    "title": "4  Probability",
+    "section": "5.32 Variance of Bernoulli",
+    "text": "5.32 Variance of Bernoulli\nIn the Bernoulli case, the variance is \\[\n(1-p)^2p+p^2(1-p)=p(1-p).\n\\]\nNotice that the maximum variance happens when \\(p=1/2\\)."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#variance-of-binomial",
+    "href": "chapters/04-StatBasics/stat-basics.html#variance-of-binomial",
+    "title": "4  Probability",
+    "section": "5.33 Variance of Binomial",
+    "text": "5.33 Variance of Binomial\nA binomial random variable with probability \\(p\\) and \\(n\\) trials is a sum of \\(n\\) bernoulli random variables with probability \\(p\\). Using the formula you get \\[\n\\sigma^2 = \\sum_{i=0}^{n}(i-np)^2\\binom{n}{i}p^{i}(1-p)^{n-i}\n\\]\nThis turns out to be \\[\n\\sigma^2 = np(1-p).\n\\]\nNote: there are easier ways to get this formula."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#sampling",
+    "href": "chapters/04-StatBasics/stat-basics.html#sampling",
+    "title": "4  Probability",
+    "section": "5.34 Sampling",
+    "text": "5.34 Sampling\nIn practice we study random variables through samples. A sample of a random variable is a choice of values distributed according to the associated probability. So for example a sample of a Bernoulli random variable is a coin flip where \\(P(H)=p\\)."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#sampling-1",
+    "href": "chapters/04-StatBasics/stat-basics.html#sampling-1",
+    "title": "4  Probability",
+    "section": "5.35 Sampling",
+    "text": "5.35 Sampling\nIf we draw \\(N\\) sample values \\(x_i\\) ofa random variable, then the mean and variance of those sampled values, computed by\n\\[\n\\overline{x} = \\frac{1}{N}\\sum x_{i}\n\\]\nand \\[\n\\overline{x} = \\frac{1}{N-1}\\sum (x_{i}-\\overline{x})^2\n\\]\nare called the sample mean and variance; they are estimates of the mean and variance of the underlying random variable.\nThe law of large numbers says that, as \\(N\\to\\infty\\), these estimates converge to the true values.\nIn general these values are also random (they depend on the particular choices drawn from the distribution) and follow their own probabilility distribution.\nSo for example, if you sample a Bernoulli random variable \\(10\\) times, the mean is \\[\n\\frac{k}{N}\n\\] where \\(k\\) is the number of heads.\nThis mean follows a binomial distribution.\n\np <- dbinom(seq(0,10),10,.3)\nggplot()+geom_bar(aes(x=seq(0,1,1/10),y=10*p),stat=\"identity\")+xlab(\"x\")+ylab(\"P(x)\")+ggtitle(\"Distribution of sample mean for 10 bernoulli flips with p=.3\")\n\n\n\n\n)\nBy looking at sample means (or other sample statistics) we can try to uncover information about the underlying probability distribution."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#hypothesis-testing",
+    "href": "chapters/04-StatBasics/stat-basics.html#hypothesis-testing",
+    "title": "4  Probability",
+    "section": "5.36 Hypothesis Testing",
+    "text": "5.36 Hypothesis Testing\nA statistical hypothesis is a claim about a particular population. A hypothesis test is a method to determine which of two contradictory hypotheses is supported by the data.\nUnderlying idea: a lot of surprising things happen by chance. If you do an experiment and observe an effect, that might be the result of pure chance. Can you quantify that?"
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#an-example",
+    "href": "chapters/04-StatBasics/stat-basics.html#an-example",
+    "title": "4  Probability",
+    "section": "5.37 An example",
+    "text": "5.37 An example\nSuppose we have a coin and we’d like to do some testing to determine if we have reason to suspect that the coin is biased. Put another way, you’d like to know if this coin behaves differently from a reference, standard coin that is fair.\nNote this is more common than you might think. It might arise in the following circumstance in “real life.” You have two web pages, your current one and a proposed new one. You’d like to know if seeing the proposed one increases the chance of a viewer clicking through to something. This is called A/B testing and it amounts to comparing the probability of click-through in the reference case to the proposed case."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#null-and-alternative-hypotheses",
+    "href": "chapters/04-StatBasics/stat-basics.html#null-and-alternative-hypotheses",
+    "title": "4  Probability",
+    "section": "5.38 Null (and alternative) hypotheses",
+    "text": "5.38 Null (and alternative) hypotheses\nThe Null hypothesis is the hypotheses that our coin is fair, or that our two web pages yield the same results, or more generally that the observations we make are accounted for only by chance and not by some underlying effect. So our null hypothesis for our coin is “P=.5”.\nAn alternative hypothesis is a statement that contradicts the null hypothesis. For example, “P>.5” or “P<.5” or “P is different from .5.”"
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#test-statistic",
+    "href": "chapters/04-StatBasics/stat-basics.html#test-statistic",
+    "title": "4  Probability",
+    "section": "5.39 Test statistic",
+    "text": "5.39 Test statistic\nA test statistic is a measurement of the data used to draw conclusions about the sample."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#back-to-our-example",
+    "href": "chapters/04-StatBasics/stat-basics.html#back-to-our-example",
+    "title": "4  Probability",
+    "section": "5.40 Back to our example",
+    "text": "5.40 Back to our example\nFor our test statistic, we are going to use the fraction of times we get a head in N flips.\nIn the A/B testing situation, our test statistic would be the fraction of times a person “clicked through” when given the proposed web site.\nIntuitively, if the fraction of heads differs significantly from the expected fraction of heads (.5) then we take that as strong evidence for the unfairness of our coin (or the increased value of our proposed web page).\nHow can we quantify this?"
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#rejection-region-and-significance",
+    "href": "chapters/04-StatBasics/stat-basics.html#rejection-region-and-significance",
+    "title": "4  Probability",
+    "section": "5.41 Rejection region and “significance”",
+    "text": "5.41 Rejection region and “significance”\nTo make things concrete, suppose the coin is fair (in other words, the null hypothesis is true) we flip the coin \\(10\\) times. If the coin is far, we expect to get roughly 5 heads.\nThere’s a long tradition of saying something unlikely is “significant” if the chance of it occurring, assuming the null hypothesis, is less than .05 or one in twenty.\nThe chance of getting \\(0\\), \\(1\\), \\(9\\), or \\(10\\) heads is \\(.02\\). If we allow \\(2\\) or \\(8\\) heads in addition, the chance is about \\(11%\\), so if we set our significance level at \\(.05\\) we reject the null hypothesis if our experiment yields \\(0\\), \\(1\\), \\(9\\), or \\(10\\) heads.\nThis is the “rejection region.”"
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#rejection-region-plot-code",
+    "href": "chapters/04-StatBasics/stat-basics.html#rejection-region-plot-code",
+    "title": "4  Probability",
+    "section": "5.42 Rejection Region (plot code)",
+    "text": "5.42 Rejection Region (plot code)\n\nlibrary(ggplot2)\n# two-sided\nrejection2 <- function(n,d=10) {\n    results <- data.frame(\n            x=seq(0,n),\n            y=dbinom(seq(0,n),n,.5),\n            keep=sapply(seq(0,n),\n                function(x) \n                    (x<qbinom(.025,n,.5)) | (x>qbinom(.975,n,.5))))\n    ggplot(\n        data=results,aes(x=x,y=y,fill=keep))+ \n        geom_bar(stat=\"identity\")+\n        scale_x_continuous(breaks=seq(0,n,d))+\n        ggtitle(\"Two sided rejection region at alpha=.05\")\n    \n}"
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#more-code",
+    "href": "chapters/04-StatBasics/stat-basics.html#more-code",
+    "title": "4  Probability",
+    "section": "5.43 More code",
+    "text": "5.43 More code\n\nrejection1 <-function(n,d=10) {\n    results <- data.frame(\n        x=seq(0,n),\n        y=dbinom(seq(0,n),n,.5),\n        keep=sapply(seq(0,n),function(x) (x>qbinom(.95,n,.5))))\n    ggplot(data=results,aes(x=x,y=y,fill=keep))+\n    geom_bar(stat=\"identity\")+\n    scale_x_continuous(breaks=seq(0,n,d))+\n    ggtitle(\"One sided rejection region at alpha=.05\")\n}"
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#rejection-region-plotted",
+    "href": "chapters/04-StatBasics/stat-basics.html#rejection-region-plotted",
+    "title": "4  Probability",
+    "section": "5.44 Rejection Region (plotted)",
+    "text": "5.44 Rejection Region (plotted)\n\nrejection2(10, 1)"
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#one-sided-test",
+    "href": "chapters/04-StatBasics/stat-basics.html#one-sided-test",
+    "title": "4  Probability",
+    "section": "5.45 One-sided test",
+    "text": "5.45 One-sided test\nSuppose you want evidence that your coin is more likely to get heads.\n-Your null hypothesis is that your coin has \\(p=.5\\). Your alternative hypothesis is \\(p>.5\\).\n\nThe probability of getting 0,1,2 heads is \\(.054\\), which is a bit larger than \\(.05\\). So the one-sided test would reach significance only at 0 or 1 heads same as the two-sided test.\nBut suppose we did 50 flips? Then the one- and two-sided limits are slightly different on the right."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#one-sided-rejection-region",
+    "href": "chapters/04-StatBasics/stat-basics.html#one-sided-rejection-region",
+    "title": "4  Probability",
+    "section": "5.46 One-sided rejection region",
+    "text": "5.46 One-sided rejection region\n\nrejection2(50, 1)"
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#one-sided-rejection-region-1",
+    "href": "chapters/04-StatBasics/stat-basics.html#one-sided-rejection-region-1",
+    "title": "4  Probability",
+    "section": "5.47 One-sided rejection region",
+    "text": "5.47 One-sided rejection region\n\nrejection1(50, 1)"
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#normal-approximation",
+    "href": "chapters/04-StatBasics/stat-basics.html#normal-approximation",
+    "title": "4  Probability",
+    "section": "5.48 Normal approximation",
+    "text": "5.48 Normal approximation\nFor large \\(n\\), the binomial distribution distribution with probability \\(p\\) becomes a version of the normal distribution with mean \\(Np\\) and standard deviation \\(\\sqrt{Np(1-p)}\\)."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#normal-and-binomial-distribution",
+    "href": "chapters/04-StatBasics/stat-basics.html#normal-and-binomial-distribution",
+    "title": "4  Probability",
+    "section": "5.49 Normal and binomial distribution",
+    "text": "5.49 Normal and binomial distribution\n\ncompare <- function(n, p = .5) {\n    results <- data.frame(x = seq(0, n), y = dbinom(seq(0, n), n, p), z = dnorm(seq(0, n), mean = p * n, sd = sqrt(n * p * (1 - p))))\n    ggplot(data = results) +\n        geom_bar(aes(x = x, y = y), stat = \"identity\", fill = \"lightgreen\") +\n        geom_line(aes(x = x, y = z), color = \"red\", size = 2) +\n        ggtitle(glue(\"Normal Approximation to the binomial with n={n} and p={p}\"))\n}\ncompare(100, .3)\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\n\n\n\n\n\nSo one can use the normal distribution to determine the rejection region if \\(n\\) is large."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#errors",
+    "href": "chapters/04-StatBasics/stat-basics.html#errors",
+    "title": "4  Probability",
+    "section": "5.50 Errors",
+    "text": "5.50 Errors\nTwo things can go wrong:\n\nType I error: You reject the null hypothesis, but the null hypothesis is true. The probability of a Type I error is something you choose when you set the significance level. This is usually called \\(\\alpha\\).\nType II error: You accept the null hypothesis when it is false. In this case, you’ve missed an actual effect. This probability of this is called \\(\\beta\\).\n\nOther things equal, if you make \\(\\alpha\\) smaller (thus reducing the chance of a Type I error) you make \\(\\beta\\) bigger (increasing the chance of a type II error)."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#statistical-power",
+    "href": "chapters/04-StatBasics/stat-basics.html#statistical-power",
+    "title": "4  Probability",
+    "section": "5.51 Statistical Power",
+    "text": "5.51 Statistical Power\nInformally, statistical power measures the ability of an experiment to detect a real effect. If a study has high power, then you are very unlikely to make a Type II error.\nFor example, return to the coin flipping problem (or the A/B testing problem)."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#power",
+    "href": "chapters/04-StatBasics/stat-basics.html#power",
+    "title": "4  Probability",
+    "section": "5.52 Power",
+    "text": "5.52 Power\nSuppose we flip our coin \\(20\\) times and our null hypothesis is that \\(p=.5\\) If our significance level is \\(.05\\), we will reject the null hypothesis and conclude that the coin is not fair (and biased towards heads) provided we get \\(15\\) or more heads."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#power-computations",
+    "href": "chapters/04-StatBasics/stat-basics.html#power-computations",
+    "title": "4  Probability",
+    "section": "5.53 Power Computations",
+    "text": "5.53 Power Computations\n\n# look at the probability density for this case\nprobs <- dbinom(seq(0, 20), 20, .5)\n# The qbinom function tells us the threshold\nrejection <- qbinom(.95, 20, .5)\n# We check this by comparing the probability of $15-20$ vs $14-20$ heads:\nsum(probs[16:21]) # remember probs[i] is the chance of i-1 heads\n\n[1] 0.02069473\n\nsum(probs[15:21])\n\n[1] 0.05765915\n\n# The chance of $15-20$ heads is greater than $.05$."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#power-1",
+    "href": "chapters/04-StatBasics/stat-basics.html#power-1",
+    "title": "4  Probability",
+    "section": "5.54 Power",
+    "text": "5.54 Power\nNow suppose the coin is not fair and \\(p=.6\\). What is the chance that we accept the null hypothesis and conclude, falsely, that the coin is fair? It is the chance that we get \\(14\\) or fewer heads when \\(p=.6\\).\n\nprobs6 <- dbinom(seq(0, 20), 20, .6)\nsum(probs6[1:15])\n\n[1] 0.874401\n\n\nThis is \\(87\\) percent! In other words, our experiment is very unlikely to detect the unfairness of the coin if the unfairness is only the difference between \\(p=.6\\) and \\(p=.5\\)"
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#power-2",
+    "href": "chapters/04-StatBasics/stat-basics.html#power-2",
+    "title": "4  Probability",
+    "section": "5.55 Power",
+    "text": "5.55 Power\nBut if the coin is very unfair, with, say \\(p=.8\\), then we find:\n\nprobs8 <- dbinom(seq(0, 20), 20, .8)\nsum(probs8[1:15])\n\n[1] 0.1957922\n\n\nWe have only a 20% chance of a Type II error so there’s an 80% chance we’ll detect the difference.\nNow suppose we use \\(100\\) flips.\n\nrejection <- qbinom(.95, 100, .5)\nprobs6 <- dbinom(seq(0, 100), 100, .6)\nsum(probs6[1:rejection])\n\n[1] 0.3032601\n\n\nNow we have a 70% chance of detecting the difference unfairness of \\(p=.6\\)."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#more-on-ab-example",
+    "href": "chapters/04-StatBasics/stat-basics.html#more-on-ab-example",
+    "title": "4  Probability",
+    "section": "6.1 More on AB example",
+    "text": "6.1 More on AB example\nNull hypothesis: the two ads are the same, and of the 9400 who see an ad, 2108 click through. This is a probabiility of 22.4%.\nThe .95 quantile for the binomial distribution with n=4600 and p=.224 is 1077. Thus the 1133 click through rate is significantly higher. Similarly the 975 out of 4800 is significantly lower.\nSo ad B is better than ad A at the .05 significance level. In fact the odds of getting a number as high as 1133 is more like 1 in 10^4 so the evidence for ad b is overwhelming."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#simulation",
+    "href": "chapters/04-StatBasics/stat-basics.html#simulation",
+    "title": "4  Probability",
+    "section": "6.2 Simulation",
+    "text": "6.2 Simulation\nBy simulation:\n\nsimulated <- rbinom(10000, 4600, .224)\nsum(simulated >= 1133)\n\n[1] 3"
   }
 ]

@@ -9,10 +9,10 @@ book:
   page-footer: "Jeremy Teitelbaum | Fundamentals of Machine Learning | CC BY-SA 4.0"
   chapters:
     - index.qmd
-    - 01-SettingUp/setting-up.qmd
-    - 02-JupyterBasics/jupyter-walkthrough.qmd
-    - 03-RBasics/r-walkthrough.qmd
-#    - 04-StatBasics/stat-basics.qmd
+    - chapters/01-SettingUp/setting-up.qmd
+    - chapters/02-JupyterBasics/jupyter-walkthrough.qmd
+    - chapters/03-RBasics/r-walkthrough.qmd
+    - chapters/04-StatBasics/stat-basics.qmd
   
 
   
