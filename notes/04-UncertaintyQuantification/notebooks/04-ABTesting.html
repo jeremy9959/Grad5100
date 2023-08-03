@@ -182,20 +182,22 @@ lgl (2): retention_1, retention_7
 <h3 class="anchored" data-anchor-id="analysis">Analysis</h3>
 <p>Let’s compare retention rates for the two versions. One thing to note is that there are many people who install the game and never play it.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>non_players <span class="ot">&lt;-</span>data<span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="st">`</span><span class="at">sum_gamerounds</span><span class="st">`</span><span class="sc">==</span><span class="dv">0</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>n_non_players <span class="ot">&lt;-</span> <span class="fu">pull</span>(non_players<span class="sc">|&gt;</span><span class="fu">count</span>())</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Non-players:"</span> ,n_non_players))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>non_players <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="st">`</span><span class="at">sum_gamerounds</span><span class="st">`</span> <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>n_non_players <span class="ot">&lt;-</span> <span class="fu">pull</span>(non_players <span class="sc">|&gt;</span> <span class="fu">count</span>())</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Non-players:"</span>, n_non_players))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Non-players: 3994"</code></pre>
 </div>
 </div>
 <p>We should exclude them, since the treatment has no effect on people who don’t play the game.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>players <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="st">`</span><span class="at">sum_gamerounds</span><span class="st">`</span><span class="sc">&gt;</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>players <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="st">`</span><span class="at">sum_gamerounds</span><span class="st">`</span> <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we compare the retention at day 1 for the two treatment classes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>players <span class="sc">|&gt;</span> <span class="fu">group_by</span>(<span class="st">`</span><span class="at">version</span><span class="st">`</span>) <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">p1=</span><span class="fu">mean</span>(<span class="st">`</span><span class="at">retention_1</span><span class="st">`</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>players <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(<span class="st">`</span><span class="at">version</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">p1 =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">retention_1</span><span class="st">`</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   version    p1
@@ -206,8 +208,8 @@ lgl (2): retention_1, retention_7
 </div>
 <p>So players in the original gate_30 group are very slightly more likely to be retained. Let’s use Fisher’s exact test to see if this difference is most likely due to chance.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>p_1<span class="ot">&lt;-</span> <span class="fu">fisher_test</span>(players,retention_1)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"p-value: "</span>,p_1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>p_1 <span class="ot">&lt;-</span> <span class="fu">fisher_test</span>(players, retention_1)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"p-value: "</span>, p_1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "p-value:  0.116240316024701"</code></pre>
 </div>
@@ -215,8 +217,10 @@ lgl (2): retention_1, retention_7
 <p>The p-value of 10% says that even if the two groups were identical the difference we observe would occur 10% of the time.</p>
 <p>Now let’s look at Day 7. Here, we only include people who were retained on Day 1.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>continuers <span class="ot">&lt;-</span> players <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="st">`</span><span class="at">retention_1</span><span class="st">`</span><span class="sc">==</span><span class="cn">TRUE</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>continuers <span class="sc">|&gt;</span> <span class="fu">group_by</span>(<span class="st">`</span><span class="at">version</span><span class="st">`</span>) <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">p7=</span><span class="fu">mean</span>(<span class="st">`</span><span class="at">retention_7</span><span class="st">`</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>continuers <span class="ot">&lt;-</span> players <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="st">`</span><span class="at">retention_1</span><span class="st">`</span> <span class="sc">==</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>continuers <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(<span class="st">`</span><span class="at">version</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">p7 =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">retention_7</span><span class="st">`</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   version    p7
@@ -227,8 +231,8 @@ lgl (2): retention_1, retention_7
 </div>
 <p>Here there is a more noticeable difference; we lose somehat more to the gate_40 among continuers.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>p_7<span class="ot">&lt;-</span> <span class="fu">fisher_test</span>(players,retention_7)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"p-value: "</span>,p_7))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>p_7 <span class="ot">&lt;-</span> <span class="fu">fisher_test</span>(players, retention_7)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"p-value: "</span>, p_7))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "p-value:  0.00258849296227487"</code></pre>
 </div>

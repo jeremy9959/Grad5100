@@ -2,10 +2,11 @@
 title: "Probability"
 subtitle: "Fundamentals of Data Science"
 author: "Jeremy Teitelbaum"
-format: html
+format: revealjs
 title-block-style: plain
 ---
 ```{r echo=FALSE}
+library(tidyverse)
 library(glue)
 ```
 
@@ -103,6 +104,7 @@ $$
 P(k)=\binom{n}{k}p^k(1-p)^{n-k}
 $$
 
+## Binomial Distribution 
 ```{r}
 library(ggplot2)
 x <- dbinom(seq(0, 10), 10, .3)
@@ -125,6 +127,10 @@ ggplot() +
 
 In the continuous case, probability is measured by a probability density function $P(x)$. The classic example is the normal (bell-shaped) curve.
 
+## Density Functions
+If $P(x)$ is the density function, then:
+
+> the probability that $x$ lies between $a$ and $b$ is the area under density function between $a$ and $b$.
 
 ## Area gives probability
 
@@ -139,10 +145,6 @@ ggplot() +
     geom_line(aes(x = temperature, y = density)) +
     geom_ribbon(aes(x = temperature, ymin = 0, ymax = if_else(temperature >= 21.7 & temperature <= 22.3, density, 0)), fill = "gray")
 ```
-
-If $P(x)$ is the density function, then:
-
-> the probability that $x$ lies between $a$ and $b$ is the area under density function between $a$ and $b$.
 
 The shaded area gives probability `r format(p,digits=2,nsmall=2)` for temp between 21.7 and 22.3.
 
@@ -163,6 +165,9 @@ is a normal random variable with mean $0$ and variance $1$.  This is called a $z
 ## Cumulative Distribution
 
 The cumulative distribution is a function $f(x)$ such that $f(x)$ is the the percentage of samples that  are less than $x$.  
+
+
+## Cumulative Distribution
 
 ```{r echo=FALSE}
 samples <- rnorm(100, 22, .2)
@@ -197,6 +202,8 @@ The smallest element, the second smallest element, and so on are other examples 
 
 We take 100 samples from a normal distribution and compute the median, minimum, and maximum.  Then we do that 10000 times and produce a histogram. 
 
+## Order Statistics Histogram
+
 ```{r echo=FALSE}
 minima <- replicate(10000, min(rnorm(100, 0, 1)))
 maxima <- replicate(10000, max(rnorm(100, 0, 1)))
@@ -225,6 +232,12 @@ The mean  of a random variable is perhaps the most important statistic
 associated with a probability space.
 
 The mean is the "average value" of the random variable. 
+
+The mean of $x$ is denoted $\overline{x}$ .
+
+Expectation or expected value is another name
+for the mean, and so the mean is also denoted
+$E(x)$.
 
 ## Mean -- discrete case
 
@@ -271,11 +284,22 @@ The mean of the standard normal is zero.
 
 The variance of a random variable measures how it is distributed around its mean value.
 
+The variance is the average value of the
+difference between $x$ and its mean.
+
+$$
+\sigma^2=E((x-\overline{x})^2)
+$$
+
+
+
+
 In the case of a discrete random variable with outcomes values $x$ having probability $p(x)$, the variance is
 $$
 \sum_{x} (x-\overline{x})^2p(x)
 $$
 
+## Variance alternative formula
 
 This is the same as 
 
@@ -306,6 +330,55 @@ This turns out to be
 $$
 \sigma^2 = np(1-p).
 $$
+
+Note: there are easier ways to get this formula.
+
+## Sampling
+
+In practice we study random variables through samples.  A sample of a random variable is a choice of values distributed according to the associated probability.  So for example a
+sample of a Bernoulli random variable is a coin flip where $P(H)=p$.  
+
+## Sampling
+
+
+If we draw $N$ sample values $x_i$ ofa  random variable, then the mean and variance of those sampled values, computed by
+
+$$
+\overline{x} = \frac{1}{N}\sum x_{i}
+$$
+
+and 
+$$
+\overline{x} = \frac{1}{N-1}\sum (x_{i}-\overline{x})^2
+$$
+
+are called the sample mean and variance; they are estimates of the mean and variance of the underlying random variable. 
+
+The law of large numbers says that, as $N\to\infty$, these estimates converge to the true values. 
+
+In general these values are also random (they depend on the particular choices drawn from the distribution) and follow their own probabilility distribution.
+
+So for example, if you sample a Bernoulli random variable $10$ times, the mean is
+$$
+\frac{k}{N}
+$$
+where $k$ is the number of heads.  
+
+
+
+This mean follows a binomial distribution.
+
+```{r}
+p <- dbinom(seq(0,10),10,.3)
+ggplot()+geom_bar(aes(x=seq(0,1,1/10),y=10*p),stat="identity")+xlab("x")+ylab("P(x)")+ggtitle("Distribution of sample mean for 10 bernoulli flips with p=.3")
+```
+)
+
+By looking at sample means (or other *sample statistics*) we can try to uncover information
+about the underlying probability distribution. 
+
+
+
 
 ## Hypothesis Testing
 
@@ -359,21 +432,42 @@ $2$ or $8$ heads in addition, the chance is about $11%$, so if we set our signif
 or $10$ heads.
 
 This is the "rejection region."
-```{r}
-library(ggplot2)
-rejection2 <- function(n,d=10) {
-    results <- data.frame(x=seq(0,n),y=dbinom(seq(0,n),n,.5),keep=sapply(seq(0,n),function(x) (x<qbinom(.025,n,.5)) | (x>qbinom(.975,n,.5))))
-    ggplot(data=results,aes(x=x,y=y,fill=keep))+geom_bar(stat="identity")+
-    scale_x_continuous(breaks=seq(0,n,d))+ggtitle("Two sided rejection region at alpha=.05")
 
-}
-rejection1 <-function(n,d=10) {
-    results <- data.frame(x=seq(0,n),y=dbinom(seq(0,n),n,.5),keep=sapply(seq(0,n),function(x) (x>qbinom(.95,n,.5))))
-    ggplot(data=results,aes(x=x,y=y,fill=keep))+geom_bar(stat="identity")+
-    scale_x_continuous(breaks=seq(0,n,d))+ggtitle("One sided rejection region at alpha=.05")
+## Rejection Region (plot code)
+```{r echo=TRUE}
+library(ggplot2)
+# two-sided
+rejection2 <- function(n,d=10) {
+    results <- data.frame(
+            x=seq(0,n),
+            y=dbinom(seq(0,n),n,.5),
+            keep=sapply(seq(0,n),
+                function(x) 
+                    (x<qbinom(.025,n,.5)) | (x>qbinom(.975,n,.5))))
+    ggplot(
+        data=results,aes(x=x,y=y,fill=keep))+ 
+        geom_bar(stat="identity")+
+        scale_x_continuous(breaks=seq(0,n,d))+
+        ggtitle("Two sided rejection region at alpha=.05")
+    
 }
 ```
 
+## More code
+```{r echo=TRUE}
+rejection1 <-function(n,d=10) {
+    results <- data.frame(
+        x=seq(0,n),
+        y=dbinom(seq(0,n),n,.5),
+        keep=sapply(seq(0,n),function(x) (x>qbinom(.95,n,.5))))
+    ggplot(data=results,aes(x=x,y=y,fill=keep))+
+    geom_bar(stat="identity")+
+    scale_x_continuous(breaks=seq(0,n,d))+
+    ggtitle("One sided rejection region at alpha=.05")
+}
+```
+
+## Rejection Region (plotted)
 ```{r}
 rejection2(10, 1)
 
@@ -381,19 +475,23 @@ rejection2(10, 1)
 
 ## One-sided test
 
-Suppose you want evidence that your coin is *more likely* to get heads. So your null hypothesis is that your coin has $p=.5$.  Your alternative hypothesis is $p>.5$.
+Suppose you want evidence that your coin is *more likely* to get heads. 
 
-The probability of getting 0,1,2 heads is $.054$, which is a bit larger than
+-Your null hypothesis is that your coin has $p=.5$.  Your alternative hypothesis is $p>.5$.
+
+- The probability of getting 0,1,2 heads is $.054$, which is a bit larger than
 $.05$.  So the one-sided test would reach significance only at 0 or 1 heads
-same as the two-sided test.  But with more samples, the "one-sided" rejection
-region would be wider on the left than the two-sided one.
+same as the two-sided test.  
 
-But suppose we did 50 flips? Then the one- and two-sided limits are slightly different. 
+- But suppose we did 50 flips? Then the one- and two-sided limits are slightly different on the right.
 
+## One-sided rejection region
 
 ```{r}
-rejection2(50,1)
+rejection2(50, 1)
 ```
+
+## One-sided rejection region
 ```{r}
 rejection1(50, 1)
 ```
@@ -402,6 +500,9 @@ rejection1(50, 1)
 
 For large $n$, the binomial distribution distribution with probability $p$ becomes
 a version of the normal distribution with mean $Np$ and standard deviation $\sqrt{Np(1-p)}$.
+
+
+## Normal and binomial distribution
 
 ```{r}
 compare <- function(n, p = .5) {
@@ -420,11 +521,13 @@ So one can use the normal distribution to determine the rejection region if $n$ 
 
 Two things can go wrong:
 
-Type I error: You reject the null hypothesis, but the null hypothesis is true.
+- Type I error: You reject the null hypothesis, but the null hypothesis is true.
 The probability of a Type I error is something you choose when you set the significance level.  This is usually called $\alpha$.
 
-Type II error: You accept the null hypothesis when it is false.  In this case, 
-you've *missed* an actual effect. This is called $\beta$. Typically, if you
+- Type II error: You accept the null hypothesis when it is false.  In this case, 
+you've *missed* an actual effect. This probability of this is called $\beta$. 
+
+Other things equal, if you
 make $\alpha$ smaller (thus reducing the chance of a Type I error) you make
 $\beta$ bigger (increasing the chance of a type II error). 
 
@@ -434,11 +537,16 @@ Informally, statistical power measures the ability of an experiment to detect a 
 
 For example, return to the coin flipping problem (or the A/B testing problem).
 
+
+## Power
+
 Suppose we flip our coin $20$ times and our null hypothesis is that $p=.5$ 
 If our significance level is $.05$, we will reject the null hypothesis and conclude
 that the coin is *not* fair (and biased towards heads) provided we get $15$ or more  heads.  
 
-```{r}
+## Power Computations
+
+```{r echo=TRUE}
 # look at the probability density for this case
 probs <- dbinom(seq(0, 20), 20, .5)
 # The qbinom function tells us the threshold
@@ -449,10 +557,12 @@ sum(probs[15:21])
 # The chance of $15-20$ heads is greater than $.05$.
 ```
 
+## Power
+
 Now suppose the coin is *not* fair and $p=.6$.  What is the chance that we *accept* the null hypothesis and conclude, falsely, that the coin is fair?  It is the chance
 that we get $14$ or fewer heads when $p=.6$.
 
-```{r}
+```{r echo=TRUE}
 probs6 <- dbinom(seq(0, 20), 20, .6)
 sum(probs6[1:15])
 ```
@@ -461,24 +571,57 @@ This is $87$ percent!  In other words, our experiment is very *unlikely* to dete
 the unfairness of the coin if the unfairness is only the difference between $p=.6$ and
 $p=.5$
 
+## Power
+
 But if the coin is *very* unfair, with, say $p=.8$, then we find:
 
-```{r}
+```{r echo=TRUE}
 probs8 <- dbinom(seq(0, 20), 20, .8)
 sum(probs8[1:15])
 ```
 
-We have only a 20% chance of a Type II error so there's an 80% chance we'll detect the problem.
+We have only a 20% chance of a Type II error so there's an 80% chance we'll detect the difference.
 
 Now suppose we use $100$ flips.
 
-```{r}
+```{r echo=TRUE}
 rejection <- qbinom(.95, 100, .5)
 probs6 <- dbinom(seq(0, 100), 100, .6)
 sum(probs6[1:rejection])
 ```
 
 Now we have a 70% chance of detecting the difference unfairness of $p=.6$.
+
+# An AB example
+
+Baseline situation: We show two different web ads to customers at random, and measure
+how often the visitor clicks through the ad.
+
+Of the 4800 who see ad A, 975 click through.
+Of the 4600 who see ad B, 1133 click through.
+
+Is Ad B better than Ad A or is this explained by chance?
+
+
+## More on AB example 
+
+Null hypothesis: the two ads are the same, and of the 9400 who see an ad, 2108 click through.
+This is a probabiility of 22.4%.
+
+The .95 quantile for the binomial distribution with n=4600 and p=.224 is 1077.  Thus the 1133 click through
+rate is significantly higher.  Similarly the 975 out of 4800 is significantly lower.
+
+So ad B is better than ad A at the .05 significance level.  In fact the odds of getting a number as high as 1133 is more like 1
+in 10^4 so the evidence for ad b is overwhelming.
+
+## Simulation
+
+By simulation:
+```{r echo=TRUE}
+simulated <- rbinom(10000, 4600, .224)
+sum(simulated >= 1133)
+```
+
 <!--
 some things to talk about:
 fisher exact test  (likelihood of results at random)

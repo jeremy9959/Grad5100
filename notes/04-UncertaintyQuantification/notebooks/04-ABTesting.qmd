@@ -40,28 +40,30 @@ Let's compare retention rates for the two versions.
 One thing to note is that there are many people who install the game and never play it. 
 
 ```{r}
-non_players <-data|> filter(`sum_gamerounds`==0)
-n_non_players <- pull(non_players|>count())
-print(paste("Non-players:" ,n_non_players))
+non_players <- data |> filter(`sum_gamerounds` == 0)
+n_non_players <- pull(non_players |> count())
+print(paste("Non-players:", n_non_players))
 ```
 
 We should exclude them, since the treatment has no effect on people who don't play the game.
 
 ```{r}
-players <- data |> filter(`sum_gamerounds`>0)
+players <- data |> filter(`sum_gamerounds` > 0)
 ```
 
 Now we compare the retention at day 1 for the two treatment classes.
 
 ```{r}
-players |> group_by(`version`) |> summarize(p1=mean(`retention_1`))
+players |>
+    group_by(`version`) |>
+    summarize(p1 = mean(`retention_1`))
 ```
 
 So players in the original gate_30 group are very slightly more likely to be retained. Let's use Fisher's exact test to see if this difference is most likely due to chance. 
 
 ```{r}
-p_1<- fisher_test(players,retention_1)
-print(paste("p-value: ",p_1))
+p_1 <- fisher_test(players, retention_1)
+print(paste("p-value: ", p_1))
 ```
 
 The p-value of 10% says that even if the two groups were identical the difference we observe would occur 10% of the time. 
@@ -69,8 +71,10 @@ The p-value of 10% says that even if the two groups were identical the differenc
 Now let's look at Day 7.  Here, we only include people who were retained on Day 1. 
 
 ```{r}
-continuers <- players |> filter(`retention_1`==TRUE)
-continuers |> group_by(`version`) |> summarize(p7=mean(`retention_7`))
+continuers <- players |> filter(`retention_1` == TRUE)
+continuers |>
+    group_by(`version`) |>
+    summarize(p7 = mean(`retention_7`))
 ```
 
 Here there is a more noticeable difference; we lose somehat more to the gate_40 among continuers. 
@@ -78,8 +82,8 @@ Here there is a more noticeable difference; we lose somehat more to the gate_40 
 
 
 ```{r}
-p_7<- fisher_test(players,retention_7)
-print(paste("p-value: ",p_7))
+p_7 <- fisher_test(players, retention_7)
+print(paste("p-value: ", p_7))
 ```
 
 Here the p-value says this difference is very unlikely to occur by chance if the two groups were really the same.
