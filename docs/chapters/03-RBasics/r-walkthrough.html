@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Fundamentals of Machine Learning - 3&nbsp; R Notebook Walkthrough</title>
+<title>Fundamentals of Machine Learning - R Notebook Walkthrough</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -87,14 +87,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/04-StatBasics/stat-basics.html" rel="next">
-<link href="../../chapters/02-JupyterBasics/jupyter-walkthrough.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -127,85 +124,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="fullcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Notebook Walkthrough</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
-      </button>
-    </div>
-  </nav>
-</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../../">Fundamentals of Machine Learning</a> 
-    </div>
-      </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-      </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link">Preface</a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/01-SettingUp/setting-up.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Key Tools</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-JupyterBasics/jupyter-walkthrough.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Jupyter Lab Project Walkthrough</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-RBasics/r-walkthrough.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Notebook Walkthrough</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/04-StatBasics/stat-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Probability</span></a>
-  </div>
-</li>
-    </ul>
-    </div>
-</nav>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#variables-types-and-assignment" id="toc-variables-types-and-assignment" class="nav-link active" data-scroll-target="#variables-types-and-assignment"><span class="toc-section-number">3.1</span>  Variables, Types, and Assignment</a></li>
-  <li><a href="#arithmetic" id="toc-arithmetic" class="nav-link" data-scroll-target="#arithmetic"><span class="toc-section-number">3.2</span>  Arithmetic</a></li>
-  <li><a href="#operations-on-strings-and-lists" id="toc-operations-on-strings-and-lists" class="nav-link" data-scroll-target="#operations-on-strings-and-lists"><span class="toc-section-number">3.3</span>  Operations on strings and lists</a></li>
-  <li><a href="#substrings" id="toc-substrings" class="nav-link" data-scroll-target="#substrings"><span class="toc-section-number">3.4</span>  Substrings</a></li>
-  <li><a href="#slicing-lists" id="toc-slicing-lists" class="nav-link" data-scroll-target="#slicing-lists"><span class="toc-section-number">3.5</span>  Slicing lists</a></li>
-  <li><a href="#libraries-and-packages" id="toc-libraries-and-packages" class="nav-link" data-scroll-target="#libraries-and-packages"><span class="toc-section-number">3.6</span>  Libraries and packages</a></li>
-  <li><a href="#plotting" id="toc-plotting" class="nav-link" data-scroll-target="#plotting"><span class="toc-section-number">3.7</span>  Plotting</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Notebook Walkthrough</span></h1>
+<h1 class="title">R Notebook Walkthrough</h1>
 </div>
 
 
@@ -234,8 +166,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>hello world</code></pre>
 </div>
 </div>
-<section id="variables-types-and-assignment" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="variables-types-and-assignment"><span class="header-section-number">3.1</span> Variables, Types, and Assignment</h2>
+<section id="variables-types-and-assignment" class="level2">
+<h2 class="anchored" data-anchor-id="variables-types-and-assignment">Variables, Types, and Assignment</h2>
 <p>In R, the assignment operator is &lt;-, not =. This takes some getting used to.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>count <span class="ot">&lt;-</span> <span class="dv">5</span></span>
@@ -319,8 +251,8 @@ to seek our long forgotten gold.</code></pre>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>float_list <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="fl">3.5</span>, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="arithmetic" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="arithmetic"><span class="header-section-number">3.2</span> Arithmetic</h2>
+<section id="arithmetic" class="level2">
+<h2 class="anchored" data-anchor-id="arithmetic">Arithmetic</h2>
 <p>R does all arithmetic on vectors/lists. It one is shorter than the other, it repeats the shorter one, but the length of the longer has to be a multiple of the shorter.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
@@ -404,8 +336,8 @@ length</code></pre>
 </div>
 </div>
 </section>
-<section id="operations-on-strings-and-lists" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="operations-on-strings-and-lists"><span class="header-section-number">3.3</span> Operations on strings and lists</h2>
+<section id="operations-on-strings-and-lists" class="level2">
+<h2 class="anchored" data-anchor-id="operations-on-strings-and-lists">Operations on strings and lists</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>first_name <span class="ot">&lt;-</span> <span class="st">"Jeremy"</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>last_name <span class="ot">&lt;-</span> <span class="st">"Teitelbaum"</span></span>
@@ -433,8 +365,8 @@ length</code></pre>
 </div>
 </div>
 </section>
-<section id="substrings" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="substrings"><span class="header-section-number">3.4</span> Substrings</h2>
+<section id="substrings" class="level2">
+<h2 class="anchored" data-anchor-id="substrings">Substrings</h2>
 <p>In R, <strong>you always count from 1</strong> (big difference from python)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>first_name[<span class="dv">1</span>] <span class="co"># another difference from Python</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -451,8 +383,8 @@ length</code></pre>
 </div>
 </div>
 </section>
-<section id="slicing-lists" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="slicing-lists"><span class="header-section-number">3.5</span> Slicing lists</h2>
+<section id="slicing-lists" class="level2">
+<h2 class="anchored" data-anchor-id="slicing-lists">Slicing lists</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>nums <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span> <span class="co"># generates a sequence from 0 to 10 INCLUSIVE (compare python)</span></span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(nums)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -486,8 +418,8 @@ length</code></pre>
 </div>
 </div>
 </section>
-<section id="libraries-and-packages" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="libraries-and-packages"><span class="header-section-number">3.6</span> Libraries and packages</h2>
+<section id="libraries-and-packages" class="level2">
+<h2 class="anchored" data-anchor-id="libraries-and-packages">Libraries and packages</h2>
 <p>Use the Rstudio package manager to add libraries to your installation, but to use them you need to use the library function. The tidyverse library is something we will use a lot.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -508,8 +440,8 @@ length</code></pre>
 
 </div>
 </section>
-<section id="plotting" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="plotting"><span class="header-section-number">3.7</span> Plotting</h2>
+<section id="plotting" class="level2">
+<h2 class="anchored" data-anchor-id="plotting">Plotting</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -679,24 +611,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../chapters/02-JupyterBasics/jupyter-walkthrough.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Jupyter Lab Project Walkthrough</span></span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../chapters/04-StatBasics/stat-basics.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Probability</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-      <div class="nav-footer-center">Jeremy Teitelbaum | Fundamentals of Machine Learning | CC BY-SA 4.0</div>
-  </div>
-</footer>
 
 
 
