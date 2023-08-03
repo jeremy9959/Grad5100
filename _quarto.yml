@@ -1,0 +1,22 @@
+project:
+  type: book
+
+book:
+  title: "Fundamentals of Machine Learning"
+  author: "Jeremy Teitelbaum"
+  date: "7/1/2023"
+  license: "CC BY-SA"
+  page-footer: "Jeremy Teitelbaum | Fundamentals of Machine Learning | CC BY-SA 4.0"
+  chapters:
+    - index.qmd
+    - 01-SettingUp/setting-up.qmd
+    - 02-JupyterBasics/jupyter-walkthrough.qmd
+    - 03-RBasics/r-walkthrough.qmd
+#    - 04-StatBasics/stat-basics.qmd
+  
+
+  
+format:
+  html:
+    theme: cosmo
+
