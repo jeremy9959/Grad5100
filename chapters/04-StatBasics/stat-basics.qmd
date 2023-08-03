@@ -1,5 +1,5 @@
 ---
-title: "Probability"
+title: "Statistical Basics"
 subtitle: "Fundamentals of Data Science"
 author: "Jeremy Teitelbaum"
 format: revealjs

@@ -1,5 +1,10 @@
 ---
 jupyter: python3
+title: Jupyter Lab and Python Walkthrough
+subtitle: "Fundamentals of Data Science"
+author: "Jeremy Teitelbaum"
+format: html
+title-block-style: plain
 ---
 
 # Jupyter Lab Project Walkthrough
