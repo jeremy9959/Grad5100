@@ -1,9 +1,21 @@
 ```{r}
 library(ggplot2)
+library(glue)
 rejection <- function(n) {
     results <- data.frame(x=seq(0,n),y=dbinom(seq(0,n),n,.5),keep=sapply(seq(0,n),function(x) (x<qbinom(.025,n,.5)) | (x>qbinom(.975,n,.5))))
     ggplot(data=results,aes(x=x,y=y,fill=keep))+geom_bar(stat="identity")+
     scale_x_continuous(breaks=seq(0,n))
 
 }
+```
+
+```{r}
+compare <- function(n) {
+    results <- data.frame(x = seq(0, n), y = dbinom(seq(0, n), n, .5), z = dnorm(seq(0, n), mean = .5 * n, sd = sqrt(n) * .5)) 
+    ggplot(data = results) +
+        geom_bar(aes(x = x, y = y), stat = "identity", fill = "lightgreen") +
+        geom_line(aes(x = x, y = z), color = "red", size = 2) +
+        ggtitle(glue("Normal Approximation to the binomial with n={n} and p=.5"))
+}
+compare(100)
 ```

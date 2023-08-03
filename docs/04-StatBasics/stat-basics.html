@@ -132,6 +132,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
+<div class="cell">
+
+</div>
 <section id="populations-and-samples" class="level1">
 <h1>Populations and Samples</h1>
 <section id="probability-theory" class="level2">
@@ -230,7 +233,7 @@ P(k)=\binom{n}{k}p^k(1-p)^{n-k}
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">"Probability"</span>) <span class="sc">+</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">"10 Flips, P(H)=.3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="stat-basics_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+<p><img src="stat-basics_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -253,7 +256,7 @@ P(k)=\binom{n}{k}p^k(1-p)^{n-k}
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="stat-basics_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<p><img src="stat-basics_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>If <span class="math inline">\(P(x)\)</span> is the density function, then:</p>
@@ -278,7 +281,7 @@ z = \frac{x-\mu}{\sigma}
 <p>The cumulative distribution is a function <span class="math inline">\(f(x)\)</span> such that <span class="math inline">\(f(x)\)</span> is the the percentage of samples that are less than <span class="math inline">\(x\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="stat-basics_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<p><img src="stat-basics_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>So the median of the samples occurs where the <span class="math inline">\(y\)</span>-axis is <span class="math inline">\(.5\)</span>.</p>
@@ -299,7 +302,7 @@ z = \frac{x-\mu}{\sigma}
 <p>We take 100 samples from a normal distribution and compute the median, minimum, and maximum. Then we do that 10000 times and produce a histogram.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="stat-basics_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<p><img src="stat-basics_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -424,7 +427,7 @@ p(1)+(1-p)(0)=p.
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rejection2</span>(<span class="dv">10</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="stat-basics_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<p><img src="stat-basics_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -436,28 +439,99 @@ p(1)+(1-p)(0)=p.
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rejection2</span>(<span class="dv">50</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="stat-basics_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rejection1</span>(<span class="dv">50</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
 <p><img src="stat-basics_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rejection1</span>(<span class="dv">50</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="stat-basics_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="normal-approximation" class="level2">
+<h2 class="anchored" data-anchor-id="normal-approximation">Normal approximation</h2>
+<p>For large <span class="math inline">\(n\)</span>, the binomial distribution distribution with probability <span class="math inline">\(p\)</span> becomes a version of the normal distribution with mean <span class="math inline">\(Np\)</span> and standard deviation <span class="math inline">\(\sqrt{Np(1-p)}\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>compare <span class="ot">&lt;-</span> <span class="cf">function</span>(n, <span class="at">p =</span> .<span class="dv">5</span>) {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="dv">0</span>, n), <span class="at">y =</span> <span class="fu">dbinom</span>(<span class="fu">seq</span>(<span class="dv">0</span>, n), n, p), <span class="at">z =</span> <span class="fu">dnorm</span>(<span class="fu">seq</span>(<span class="dv">0</span>, n), <span class="at">mean =</span> p <span class="sc">*</span> n, <span class="at">sd =</span> <span class="fu">sqrt</span>(n <span class="sc">*</span> p <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p))))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="at">data =</span> results) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"lightgreen"</span>) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> z), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ggtitle</span>(<span class="fu">glue</span>(<span class="st">"Normal Approximation to the binomial with n={n} and p={p}"</span>))</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">compare</span>(<span class="dv">100</span>, .<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="stat-basics_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>So one can use the normal distribution to determine the rejection region if <span class="math inline">\(n\)</span> is large.</p>
 </section>
 <section id="errors" class="level2">
 <h2 class="anchored" data-anchor-id="errors">Errors</h2>
 <p>Two things can go wrong:</p>
 <p>Type I error: You reject the null hypothesis, but the null hypothesis is true. The probability of a Type I error is something you choose when you set the significance level. This is usually called <span class="math inline">\(\alpha\)</span>.</p>
 <p>Type II error: You accept the null hypothesis when it is false. In this case, you’ve <em>missed</em> an actual effect. This is called <span class="math inline">\(\beta\)</span>. Typically, if you make <span class="math inline">\(\alpha\)</span> smaller (thus reducing the chance of a Type I error) you make <span class="math inline">\(\beta\)</span> bigger (increasing the chance of a type II error).</p>
-<!--
+</section>
+<section id="statistical-power" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-power">Statistical Power</h2>
+<p>Informally, statistical power measures the ability of an experiment to detect a real effect. If a study has high power, then you are very unlikely to make a Type II error.</p>
+<p>For example, return to the coin flipping problem (or the A/B testing problem).</p>
+<p>Suppose we flip our coin <span class="math inline">\(20\)</span> times and our null hypothesis is that <span class="math inline">\(p=.5\)</span> If our significance level is <span class="math inline">\(.05\)</span>, we will reject the null hypothesis and conclude that the coin is <em>not</em> fair (and biased towards heads) provided we get <span class="math inline">\(15\)</span> or more heads.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the probability density for this case</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>probs <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>), <span class="dv">20</span>, .<span class="dv">5</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The qbinom function tells us the threshold</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>rejection <span class="ot">&lt;-</span> <span class="fu">qbinom</span>(.<span class="dv">95</span>, <span class="dv">20</span>, .<span class="dv">5</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># We check this by comparing the probability of $15-20$ vs $14-20$ heads:</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(probs[<span class="dv">16</span><span class="sc">:</span><span class="dv">21</span>]) <span class="co"># remember probs[i] is the chance of i-1 heads</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.02069473</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(probs[<span class="dv">15</span><span class="sc">:</span><span class="dv">21</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.05765915</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The chance of $15-20$ heads is greater than $.05$.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now suppose the coin is <em>not</em> fair and <span class="math inline">\(p=.6\)</span>. What is the chance that we <em>accept</em> the null hypothesis and conclude, falsely, that the coin is fair? It is the chance that we get <span class="math inline">\(14\)</span> or fewer heads when <span class="math inline">\(p=.6\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>probs6 <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>), <span class="dv">20</span>, .<span class="dv">6</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(probs6[<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.874401</code></pre>
+</div>
+</div>
+<p>This is <span class="math inline">\(87\)</span> percent! In other words, our experiment is very <em>unlikely</em> to detect the unfairness of the coin if the unfairness is only the difference between <span class="math inline">\(p=.6\)</span> and <span class="math inline">\(p=.5\)</span></p>
+<p>But if the coin is <em>very</em> unfair, with, say <span class="math inline">\(p=.8\)</span>, then we find:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>probs8 <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>), <span class="dv">20</span>, .<span class="dv">8</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(probs8[<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1957922</code></pre>
+</div>
+</div>
+<p>We have only a 20% chance of a Type II error so there’s an 80% chance we’ll detect the problem.</p>
+<p>Now suppose we use <span class="math inline">\(100\)</span> flips.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>rejection <span class="ot">&lt;-</span> <span class="fu">qbinom</span>(.<span class="dv">95</span>, <span class="dv">100</span>, .<span class="dv">5</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>probs6 <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>), <span class="dv">100</span>, .<span class="dv">6</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(probs6[<span class="dv">1</span><span class="sc">:</span>rejection])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3032601</code></pre>
+</div>
+</div>
+<p>Now we have a 70% chance of detecting the difference unfairness of <span class="math inline">\(p=.6\)</span>. <!--
 some things to talk about:
 fisher exact test  (likelihood of results at random)
 datatypes and types of random variables (ints are discrete/continuous?)
 relationship between *density function* and *histogram*
 empirical distribution
--->
+--></p>
 </section>
 </section>
 
