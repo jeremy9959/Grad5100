@@ -10,8 +10,18 @@ project:
 
 website:
   title: "Fundamentals of Machine Learning"
-  
-  
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: chapters/01-SettingUp/setting-up.qmd  
+        text: Setting Up
+      - href: chapters/02-JupyterBasics/jupyter-walkthrough.qmd
+        text: Jupyter Basics
+      - href: chapters/03-RBasics/r-walkthrough.qmd
+        text: R Basics
+      - href: chapters/04-StatBasics/stat-basics.qmd  
+        text: Statistics Basics
   
 
   
