@@ -10,6 +10,7 @@ format: "html"
 
 ```{r}
 library(tidyverse)
+
 ```
 
 ```{r}
@@ -156,4 +157,64 @@ penguins |>
     ggplot(aes(x = `Body Mass (g)`)) +
     geom_histogram(bins = 30) +
     facet_wrap(~Species)
+```
+
+## excel files
+
+One can also work with excel files.  You need the `readxl` library.
+
+```{r}
+library("readxl")
+```
+
+As an example, we use an excel spreadsheet violent crime data from the FBI.
+
+# read the 2019 crime data, and remove D.C.
+
+```{r}
+ViolentCrime2019 <-
+    read_excel("data/Violent Crime-by state-2019-table-5.xls",
+        sheet = 1, range = "A4:M514", trim_ws = TRUE
+    )
+
+ViolentCrime2019
+```
+
+Notice that the third column got a "made-up" name ('..3') and the other column names
+are a bit weird, they have newlines in them and also in some case footnotes.
+Let's clean this up.  First we replace all of the newlines and spaces by underlines
+in the column names.
+
+```{r}
+colnames(ViolentCrime2019) = gsub("[ \n]+", "_", colnames(ViolentCrime2019))
+ViolentCrime2019
+```
+
+Next we pull out the names from taking the state column, omitting the "NA" values,
+and treating this as strings. We also
+want a list for later work, not a tibble. 
+
+```{r}
+States <- ViolentCrime2019 |>
+    select("State") |>
+    drop_na()
+States = States$State
+States
+```
+
+State number 9 is DC and state number 40 is Puerto Rico.  We can drop those.
+
+```{r}
+States <- States[c(-9, -40)]
+States
+```
+
+Finally, suppose we're only interested in the state totals.  That means which need
+to extract the rows where the "Area" column is "State Total". 
+
+```{r}
+ VCrimeRate2019 <- ViolentCrime2019 |>
+     filter(`Area` == "State Total") |>
+     select(`Violent_crime1`)
+ VCrimeRate2019
 ```
