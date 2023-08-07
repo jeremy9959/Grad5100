@@ -3,6 +3,9 @@ title: "R Notebook Walkthrough"
 output:
   html_document:
     df_print: paged
+subtitle: "Fundamentals of Data Science"
+author: "Jeremy Teitelbaum"
+
 ---
 
 Start out with a code cell saying "Hello World"
