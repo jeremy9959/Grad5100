@@ -37,6 +37,8 @@ already.  Check the published site at `https://username.github.io`
 
 ![](./minimal.gif)
 
+7. Add more content!  Add more info to the `_config.yml` file using the theme documentation!
+
 
 
 
