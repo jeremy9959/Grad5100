@@ -4,9 +4,9 @@ subtitle: "Fundamentals of Data Science"
 author: "Jeremy Teitelbaum"
 jupyter: 
     kernelspec: 
-        name: "pandas20"
+        name: "base"
         language: "python"
-        display_name: "python3 with pandas 2.0"
+        display_name: "python3"
 ---
 
 ## Loading the key libraries
@@ -14,7 +14,7 @@ jupyter:
 import sys
 import pandas as pd
 import numpy as np
-
+import re
 
 print(f"pandas version {pd.__version__}")
 print(f"numpy version {np.__version__}")
@@ -315,4 +315,52 @@ Some simple plots are available directly from pandas.
 
 ```{python}
 penguins[penguins['Species'].str.startswith("Adel")].groupby(['Sex'])['Body Mass (g)'].hist(bins=30,legend=True)
+```
+
+## Excel files
+
+We can read an excel file.  This particular one is complicated for various reasons, including the fact that the column heads are in the third row, not at the top. Also there are a bunch of footnotes starting in row 510 that we don't want. So we don't read them in. 
+
+```{python}
+crime2019 = pd.read_excel("data/Violent Crime-by state-2019-table-5.xls",header=3,nrows=510)
+crime2019
+```
+
+The column names have newlines in them and we'd like to get rid of those. 
+
+```{python}
+crime2019.columns = [x.replace(" \n","_") for x in crime2019.columns]
+crime2019
+```
+
+Let's look at the states. 
+
+```{python}
+states = crime2019["State"].dropna().values
+states
+```
+
+Some have footnotes at the end.  We don't want them.
+
+```{python}
+states = [re.sub("[0-9$]","",x) for x in states]
+states
+```
+]
+We don't want to include DC or Puerto Rico.
+
+```{python}
+states = [x for x in states if x!='DISTRICT OF COLUMBIA' and x!='PUERTO RICO']
+states
+```
+
+Finally, we want to pull out the violent crime numbers for
+the total area of the state. Notice
+that Puerto Rico and DC use "Total", not
+"State Total", for Area and so they will
+be excluded.
+
+```{python}
+vcrime2019 = crime2019[crime2019['Area'] == 'State Total']['Violent_crime1'].values
+vcrime2019
 ```

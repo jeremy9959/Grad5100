@@ -3,6 +3,7 @@ project:
   output-dir: docs
   render:
     - index.qmd
+    - chapters/00-OrientationProject/00-project.qmd
     - chapters/01-SettingUp/setting-up.qmd
     - chapters/02-JupyterBasics/jupyter-walkthrough.qmd
     - chapters/03-RBasics/r-walkthrough.qmd
@@ -18,6 +19,7 @@ website:
     contents:
       - section: "Contents"
         contents:
+        - chapters/00-OrientationProject/00-project.qmd
         - chapters/01-SettingUp/setting-up.qmd  
         - chapters/02-JupyterBasics/jupyter-walkthrough.qmd
         - chapters/03-RBasics/r-walkthrough.qmd

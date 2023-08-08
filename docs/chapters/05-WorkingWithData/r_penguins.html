@@ -165,6 +165,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../chapters/00-OrientationProject/00-project.html" class="sidebar-item-text sidebar-link">Orientation Project</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../chapters/01-SettingUp/setting-up.html" class="sidebar-item-text sidebar-link">Key Tools for Data Science</a>
   </div>
 </li>
@@ -632,6 +637,144 @@ argument.</code></pre>
 <span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>Species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="r_penguins_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="excel-files" class="level2">
+<h2 class="anchored" data-anchor-id="excel-files">excel files</h2>
+<p>One can also work with excel files. You need the <code>readxl</code> library.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"readxl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As an example, we use an excel spreadsheet violent crime data from the FBI.</p>
+</section>
+<section id="read-the-2019-crime-data-and-remove-d.c." class="level1">
+<h1>read the 2019 crime data, and remove D.C.</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>ViolentCrime2019 <span class="ot">&lt;-</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">read_excel</span>(<span class="st">"data/Violent Crime-by state-2019-table-5.xls"</span>,</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">range =</span> <span class="st">"A4:M514"</span>, <span class="at">trim_ws =</span> <span class="cn">TRUE</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+• `` -&gt; `...3`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>ViolentCrime2019</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 510 × 13
+   State  Area  ...3  Population `Violent \ncrime1` Murder and \nnonnegl…¹ Rape2
+   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;                   &lt;dbl&gt;                  &lt;dbl&gt; &lt;dbl&gt;
+ 1 ALABA… Metr… &lt;NA&gt;  3728978                    NA                     NA    NA
+ 2 &lt;NA&gt;   &lt;NA&gt;  Area… 0.7660000…              12880                    182  1141
+ 3 &lt;NA&gt;   &lt;NA&gt;  Esti… 1                       19951                    300  1542
+ 4 &lt;NA&gt;   Citi… &lt;NA&gt;  528518                     NA                     NA    NA
+ 5 &lt;NA&gt;   &lt;NA&gt;  Area… 0.8930000…               3327                     36   297
+ 6 &lt;NA&gt;   &lt;NA&gt;  Esti… 1                        3541                     37   310
+ 7 &lt;NA&gt;   Nonm… &lt;NA&gt;  645689                     NA                     NA    NA
+ 8 &lt;NA&gt;   &lt;NA&gt;  Area… 0.7239999…                874                     13   148
+ 9 &lt;NA&gt;   &lt;NA&gt;  Esti… 1                        1554                     21   216
+10 &lt;NA&gt;   Stat… &lt;NA&gt;  4903185                 25046                    358  2068
+# ℹ 500 more rows
+# ℹ abbreviated name: ¹​`Murder and \nnonnegligent \nmanslaughter`
+# ℹ 6 more variables: Robbery &lt;dbl&gt;, `Aggravated \nassault` &lt;dbl&gt;,
+#   `Property \ncrime` &lt;dbl&gt;, Burglary &lt;dbl&gt;, `Larceny-theft` &lt;dbl&gt;,
+#   `Motor \nvehicle \ntheft` &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Notice that the third column got a “made-up” name (‘..3’) and the other column names are a bit weird, they have newlines in them and also in some case footnotes. Let’s clean this up. First we replace all of the newlines and spaces by underlines in the column names.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ViolentCrime2019) <span class="ot">=</span> <span class="fu">gsub</span>(<span class="st">"[ </span><span class="sc">\n</span><span class="st">]+"</span>, <span class="st">"_"</span>, <span class="fu">colnames</span>(ViolentCrime2019))</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>ViolentCrime2019</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 510 × 13
+   State   Area     ...3  Population Violent_crime1 Murder_and_nonneglig…¹ Rape2
+   &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;               &lt;dbl&gt;                  &lt;dbl&gt; &lt;dbl&gt;
+ 1 ALABAMA Metropo… &lt;NA&gt;  3728978                NA                     NA    NA
+ 2 &lt;NA&gt;    &lt;NA&gt;     Area… 0.7660000…          12880                    182  1141
+ 3 &lt;NA&gt;    &lt;NA&gt;     Esti… 1                   19951                    300  1542
+ 4 &lt;NA&gt;    Cities … &lt;NA&gt;  528518                 NA                     NA    NA
+ 5 &lt;NA&gt;    &lt;NA&gt;     Area… 0.8930000…           3327                     36   297
+ 6 &lt;NA&gt;    &lt;NA&gt;     Esti… 1                    3541                     37   310
+ 7 &lt;NA&gt;    Nonmetr… &lt;NA&gt;  645689                 NA                     NA    NA
+ 8 &lt;NA&gt;    &lt;NA&gt;     Area… 0.7239999…            874                     13   148
+ 9 &lt;NA&gt;    &lt;NA&gt;     Esti… 1                    1554                     21   216
+10 &lt;NA&gt;    State T… &lt;NA&gt;  4903185             25046                    358  2068
+# ℹ 500 more rows
+# ℹ abbreviated name: ¹​Murder_and_nonnegligent_manslaughter
+# ℹ 6 more variables: Robbery &lt;dbl&gt;, Aggravated_assault &lt;dbl&gt;,
+#   Property_crime &lt;dbl&gt;, Burglary &lt;dbl&gt;, `Larceny-theft` &lt;dbl&gt;,
+#   Motor_vehicle_theft &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Next we pull out the names from taking the state column, omitting the “NA” values, and treating this as strings. We also want a list for later work, not a tibble.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>States <span class="ot">&lt;-</span> ViolentCrime2019 <span class="sc">|&gt;</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="st">"State"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">drop_na</span>()</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>States <span class="ot">=</span> States<span class="sc">$</span>State</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>States</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "ALABAMA"               "ALASKA"                "ARIZONA"              
+ [4] "ARKANSAS"              "CALIFORNIA"            "COLORADO"             
+ [7] "CONNECTICUT"           "DELAWARE"              "DISTRICT OF COLUMBIA3"
+[10] "FLORIDA"               "GEORGIA"               "HAWAII"               
+[13] "IDAHO"                 "ILLINOIS"              "INDIANA"              
+[16] "IOWA"                  "KANSAS"                "KENTUCKY"             
+[19] "LOUISIANA"             "MAINE"                 "MARYLAND"             
+[22] "MASSACHUSETTS"         "MICHIGAN"              "MINNESOTA"            
+[25] "MISSISSIPPI4"          "MISSOURI"              "MONTANA"              
+[28] "NEBRASKA"              "NEVADA"                "NEW HAMPSHIRE"        
+[31] "NEW JERSEY"            "NEW MEXICO"            "NEW YORK"             
+[34] "NORTH CAROLINA"        "NORTH DAKOTA"          "OHIO4"                
+[37] "OKLAHOMA"              "OREGON4"               "PENNSYLVANIA"         
+[40] "PUERTO RICO"           "RHODE ISLAND"          "SOUTH CAROLINA"       
+[43] "SOUTH DAKOTA"          "TENNESSEE"             "TEXAS"                
+[46] "UTAH"                  "VERMONT"               "VIRGINIA"             
+[49] "WASHINGTON"            "WEST VIRGINIA"         "WISCONSIN"            
+[52] "WYOMING"              </code></pre>
+</div>
+</div>
+<p>State number 9 is DC and state number 40 is Puerto Rico. We can drop those.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>States <span class="ot">&lt;-</span> States[<span class="fu">c</span>(<span class="sc">-</span><span class="dv">9</span>, <span class="sc">-</span><span class="dv">40</span>)]</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>States</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "ALABAMA"        "ALASKA"         "ARIZONA"        "ARKANSAS"      
+ [5] "CALIFORNIA"     "COLORADO"       "CONNECTICUT"    "DELAWARE"      
+ [9] "FLORIDA"        "GEORGIA"        "HAWAII"         "IDAHO"         
+[13] "ILLINOIS"       "INDIANA"        "IOWA"           "KANSAS"        
+[17] "KENTUCKY"       "LOUISIANA"      "MAINE"          "MARYLAND"      
+[21] "MASSACHUSETTS"  "MICHIGAN"       "MINNESOTA"      "MISSISSIPPI4"  
+[25] "MISSOURI"       "MONTANA"        "NEBRASKA"       "NEVADA"        
+[29] "NEW HAMPSHIRE"  "NEW JERSEY"     "NEW MEXICO"     "NEW YORK"      
+[33] "NORTH CAROLINA" "NORTH DAKOTA"   "OHIO4"          "OKLAHOMA"      
+[37] "OREGON4"        "PENNSYLVANIA"   "RHODE ISLAND"   "SOUTH CAROLINA"
+[41] "SOUTH DAKOTA"   "TENNESSEE"      "TEXAS"          "UTAH"          
+[45] "VERMONT"        "VIRGINIA"       "WASHINGTON"     "WEST VIRGINIA" 
+[49] "WISCONSIN"      "WYOMING"       </code></pre>
+</div>
+</div>
+<p>Finally, suppose we’re only interested in the state totals. That means which need to extract the rows where the “Area” column is “State Total”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a> VCrimeRate2019 <span class="ot">&lt;-</span> ViolentCrime2019 <span class="sc">|&gt;</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">filter</span>(<span class="st">`</span><span class="at">Area</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"State Total"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">select</span>(<span class="st">`</span><span class="at">Violent_crime1</span><span class="st">`</span>)</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a> VCrimeRate2019</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 50 × 1
+   Violent_crime1
+            &lt;dbl&gt;
+ 1          25046
+ 2           6343
+ 3          33141
+ 4          17643
+ 5         174331
+ 6          21938
+ 7           6546
+ 8           4115
+ 9          81270
+10          36170
+# ℹ 40 more rows</code></pre>
 </div>
 </div>
 
