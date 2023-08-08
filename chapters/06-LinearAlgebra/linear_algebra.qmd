@@ -11,6 +11,7 @@ jupyter:
         display_name: "python3"
 ---
 ```{python visible=False}
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Arrow
@@ -65,19 +66,191 @@ ax = draw_arrow(0,0,6,10,ax,color='red',alpha=.5)
 
 ## Feature Space 
 
-- examples including word2vec and embeddings
-- maybe polynomial regression?
-- images as vectors
-- one-hot encoding of categorical vectors
+Each 'dimension' in feature space corresponds to a 'feature' or measurement
+of the data.  *Here we are assuming for now that the features are continuous
+and measured by real numbers*.
 
-## Linear Dependence and Linear Independence; basis; scores
+Let's choose some numerical features of the penguins dataset.
 
-- dependent, or almost dependent features, don't add new information
-- linear combinations of features yield new features (scores)
-- different bases give different points of view on the same data
-(for example rescaling data to standard z-scores)
+```{python}
+data = pd.read_csv("data/penguins-raw.csv")
+data = data[['Culmen Length (mm)','Culmen Depth (mm)','Flipper Length (mm)','Body Mass (g)']].dropna().values
+```
 
-## Subspaces, hyperplanes, and dimension
+Each penguin is represented by a vector in $\mathbf{R}^{4}$.  So for example penguin number 34 is represented as follows.
+
+```{python}
+data[34,:]
+```
+
+This abstraction of penguins into vectors is sometimes called "an embedding".
+
+## Features
+
+We can also look at a single feature for *all* of the penguins.  For example,
+'Culmen Length (mm)' is a feature and there is a vector in $\mathbf{R}^{342}$
+consisting of all of the Culmen Lengths for all of the penguins.
+
+In the *tidy* convention, we summarize our data in an array or matrix where each row corresponds to a sample and each column to a feature.   So our penguin
+data has $342$ rows (corresponding to the 342 penguins with no missing data)
+and 4 columns corresponding to four features. 
+
+## Image Embeddings
+
+Each sample in the MNIST database is a $28x28$ gray scale image, represented by
+a $28\times 28$ array of integers between 0 and 255.
+
+```{python}
+with open("data/train-images.idx3-ubyte",'rb') as f:
+    f.read(16)
+    buf = f.read(28*28)
+    data = np.frombuffer(buf,dtype=np.uint8).astype(np.float32)
+    data = data.reshape(1,28,28)
+for x in range(28):
+    for y in range(28):
+        print('{:>4}'.format(int(data[0,x,y])),end="")
+    print("\n")
+
+image = np.asarray(data[0].squeeze())
+plt.imshow(image)
+
+```
+
+Here we can view each image as a vector in a 784 dimensional (=28*28) space. 
+
+A collection of 100 images would be represented by an array with 100 
+rows and 784 columns
+
+A 28x28 image in color has 28*28*3 numbers to account for the RGB channels.
+
+## One Hot Embedding
+
+Normally categorical variables don't embed direcly into $\mathbf{R}^{n}$
+but one can use "one-hot" embedding.
+
+Suppose our categorical vector has 4 levels: red, green, blue, orange.
+
+The "one-hot" embedding uses four features, and each color corresponds
+to a vector with a one in the column corresponding to the color and zeros elsewhere.
+
+| red | green | blue | orange |
+|---|---|---|---|
+|1 |0 |0 |0|
+|0 |1|0|0|
+|0|0|1|0|
+|0|0|0|1|
+
+So to use one-hot encoding of our feature data, we'd add four columns to our data
+matrix.
+
+## Word embeddings
+
+Word2vec is a technique developed by scientists at google that embeds
+a vocabulary into $\mathbf{R}^{n}$. Each of 3 million words has
+a 300 dimensional vector representing it.
+
+See [this google page.](https://code.google.com/archive/p/word2vec/)
+
+
+## Linear combinations
+
+If $v_1,\ldots, v_k$ are vectors in $\mathbf{R}^{n}$ then a weighted sum of the
+$v_{i}$ is called a *linear combination.*
+
+$$
+w = \sum b_{i}v_{i}
+$$
+
+Suppose our data is the performance of students on 2 homeworks, 1 midterm,
+and one final, all scored on a 100 points scale, with each homework worth 10% of the total, the midterm worth 25% and the final worth 55%.  If there are 20 students
+our data is a $20 x 4$ array with each row having the grades of a single
+student and each column having all the scores for a particular assignment.
+
+Let $v_1, v_2, v_3, v_4$ be the four columns.  Then the final score is the linear
+combination
+$$
+s=.1v_1+.1v_2+.25v_3+.55v_4
+$$
+
+The vector $s$, the *score*, is a linear combination of the features.
+
+
+## Linear Dependence and Linear Independence
+
+In the example above, the final score is a linear combination of the features.
+We say that the final score is *dependent* on the features.  More generally,
+a collection of vectors is linearly *dependent* if there are constants,
+not all zero, so that
+
+$$
+b_1v_1+...+b_kv_k=0.
+$$
+
+If they're dependent, it means one of them can be written in terms of the other.
+
+If they aren't dependent, they are *independent.*  This means that the only
+way you can get 
+$$
+b_1v_1+...+b_kv_k=0
+$$
+is if all the constants are zero.
+
+None of the vectors can be written in terms of the others. 
+
+Mathematically, dependence is an *exact* relationship.  
+
+## Approximate linear dependence
+
+Sometimes two features are "almost" linearly related.  
+
+In an old dataset about car models, with 398 types of cars and 9 features,
+two features are "miles per gallon" and "engine displacement".  If we look
+at mpg and displacement relative to their means by subtracting their averages values, we see that 
+
+
+Here, miles per gallon (relative to its mean value)
+is roughly linearly dependent on displacement (relative to its mean).
+$$
+\mathrm{mpg}-\overline{\mathrm{mpg}} = -.0603(\mathrm{disp}-\overline{\mathrm{disp}})
+$$
+
+So we don't learn much new from 'mpg' that isn't already in 'displacement'.
+
+```{python}
+import statsmodels.api as sm
+mpg = pd.read_csv("data/auto-mpg.csv")
+x=mpg['displacement'].values
+x=x-np.mean(x)
+y=mpg['mpg'].values
+y=y-np.mean(y)
+x1= sm.add_constant(x)
+model = sm.OLS(y,x1).fit()
+x0 = np.linspace(-100,300,10)
+x1 = sm.add_constant(x0)
+predictions = model.predict(x1)
+plt.scatter(x,y)
+plt.plot(x0,predictions,color='red')
+plt.title("Miles per Gallon vs Engine Displacement")
+plt.xlabel("Displacement")
+```
+
+Linear Regression (studied later) tries to capture this. 
+
+## Span
+
+The span of a collection of vectors is the set of all linear combinations
+of those vectors. 
+
+
+## Basis and dimension
+
+A basis is a linearly independent, spanning set. The number of elements
+in a basis is always the same; it is called the *dimension* of the vector space. 
+
+The dimension of $\mathbf{R}^{n}$ is $n$ (the standard vectors are independent and span).
+
+
+## Subspaces and hyperplanes
 
 
 

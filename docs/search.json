@@ -893,7 +893,7 @@
     "href": "chapters/06-LinearAlgebra/linear_algebra.html",
     "title": "Essential Linear Algebra",
     "section": "",
-    "text": "import numpy as np\nimport matplotlib.pyplot as plt\nfrom matplotlib.patches import Arrow\n\ndef make_plot(xmin,ymin,xmax,ymax):\n    fig, ax = plt.subplots()\n    ax.set_xlim(xmin,xmax)\n    ax.set_ylim(ymin,ymax)\n    ax.set_xticks(np.arange(xmin,xmax,1))\n    ax.set_yticks(np.arange(ymin,ymax,1))\n    ax.set_aspect('equal')\n    ax.grid(visible=True)\n    return fig, ax\n\ndef draw_arrow(x0,y0,x1,y1,axes,color='blue',alpha=1):\n    axes.add_patch(Arrow(x0,y0,x1-x0,y1-y0,width=.3,color=color,alpha=alpha))\n    return axes"
+    "text": "import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom matplotlib.patches import Arrow\n\ndef make_plot(xmin,ymin,xmax,ymax):\n    fig, ax = plt.subplots()\n    ax.set_xlim(xmin,xmax)\n    ax.set_ylim(ymin,ymax)\n    ax.set_xticks(np.arange(xmin,xmax,1))\n    ax.set_yticks(np.arange(ymin,ymax,1))\n    ax.set_aspect('equal')\n    ax.grid(visible=True)\n    return fig, ax\n\ndef draw_arrow(x0,y0,x1,y1,axes,color='blue',alpha=1):\n    axes.add_patch(Arrow(x0,y0,x1-x0,y1-y0,width=.3,color=color,alpha=alpha))\n    return axes"
   },
   {
     "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#vectors-and-scalars",
@@ -928,7 +928,7 @@
     "href": "chapters/06-LinearAlgebra/linear_algebra.html#feature-space",
     "title": "Essential Linear Algebra",
     "section": "Feature Space",
-    "text": "Feature Space\n\nexamples including word2vec and embeddings\nmaybe polynomial regression?\nimages as vectors\none-hot encoding of categorical vectors"
+    "text": "Feature Space\nEach ‘dimension’ in feature space corresponds to a ‘feature’ or measurement of the data. Here we are assuming for now that the features are continuous and measured by real numbers.\nLet’s choose some numerical features of the penguins dataset.\n\ndata = pd.read_csv(\"data/penguins-raw.csv\")\ndata = data[['Culmen Length (mm)','Culmen Depth (mm)','Flipper Length (mm)','Body Mass (g)']].dropna().values\n\nEach penguin is represented by a vector in \\(\\mathbf{R}^{4}\\). So for example penguin number 34 is represented as follows.\n\ndata[34,:]\n\narray([  39.2,   21.1,  196. , 4150. ])\n\n\nThis abstraction of penguins into vectors is sometimes called “an embedding”."
   },
   {
     "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#linear-dependence-and-linear-independence-basis-scores",
@@ -1006,5 +1006,68 @@
     "title": "Essential Linear Algebra",
     "section": "Transpose of a matrix, covariance matrix, principal directions",
     "text": "Transpose of a matrix, covariance matrix, principal directions"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#some-other-embeddings",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#some-other-embeddings",
+    "title": "Essential Linear Algebra",
+    "section": "Some other embeddings",
+    "text": "Some other embeddings\nEach sample in the MNIST database is a \\(28x28\\) gray scale image, represented by a \\(28\\times 28\\) array of integers between 0 and 255.\n\nwith open(\"data/train-images.idx3-ubyte\",'rb') as f:\n    f.read(16)\n    buf = f.read(28*28)\n    data = np.frombuffer(buf,dtype=np.uint8).astype(np.float32)\n    data = data.reshape(1,28,28)\nfor x in range(28):\n    for y in range(28):\n        print('{:>4}'.format(int(data[0,x,y])),end=\"\")\n    print(\"\\n\")\n\nimage = np.asarray(data[0].squeeze())\nplt.imshow(image)\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   3  18  18  18 126 136 175  26 166 255 247 127   0   0   0   0\n\n   0   0   0   0   0   0   0   0  30  36  94 154 170 253 253 253 253 253 225 172 253 242 195  64   0   0   0   0\n\n   0   0   0   0   0   0   0  49 238 253 253 253 253 253 253 253 253 251  93  82  82  56  39   0   0   0   0   0\n\n   0   0   0   0   0   0   0  18 219 253 253 253 253 253 198 182 247 241   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0  80 156 107 253 253 205  11   0  43 154   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0  14   1 154 253  90   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0 139 253 190   2   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0  11 190 253  70   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0  35 241 225 160 108   1   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0  81 240 253 253 119  25   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0  45 186 253 253 150  27   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0  16  93 252 253 187   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 249 253 249  64   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0  46 130 183 253 253 207   2   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0  39 148 229 253 253 253 250 182   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0  24 114 221 253 253 253 253 201  78   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0  23  66 213 253 253 253 253 198  81   2   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0  18 171 219 253 253 253 253 195  80   9   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0  55 172 226 253 253 253 253 244 133  11   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0 136 253 253 253 212 135 132  16   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n\n\n<matplotlib.image.AxesImage at 0x7f2b4d030f10>\n\n\n\n\n\n\nexamples including word2vec and embeddings\nmaybe polynomial regression?\nimages as vectors\none-hot encoding of categorical vectors"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#image-embeddings",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#image-embeddings",
+    "title": "Essential Linear Algebra",
+    "section": "Image Embeddings",
+    "text": "Image Embeddings\nEach sample in the MNIST database is a \\(28x28\\) gray scale image, represented by a \\(28\\times 28\\) array of integers between 0 and 255.\n\nwith open(\"data/train-images.idx3-ubyte\",'rb') as f:\n    f.read(16)\n    buf = f.read(28*28)\n    data = np.frombuffer(buf,dtype=np.uint8).astype(np.float32)\n    data = data.reshape(1,28,28)\nfor x in range(28):\n    for y in range(28):\n        print('{:>4}'.format(int(data[0,x,y])),end=\"\")\n    print(\"\\n\")\n\nimage = np.asarray(data[0].squeeze())\nplt.imshow(image)\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   3  18  18  18 126 136 175  26 166 255 247 127   0   0   0   0\n\n   0   0   0   0   0   0   0   0  30  36  94 154 170 253 253 253 253 253 225 172 253 242 195  64   0   0   0   0\n\n   0   0   0   0   0   0   0  49 238 253 253 253 253 253 253 253 253 251  93  82  82  56  39   0   0   0   0   0\n\n   0   0   0   0   0   0   0  18 219 253 253 253 253 253 198 182 247 241   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0  80 156 107 253 253 205  11   0  43 154   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0  14   1 154 253  90   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0 139 253 190   2   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0  11 190 253  70   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0  35 241 225 160 108   1   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0  81 240 253 253 119  25   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0  45 186 253 253 150  27   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0  16  93 252 253 187   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 249 253 249  64   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0  46 130 183 253 253 207   2   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0  39 148 229 253 253 253 250 182   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0  24 114 221 253 253 253 253 201  78   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0  23  66 213 253 253 253 253 198  81   2   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0  18 171 219 253 253 253 253 195  80   9   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0  55 172 226 253 253 253 253 244 133  11   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0 136 253 253 253 212 135 132  16   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n\n\n<matplotlib.image.AxesImage at 0x7f1d83333df0>\n\n\n\n\n\nHere we can view each image as a vector in a 784 dimensional (=28*28) space.\nA collection of 100 images would be represented by an array with 100 rows and 784 columns\nA 28x28 image in color has 28283 numbers to account for the RGB channels."
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#one-hot-embedding",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#one-hot-embedding",
+    "title": "Essential Linear Algebra",
+    "section": "One Hot Embedding",
+    "text": "One Hot Embedding\nNormally categorical variables don’t embed direcly into \\(\\mathbf{R}^{n}\\) but one can use “one-hot” embedding.\nSuppose our categorical vector has 4 levels: red, green, blue, orange.\nThe “one-hot” embedding uses four features, and each color corresponds to a vector with a one in the column corresponding to the color and zeros elsewhere.\n\n\n\nred\ngreen\nblue\norange\n\n\n\n\n1\n0\n0\n0\n\n\n0\n1\n0\n0\n\n\n0\n0\n1\n0\n\n\n0\n0\n0\n1\n\n\n\nSo to use one-hot encoding of our feature data, we’d add four columns to our data matrix."
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#features",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#features",
+    "title": "Essential Linear Algebra",
+    "section": "Features",
+    "text": "Features\nWe can also look at a single feature for all of the penguins. For example, ‘Culmen Length (mm)’ is a feature and there is a vector in \\(\\mathbf{R}^{342}\\) consisting of all of the Culmen Lengths for all of the penguins.\nIn the tidy convention, we summarize our data in an array or matrix where each row corresponds to a sample and each column to a feature. So our penguin data has \\(342\\) rows (corresponding to the 342 penguins with no missing data) and 4 columns corresponding to four features."
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#word-embeddings",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#word-embeddings",
+    "title": "Essential Linear Algebra",
+    "section": "Word embeddings",
+    "text": "Word embeddings\nWord2vec is a technique developed by scientists at google that embeds a vocabulary into \\(\\mathbf{R}^{n}\\). Each of 3 million words has a 300 dimensional vector representing it.\nSee this google page."
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#linear-combinations",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#linear-combinations",
+    "title": "Essential Linear Algebra",
+    "section": "Linear combinations",
+    "text": "Linear combinations\nIf \\(v_1,\\ldots, v_k\\) are vectors in \\(\\mathbf{R}^{n}\\) then a weighted sum of the \\(v_{i}\\) is called a linear combination.\n\\[\nw = \\sum b_{i}v_{i}\n\\]\nSuppose our data is the performance of students on 2 homeworks, 1 midterm, and one final, all scored on a 100 points scale, with each homework worth 10% of the total, the midterm worth 25% and the final worth 55%. If there are 20 students our data is a \\(20 x 4\\) array with each row having the grades of a single student and each column having all the scores for a particular assignment.\nLet \\(v_1, v_2, v_3, v_4\\) be the four columns. Then the final score is the linear combination \\[\ns=.1v_1+.1v_2+.25v_3+.55v_4\n\\]\nThe vector \\(s\\), the score, is a linear combination of the features."
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#linear-dependence-and-linear-independence",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#linear-dependence-and-linear-independence",
+    "title": "Essential Linear Algebra",
+    "section": "Linear Dependence and Linear Independence",
+    "text": "Linear Dependence and Linear Independence\nIn the example above, the final score is a linear combination of the features. We say that the final score is dependent on the features. More generally, a collection of vectors is linearly dependent if there are constants, not all zero, so that\n\\[\nb_1v_1+...+b_kv_k=0.\n\\]\nIf they’re dependent, it means one of them can be written in terms of the other.\nIf they aren’t dependent, they are independent. This means that the only way you can get \\[\nb_1v_1+...+b_kv_k=0\n\\] is if all the constants are zero.\nNone of the vectors can be written in terms of the others.\nMathematically, dependence is an exact relationship."
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#basis",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#basis",
+    "title": "Essential Linear Algebra",
+    "section": "Basis",
+    "text": "Basis\n\ndependent, or almost dependent features, don’t add new information\nlinear combinations of features yield new features (scores)\ndifferent bases give different points of view on the same data (for example rescaling data to standard z-scores)"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#approximate-linear-dependence",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#approximate-linear-dependence",
+    "title": "Essential Linear Algebra",
+    "section": "Approximate linear dependence",
+    "text": "Approximate linear dependence\nSometimes two features are “almost” linearly related.\n\nimport statsmodels.api as sm\nmpg = pd.read_csv(\"data/auto-mpg.csv\")\nx=mpg['displacement'].values\ny=mpg['mpg'].values\nx1= sm.add_constant(x)\nmodel = sm.OLS(y,x1).fit()\nx0 = np.linspace(50,450,10)\nx1 = sm.add_constant(x0)\npredictions = model.predict(x1)\nplt.scatter(x,y)\nplt.plot(x0,predictions,color='red')\nplt.title(\"Miles per Gallon vs Engine Displacement\")\nplt.xlabel(\"Displacement\")\n\nText(0.5, 0, 'Displacement')\n\n\n\n\n\nLinear Regression (studied later) tries to capture this."
   }
 ]

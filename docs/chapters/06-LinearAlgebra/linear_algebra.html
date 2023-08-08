@@ -229,23 +229,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Arrow</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_plot(xmin,ymin,xmax,ymax):</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(xmin,xmax)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim(ymin,ymax)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    ax.set_xticks(np.arange(xmin,xmax,<span class="dv">1</span>))</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    ax.set_yticks(np.arange(ymin,ymax,<span class="dv">1</span>))</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    ax.set_aspect(<span class="st">'equal'</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    ax.grid(visible<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fig, ax</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> draw_arrow(x0,y0,x1,y1,axes,color<span class="op">=</span><span class="st">'blue'</span>,alpha<span class="op">=</span><span class="dv">1</span>):</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    axes.add_patch(Arrow(x0,y0,x1<span class="op">-</span>x0,y1<span class="op">-</span>y0,width<span class="op">=</span><span class="fl">.3</span>,color<span class="op">=</span>color,alpha<span class="op">=</span>alpha))</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> axes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Arrow</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_plot(xmin,ymin,xmax,ymax):</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(xmin,xmax)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim(ymin,ymax)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    ax.set_xticks(np.arange(xmin,xmax,<span class="dv">1</span>))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    ax.set_yticks(np.arange(ymin,ymax,<span class="dv">1</span>))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    ax.grid(visible<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fig, ax</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> draw_arrow(x0,y0,x1,y1,axes,color<span class="op">=</span><span class="st">'blue'</span>,alpha<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    axes.add_patch(Arrow(x0,y0,x1<span class="op">-</span>x0,y1<span class="op">-</span>y0,width<span class="op">=</span><span class="fl">.3</span>,color<span class="op">=</span>color,alpha<span class="op">=</span>alpha))</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> axes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="vectors-and-scalars" class="level2">
 <h2 class="anchored" data-anchor-id="vectors-and-scalars">Vectors and Scalars</h2>
@@ -287,15 +288,212 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="feature-space" class="level2">
 <h2 class="anchored" data-anchor-id="feature-space">Feature Space</h2>
-<ul>
-<li>examples including word2vec and embeddings</li>
-<li>maybe polynomial regression?</li>
-<li>images as vectors</li>
-<li>one-hot encoding of categorical vectors</li>
-</ul>
+<p>Each ‘dimension’ in feature space corresponds to a ‘feature’ or measurement of the data. <em>Here we are assuming for now that the features are continuous and measured by real numbers</em>.</p>
+<p>Let’s choose some numerical features of the penguins dataset.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"data/penguins-raw.csv"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data[[<span class="st">'Culmen Length (mm)'</span>,<span class="st">'Culmen Depth (mm)'</span>,<span class="st">'Flipper Length (mm)'</span>,<span class="st">'Body Mass (g)'</span>]].dropna().values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Each penguin is represented by a vector in <span class="math inline">\(\mathbf{R}^{4}\)</span>. So for example penguin number 34 is represented as follows.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">34</span>,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>array([  39.2,   21.1,  196. , 4150. ])</code></pre>
+</div>
+</div>
+<p>This abstraction of penguins into vectors is sometimes called “an embedding”.</p>
 </section>
-<section id="linear-dependence-and-linear-independence-basis-scores" class="level2">
-<h2 class="anchored" data-anchor-id="linear-dependence-and-linear-independence-basis-scores">Linear Dependence and Linear Independence; basis; scores</h2>
+<section id="features" class="level2">
+<h2 class="anchored" data-anchor-id="features">Features</h2>
+<p>We can also look at a single feature for <em>all</em> of the penguins. For example, ‘Culmen Length (mm)’ is a feature and there is a vector in <span class="math inline">\(\mathbf{R}^{342}\)</span> consisting of all of the Culmen Lengths for all of the penguins.</p>
+<p>In the <em>tidy</em> convention, we summarize our data in an array or matrix where each row corresponds to a sample and each column to a feature. So our penguin data has <span class="math inline">\(342\)</span> rows (corresponding to the 342 penguins with no missing data) and 4 columns corresponding to four features.</p>
+</section>
+<section id="image-embeddings" class="level2">
+<h2 class="anchored" data-anchor-id="image-embeddings">Image Embeddings</h2>
+<p>Each sample in the MNIST database is a <span class="math inline">\(28x28\)</span> gray scale image, represented by a <span class="math inline">\(28\times 28\)</span> array of integers between 0 and 255.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data/train-images.idx3-ubyte"</span>,<span class="st">'rb'</span>) <span class="im">as</span> f:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    f.read(<span class="dv">16</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    buf <span class="op">=</span> f.read(<span class="dv">28</span><span class="op">*</span><span class="dv">28</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> np.frombuffer(buf,dtype<span class="op">=</span>np.uint8).astype(np.float32)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> data.reshape(<span class="dv">1</span>,<span class="dv">28</span>,<span class="dv">28</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">28</span>):</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> y <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">28</span>):</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'</span><span class="sc">{:&gt;4}</span><span class="st">'</span>.<span class="bu">format</span>(<span class="bu">int</span>(data[<span class="dv">0</span>,x,y])),end<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> np.asarray(data[<span class="dv">0</span>].squeeze())</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>plt.imshow(image)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+
+   0   0   0   0   0   0   0   0   0   0   0   0   3  18  18  18 126 136 175  26 166 255 247 127   0   0   0   0
+
+   0   0   0   0   0   0   0   0  30  36  94 154 170 253 253 253 253 253 225 172 253 242 195  64   0   0   0   0
+
+   0   0   0   0   0   0   0  49 238 253 253 253 253 253 253 253 253 251  93  82  82  56  39   0   0   0   0   0
+
+   0   0   0   0   0   0   0  18 219 253 253 253 253 253 198 182 247 241   0   0   0   0   0   0   0   0   0   0
+
+   0   0   0   0   0   0   0   0  80 156 107 253 253 205  11   0  43 154   0   0   0   0   0   0   0   0   0   0
+
+   0   0   0   0   0   0   0   0   0  14   1 154 253  90   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+
+   0   0   0   0   0   0   0   0   0   0   0 139 253 190   2   0   0   0   0   0   0   0   0   0   0   0   0   0
+
+   0   0   0   0   0   0   0   0   0   0   0  11 190 253  70   0   0   0   0   0   0   0   0   0   0   0   0   0
+
+   0   0   0   0   0   0   0   0   0   0   0   0  35 241 225 160 108   1   0   0   0   0   0   0   0   0   0   0
+
+   0   0   0   0   0   0   0   0   0   0   0   0   0  81 240 253 253 119  25   0   0   0   0   0   0   0   0   0
+
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0  45 186 253 253 150  27   0   0   0   0   0   0   0   0
+
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0  16  93 252 253 187   0   0   0   0   0   0   0   0
+
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 249 253 249  64   0   0   0   0   0   0   0
+
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0  46 130 183 253 253 207   2   0   0   0   0   0   0   0
+
+   0   0   0   0   0   0   0   0   0   0   0   0  39 148 229 253 253 253 250 182   0   0   0   0   0   0   0   0
+
+   0   0   0   0   0   0   0   0   0   0  24 114 221 253 253 253 253 201  78   0   0   0   0   0   0   0   0   0
+
+   0   0   0   0   0   0   0   0  23  66 213 253 253 253 253 198  81   2   0   0   0   0   0   0   0   0   0   0
+
+   0   0   0   0   0   0  18 171 219 253 253 253 253 195  80   9   0   0   0   0   0   0   0   0   0   0   0   0
+
+   0   0   0   0  55 172 226 253 253 253 253 244 133  11   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+
+   0   0   0   0 136 253 253 253 212 135 132  16   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f1d83333df0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="linear_algebra_files/figure-html/cell-7-output-3.png" width="415" height="411"></p>
+</div>
+</div>
+<p>Here we can view each image as a vector in a 784 dimensional (=28*28) space.</p>
+<p>A collection of 100 images would be represented by an array with 100 rows and 784 columns</p>
+<p>A 28x28 image in color has 28<em>28</em>3 numbers to account for the RGB channels.</p>
+</section>
+<section id="one-hot-embedding" class="level2">
+<h2 class="anchored" data-anchor-id="one-hot-embedding">One Hot Embedding</h2>
+<p>Normally categorical variables don’t embed direcly into <span class="math inline">\(\mathbf{R}^{n}\)</span> but one can use “one-hot” embedding.</p>
+<p>Suppose our categorical vector has 4 levels: red, green, blue, orange.</p>
+<p>The “one-hot” embedding uses four features, and each color corresponds to a vector with a one in the column corresponding to the color and zeros elsewhere.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>red</th>
+<th>green</th>
+<th>blue</th>
+<th>orange</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>So to use one-hot encoding of our feature data, we’d add four columns to our data matrix.</p>
+</section>
+<section id="word-embeddings" class="level2">
+<h2 class="anchored" data-anchor-id="word-embeddings">Word embeddings</h2>
+<p>Word2vec is a technique developed by scientists at google that embeds a vocabulary into <span class="math inline">\(\mathbf{R}^{n}\)</span>. Each of 3 million words has a 300 dimensional vector representing it.</p>
+<p>See <a href="https://code.google.com/archive/p/word2vec/">this google page.</a></p>
+</section>
+<section id="linear-combinations" class="level2">
+<h2 class="anchored" data-anchor-id="linear-combinations">Linear combinations</h2>
+<p>If <span class="math inline">\(v_1,\ldots, v_k\)</span> are vectors in <span class="math inline">\(\mathbf{R}^{n}\)</span> then a weighted sum of the <span class="math inline">\(v_{i}\)</span> is called a <em>linear combination.</em></p>
+<p><span class="math display">\[
+w = \sum b_{i}v_{i}
+\]</span></p>
+<p>Suppose our data is the performance of students on 2 homeworks, 1 midterm, and one final, all scored on a 100 points scale, with each homework worth 10% of the total, the midterm worth 25% and the final worth 55%. If there are 20 students our data is a <span class="math inline">\(20 x 4\)</span> array with each row having the grades of a single student and each column having all the scores for a particular assignment.</p>
+<p>Let <span class="math inline">\(v_1, v_2, v_3, v_4\)</span> be the four columns. Then the final score is the linear combination <span class="math display">\[
+s=.1v_1+.1v_2+.25v_3+.55v_4
+\]</span></p>
+<p>The vector <span class="math inline">\(s\)</span>, the <em>score</em>, is a linear combination of the features.</p>
+</section>
+<section id="linear-dependence-and-linear-independence" class="level2">
+<h2 class="anchored" data-anchor-id="linear-dependence-and-linear-independence">Linear Dependence and Linear Independence</h2>
+<p>In the example above, the final score is a linear combination of the features. We say that the final score is <em>dependent</em> on the features. More generally, a collection of vectors is linearly <em>dependent</em> if there are constants, not all zero, so that</p>
+<p><span class="math display">\[
+b_1v_1+...+b_kv_k=0.
+\]</span></p>
+<p>If they’re dependent, it means one of them can be written in terms of the other.</p>
+<p>If they aren’t dependent, they are <em>independent.</em> This means that the only way you can get <span class="math display">\[
+b_1v_1+...+b_kv_k=0
+\]</span> is if all the constants are zero.</p>
+<p>None of the vectors can be written in terms of the others.</p>
+<p>Mathematically, dependence is an <em>exact</em> relationship.</p>
+</section>
+<section id="approximate-linear-dependence" class="level2">
+<h2 class="anchored" data-anchor-id="approximate-linear-dependence">Approximate linear dependence</h2>
+<p>Sometimes two features are “almost” linearly related.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mpg <span class="op">=</span> pd.read_csv(<span class="st">"data/auto-mpg.csv"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>mpg[<span class="st">'displacement'</span>].values</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>mpg[<span class="st">'mpg'</span>].values</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>x1<span class="op">=</span> sm.add_constant(x)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.OLS(y,x1).fit()</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> np.linspace(<span class="dv">50</span>,<span class="dv">450</span>,<span class="dv">10</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> sm.add_constant(x0)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> model.predict(x1)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>plt.scatter(x,y)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>plt.plot(x0,predictions,color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Miles per Gallon vs Engine Displacement"</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Displacement"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>Text(0.5, 0, 'Displacement')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="linear_algebra_files/figure-html/cell-8-output-2.png" width="566" height="449"></p>
+</div>
+</div>
+<p>Linear Regression (studied later) tries to capture this.</p>
+</section>
+<section id="basis" class="level2">
+<h2 class="anchored" data-anchor-id="basis">Basis</h2>
 <ul>
 <li>dependent, or almost dependent features, don’t add new information</li>
 <li>linear combinations of features yield new features (scores)</li>
