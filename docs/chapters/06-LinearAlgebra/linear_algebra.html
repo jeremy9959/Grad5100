@@ -383,7 +383,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>&lt;matplotlib.image.AxesImage at 0x7f1d83333df0&gt;</code></pre>
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f2154f17fd0&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="linear_algebra_files/figure-html/cell-7-output-3.png" width="415" height="411"></p>
@@ -469,39 +469,47 @@ b_1v_1+...+b_kv_k=0
 <section id="approximate-linear-dependence" class="level2">
 <h2 class="anchored" data-anchor-id="approximate-linear-dependence">Approximate linear dependence</h2>
 <p>Sometimes two features are “almost” linearly related.</p>
+<p>In an old dataset about car models, with 398 types of cars and 9 features, two features are “miles per gallon” and “engine displacement”. If we look at mpg and displacement relative to their means by subtracting their averages values, we see that</p>
+<p>Here, miles per gallon (relative to its mean value) is roughly linearly dependent on displacement (relative to its mean). <span class="math display">\[
+\mathrm{mpg}-\overline{\mathrm{mpg}} = -.0603(\mathrm{disp}-\overline{\mathrm{disp}})
+\]</span></p>
+<p>So we don’t learn much new from ‘mpg’ that isn’t already in ‘displacement’.</p>
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mpg <span class="op">=</span> pd.read_csv(<span class="st">"data/auto-mpg.csv"</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>mpg[<span class="st">'displacement'</span>].values</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>mpg[<span class="st">'mpg'</span>].values</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>x1<span class="op">=</span> sm.add_constant(x)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.OLS(y,x1).fit()</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> np.linspace(<span class="dv">50</span>,<span class="dv">450</span>,<span class="dv">10</span>)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> sm.add_constant(x0)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> model.predict(x1)</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>plt.scatter(x,y)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>plt.plot(x0,predictions,color<span class="op">=</span><span class="st">'red'</span>)</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Miles per Gallon vs Engine Displacement"</span>)</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Displacement"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>x<span class="op">-</span>np.mean(x)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>mpg[<span class="st">'mpg'</span>].values</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>y<span class="op">-</span>np.mean(y)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>x1<span class="op">=</span> sm.add_constant(x)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.OLS(y,x1).fit()</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">100</span>,<span class="dv">300</span>,<span class="dv">10</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> sm.add_constant(x0)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> model.predict(x1)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>plt.scatter(x,y)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>plt.plot(x0,predictions,color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Miles per Gallon vs Engine Displacement"</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Displacement"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>Text(0.5, 0, 'Displacement')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="linear_algebra_files/figure-html/cell-8-output-2.png" width="566" height="449"></p>
+<p><img src="linear_algebra_files/figure-html/cell-8-output-2.png" width="578" height="449"></p>
 </div>
 </div>
 <p>Linear Regression (studied later) tries to capture this.</p>
 </section>
-<section id="basis" class="level2">
-<h2 class="anchored" data-anchor-id="basis">Basis</h2>
-<ul>
-<li>dependent, or almost dependent features, don’t add new information</li>
-<li>linear combinations of features yield new features (scores)</li>
-<li>different bases give different points of view on the same data (for example rescaling data to standard z-scores)</li>
-</ul>
+<section id="span" class="level2">
+<h2 class="anchored" data-anchor-id="span">Span</h2>
+<p>The span of a collection of vectors is the set of all linear combinations of those vectors.</p>
 </section>
-<section id="subspaces-hyperplanes-and-dimension" class="level2">
-<h2 class="anchored" data-anchor-id="subspaces-hyperplanes-and-dimension">Subspaces, hyperplanes, and dimension</h2>
+<section id="basis-and-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="basis-and-dimension">Basis and dimension</h2>
+<p>A basis is a linearly independent, spanning set. The number of elements in a basis is always the same; it is called the <em>dimension</em> of the vector space.</p>
+<p>The dimension of <span class="math inline">\(\mathbf{R}^{n}\)</span> is <span class="math inline">\(n\)</span> (the standard vectors are independent and span).</p>
+</section>
+<section id="subspaces-and-hyperplanes" class="level2">
+<h2 class="anchored" data-anchor-id="subspaces-and-hyperplanes">Subspaces and hyperplanes</h2>
 </section>
 <section id="linear-maps-and-matrices" class="level2">
 <h2 class="anchored" data-anchor-id="linear-maps-and-matrices">Linear Maps and Matrices</h2>
