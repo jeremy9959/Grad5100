@@ -29,4 +29,5 @@ website:
 format:
   html:
     theme: cosmo
+    code-block-bg: true
 
