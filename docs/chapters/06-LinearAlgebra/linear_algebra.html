@@ -383,7 +383,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>&lt;matplotlib.image.AxesImage at 0x7f2154f17fd0&gt;</code></pre>
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f2bc2befee0&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="linear_algebra_files/figure-html/cell-7-output-3.png" width="415" height="411"></p>
@@ -466,6 +466,20 @@ b_1v_1+...+b_kv_k=0
 <p>None of the vectors can be written in terms of the others.</p>
 <p>Mathematically, dependence is an <em>exact</em> relationship.</p>
 </section>
+<section id="linear-relations-in-python" class="level2">
+<h2 class="anchored" data-anchor-id="linear-relations-in-python">Linear relations in python</h2>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>vectors <span class="op">=</span> [np.random.uniform(size<span class="op">=</span><span class="dv">8</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)] <span class="co"># 10 random vectors</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>scalars <span class="op">=</span> [np.random.normal() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)] <span class="co"># 10 random scalars</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>prods <span class="op">=</span> [scalars[i]<span class="op">*</span>vectors[i] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)] <span class="co"># products</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="bu">sum</span>(prods) <span class="co"># sum of products</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[-0.47019322  0.11090595 -0.84779664  0.66267003 -0.63930001  2.16971244
+ -0.28428033 -0.53758636]</code></pre>
+</div>
+</div>
+</section>
 <section id="approximate-linear-dependence" class="level2">
 <h2 class="anchored" data-anchor-id="approximate-linear-dependence">Approximate linear dependence</h2>
 <p>Sometimes two features are “almost” linearly related.</p>
@@ -474,27 +488,27 @@ b_1v_1+...+b_kv_k=0
 \mathrm{mpg}-\overline{\mathrm{mpg}} = -.0603(\mathrm{disp}-\overline{\mathrm{disp}})
 \]</span></p>
 <p>So we don’t learn much new from ‘mpg’ that isn’t already in ‘displacement’.</p>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mpg <span class="op">=</span> pd.read_csv(<span class="st">"data/auto-mpg.csv"</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>mpg[<span class="st">'displacement'</span>].values</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>x<span class="op">-</span>np.mean(x)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>mpg[<span class="st">'mpg'</span>].values</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>y<span class="op">-</span>np.mean(y)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>x1<span class="op">=</span> sm.add_constant(x)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.OLS(y,x1).fit()</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">100</span>,<span class="dv">300</span>,<span class="dv">10</span>)</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> sm.add_constant(x0)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> model.predict(x1)</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>plt.scatter(x,y)</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>plt.plot(x0,predictions,color<span class="op">=</span><span class="st">'red'</span>)</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Miles per Gallon vs Engine Displacement"</span>)</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Displacement"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>mpg <span class="op">=</span> pd.read_csv(<span class="st">"data/auto-mpg.csv"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>mpg[<span class="st">'displacement'</span>].values</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>x<span class="op">-</span>np.mean(x)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>mpg[<span class="st">'mpg'</span>].values</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>y<span class="op">-</span>np.mean(y)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>x1<span class="op">=</span> sm.add_constant(x)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.OLS(y,x1).fit()</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">100</span>,<span class="dv">300</span>,<span class="dv">10</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> sm.add_constant(x0)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> model.predict(x1)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>plt.scatter(x,y)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>plt.plot(x0,predictions,color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Miles per Gallon vs Engine Displacement"</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Displacement"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>Text(0.5, 0, 'Displacement')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="linear_algebra_files/figure-html/cell-8-output-2.png" width="578" height="449"></p>
+<p><img src="linear_algebra_files/figure-html/cell-9-output-2.png" width="578" height="449"></p>
 </div>
 </div>
 <p>Linear Regression (studied later) tries to capture this.</p>
@@ -507,6 +521,37 @@ b_1v_1+...+b_kv_k=0
 <h2 class="anchored" data-anchor-id="basis-and-dimension">Basis and dimension</h2>
 <p>A basis is a linearly independent, spanning set. The number of elements in a basis is always the same; it is called the <em>dimension</em> of the vector space.</p>
 <p>The dimension of <span class="math inline">\(\mathbf{R}^{n}\)</span> is <span class="math inline">\(n\)</span> (the standard vectors are independent and span).</p>
+</section>
+<section id="distances-and-the-euclidean-norm" class="level2">
+<h2 class="anchored" data-anchor-id="distances-and-the-euclidean-norm">Distances and the euclidean norm</h2>
+<p>The norm of a vector <span class="math inline">\(v=(a_1,\ldots, a_n)\)</span> is <span class="math display">\[
+\|v\| = (\sum a_{i}^2)^{1/2}
+\]</span></p>
+<p>It is the “length” of the vector.</p>
+<p>The Euclidean distance between two points <span class="math inline">\(v\)</span> and <span class="math inline">\(w\)</span> is <span class="math display">\[
+\|v-w\|
+\]</span></p>
+</section>
+<section id="mean-squared-error-in-vector-form" class="level2">
+<h2 class="anchored" data-anchor-id="mean-squared-error-in-vector-form">Mean Squared Error in vector form</h2>
+<p>Remember our example the “almost” dependence of mpg and displacement.</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mpg0 <span class="op">=</span> mpg[<span class="st">'mpg'</span>] <span class="op">-</span> np.mean(mpg[<span class="st">'mpg'</span>])</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>disp0 <span class="op">=</span> mpg[<span class="st">'displacement'</span>] <span class="op">-</span> np.mean(mpg[<span class="st">'displacement'</span>])</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>predicted <span class="op">=</span> <span class="op">-</span><span class="fl">.0603</span><span class="op">*</span>disp0</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(disp0, mpg0)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>plt.scatter(disp0, predicted)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"MSE=</span><span class="sc">{:.2f}</span><span class="st">"</span>.<span class="bu">format</span>(np.linalg.norm(mpg0<span class="op">-</span>predicted)<span class="op">/</span>mpg0.shape[<span class="dv">0</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>Text(0.5, 1.0, 'MSE=0.23')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="linear_algebra_files/figure-html/cell-10-output-2.png" width="578" height="431"></p>
+</div>
+</div>
+</section>
+<section id="the-dot-product-orthogonality-cauchy-schwartz" class="level2">
+<h2 class="anchored" data-anchor-id="the-dot-product-orthogonality-cauchy-schwartz">The dot product, orthogonality, cauchy-schwartz</h2>
 </section>
 <section id="subspaces-and-hyperplanes" class="level2">
 <h2 class="anchored" data-anchor-id="subspaces-and-hyperplanes">Subspaces and hyperplanes</h2>
@@ -525,12 +570,6 @@ b_1v_1+...+b_kv_k=0
 </section>
 <section id="separating-hyperplanes-convex-sets" class="level2">
 <h2 class="anchored" data-anchor-id="separating-hyperplanes-convex-sets">Separating hyperplanes, convex sets</h2>
-</section>
-<section id="distances-and-the-euclidean-norm" class="level2">
-<h2 class="anchored" data-anchor-id="distances-and-the-euclidean-norm">Distances and the euclidean norm</h2>
-</section>
-<section id="the-dot-product-orthogonality-cauchy-schwartz" class="level2">
-<h2 class="anchored" data-anchor-id="the-dot-product-orthogonality-cauchy-schwartz">The dot product, orthogonality, cauchy-schwartz</h2>
 </section>
 <section id="orthogonal-projection-minimum-distance-to-a-hyperspace" class="level2">
 <h2 class="anchored" data-anchor-id="orthogonal-projection-minimum-distance-to-a-hyperspace">orthogonal projection, minimum distance to a hyperspace</h2>

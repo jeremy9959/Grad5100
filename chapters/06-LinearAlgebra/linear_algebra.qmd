@@ -197,7 +197,17 @@ is if all the constants are zero.
 
 None of the vectors can be written in terms of the others. 
 
-Mathematically, dependence is an *exact* relationship.  
+Mathematically, dependence is an *exact* relationship. 
+
+## Linear relations in python
+
+```{python}
+vectors = [np.random.uniform(size=8) for i in range(5)] # 10 random vectors
+scalars = [np.random.normal() for i in range(5)] # 10 random scalars
+prods = [scalars[i]*vectors[i] for i in range(5)] # products
+result = sum(prods) # sum of products
+print(result)
+```
 
 ## Approximate linear dependence
 
@@ -249,24 +259,47 @@ in a basis is always the same; it is called the *dimension* of the vector space.
 
 The dimension of $\mathbf{R}^{n}$ is $n$ (the standard vectors are independent and span).
 
+## Distances and the euclidean norm
 
-## Subspaces and hyperplanes
+The norm of a vector $v=(a_1,\ldots, a_n)$ is 
+$$
+\|v\| = (\sum a_{i}^2)^{1/2}
+$$
+
+It is the "length" of the vector.  
+
+The Euclidean distance between two points $v$ and $w$ is
+$$
+\|v-w\|
+$$
+
+## Mean Squared Error in vector form
+
+Remember our example the "almost" dependence of mpg and displacement.
+
+```{python}
+mpg0 = mpg['mpg'] - np.mean(mpg['mpg'])
+disp0 = mpg['displacement'] - np.mean(mpg['displacement'])
+predicted = -.0603*disp0
+plt.scatter(disp0, mpg0)
+plt.scatter(disp0, predicted)
+plt.title("MSE={:.2f}".format(np.linalg.norm(mpg0-predicted)/mpg0.shape[0]))
+```
+
+The mean squared error is the squared distance between a true and predicted value, divided by the number of values. 
 
 
+## The dot product, orthogonality, cauchy-schwartz
 
-## Linear Maps and Matrices
+## Hyperplanes
+
+## Matrices and Matrix Multiplication
+
+## Linear maps
+
 
 ## Rank and invertibility
 
-## Matrix multiplication
-
-## Linear Systems
-
-## Separating hyperplanes, convex sets
-
-## Distances and the euclidean norm
-
-## The dot product, orthogonality, cauchy-schwartz
 
 ## orthogonal projection, minimum distance to a hyperspace
 
