@@ -23,7 +23,7 @@ website:
         - chapters/03-RBasics/r-walkthrough.qmd
         - chapters/04-StatBasics/stat-basics.qmd  
         - chapters/05-WorkingWithData/pythonAndR.qmd
-        - chapters/06-LinearAlgebra/07-LinearAlgebra.qmd
+        - chapters/06-LinearAlgebra/linear_algebra.qmd
   
 
   
