@@ -1,6 +1,6 @@
 # Render the quarto web page
 
-publish:
+publish: 
 	quarto render
 	git add .
 	git commit -m 'updating published version'

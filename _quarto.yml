@@ -3,7 +3,6 @@ project:
   output-dir: docs
   render:
     - index.qmd
-    - chapters/00-OrientationProject/00-project.qmd
     - chapters/01-SettingUp/setting-up.qmd
     - chapters/02-JupyterBasics/jupyter-walkthrough.qmd
     - chapters/03-RBasics/r-walkthrough.qmd
@@ -11,7 +10,7 @@ project:
     - chapters/05-WorkingWithData/pythonAndR.qmd
     - chapters/05-WorkingWithData/r_penguins.qmd
     - chapters/05-WorkingWithData/pandas_penguins.qmd
-
+    - chapters/06-LinearAlgebra/linear_algebra.qmd  
 
 website:
   title: "Fundamentals of Machine Learning"
@@ -19,12 +18,12 @@ website:
     contents:
       - section: "Contents"
         contents:
-        - chapters/00-OrientationProject/00-project.qmd
         - chapters/01-SettingUp/setting-up.qmd  
         - chapters/02-JupyterBasics/jupyter-walkthrough.qmd
         - chapters/03-RBasics/r-walkthrough.qmd
         - chapters/04-StatBasics/stat-basics.qmd  
         - chapters/05-WorkingWithData/pythonAndR.qmd
+        - chapters/06-LinearAlgebra/07-LinearAlgebra.qmd
   
 
   

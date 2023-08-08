@@ -7,20 +7,6 @@
     "text": "Fundamentals of Machine Learning\nThis site contains resources for UConn’s “Fundamentals of Machine Learning” Course."
   },
   {
-    "objectID": "chapters/00-OrientationProject/00-project.html",
-    "href": "chapters/00-OrientationProject/00-project.html",
-    "title": "Orientation Project",
-    "section": "",
-    "text": "GitHub is a huge repository of open source software projects managed by the version control software git. GitHub and git are designed to allow many people working independently to contribute to a software project, keeping track of different versions and the contributions of different people\nLater we will use GitHub to actually manage software but our goal today is to take advantage of the ability to create a personal web page on GitHub."
-  },
-  {
-    "objectID": "chapters/00-OrientationProject/00-project.html#steps",
-    "href": "chapters/00-OrientationProject/00-project.html#steps",
-    "title": "Orientation Project",
-    "section": "Steps",
-    "text": "Steps\n\nCreate a GitHub account with your selected username\nCreate a new repository named username.github.io. Include a basic README.md file.\n\n\n\nTurn on github pages for this repository from the settings link. This is probably done already. Check the published site at https://username.github.io\n\n\n\nCreate a file _config.yml so you can choose a theme. Here we use the architect theme to start with.\n\n\n\nWait a bit and then look at the results.\n\n\n\nLook at the theme possibilities and pick one you like by modifying the _config.yaml file. Notice that it takes a while to deploy the new theme.\n\n\n\nAdd more content! Add more info to the _config.yml file using the theme documentation!"
-  },
-  {
     "objectID": "chapters/01-SettingUp/setting-up.html",
     "href": "chapters/01-SettingUp/setting-up.html",
     "title": "Key Tools for Data Science",
@@ -508,7 +494,7 @@
     "href": "chapters/04-StatBasics/stat-basics.html#simulation",
     "title": "Statistical Basics",
     "section": "Simulation",
-    "text": "Simulation\nBy simulation:\n\nsimulated <- rbinom(10000, 4600, .224)\nsum(simulated >= 1133)\n\n[1] 4"
+    "text": "Simulation\nBy simulation:\n\nsimulated <- rbinom(10000, 4600, .224)\nsum(simulated >= 1133)\n\n[1] 1"
   },
   {
     "objectID": "chapters/05-WorkingWithData/pythonAndR.html",
@@ -872,7 +858,7 @@
     "href": "chapters/05-WorkingWithData/pandas_penguins.html#grouping",
     "title": "Working with data in python/pandas",
     "section": "Grouping",
-    "text": "Grouping\nGrouping is a powerful tool. Let’s first group our penguins by species. The result is a “grouped” object which needs to pass through a summarize operation to be useful.\n\npenguins_by_species = penguins.groupby('Species')\npenguins_by_species\n\n<pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f58dfebc610>"
+    "text": "Grouping\nGrouping is a powerful tool. Let’s first group our penguins by species. The result is a “grouped” object which needs to pass through a summarize operation to be useful.\n\npenguins_by_species = penguins.groupby('Species')\npenguins_by_species\n\n<pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f0c16e4bdf0>"
   },
   {
     "objectID": "chapters/05-WorkingWithData/pandas_penguins.html#summarizing",
@@ -901,5 +887,124 @@
     "title": "Working with data in python/pandas",
     "section": "Excel files",
     "text": "Excel files\nWe can read an excel file. This particular one is complicated for various reasons, including the fact that the column heads are in the third row, not at the top. Also there are a bunch of footnotes starting in row 510 that we don’t want. So we don’t read them in.\n\ncrime2019 = pd.read_excel(\"data/Violent Crime-by state-2019-table-5.xls\",header=3,nrows=510)\ncrime2019\n\n\n\n\n\n  \n    \n      \n      State\n      Area\n      Unnamed: 2\n      Population\n      Violent \\ncrime1\n      Murder and \\nnonnegligent \\nmanslaughter\n      Rape2\n      Robbery\n      Aggravated \\nassault\n      Property \\ncrime\n      Burglary\n      Larceny-theft\n      Motor \\nvehicle \\ntheft\n    \n  \n  \n    \n      0\n      ALABAMA\n      Metropolitan Statistical Area\n      NaN\n      3728978\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n    \n    \n      1\n      NaN\n      NaN\n      Area actually reporting\n      0.766\n      12880\n      182.0\n      1141.0\n      1706.0\n      9851\n      65789\n      12388.0\n      47299.0\n      6102.0\n    \n    \n      2\n      NaN\n      NaN\n      Estimated total\n      1\n      19951\n      300.0\n      1542.0\n      3432.0\n      14677\n      104658\n      20728.0\n      73857.0\n      10073.0\n    \n    \n      3\n      NaN\n      Cities outside metropolitan areas\n      NaN\n      528518\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n    \n    \n      4\n      NaN\n      NaN\n      Area actually reporting\n      0.893\n      3327\n      36.0\n      297.0\n      266.0\n      2728\n      17915\n      3140.0\n      13382.0\n      1393.0\n    \n    \n      ...\n      ...\n      ...\n      ...\n      ...\n      ...\n      ...\n      ...\n      ...\n      ...\n      ...\n      ...\n      ...\n      ...\n    \n    \n      505\n      NaN\n      Nonmetropolitan counties\n      NaN\n      160615\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n    \n    \n      506\n      NaN\n      NaN\n      Area actually reporting\n      0.921\n      194\n      0.0\n      39.0\n      0.0\n      155\n      973\n      170.0\n      716.0\n      87.0\n    \n    \n      507\n      NaN\n      NaN\n      Estimated total\n      1\n      213\n      0.0\n      42.0\n      0.0\n      171\n      1065\n      188.0\n      781.0\n      96.0\n    \n    \n      508\n      NaN\n      State Total\n      NaN\n      578759\n      1258\n      13.0\n      324.0\n      67.0\n      854\n      9093\n      1396.0\n      6984.0\n      713.0\n    \n    \n      509\n      NaN\n      NaN\n      Rate per 100,000 inhabitants\n      NaN\n      217.4\n      2.2\n      56.0\n      11.6\n      147.6\n      1571.1\n      241.2\n      1206.7\n      123.2\n    \n  \n\n510 rows × 13 columns\n\n\n\nThe column names have newlines in them and we’d like to get rid of those.\n\ncrime2019.columns = [x.replace(\" \\n\",\"_\") for x in crime2019.columns]\ncrime2019\n\n\n\n\n\n  \n    \n      \n      State\n      Area\n      Unnamed: 2\n      Population\n      Violent_crime1\n      Murder and_nonnegligent_manslaughter\n      Rape2\n      Robbery\n      Aggravated_assault\n      Property_crime\n      Burglary\n      Larceny-theft\n      Motor_vehicle_theft\n    \n  \n  \n    \n      0\n      ALABAMA\n      Metropolitan Statistical Area\n      NaN\n      3728978\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n    \n    \n      1\n      NaN\n      NaN\n      Area actually reporting\n      0.766\n      12880\n      182.0\n      1141.0\n      1706.0\n      9851\n      65789\n      12388.0\n      47299.0\n      6102.0\n    \n    \n      2\n      NaN\n      NaN\n      Estimated total\n      1\n      19951\n      300.0\n      1542.0\n      3432.0\n      14677\n      104658\n      20728.0\n      73857.0\n      10073.0\n    \n    \n      3\n      NaN\n      Cities outside metropolitan areas\n      NaN\n      528518\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n    \n    \n      4\n      NaN\n      NaN\n      Area actually reporting\n      0.893\n      3327\n      36.0\n      297.0\n      266.0\n      2728\n      17915\n      3140.0\n      13382.0\n      1393.0\n    \n    \n      ...\n      ...\n      ...\n      ...\n      ...\n      ...\n      ...\n      ...\n      ...\n      ...\n      ...\n      ...\n      ...\n      ...\n    \n    \n      505\n      NaN\n      Nonmetropolitan counties\n      NaN\n      160615\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n      NaN\n    \n    \n      506\n      NaN\n      NaN\n      Area actually reporting\n      0.921\n      194\n      0.0\n      39.0\n      0.0\n      155\n      973\n      170.0\n      716.0\n      87.0\n    \n    \n      507\n      NaN\n      NaN\n      Estimated total\n      1\n      213\n      0.0\n      42.0\n      0.0\n      171\n      1065\n      188.0\n      781.0\n      96.0\n    \n    \n      508\n      NaN\n      State Total\n      NaN\n      578759\n      1258\n      13.0\n      324.0\n      67.0\n      854\n      9093\n      1396.0\n      6984.0\n      713.0\n    \n    \n      509\n      NaN\n      NaN\n      Rate per 100,000 inhabitants\n      NaN\n      217.4\n      2.2\n      56.0\n      11.6\n      147.6\n      1571.1\n      241.2\n      1206.7\n      123.2\n    \n  \n\n510 rows × 13 columns\n\n\n\nLet’s look at the states.\n\nstates = crime2019[\"State\"].dropna().values\nstates\n\narray(['ALABAMA', 'ALASKA', 'ARIZONA', 'ARKANSAS', 'CALIFORNIA',\n       'COLORADO', 'CONNECTICUT', 'DELAWARE', 'DISTRICT OF COLUMBIA3',\n       'FLORIDA', 'GEORGIA', 'HAWAII', 'IDAHO', 'ILLINOIS', 'INDIANA',\n       'IOWA', 'KANSAS', 'KENTUCKY', 'LOUISIANA', 'MAINE', 'MARYLAND',\n       'MASSACHUSETTS', 'MICHIGAN', 'MINNESOTA', 'MISSISSIPPI4',\n       'MISSOURI', 'MONTANA', 'NEBRASKA', 'NEVADA', 'NEW HAMPSHIRE',\n       'NEW JERSEY', 'NEW MEXICO', 'NEW YORK', 'NORTH CAROLINA',\n       'NORTH DAKOTA', 'OHIO4', 'OKLAHOMA', 'OREGON4', 'PENNSYLVANIA',\n       'PUERTO RICO', 'RHODE ISLAND', 'SOUTH CAROLINA', 'SOUTH DAKOTA',\n       'TENNESSEE', 'TEXAS', 'UTAH', 'VERMONT', 'VIRGINIA', 'WASHINGTON',\n       'WEST VIRGINIA', 'WISCONSIN', 'WYOMING'], dtype=object)\n\n\nSome have footnotes at the end. We don’t want them.\n\nstates = [re.sub(\"[0-9$]\",\"\",x) for x in states]\nstates\n\n['ALABAMA',\n 'ALASKA',\n 'ARIZONA',\n 'ARKANSAS',\n 'CALIFORNIA',\n 'COLORADO',\n 'CONNECTICUT',\n 'DELAWARE',\n 'DISTRICT OF COLUMBIA',\n 'FLORIDA',\n 'GEORGIA',\n 'HAWAII',\n 'IDAHO',\n 'ILLINOIS',\n 'INDIANA',\n 'IOWA',\n 'KANSAS',\n 'KENTUCKY',\n 'LOUISIANA',\n 'MAINE',\n 'MARYLAND',\n 'MASSACHUSETTS',\n 'MICHIGAN',\n 'MINNESOTA',\n 'MISSISSIPPI',\n 'MISSOURI',\n 'MONTANA',\n 'NEBRASKA',\n 'NEVADA',\n 'NEW HAMPSHIRE',\n 'NEW JERSEY',\n 'NEW MEXICO',\n 'NEW YORK',\n 'NORTH CAROLINA',\n 'NORTH DAKOTA',\n 'OHIO',\n 'OKLAHOMA',\n 'OREGON',\n 'PENNSYLVANIA',\n 'PUERTO RICO',\n 'RHODE ISLAND',\n 'SOUTH CAROLINA',\n 'SOUTH DAKOTA',\n 'TENNESSEE',\n 'TEXAS',\n 'UTAH',\n 'VERMONT',\n 'VIRGINIA',\n 'WASHINGTON',\n 'WEST VIRGINIA',\n 'WISCONSIN',\n 'WYOMING']\n\n\n] We don’t want to include DC or Puerto Rico.\n\nstates = [x for x in states if x!='DISTRICT OF COLUMBIA' and x!='PUERTO RICO']\nstates\n\n['ALABAMA',\n 'ALASKA',\n 'ARIZONA',\n 'ARKANSAS',\n 'CALIFORNIA',\n 'COLORADO',\n 'CONNECTICUT',\n 'DELAWARE',\n 'FLORIDA',\n 'GEORGIA',\n 'HAWAII',\n 'IDAHO',\n 'ILLINOIS',\n 'INDIANA',\n 'IOWA',\n 'KANSAS',\n 'KENTUCKY',\n 'LOUISIANA',\n 'MAINE',\n 'MARYLAND',\n 'MASSACHUSETTS',\n 'MICHIGAN',\n 'MINNESOTA',\n 'MISSISSIPPI',\n 'MISSOURI',\n 'MONTANA',\n 'NEBRASKA',\n 'NEVADA',\n 'NEW HAMPSHIRE',\n 'NEW JERSEY',\n 'NEW MEXICO',\n 'NEW YORK',\n 'NORTH CAROLINA',\n 'NORTH DAKOTA',\n 'OHIO',\n 'OKLAHOMA',\n 'OREGON',\n 'PENNSYLVANIA',\n 'RHODE ISLAND',\n 'SOUTH CAROLINA',\n 'SOUTH DAKOTA',\n 'TENNESSEE',\n 'TEXAS',\n 'UTAH',\n 'VERMONT',\n 'VIRGINIA',\n 'WASHINGTON',\n 'WEST VIRGINIA',\n 'WISCONSIN',\n 'WYOMING']\n\n\nFinally, we want to pull out the violent crime numbers for the total area of the state. Notice that Puerto Rico and DC use “Total”, not “State Total”, for Area and so they will be excluded.\n\nvcrime2019 = crime2019[crime2019['Area'] == 'State Total']['Violent_crime1'].values\nvcrime2019\n\narray([25046, 6343, 33141, 17643, 174331, 21938, 6546, 4115, 81270, 36170,\n       4042, 4000, 51561, 24966, 8410, 11968, 9701, 25537, 1548, 27456,\n       22578, 43686, 13332, 8272, 30380, 4328, 5821, 15210, 2074, 18375,\n       17450, 69764, 38995, 2169, 34269, 17086, 11995, 39228, 2342, 26323,\n       3530, 40647, 121474, 7553, 1262, 17753, 22377, 5674, 17070, 1258],\n      dtype=object)"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html",
+    "title": "Essential Linear Algebra",
+    "section": "",
+    "text": "import numpy as np\nimport matplotlib.pyplot as plt\nfrom matplotlib.patches import Arrow\n\ndef make_plot(xmin,ymin,xmax,ymax):\n    fig, ax = plt.subplots()\n    ax.set_xlim(xmin,xmax)\n    ax.set_ylim(ymin,ymax)\n    ax.set_xticks(np.arange(xmin,xmax,1))\n    ax.set_yticks(np.arange(ymin,ymax,1))\n    ax.set_aspect('equal')\n    ax.grid(visible=True)\n    return fig, ax\n\ndef draw_arrow(x0,y0,x1,y1,axes,color='blue',alpha=1):\n    axes.add_patch(Arrow(x0,y0,x1-x0,y1-y0,width=.3,color=color,alpha=alpha))\n    return axes"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#vectors-and-scalars",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#vectors-and-scalars",
+    "title": "Essential Linear Algebra",
+    "section": "Vectors and Scalars",
+    "text": "Vectors and Scalars\n\\(\\mathbf{R}^{n}\\) is the set of vectors (ordered tuples) of real numbers of length \\(n\\). A scalar is a real number.\n\nVectors are added componentwise.\nA vector can be multiplied by a scalar."
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#addition",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#addition",
+    "title": "Essential Linear Algebra",
+    "section": "Addition",
+    "text": "Addition\n\nfig, ax = make_plot(0,0,12,12)\nax.set_title('Vector Addition')\nax = draw_arrow(0,0,3,5,ax)\nax = draw_arrow(0,0,1,4,ax)\nax = draw_arrow(1,4,4,9,ax)\nax = draw_arrow(3,5,4,9,ax)\nplt.show()"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#scalar-multiplication",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#scalar-multiplication",
+    "title": "Essential Linear Algebra",
+    "section": "Scalar Multiplication",
+    "text": "Scalar Multiplication\n\nfig,ax = make_plot(0,0,12,12)\nax.set_title(\"Scalar Multiplication\")\nax = draw_arrow(0,0,3,5, ax)\nax = draw_arrow(0,0,6,10,ax,color='red',alpha=.5)"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#geometric-interpretation-in-2-and-3-dimensions",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#geometric-interpretation-in-2-and-3-dimensions",
+    "title": "Essential Linear Algebra",
+    "section": "Geometric Interpretation in 2 and 3 dimensions",
+    "text": "Geometric Interpretation in 2 and 3 dimensions"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#feature-space",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#feature-space",
+    "title": "Essential Linear Algebra",
+    "section": "Feature Space",
+    "text": "Feature Space\n\nexamples including word2vec and embeddings\nmaybe polynomial regression?\nimages as vectors\none-hot encoding of categorical vectors"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#linear-dependence-and-linear-independence-basis-scores",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#linear-dependence-and-linear-independence-basis-scores",
+    "title": "Essential Linear Algebra",
+    "section": "Linear Dependence and Linear Independence; basis; scores",
+    "text": "Linear Dependence and Linear Independence; basis; scores\n\ndependent, or almost dependent features, don’t add new information\nlinear combinations of features yield new features (scores)\ndifferent bases give different points of view on the same data (for example rescaling data to standard z-scores)"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#subspaces-hyperplanes-and-dimension",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#subspaces-hyperplanes-and-dimension",
+    "title": "Essential Linear Algebra",
+    "section": "Subspaces, hyperplanes, and dimension",
+    "text": "Subspaces, hyperplanes, and dimension"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#linear-maps-and-matrices",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#linear-maps-and-matrices",
+    "title": "Essential Linear Algebra",
+    "section": "Linear Maps and Matrices",
+    "text": "Linear Maps and Matrices"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#rank-and-invertibility",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#rank-and-invertibility",
+    "title": "Essential Linear Algebra",
+    "section": "Rank and invertibility",
+    "text": "Rank and invertibility"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#matrix-multiplication",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#matrix-multiplication",
+    "title": "Essential Linear Algebra",
+    "section": "Matrix multiplication",
+    "text": "Matrix multiplication"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#linear-systems",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#linear-systems",
+    "title": "Essential Linear Algebra",
+    "section": "Linear Systems",
+    "text": "Linear Systems"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#separating-hyperplanes-convex-sets",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#separating-hyperplanes-convex-sets",
+    "title": "Essential Linear Algebra",
+    "section": "Separating hyperplanes, convex sets",
+    "text": "Separating hyperplanes, convex sets"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#distances-and-the-euclidean-norm",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#distances-and-the-euclidean-norm",
+    "title": "Essential Linear Algebra",
+    "section": "Distances and the euclidean norm",
+    "text": "Distances and the euclidean norm"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#the-dot-product-orthogonality-cauchy-schwartz",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#the-dot-product-orthogonality-cauchy-schwartz",
+    "title": "Essential Linear Algebra",
+    "section": "The dot product, orthogonality, cauchy-schwartz",
+    "text": "The dot product, orthogonality, cauchy-schwartz"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#orthogonal-projection-minimum-distance-to-a-hyperspace",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#orthogonal-projection-minimum-distance-to-a-hyperspace",
+    "title": "Essential Linear Algebra",
+    "section": "orthogonal projection, minimum distance to a hyperspace",
+    "text": "orthogonal projection, minimum distance to a hyperspace"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#transpose-of-a-matrix-covariance-matrix-principal-directions",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#transpose-of-a-matrix-covariance-matrix-principal-directions",
+    "title": "Essential Linear Algebra",
+    "section": "Transpose of a matrix, covariance matrix, principal directions",
+    "text": "Transpose of a matrix, covariance matrix, principal directions"
   }
 ]
