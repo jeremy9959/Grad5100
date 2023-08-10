@@ -289,7 +289,63 @@ plt.title("MSE={:.2f}".format(np.linalg.norm(mpg0-predicted)/mpg0.shape[0]))
 The mean squared error is the squared distance between a true and predicted value, divided by the number of values. 
 
 
-## The dot product, orthogonality, cauchy-schwartz
+## The dot product
+
+Suppose we have two vectors:
+$$\begin{aligned}
+v_1 & =[a_1,a_2,\dots, a_n] \\
+v_2 &= [b_1,b_2,\ldots, b_n]
+\end{aligned}
+$$
+
+The "dot product" or "inner product" of these two vectors is:
+$$
+v_1\cdot v_2 = \sum_{i=1}^{n} a_i b_i.
+$$
+
+*Important:* The dot product *converts two vectors into a scalar!
+
+## Properties of the dot product
+
+1. $v_1\cdot v_1 = \|v_1\|^2$
+2. $(av_1+bv_2)\cdot v_3 = a(v_1\cdot v_2) + b(v_2\cdot v_2)$
+3. $v_1\cdot v_2 = v_2 \cdot v_1$.
+
+## Angles and Cauchy-Schwartz
+
+The law of cosines:
+$$\|v_1\|^2+\|v_2\|^2 - 2\|v_1\|\|v_2\|\cos(\theta) =\|v_1-v_2\|^2$$
+
+means that
+
+$$
+v_1\cdot v_2 = \|v_1\|\|v_2\|\cos(\theta)
+$$ {#eq-dot-product}
+
+In particular:
+
+$$|v_1\cdot v_2|\le \|v_1\|\|v_2\|
+$$ {#eq-cauchy-schwartz}
+
+This says
+$$
+|\sum_{i=1}^{n} a_{i}b_{i}|^2\le (\sum_{i=1}^{n} a_{i}^2)(\sum_{i=1}^{n} b_{i}^2)
+$$
+
+@eq-cauchy-schwartz is called the "Cauchy-Schwartz inequality."
+
+
+## Orthogonality
+
+If $v_1\cdot v_2=0$ then either
+one of $v_1$ or $v_2$ is zero, or
+the angle between then is 90 degrees.
+
+In this case we saw the vectors are *orthogonal*.
+
+## Correlation and cosine similarity
+
+
 
 ## Hyperplanes
 
