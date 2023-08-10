@@ -360,9 +360,54 @@ the angle between then is 90 degrees.
 
 In this case we saw the vectors are *orthogonal*.
 
-## Correlation and cosine similarity
+## Unit vectors and projection
+
+A vector $u$ is a unit vector if $u\cdot u=1$.
+
+The quantity $v\cdot u$ measures the projection of $v$
+into the direction given by $u$. 
 
 
+## Variance, Correlation and cosine similarity
+
+If $v$ is a feature vector, let 
+$\overline{v}=\frac{1}{n}\sum_{i=1}^{n} v_{i}$.
+
+Notice that $\overline{v}=v\cdot E$ where $E$
+is the vector with $1/n$ in each entry. 
+
+$$
+\|(v-\overline{v}E)\|=\sigma^{2}
+$$
+
+
+## Covariance
+
+If $v$ and $w$ are two vectors, their *covariance*
+is
+$$
+\sigma_{vw} = (v-\overline{v}E)\cdot (w-\overline{w}E)
+$$
+
+## Correlation
+
+The correlation coefficient of $v$ and $w$ is
+$$
+r_{vw}^2 = \frac{\sigma_{vw}}{\sigma{v}\sigma{w}}
+$$
+
+It measures the cosine of the angle between $v-\overline{v}E$
+and $w-\overline{w}E$.  
+
+## Cosine similarity
+
+In general, 
+
+$$
+\cos(\theta) = \frac{v\cdot w}{\|v\|\|w\|}
+$$
+measures the angle between two feature vectors and is a measure
+of "similarity" between $0$ and $1$.  
 
 ## Hyperplanes
 
