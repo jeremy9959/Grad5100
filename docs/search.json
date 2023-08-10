@@ -942,7 +942,7 @@
     "href": "chapters/06-LinearAlgebra/linear_algebra.html#image-embeddings",
     "title": "Essential Linear Algebra",
     "section": "Image Embeddings",
-    "text": "Image Embeddings\nEach sample in the MNIST database is a \\(28x28\\) gray scale image, represented by a \\(28\\times 28\\) array of integers between 0 and 255.\n\nwith open(\"data/train-images.idx3-ubyte\",'rb') as f:\n    f.read(16)\n    buf = f.read(28*28)\n    data = np.frombuffer(buf,dtype=np.uint8).astype(np.float32)\n    data = data.reshape(1,28,28)\nfor x in range(28):\n    for y in range(28):\n        print('{:&gt;4}'.format(int(data[0,x,y])),end=\"\")\n    print(\"\\n\")\n\nimage = np.asarray(data[0].squeeze())\nplt.imshow(image)\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   3  18  18  18 126 136 175  26 166 255 247 127   0   0   0   0\n\n   0   0   0   0   0   0   0   0  30  36  94 154 170 253 253 253 253 253 225 172 253 242 195  64   0   0   0   0\n\n   0   0   0   0   0   0   0  49 238 253 253 253 253 253 253 253 253 251  93  82  82  56  39   0   0   0   0   0\n\n   0   0   0   0   0   0   0  18 219 253 253 253 253 253 198 182 247 241   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0  80 156 107 253 253 205  11   0  43 154   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0  14   1 154 253  90   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0 139 253 190   2   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0  11 190 253  70   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0  35 241 225 160 108   1   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0  81 240 253 253 119  25   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0  45 186 253 253 150  27   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0  16  93 252 253 187   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 249 253 249  64   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0  46 130 183 253 253 207   2   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0  39 148 229 253 253 253 250 182   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0  24 114 221 253 253 253 253 201  78   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0  23  66 213 253 253 253 253 198  81   2   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0  18 171 219 253 253 253 253 195  80   9   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0  55 172 226 253 253 253 253 244 133  11   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0 136 253 253 253 212 135 132  16   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n\n\n&lt;matplotlib.image.AxesImage at 0x1400b76d0&gt;\n\n\n\n\n\nHere we can view each image as a vector in a 784 dimensional (=28*28) space.\nA collection of 100 images would be represented by an array with 100 rows and 784 columns\nA 28x28 image in color has 28283 numbers to account for the RGB channels."
+    "text": "Image Embeddings\nEach sample in the MNIST database is a \\(28x28\\) gray scale image, represented by a \\(28\\times 28\\) array of integers between 0 and 255.\n\nwith open(\"data/train-images.idx3-ubyte\",'rb') as f:\n    f.read(16)\n    buf = f.read(28*28)\n    data = np.frombuffer(buf,dtype=np.uint8).astype(np.float32)\n    data = data.reshape(1,28,28)\nfor x in range(28):\n    for y in range(28):\n        print('{:&gt;4}'.format(int(data[0,x,y])),end=\"\")\n    print(\"\\n\")\n\nimage = np.asarray(data[0].squeeze())\nplt.imshow(image)\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   3  18  18  18 126 136 175  26 166 255 247 127   0   0   0   0\n\n   0   0   0   0   0   0   0   0  30  36  94 154 170 253 253 253 253 253 225 172 253 242 195  64   0   0   0   0\n\n   0   0   0   0   0   0   0  49 238 253 253 253 253 253 253 253 253 251  93  82  82  56  39   0   0   0   0   0\n\n   0   0   0   0   0   0   0  18 219 253 253 253 253 253 198 182 247 241   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0  80 156 107 253 253 205  11   0  43 154   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0  14   1 154 253  90   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0 139 253 190   2   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0  11 190 253  70   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0  35 241 225 160 108   1   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0  81 240 253 253 119  25   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0  45 186 253 253 150  27   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0  16  93 252 253 187   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 249 253 249  64   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0  46 130 183 253 253 207   2   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0  39 148 229 253 253 253 250 182   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0  24 114 221 253 253 253 253 201  78   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0  23  66 213 253 253 253 253 198  81   2   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0  18 171 219 253 253 253 253 195  80   9   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0  55 172 226 253 253 253 253 244 133  11   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0 136 253 253 253 212 135 132  16   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n\n\n&lt;matplotlib.image.AxesImage at 0x11f9f57e0&gt;\n\n\n\n\n\nHere we can view each image as a vector in a 784 dimensional (=28*28) space.\nA collection of 100 images would be represented by an array with 100 rows and 784 columns\nA 28x28 image in color has 28283 numbers to account for the RGB channels."
   },
   {
     "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#one-hot-embedding",
@@ -1068,7 +1068,7 @@
     "href": "chapters/06-LinearAlgebra/linear_algebra.html#linear-relations-in-python",
     "title": "Essential Linear Algebra",
     "section": "Linear relations in python",
-    "text": "Linear relations in python\n\nvectors = [np.random.uniform(size=8) for i in range(5)] # 10 random vectors\nscalars = [np.random.normal() for i in range(5)] # 10 random scalars\nprods = [scalars[i]*vectors[i] for i in range(5)] # products\nresult = sum(prods) # sum of products\nprint(result)\n\n[1.25455198 1.45266021 1.0840689  0.71356097 0.67191344 1.38442776\n 0.76536519 1.24529761]"
+    "text": "Linear relations in python\n\nvectors = [np.random.uniform(size=8) for i in range(5)] # 10 random vectors\nscalars = [np.random.normal() for i in range(5)] # 10 random scalars\nprods = [scalars[i]*vectors[i] for i in range(5)] # products\nresult = sum(prods) # sum of products\nprint(result)\n\n[-0.30467129  0.28158883 -0.57717325  0.11187448 -0.30888858 -0.21997919\n -0.65123262  0.13852329]"
   },
   {
     "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#mean-squared-error-in-vector-form",
@@ -1132,5 +1132,61 @@
     "title": "Essential Linear Algebra",
     "section": "Angles and Cauchy-Schwartz",
     "text": "Angles and Cauchy-Schwartz\nThe law of cosines: \\[\\|v_1\\|^2+\\|v_2\\|^2 - 2\\|v_1\\|\\|v_2\\|\\cos(\\theta) =\\|v_1-v_2\\|^2\\]\nmeans that\n\\[\nv_1\\cdot v_2 = \\|v_1\\|\\|v_2\\|\\cos(\\theta)\n\\tag{1}\\]\nIn particular:\n\\[|v_1\\cdot v_2|\\le \\|v_1\\|\\|v_2\\|\n\\tag{2}\\]\nThis says \\[\n|\\sum_{i=1}^{n} a_{i}b_{i}|^2\\le (\\sum_{i=1}^{n} a_{i}^2)(\\sum_{i=1}^{n} b_{i}^2)\n\\]\nEquation 2 is called the “Cauchy-Schwartz inequality.”"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#python-notes",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#python-notes",
+    "title": "Essential Linear Algebra",
+    "section": "Python notes",
+    "text": "Python notes\n\nv = np.array([1,2,3,4,5])\nw = np.array([2,4,6,8,10])\n1print(v*w)\n2print(np.dot(v,w))\n\n\n1\n\nentry by entry product\n\n2\n\ndot product\n\n\n\n\n[ 2  8 18 32 50]\n110"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#orthogonality",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#orthogonality",
+    "title": "Essential Linear Algebra",
+    "section": "Orthogonality",
+    "text": "Orthogonality\nIf \\(v_1\\cdot v_2=0\\) then either one of \\(v_1\\) or \\(v_2\\) is zero, or the angle between then is 90 degrees.\nIn this case we saw the vectors are orthogonal."
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#correlation-and-cosine-similarity",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#correlation-and-cosine-similarity",
+    "title": "Essential Linear Algebra",
+    "section": "Correlation and cosine similarity",
+    "text": "Correlation and cosine similarity"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#pythonr-notes",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#pythonr-notes",
+    "title": "Essential Linear Algebra",
+    "section": "Python/R notes",
+    "text": "Python/R notes\n\nv = np.array([1,2,3,4,5])\nw = np.array([2,4,6,8,10])\nprint('Entry by entry product = {}'.format(v*w))\nprint('Dot product = {}'.format(np.dot(v,w)))\n\nEntry by entry product = [ 2  8 18 32 50]\nDot product = 110\n\n\nv = c(1, 2, 3, 4, 5)\nw = c(2, 4, 6, 8, 10)\ncat(\"Entry by entry product = \", v * w, \"\\n\")\ncat(\"Dot product = \", (v %*% w), \"\\n\")"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#python",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#python",
+    "title": "Essential Linear Algebra",
+    "section": "Python",
+    "text": "Python\n\nListing 1: Dot product computation\n# python\nv = np.array([1,2,3,4,5])\nw = np.array([2,4,6,8,10])\nprint('Entry by entry product = {}'.format(v*w))\nprint('Dot product = {}'.format(np.dot(v,w)))\n\nNote: In R, the symbol for dot product is %*%.\nIn Listing 1 we show how to compute the dot product in python."
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#r",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#r",
+    "title": "Essential Linear Algebra",
+    "section": "R",
+    "text": "R\n# r\nv = c(1, 2, 3, 4, 5)\nw = c(2, 4, 6, 8, 10)\ncat(\"Entry by entry product = \", v * w, \"\\n\")\ncat(\"Dot product = \", (v %*% w), \"\\n\")"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#pythonr",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#pythonr",
+    "title": "Essential Linear Algebra",
+    "section": "Python/R",
+    "text": "Python/R\n\n# python\nv = np.array([1,2,3,4,5])\nw = np.array([2,4,6,8,10])\nprint('Entry by entry product = {}'.format(v*w))\nprint('Dot product = {}'.format(np.dot(v,w)))\n\nEntry by entry product = [ 2  8 18 32 50]\nDot product = 110"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#r-1",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#r-1",
+    "title": "Essential Linear Algebra",
+    "section": "R",
+    "text": "R\n# r\nv = c(1, 2, 3, 4, 5)\nw = c(2, 4, 6, 8, 10)\ncat(\"Entry by entry product = \", v * w, \"\\n\")\ncat(\"Dot product = \", (v %*% w), \"\\n\")"
   }
 ]

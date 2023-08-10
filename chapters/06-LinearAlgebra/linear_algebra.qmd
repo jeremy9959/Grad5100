@@ -334,6 +334,23 @@ $$
 
 @eq-cauchy-schwartz is called the "Cauchy-Schwartz inequality."
 
+## Python
+
+```{#lst-dot-product .python lst-cap="Dot product computation"}
+# python
+v = np.array([1,2,3,4,5])
+w = np.array([2,4,6,8,10])
+print('Entry by entry product = {}'.format(v*w)) # <1>
+print('Dot product = {}'.format(np.dot(v,w))) # <2>
+```
+
+Note: In R, the symbol for dot product is
+`%*%`.
+
+In @lst-dot-product we show how to compute the dot product in python. 
+
+
+
 
 ## Orthogonality
 

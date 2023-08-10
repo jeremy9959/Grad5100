@@ -282,7 +282,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Each penguin is represented by a vector in <span class="math inline">\(\mathbf{R}^{4}\)</span>. So for example penguin number 34 is represented as follows.</p>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">34</span>,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
+<div class="cell-output cell-output-display" data-execution_count="197">
 <pre><code>array([  39.2,   21.1,  196. , 4150. ])</code></pre>
 </div>
 </div>
@@ -367,8 +367,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
 </code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="24">
-<pre><code>&lt;matplotlib.image.AxesImage at 0x1400b76d0&gt;</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="198">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x11f9f57e0&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="linear_algebra_files/figure-html/cell-7-output-3.png" width="415" height="411"></p>
@@ -460,8 +460,8 @@ b_1v_1+...+b_kv_k=0
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="bu">sum</span>(prods) <span class="co"># sum of products</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1.25455198 1.45266021 1.0840689  0.71356097 0.67191344 1.38442776
- 0.76536519 1.24529761]</code></pre>
+<pre><code>[-0.30467129  0.28158883 -0.57717325  0.11187448 -0.30888858 -0.21997919
+ -0.65123262  0.13852329]</code></pre>
 </div>
 </div>
 </section>
@@ -489,7 +489,7 @@ b_1v_1+...+b_kv_k=0
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>plt.plot(x0,predictions,color<span class="op">=</span><span class="st">'red'</span>)</span>
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Miles per Gallon vs Engine Displacement"</span>)</span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Displacement"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="26">
+<div class="cell-output cell-output-display" data-execution_count="200">
 <pre><code>Text(0.5, 0, 'Displacement')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -527,7 +527,7 @@ b_1v_1+...+b_kv_k=0
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(disp0, mpg0)</span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>plt.scatter(disp0, predicted)</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"MSE=</span><span class="sc">{:.2f}</span><span class="st">"</span>.<span class="bu">format</span>(np.linalg.norm(mpg0<span class="op">-</span>predicted)<span class="op">/</span>mpg0.shape[<span class="dv">0</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div class="cell-output cell-output-display" data-execution_count="201">
 <pre><code>Text(0.5, 1.0, 'MSE=0.23')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -571,8 +571,26 @@ v_1\cdot v_2 = \|v_1\|\|v_2\|\cos(\theta)
 \]</span></p>
 <p><a href="#eq-cauchy-schwartz">Equation&nbsp;2</a> is called the “Cauchy-Schwartz inequality.”</p>
 </section>
-<section id="cauchy-schwartz-and-orthogonality" class="level2">
-<h2 class="anchored" data-anchor-id="cauchy-schwartz-and-orthogonality">Cauchy Schwartz and Orthogonality</h2>
+<section id="python" class="level2">
+<h2 class="anchored" data-anchor-id="python">Python</h2>
+<div id="lst-dot-product" class="listing">
+<p>Listing&nbsp;1: Dot product computation</p>
+<div class="sourceCode" id="lst-dot-product" data-lst-cap="Dot product computation"><pre class="sourceCode python code-annotation-code code-with-copy"><code class="sourceCode python"><span id="lst-dot-product-1"><a href="#lst-dot-product-1" aria-hidden="true" tabindex="-1"></a><span class="co"># python</span></span>
+<span id="lst-dot-product-2"><a href="#lst-dot-product-2" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>])</span>
+<span id="lst-dot-product-3"><a href="#lst-dot-product-3" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> np.array([<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">10</span>])</span>
+<span id="lst-dot-product-4"><a href="#lst-dot-product-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Entry by entry product = </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(v<span class="op">*</span>w))</span>
+<span id="lst-dot-product-5"><a href="#lst-dot-product-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Dot product = </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(np.dot(v,w)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note: In R, the symbol for dot product is <code>%*%</code>.</p>
+<p>In <a href="#lst-dot-product">Listing&nbsp;1</a> we show how to compute the dot product in python.</p>
+</section>
+<section id="orthogonality" class="level2">
+<h2 class="anchored" data-anchor-id="orthogonality">Orthogonality</h2>
+<p>If <span class="math inline">\(v_1\cdot v_2=0\)</span> then either one of <span class="math inline">\(v_1\)</span> or <span class="math inline">\(v_2\)</span> is zero, or the angle between then is 90 degrees.</p>
+<p>In this case we saw the vectors are <em>orthogonal</em>.</p>
+</section>
+<section id="correlation-and-cosine-similarity" class="level2">
+<h2 class="anchored" data-anchor-id="correlation-and-cosine-similarity">Correlation and cosine similarity</h2>
 </section>
 <section id="hyperplanes" class="level2">
 <h2 class="anchored" data-anchor-id="hyperplanes">Hyperplanes</h2>
