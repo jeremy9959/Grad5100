@@ -282,7 +282,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Each penguin is represented by a vector in <span class="math inline">\(\mathbf{R}^{4}\)</span>. So for example penguin number 34 is represented as follows.</p>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">34</span>,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="51">
 <pre><code>array([  39.2,   21.1,  196. , 4150. ])</code></pre>
 </div>
 </div>
@@ -367,8 +367,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
 </code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>&lt;matplotlib.image.AxesImage at 0x13a31b310&gt;</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="52">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x1617b0fa0&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="linear_algebra_files/figure-html/cell-7-output-3.png" width="415" height="411"></p>
@@ -460,8 +460,8 @@ b_1v_1+...+b_kv_k=0
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="bu">sum</span>(prods) <span class="co"># sum of products</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1.43283968 0.43430111 1.02897087 0.95056088 1.69691381 1.29338635
- 0.9960543  0.65756167]</code></pre>
+<pre><code>[ 2.11892808  0.33245601  1.56035518  2.6015715   2.74281389 -0.04101767
+  1.87705655  1.63739899]</code></pre>
 </div>
 </div>
 </section>
@@ -489,7 +489,7 @@ b_1v_1+...+b_kv_k=0
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>plt.plot(x0,predictions,color<span class="op">=</span><span class="st">'red'</span>)</span>
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Miles per Gallon vs Engine Displacement"</span>)</span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Displacement"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="54">
 <pre><code>Text(0.5, 0, 'Displacement')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -527,7 +527,7 @@ b_1v_1+...+b_kv_k=0
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(disp0, mpg0)</span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>plt.scatter(disp0, predicted)</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"MSE=</span><span class="sc">{:.2f}</span><span class="st">"</span>.<span class="bu">format</span>(np.linalg.norm(mpg0<span class="op">-</span>predicted)<span class="op">/</span>mpg0.shape[<span class="dv">0</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="55">
 <pre><code>Text(0.5, 1.0, 'MSE=0.23')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -643,7 +643,7 @@ v\cdot x = b
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="op">-</span><span class="dv">2</span>,<span class="op">-</span><span class="dv">2</span>],[<span class="dv">3</span>,<span class="dv">2</span>])</span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="op">-</span><span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>],[<span class="dv">3</span>,<span class="fl">2.6</span>])</span>
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Hyperplane 2x-3y=0 with normal vector [-2,3]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="56">
 <pre><code>Text(0.5, 1.0, 'Hyperplane 2x-3y=0 with normal vector [-2,3]')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -679,7 +679,7 @@ D = \frac{w\cdot v-b}{\|v\|}.
 <span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">3.6</span>,<span class="dv">0</span>,<span class="vs">r'$\|w-x\|$'</span>)</span>
 <span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">1.9</span>,<span class="fl">2.2</span>,<span class="vs">r'$\theta$'</span>)</span>
 <span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">.5</span>,<span class="fl">1.4</span>,<span class="vs">r'$\|w-x\|\cos(\theta)$'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="57">
 <pre><code>Text(-0.5, 1.4, '$\\|w-x\\|\\cos(\\theta)$')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -702,17 +702,74 @@ M[i,:]\cdot v
 <h2 class="anchored" data-anchor-id="matrix-times-vector-is-linear">Matrix times vector is linear</h2>
 <p><span class="math display">\[M(v+w) = Mv+Mw\]</span> <span class="math display">\[M(aw) = aMw\]</span></p>
 </section>
+<section id="matrix-times-standard-vector-gives-rowcolumn" class="level2">
+<h2 class="anchored" data-anchor-id="matrix-times-standard-vector-gives-rowcolumn">Matrix times standard vector gives row/column</h2>
+<p>If <span class="math inline">\(v\)</span> is a column vector with a a <span class="math inline">\(1\)</span> in position <span class="math inline">\(i\)</span> and zeros elsewhere, then <span class="math inline">\(Mv\)</span> is the <span class="math inline">\(i^{th}\)</span> column of <span class="math inline">\(M\)</span>.</p>
+<p>If <span class="math inline">\(v\)</span> is a row vector with a <span class="math inline">\(1\)</span> in position <span class="math inline">\(i\)</span> and zeros elsewhere, then <span class="math inline">\(vM\)</span> is the <span class="math inline">\(i^{th}\)</span> row of <span class="math inline">\(M\)</span>.</p>
+</section>
+<section id="mvvm-gives-linear-combination-of-columnsrows" class="level2">
+<h2 class="anchored" data-anchor-id="mvvm-gives-linear-combination-of-columnsrows"><span class="math inline">\(Mv\)</span>/<span class="math inline">\(vM\)</span> gives linear combination of columns/rows</h2>
+<p><span class="math inline">\(Mv\)</span> is a linear combination of the columns of <span class="math inline">\(M\)</span> weighted by the entries of <span class="math inline">\(v\)</span>.</p>
+<p><span class="math inline">\(vM\)</span> is a linear combination of the rows of <span class="math inline">\(M\)</span> weighted by the entries of <span class="math inline">\(v\)</span>.</p>
+</section>
+<section id="matrix-times-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="matrix-times-matrix">Matrix times matrix</h2>
+<p>An <span class="math inline">\(n\times m\)</span> matrix times an <span class="math inline">\(m\times k\)</span> matrix yields an <span class="math inline">\(n\times k\)</span> matrix.</p>
+<p>You can view <span class="math inline">\(MN\)</span> as <span class="math inline">\(Mv\)</span> where <span class="math inline">\(v\)</span> runs through the columns of <span class="math inline">\(N\)</span>. Each column has <span class="math inline">\(n\)</span> rows.</p>
+<p><span class="math display">\[
+MN=\left[
+    \begin{matrix}
+     M[0,:]N &amp; M[1,:]N &amp;\cdots&amp;M[m,:]N\\
+    \end{matrix}
+    \right]
+\]</span></p>
+<p>OR you can view <span class="math inline">\(MN\)</span> as <span class="math inline">\(wN\)</span> where <span class="math inline">\(w\)</span> runs through the rows of <span class="math inline">\(M\)</span>.</p>
+<p><span class="math display">\[
+MN = \left[\begin{matrix} MN[:,0] \\ MN[:,1] \\\vdots\\MN[:,k]\end{matrix}\right]
+\]</span></p>
+<p>OR</p>
+<p>you can view <span class="math inline">\(MN\)</span> where the <span class="math inline">\(i,j\)</span> entry of <span class="math inline">\(MN\)</span> is the dot product of the <span class="math inline">\(i^{th}\)</span> row of <span class="math inline">\(M\)</span> with the <span class="math inline">\(j^{th}\)</span> column of <span class="math inline">\(N\)</span> (each of which has <span class="math inline">\(m\)</span> entries).</p>
+<p><span class="math display">\[(MN)_{ij} = M[i,:]\cdot N[;,j]\]</span></p>
+</section>
+<section id="python-1" class="level2">
+<h2 class="anchored" data-anchor-id="python-1">Python</h2>
+<p>The ‘@’ sign gives matrix multiplication in python. In R, it’s %*%.</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>],[<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>],[<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>]])</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.array([[<span class="op">-</span><span class="dv">1</span>],[<span class="dv">0</span>],[<span class="dv">1</span>]])</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(M)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(v)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(M<span class="op">@</span>v)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Compare -M[:,0]+M[:,2] with M@v</span><span class="ch">\n</span><span class="st"> both are </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(<span class="op">-</span>M[:,<span class="dv">0</span>]<span class="op">+</span>M[:,<span class="dv">2</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1 2 3]
+ [2 3 4]
+ [3 4 5]]
+[[-1]
+ [ 0]
+ [ 1]]
+[[2]
+ [2]
+ [2]]
+Compare -M[:,0]+M[:,2] with M@v
+ both are [2 2 2]</code></pre>
+</div>
+</div>
+</section>
+<section id="transpose-of-a-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="transpose-of-a-matrix">Transpose of a matrix</h2>
+</section>
+<section id="covariance-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="covariance-matrix">Covariance Matrix</h2>
+</section>
 <section id="linear-maps" class="level2">
 <h2 class="anchored" data-anchor-id="linear-maps">Linear maps</h2>
 </section>
 <section id="rank-and-invertibility" class="level2">
 <h2 class="anchored" data-anchor-id="rank-and-invertibility">Rank and invertibility</h2>
 </section>
-<section id="orthogonal-projection-minimum-distance-to-a-hyperspace" class="level2">
-<h2 class="anchored" data-anchor-id="orthogonal-projection-minimum-distance-to-a-hyperspace">orthogonal projection, minimum distance to a hyperspace</h2>
-</section>
-<section id="transpose-of-a-matrix-covariance-matrix-principal-directions" class="level2">
-<h2 class="anchored" data-anchor-id="transpose-of-a-matrix-covariance-matrix-principal-directions">Transpose of a matrix, covariance matrix, principal directions</h2>
+<section id="transpose-of-a-matrix-covariance-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="transpose-of-a-matrix-covariance-matrix">Transpose of a matrix, covariance matrix,</h2>
 
 
 </section>
