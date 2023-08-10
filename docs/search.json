@@ -942,7 +942,7 @@
     "href": "chapters/06-LinearAlgebra/linear_algebra.html#image-embeddings",
     "title": "Essential Linear Algebra",
     "section": "Image Embeddings",
-    "text": "Image Embeddings\nEach sample in the MNIST database is a \\(28x28\\) gray scale image, represented by a \\(28\\times 28\\) array of integers between 0 and 255.\n\nwith open(\"data/train-images.idx3-ubyte\",'rb') as f:\n    f.read(16)\n    buf = f.read(28*28)\n    data = np.frombuffer(buf,dtype=np.uint8).astype(np.float32)\n    data = data.reshape(1,28,28)\nfor x in range(28):\n    for y in range(28):\n        print('{:&gt;4}'.format(int(data[0,x,y])),end=\"\")\n    print(\"\\n\")\n\nimage = np.asarray(data[0].squeeze())\nplt.imshow(image)\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   3  18  18  18 126 136 175  26 166 255 247 127   0   0   0   0\n\n   0   0   0   0   0   0   0   0  30  36  94 154 170 253 253 253 253 253 225 172 253 242 195  64   0   0   0   0\n\n   0   0   0   0   0   0   0  49 238 253 253 253 253 253 253 253 253 251  93  82  82  56  39   0   0   0   0   0\n\n   0   0   0   0   0   0   0  18 219 253 253 253 253 253 198 182 247 241   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0  80 156 107 253 253 205  11   0  43 154   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0  14   1 154 253  90   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0 139 253 190   2   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0  11 190 253  70   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0  35 241 225 160 108   1   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0  81 240 253 253 119  25   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0  45 186 253 253 150  27   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0  16  93 252 253 187   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 249 253 249  64   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0  46 130 183 253 253 207   2   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0  39 148 229 253 253 253 250 182   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0  24 114 221 253 253 253 253 201  78   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0  23  66 213 253 253 253 253 198  81   2   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0  18 171 219 253 253 253 253 195  80   9   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0  55 172 226 253 253 253 253 244 133  11   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0 136 253 253 253 212 135 132  16   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n\n\n&lt;matplotlib.image.AxesImage at 0x11f9f57e0&gt;\n\n\n\n\n\nHere we can view each image as a vector in a 784 dimensional (=28*28) space.\nA collection of 100 images would be represented by an array with 100 rows and 784 columns\nA 28x28 image in color has 28283 numbers to account for the RGB channels."
+    "text": "Image Embeddings\nEach sample in the MNIST database is a \\(28x28\\) gray scale image, represented by a \\(28\\times 28\\) array of integers between 0 and 255.\n\nwith open(\"data/train-images.idx3-ubyte\",'rb') as f:\n    f.read(16)\n    buf = f.read(28*28)\n    data = np.frombuffer(buf,dtype=np.uint8).astype(np.float32)\n    data = data.reshape(1,28,28)\nfor x in range(28):\n    for y in range(28):\n        print('{:&gt;4}'.format(int(data[0,x,y])),end=\"\")\n    print(\"\\n\")\n\nimage = np.asarray(data[0].squeeze())\nplt.imshow(image)\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   3  18  18  18 126 136 175  26 166 255 247 127   0   0   0   0\n\n   0   0   0   0   0   0   0   0  30  36  94 154 170 253 253 253 253 253 225 172 253 242 195  64   0   0   0   0\n\n   0   0   0   0   0   0   0  49 238 253 253 253 253 253 253 253 253 251  93  82  82  56  39   0   0   0   0   0\n\n   0   0   0   0   0   0   0  18 219 253 253 253 253 253 198 182 247 241   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0  80 156 107 253 253 205  11   0  43 154   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0  14   1 154 253  90   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0 139 253 190   2   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0  11 190 253  70   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0  35 241 225 160 108   1   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0  81 240 253 253 119  25   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0  45 186 253 253 150  27   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0  16  93 252 253 187   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 249 253 249  64   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0  46 130 183 253 253 207   2   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0  39 148 229 253 253 253 250 182   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0  24 114 221 253 253 253 253 201  78   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0  23  66 213 253 253 253 253 198  81   2   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0  18 171 219 253 253 253 253 195  80   9   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0  55 172 226 253 253 253 253 244 133  11   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0 136 253 253 253 212 135 132  16   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n\n\n&lt;matplotlib.image.AxesImage at 0x13a31b310&gt;\n\n\n\n\n\nHere we can view each image as a vector in a 784 dimensional (=28*28) space.\nA collection of 100 images would be represented by an array with 100 rows and 784 columns\nA 28x28 image in color has 28283 numbers to account for the RGB channels."
   },
   {
     "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#one-hot-embedding",
@@ -1068,7 +1068,7 @@
     "href": "chapters/06-LinearAlgebra/linear_algebra.html#linear-relations-in-python",
     "title": "Essential Linear Algebra",
     "section": "Linear relations in python",
-    "text": "Linear relations in python\n\nvectors = [np.random.uniform(size=8) for i in range(5)] # 10 random vectors\nscalars = [np.random.normal() for i in range(5)] # 10 random scalars\nprods = [scalars[i]*vectors[i] for i in range(5)] # products\nresult = sum(prods) # sum of products\nprint(result)\n\n[-0.30467129  0.28158883 -0.57717325  0.11187448 -0.30888858 -0.21997919\n -0.65123262  0.13852329]"
+    "text": "Linear relations in python\n\nvectors = [np.random.uniform(size=8) for i in range(5)] # 10 random vectors\nscalars = [np.random.normal() for i in range(5)] # 10 random scalars\nprods = [scalars[i]*vectors[i] for i in range(5)] # products\nresult = sum(prods) # sum of products\nprint(result)\n\n[1.43283968 0.43430111 1.02897087 0.95056088 1.69691381 1.29338635\n 0.9960543  0.65756167]"
   },
   {
     "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#mean-squared-error-in-vector-form",
@@ -1103,7 +1103,7 @@
     "href": "chapters/06-LinearAlgebra/linear_algebra.html#hyperplanes",
     "title": "Essential Linear Algebra",
     "section": "Hyperplanes",
-    "text": "Hyperplanes"
+    "text": "Hyperplanes\nA (linear) hyperplane is a subspace of dimension \\(n-1\\) in a vector space of dimension \\(n\\). It is given by an equation of the form\n\\[\n\\sum a_{i}x_{i}=0.\n\\]\nGeometrically this can be written \\(v\\cdot x=0\\) where \\(v=[a_1,\\ldots, a_n]\\) and \\(x=[x_1,\\ldots, x_n]\\). The vector \\(v\\) is called the normal vector to the hyperplane.\nAn (affine) hyperplane is given by an equation of the form \\[\nv\\cdot x = b\n\\] for some constant \\(b\\)\n\nx=np.linspace(-5,5,10)\ny=2/3*x\nplt.plot(x,y)\nplt.grid(True)\nplt.gca().set_aspect('equal')\n\nplt.plot([0,-2],[0,3])\nplt.plot([-2,-2],[3,2])\nplt.plot([-2,-1],[3,2.6])\nplt.title(\"Hyperplane 2x-3y=0 with normal vector [-2,3]\")\n\nText(0.5, 1.0, 'Hyperplane 2x-3y=0 with normal vector [-2,3]')"
   },
   {
     "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#matrices-and-matrix-multiplication",
@@ -1188,5 +1188,75 @@
     "title": "Essential Linear Algebra",
     "section": "R",
     "text": "R\n# r\nv = c(1, 2, 3, 4, 5)\nw = c(2, 4, 6, 8, 10)\ncat(\"Entry by entry product = \", v * w, \"\\n\")\ncat(\"Dot product = \", (v %*% w), \"\\n\")"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#unit-vectors-and-projection",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#unit-vectors-and-projection",
+    "title": "Essential Linear Algebra",
+    "section": "Unit vectors and projection",
+    "text": "Unit vectors and projection\nA vector \\(u\\) is a unit vector if \\(u\\cdot u=1\\).\nThe quantity \\(v\\cdot u\\) measures the projection of \\(v\\) into the direction given by \\(u\\)."
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#variance-correlation-and-cosine-similarity",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#variance-correlation-and-cosine-similarity",
+    "title": "Essential Linear Algebra",
+    "section": "Variance, Correlation and cosine similarity",
+    "text": "Variance, Correlation and cosine similarity\nIf \\(v\\) is a feature vector, let \\(\\overline{v}=\\frac{1}{n}\\sum_{i=1}^{n} v_{i}\\).\nNotice that \\(\\overline{v}=v\\cdot E\\) where \\(E\\) is the vector with \\(1/n\\) in each entry.\n\\[\n\\|(v-\\overline{v}E)\\|=\\sigma^{2}\n\\]"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#covariance",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#covariance",
+    "title": "Essential Linear Algebra",
+    "section": "Covariance",
+    "text": "Covariance\nIf \\(v\\) and \\(w\\) are two vectors, their covariance is \\[\n\\sigma_{vw} = (v-\\overline{v}E)\\cdot (w-\\overline{w}E)\n\\]"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#correlation",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#correlation",
+    "title": "Essential Linear Algebra",
+    "section": "Correlation",
+    "text": "Correlation\nThe correlation coefficient of \\(v\\) and \\(w\\) is \\[\nr_{vw}^2 = \\frac{\\sigma_{vw}}{\\sigma{v}\\sigma{w}}\n\\]\nIt measures the cosine of the angle between \\(v-\\overline{v}E\\) and \\(w-\\overline{w}E\\)."
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#cosine-similarity",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#cosine-similarity",
+    "title": "Essential Linear Algebra",
+    "section": "Cosine similarity",
+    "text": "Cosine similarity\nIn general,\n\\[\n\\cos(\\theta) = \\frac{v\\cdot w}{\\|v\\|\\|w\\|}\n\\] measures the angle between two feature vectors and is a measure of “similarity” between \\(0\\) and \\(1\\)."
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#matrices",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#matrices",
+    "title": "Essential Linear Algebra",
+    "section": "Matrices",
+    "text": "Matrices\nAn \\(n\\times m\\) matrix is an array of real numbers with \\(n\\) rows, \\(m\\) columns, and a total of \\(nm\\) entries."
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#matrix-times-vector",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#matrix-times-vector",
+    "title": "Essential Linear Algebra",
+    "section": "Matrix times Vector",
+    "text": "Matrix times Vector\nIf \\(M\\) is an \\(n\\times m\\) matrix and \\(v\\) is an \\(m\\times 1\\) vector (a column vector) then \\(Mv\\) is the \\(n\\times 1\\) column vector whose entries are \\[\nM[i,:]\\cdot v\n\\] where \\(i\\) runs from 1 to \\(n\\). Here \\(M[i,:]\\) is the \\(i^{th}\\) row of \\(M\\).\nIf \\(v\\) is a \\(1\\times n\\) row vector then \\(vM\\) is the \\(1\\times m\\) row vector whose entries are \\(v\\cdot M[:,i]\\) as \\(i\\) runs from 1 to \\(m\\)."
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#matrix-times-vector-is-linear",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#matrix-times-vector-is-linear",
+    "title": "Essential Linear Algebra",
+    "section": "Matrix times vector is linear",
+    "text": "Matrix times vector is linear\n\\[M(v+w) = Mv+Mw\\] \\[M(aw) = aMw\\]"
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#affine-hyperplanes",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#affine-hyperplanes",
+    "title": "Essential Linear Algebra",
+    "section": "Affine hyperplanes",
+    "text": "Affine hyperplanes\nFor fixed \\(v\\) and varying \\(b\\), the hyperplanes \\(v\\cdot x=b\\) form a parallel family."
+  },
+  {
+    "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#distance-from-a-point-to-a-hyperplane",
+    "href": "chapters/06-LinearAlgebra/linear_algebra.html#distance-from-a-point-to-a-hyperplane",
+    "title": "Essential Linear Algebra",
+    "section": "Distance from a point to a hyperplane",
+    "text": "Distance from a point to a hyperplane\nThe distance from a point \\(w\\) to the hyperplane \\(v\\cdot x = b\\) is \\[\nD = \\frac{w\\cdot v-b}{\\|v\\|}.\n\\]\nThis is the projection of the line from \\(w\\) to a point \\(x\\) on the hyperplane against the unit normal \\(\\frac{v}{\\|v\\|}\\).\n\\[\n(w-x)\\cdot\\frac{v}{\\|v\\|} =\\frac{(w\\cdot v -x\\cdot v)}{\\|v\\|} = \\frac{(w\\cdot v - b)}{\\|v\\|}\n\\]\n\nx=np.linspace(-4,4,10)\ny=2/3*x\nplt.plot(x,y)\nplt.grid(True)\nplt.gca().set_aspect('equal')\nplt.title(\"Dist. from point to hyperplane\")\nplt.plot([0,-2/np.sqrt(13)],[0,3/np.sqrt(13)],color='red',linewidth=3)\nplt.plot([0,-2],[0,3])\nplt.plot([-3,-2],[-2,3])\nplt.text(-2.4,3,r'w')\nplt.text(-3,-2.3,r'x')\nplt.text(-3.6,0,r'$\\|w-x\\|$')\nplt.text(-1.9,2.2,r'$\\theta$')\nplt.text(-.5,1.4,r'$\\|w-x\\|\\cos(\\theta)$')\n\nText(-0.5, 1.4, '$\\\\|w-x\\\\|\\\\cos(\\\\theta)$')"
   }
 ]

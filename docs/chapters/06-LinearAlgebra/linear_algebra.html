@@ -282,7 +282,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Each penguin is represented by a vector in <span class="math inline">\(\mathbf{R}^{4}\)</span>. So for example penguin number 34 is represented as follows.</p>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">34</span>,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="197">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>array([  39.2,   21.1,  196. , 4150. ])</code></pre>
 </div>
 </div>
@@ -367,8 +367,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
 </code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="198">
-<pre><code>&lt;matplotlib.image.AxesImage at 0x11f9f57e0&gt;</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x13a31b310&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="linear_algebra_files/figure-html/cell-7-output-3.png" width="415" height="411"></p>
@@ -460,8 +460,8 @@ b_1v_1+...+b_kv_k=0
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="bu">sum</span>(prods) <span class="co"># sum of products</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[-0.30467129  0.28158883 -0.57717325  0.11187448 -0.30888858 -0.21997919
- -0.65123262  0.13852329]</code></pre>
+<pre><code>[1.43283968 0.43430111 1.02897087 0.95056088 1.69691381 1.29338635
+ 0.9960543  0.65756167]</code></pre>
 </div>
 </div>
 </section>
@@ -489,7 +489,7 @@ b_1v_1+...+b_kv_k=0
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>plt.plot(x0,predictions,color<span class="op">=</span><span class="st">'red'</span>)</span>
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Miles per Gallon vs Engine Displacement"</span>)</span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Displacement"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="200">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>Text(0.5, 0, 'Displacement')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -527,7 +527,7 @@ b_1v_1+...+b_kv_k=0
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(disp0, mpg0)</span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>plt.scatter(disp0, predicted)</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"MSE=</span><span class="sc">{:.2f}</span><span class="st">"</span>.<span class="bu">format</span>(np.linalg.norm(mpg0<span class="op">-</span>predicted)<span class="op">/</span>mpg0.shape[<span class="dv">0</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="201">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>Text(0.5, 1.0, 'MSE=0.23')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -589,14 +589,118 @@ v_1\cdot v_2 = \|v_1\|\|v_2\|\cos(\theta)
 <p>If <span class="math inline">\(v_1\cdot v_2=0\)</span> then either one of <span class="math inline">\(v_1\)</span> or <span class="math inline">\(v_2\)</span> is zero, or the angle between then is 90 degrees.</p>
 <p>In this case we saw the vectors are <em>orthogonal</em>.</p>
 </section>
-<section id="correlation-and-cosine-similarity" class="level2">
-<h2 class="anchored" data-anchor-id="correlation-and-cosine-similarity">Correlation and cosine similarity</h2>
+<section id="unit-vectors-and-projection" class="level2">
+<h2 class="anchored" data-anchor-id="unit-vectors-and-projection">Unit vectors and projection</h2>
+<p>A vector <span class="math inline">\(u\)</span> is a unit vector if <span class="math inline">\(u\cdot u=1\)</span>.</p>
+<p>The quantity <span class="math inline">\(v\cdot u\)</span> measures the projection of <span class="math inline">\(v\)</span> into the direction given by <span class="math inline">\(u\)</span>.</p>
+</section>
+<section id="variance-correlation-and-cosine-similarity" class="level2">
+<h2 class="anchored" data-anchor-id="variance-correlation-and-cosine-similarity">Variance, Correlation and cosine similarity</h2>
+<p>If <span class="math inline">\(v\)</span> is a feature vector, let <span class="math inline">\(\overline{v}=\frac{1}{n}\sum_{i=1}^{n} v_{i}\)</span>.</p>
+<p>Notice that <span class="math inline">\(\overline{v}=v\cdot E\)</span> where <span class="math inline">\(E\)</span> is the vector with <span class="math inline">\(1/n\)</span> in each entry.</p>
+<p><span class="math display">\[
+\|(v-\overline{v}E)\|=\sigma^{2}
+\]</span></p>
+</section>
+<section id="covariance" class="level2">
+<h2 class="anchored" data-anchor-id="covariance">Covariance</h2>
+<p>If <span class="math inline">\(v\)</span> and <span class="math inline">\(w\)</span> are two vectors, their <em>covariance</em> is <span class="math display">\[
+\sigma_{vw} = (v-\overline{v}E)\cdot (w-\overline{w}E)
+\]</span></p>
+</section>
+<section id="correlation" class="level2">
+<h2 class="anchored" data-anchor-id="correlation">Correlation</h2>
+<p>The correlation coefficient of <span class="math inline">\(v\)</span> and <span class="math inline">\(w\)</span> is <span class="math display">\[
+r_{vw}^2 = \frac{\sigma_{vw}}{\sigma{v}\sigma{w}}
+\]</span></p>
+<p>It measures the cosine of the angle between <span class="math inline">\(v-\overline{v}E\)</span> and <span class="math inline">\(w-\overline{w}E\)</span>.</p>
+</section>
+<section id="cosine-similarity" class="level2">
+<h2 class="anchored" data-anchor-id="cosine-similarity">Cosine similarity</h2>
+<p>In general,</p>
+<p><span class="math display">\[
+\cos(\theta) = \frac{v\cdot w}{\|v\|\|w\|}
+\]</span> measures the angle between two feature vectors and is a measure of “similarity” between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>.</p>
 </section>
 <section id="hyperplanes" class="level2">
 <h2 class="anchored" data-anchor-id="hyperplanes">Hyperplanes</h2>
+<p>A (linear) hyperplane is a subspace of dimension <span class="math inline">\(n-1\)</span> in a vector space of dimension <span class="math inline">\(n\)</span>. It is given by an equation of the form</p>
+<p><span class="math display">\[
+\sum a_{i}x_{i}=0.
+\]</span></p>
+<p>Geometrically this can be written <span class="math inline">\(v\cdot x=0\)</span> where <span class="math inline">\(v=[a_1,\ldots, a_n]\)</span> and <span class="math inline">\(x=[x_1,\ldots, x_n]\)</span>. The vector <span class="math inline">\(v\)</span> is called the <em>normal</em> vector to the hyperplane.</p>
+<p>An (affine) hyperplane is given by an equation of the form <span class="math display">\[
+v\cdot x = b
+\]</span> for some constant <span class="math inline">\(b\)</span></p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">10</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span><span class="dv">2</span><span class="op">/</span><span class="dv">3</span><span class="op">*</span>x</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>plt.gca().set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>,<span class="op">-</span><span class="dv">2</span>],[<span class="dv">0</span>,<span class="dv">3</span>])</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="op">-</span><span class="dv">2</span>,<span class="op">-</span><span class="dv">2</span>],[<span class="dv">3</span>,<span class="dv">2</span>])</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="op">-</span><span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>],[<span class="dv">3</span>,<span class="fl">2.6</span>])</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Hyperplane 2x-3y=0 with normal vector [-2,3]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>Text(0.5, 1.0, 'Hyperplane 2x-3y=0 with normal vector [-2,3]')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="linear_algebra_files/figure-html/cell-11-output-2.png" width="569" height="409"></p>
+</div>
+</div>
 </section>
-<section id="matrices-and-matrix-multiplication" class="level2">
-<h2 class="anchored" data-anchor-id="matrices-and-matrix-multiplication">Matrices and Matrix Multiplication</h2>
+<section id="affine-hyperplanes" class="level2">
+<h2 class="anchored" data-anchor-id="affine-hyperplanes">Affine hyperplanes</h2>
+<p>For fixed <span class="math inline">\(v\)</span> and varying <span class="math inline">\(b\)</span>, the hyperplanes <span class="math inline">\(v\cdot x=b\)</span> form a parallel family.</p>
+</section>
+<section id="distance-from-a-point-to-a-hyperplane" class="level2">
+<h2 class="anchored" data-anchor-id="distance-from-a-point-to-a-hyperplane">Distance from a point to a hyperplane</h2>
+<p>The distance from a point <span class="math inline">\(w\)</span> to the hyperplane <span class="math inline">\(v\cdot x = b\)</span> is <span class="math display">\[
+D = \frac{w\cdot v-b}{\|v\|}.
+\]</span></p>
+<p>This is the projection of the line from <span class="math inline">\(w\)</span> to a point <span class="math inline">\(x\)</span> on the hyperplane against the unit normal <span class="math inline">\(\frac{v}{\|v\|}\)</span>.</p>
+<p><span class="math display">\[
+(w-x)\cdot\frac{v}{\|v\|} =\frac{(w\cdot v -x\cdot v)}{\|v\|} = \frac{(w\cdot v - b)}{\|v\|}
+\]</span></p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="op">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">10</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span><span class="dv">2</span><span class="op">/</span><span class="dv">3</span><span class="op">*</span>x</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>plt.gca().set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Dist. from point to hyperplane"</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>,<span class="op">-</span><span class="dv">2</span><span class="op">/</span>np.sqrt(<span class="dv">13</span>)],[<span class="dv">0</span>,<span class="dv">3</span><span class="op">/</span>np.sqrt(<span class="dv">13</span>)],color<span class="op">=</span><span class="st">'red'</span>,linewidth<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>,<span class="op">-</span><span class="dv">2</span>],[<span class="dv">0</span>,<span class="dv">3</span>])</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="op">-</span><span class="dv">3</span>,<span class="op">-</span><span class="dv">2</span>],[<span class="op">-</span><span class="dv">2</span>,<span class="dv">3</span>])</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">2.4</span>,<span class="dv">3</span>,<span class="vs">r'w'</span>)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="dv">3</span>,<span class="op">-</span><span class="fl">2.3</span>,<span class="vs">r'x'</span>)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">3.6</span>,<span class="dv">0</span>,<span class="vs">r'$\|w-x\|$'</span>)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">1.9</span>,<span class="fl">2.2</span>,<span class="vs">r'$\theta$'</span>)</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">.5</span>,<span class="fl">1.4</span>,<span class="vs">r'$\|w-x\|\cos(\theta)$'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>Text(-0.5, 1.4, '$\\|w-x\\|\\cos(\\theta)$')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="linear_algebra_files/figure-html/cell-12-output-2.png" width="569" height="430"></p>
+</div>
+</div>
+</section>
+<section id="matrices" class="level2">
+<h2 class="anchored" data-anchor-id="matrices">Matrices</h2>
+<p>An <span class="math inline">\(n\times m\)</span> matrix is an array of real numbers with <span class="math inline">\(n\)</span> rows, <span class="math inline">\(m\)</span> columns, and a total of <span class="math inline">\(nm\)</span> entries.</p>
+</section>
+<section id="matrix-times-vector" class="level2">
+<h2 class="anchored" data-anchor-id="matrix-times-vector">Matrix times Vector</h2>
+<p>If <span class="math inline">\(M\)</span> is an <span class="math inline">\(n\times m\)</span> matrix and <span class="math inline">\(v\)</span> is an <span class="math inline">\(m\times 1\)</span> vector (a column vector) then <span class="math inline">\(Mv\)</span> is the <span class="math inline">\(n\times 1\)</span> column vector whose entries are <span class="math display">\[
+M[i,:]\cdot v
+\]</span> where <span class="math inline">\(i\)</span> runs from 1 to <span class="math inline">\(n\)</span>. Here <span class="math inline">\(M[i,:]\)</span> is the <span class="math inline">\(i^{th}\)</span> row of <span class="math inline">\(M\)</span>.</p>
+<p>If <span class="math inline">\(v\)</span> is a <span class="math inline">\(1\times n\)</span> row vector then <span class="math inline">\(vM\)</span> is the <span class="math inline">\(1\times m\)</span> row vector whose entries are <span class="math inline">\(v\cdot M[:,i]\)</span> as <span class="math inline">\(i\)</span> runs from 1 to <span class="math inline">\(m\)</span>.</p>
+</section>
+<section id="matrix-times-vector-is-linear" class="level2">
+<h2 class="anchored" data-anchor-id="matrix-times-vector-is-linear">Matrix times vector is linear</h2>
+<p><span class="math display">\[M(v+w) = Mv+Mw\]</span> <span class="math display">\[M(aw) = aMw\]</span></p>
 </section>
 <section id="linear-maps" class="level2">
 <h2 class="anchored" data-anchor-id="linear-maps">Linear maps</h2>
