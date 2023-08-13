@@ -383,7 +383,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>&lt;matplotlib.image.AxesImage at 0x7f58612373d0&gt;</code></pre>
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7fcae1acff10&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="linear_algebra_files/figure-html/cell-7-output-3.png" width="415" height="411"></p>
@@ -475,8 +475,8 @@ b_1v_1+...+b_kv_k=0
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="bu">sum</span>(prods) <span class="co"># sum of products</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[0.25546949 0.45905941 1.02693162 0.60531467 0.14421595 1.31964965
- 1.33737375 0.73703371]</code></pre>
+<pre><code>[-0.76633665  0.14503684 -0.59799203 -0.84098786 -0.61635087 -0.19606302
+ -0.25609914 -0.07568423]</code></pre>
 </div>
 </div>
 </section>
@@ -551,26 +551,289 @@ b_1v_1+...+b_kv_k=0
 </div>
 <p>The mean squared error is the squared distance between a true and predicted value, divided by the number of values.</p>
 </section>
-<section id="the-dot-product-orthogonality-cauchy-schwartz" class="level2">
-<h2 class="anchored" data-anchor-id="the-dot-product-orthogonality-cauchy-schwartz">The dot product, orthogonality, cauchy-schwartz</h2>
+<section id="the-dot-product" class="level2">
+<h2 class="anchored" data-anchor-id="the-dot-product">The dot product</h2>
+<p>Suppose we have two vectors: <span class="math display">\[\begin{aligned}
+v_1 &amp; =[a_1,a_2,\dots, a_n] \\
+v_2 &amp;= [b_1,b_2,\ldots, b_n]
+\end{aligned}
+\]</span></p>
+<p>The “dot product” or “inner product” of these two vectors is: <span class="math display">\[
+v_1\cdot v_2 = \sum_{i=1}^{n} a_i b_i.
+\]</span></p>
+<p><em>Important:</em> The dot product *converts two vectors into a scalar!</p>
+</section>
+<section id="properties-of-the-dot-product" class="level2">
+<h2 class="anchored" data-anchor-id="properties-of-the-dot-product">Properties of the dot product</h2>
+<ol type="1">
+<li><span class="math inline">\(v_1\cdot v_1 = \|v_1\|^2\)</span></li>
+<li><span class="math inline">\((av_1+bv_2)\cdot v_3 = a(v_1\cdot v_2) + b(v_2\cdot v_2)\)</span></li>
+<li><span class="math inline">\(v_1\cdot v_2 = v_2 \cdot v_1\)</span>.</li>
+</ol>
+</section>
+<section id="angles-and-cauchy-schwartz" class="level2">
+<h2 class="anchored" data-anchor-id="angles-and-cauchy-schwartz">Angles and Cauchy-Schwartz</h2>
+<p>The law of cosines: <span class="math display">\[\|v_1\|^2+\|v_2\|^2 - 2\|v_1\|\|v_2\|\cos(\theta) =\|v_1-v_2\|^2\]</span></p>
+<p>means that</p>
+<p><span id="eq-dot-product"><span class="math display">\[
+v_1\cdot v_2 = \|v_1\|\|v_2\|\cos(\theta)
+\tag{1}\]</span></span></p>
+<p>In particular:</p>
+<p><span id="eq-cauchy-schwartz"><span class="math display">\[|v_1\cdot v_2|\le \|v_1\|\|v_2\|
+\tag{2}\]</span></span></p>
+<p>This says <span class="math display">\[
+|\sum_{i=1}^{n} a_{i}b_{i}|^2\le (\sum_{i=1}^{n} a_{i}^2)(\sum_{i=1}^{n} b_{i}^2)
+\]</span></p>
+<p><a href="#eq-cauchy-schwartz">Equation&nbsp;2</a> is called the “Cauchy-Schwartz inequality.”</p>
+</section>
+<section id="python" class="level2">
+<h2 class="anchored" data-anchor-id="python">Python</h2>
+<div id="lst-dot-product" class="listing">
+<p>Listing&nbsp;1: Dot product computation</p>
+<div class="sourceCode" id="lst-dot-product" data-lst-cap="Dot product computation"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="lst-dot-product-1"><a href="#lst-dot-product-1" aria-hidden="true" tabindex="-1"></a><span class="co"># python</span></span>
+<span id="lst-dot-product-2"><a href="#lst-dot-product-2" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>])</span>
+<span id="lst-dot-product-3"><a href="#lst-dot-product-3" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> np.array([<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">10</span>])</span>
+<span id="lst-dot-product-4"><a href="#lst-dot-product-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Entry by entry product = </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(v<span class="op">*</span>w)) <span class="co"># &lt;1&gt;</span></span>
+<span id="lst-dot-product-5"><a href="#lst-dot-product-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Dot product = </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(np.dot(v,w))) <span class="co"># &lt;2&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note: In R, the symbol for dot product is <code>%*%</code>.</p>
+<p>In <a href="#lst-dot-product">Listing&nbsp;1</a> we show how to compute the dot product in python.</p>
+</section>
+<section id="orthogonality" class="level2">
+<h2 class="anchored" data-anchor-id="orthogonality">Orthogonality</h2>
+<p>If <span class="math inline">\(v_1\cdot v_2=0\)</span> then either one of <span class="math inline">\(v_1\)</span> or <span class="math inline">\(v_2\)</span> is zero, or the angle between then is 90 degrees.</p>
+<p>In this case we saw the vectors are <em>orthogonal</em>.</p>
+</section>
+<section id="unit-vectors-and-projection" class="level2">
+<h2 class="anchored" data-anchor-id="unit-vectors-and-projection">Unit vectors and projection</h2>
+<p>A vector <span class="math inline">\(u\)</span> is a unit vector if <span class="math inline">\(u\cdot u=1\)</span>.</p>
+<p>The quantity <span class="math inline">\(v\cdot u\)</span> measures the projection of <span class="math inline">\(v\)</span> into the direction given by <span class="math inline">\(u\)</span>.</p>
+</section>
+<section id="variance-correlation-and-cosine-similarity" class="level2">
+<h2 class="anchored" data-anchor-id="variance-correlation-and-cosine-similarity">Variance, Correlation and cosine similarity</h2>
+<p>If <span class="math inline">\(v\)</span> is a feature vector, let <span class="math inline">\(\overline{v}=\frac{1}{n}\sum_{i=1}^{n} v_{i}\)</span>.</p>
+<p>Notice that <span class="math inline">\(\overline{v}=v\cdot E\)</span> where <span class="math inline">\(E\)</span> is the vector with <span class="math inline">\(1/n\)</span> in each entry.</p>
+<p><span class="math display">\[
+\|(v-\overline{v}E)\|=\sigma^{2}
+\]</span></p>
+</section>
+<section id="covariance" class="level2">
+<h2 class="anchored" data-anchor-id="covariance">Covariance</h2>
+<p>If <span class="math inline">\(v\)</span> and <span class="math inline">\(w\)</span> are two vectors, their <em>covariance</em> is <span class="math display">\[
+\sigma_{vw} = (v-\overline{v}E)\cdot (w-\overline{w}E)
+\]</span></p>
+</section>
+<section id="correlation" class="level2">
+<h2 class="anchored" data-anchor-id="correlation">Correlation</h2>
+<p>The correlation coefficient of <span class="math inline">\(v\)</span> and <span class="math inline">\(w\)</span> is <span class="math display">\[
+r_{vw}^2 = \frac{\sigma_{vw}}{\sigma{v}\sigma{w}}
+\]</span></p>
+<p>It measures the cosine of the angle between <span class="math inline">\(v-\overline{v}E\)</span> and <span class="math inline">\(w-\overline{w}E\)</span>.</p>
+</section>
+<section id="cosine-similarity" class="level2">
+<h2 class="anchored" data-anchor-id="cosine-similarity">Cosine similarity</h2>
+<p>In general,</p>
+<p><span class="math display">\[
+\cos(\theta) = \frac{v\cdot w}{\|v\|\|w\|}
+\]</span> measures the angle between two feature vectors and is a measure of “similarity” between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>.</p>
 </section>
 <section id="hyperplanes" class="level2">
 <h2 class="anchored" data-anchor-id="hyperplanes">Hyperplanes</h2>
+<p>A (linear) hyperplane is a subspace of dimension <span class="math inline">\(n-1\)</span> in a vector space of dimension <span class="math inline">\(n\)</span>. It is given by an equation of the form</p>
+<p><span class="math display">\[
+\sum a_{i}x_{i}=0.
+\]</span></p>
+<p>Geometrically this can be written <span class="math inline">\(v\cdot x=0\)</span> where <span class="math inline">\(v=[a_1,\ldots, a_n]\)</span> and <span class="math inline">\(x=[x_1,\ldots, x_n]\)</span>. The vector <span class="math inline">\(v\)</span> is called the <em>normal</em> vector to the hyperplane.</p>
+<p>An (affine) hyperplane is given by an equation of the form <span class="math display">\[
+v\cdot x = b
+\]</span> for some constant <span class="math inline">\(b\)</span></p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">10</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span><span class="dv">2</span><span class="op">/</span><span class="dv">3</span><span class="op">*</span>x</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>plt.gca().set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>,<span class="op">-</span><span class="dv">2</span>],[<span class="dv">0</span>,<span class="dv">3</span>])</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="op">-</span><span class="dv">2</span>,<span class="op">-</span><span class="dv">2</span>],[<span class="dv">3</span>,<span class="dv">2</span>])</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="op">-</span><span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>],[<span class="dv">3</span>,<span class="fl">2.6</span>])</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Hyperplane 2x-3y=0 with normal vector [-2,3]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>Text(0.5, 1.0, 'Hyperplane 2x-3y=0 with normal vector [-2,3]')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="linear_algebra_files/figure-html/cell-11-output-2.png" width="569" height="409"></p>
+</div>
+</div>
 </section>
-<section id="matrices-and-matrix-multiplication" class="level2">
-<h2 class="anchored" data-anchor-id="matrices-and-matrix-multiplication">Matrices and Matrix Multiplication</h2>
+<section id="affine-hyperplanes" class="level2">
+<h2 class="anchored" data-anchor-id="affine-hyperplanes">Affine hyperplanes</h2>
+<p>For fixed <span class="math inline">\(v\)</span> and varying <span class="math inline">\(b\)</span>, the hyperplanes <span class="math inline">\(v\cdot x=b\)</span> form a parallel family.</p>
 </section>
-<section id="linear-maps" class="level2">
-<h2 class="anchored" data-anchor-id="linear-maps">Linear maps</h2>
+<section id="distance-from-a-point-to-a-hyperplane" class="level2">
+<h2 class="anchored" data-anchor-id="distance-from-a-point-to-a-hyperplane">Distance from a point to a hyperplane</h2>
+<p>The distance from a point <span class="math inline">\(w\)</span> to the hyperplane <span class="math inline">\(v\cdot x = b\)</span> is <span class="math display">\[
+D = \frac{w\cdot v-b}{\|v\|}.
+\]</span></p>
+<p>This is the projection of the line from <span class="math inline">\(w\)</span> to a point <span class="math inline">\(x\)</span> on the hyperplane against the unit normal <span class="math inline">\(\frac{v}{\|v\|}\)</span>.</p>
+<p><span class="math display">\[
+(w-x)\cdot\frac{v}{\|v\|} =\frac{(w\cdot v -x\cdot v)}{\|v\|} = \frac{(w\cdot v - b)}{\|v\|}
+\]</span></p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="op">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">10</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span><span class="dv">2</span><span class="op">/</span><span class="dv">3</span><span class="op">*</span>x</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>plt.gca().set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Dist. from point to hyperplane"</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>,<span class="op">-</span><span class="dv">2</span><span class="op">/</span>np.sqrt(<span class="dv">13</span>)],[<span class="dv">0</span>,<span class="dv">3</span><span class="op">/</span>np.sqrt(<span class="dv">13</span>)],color<span class="op">=</span><span class="st">'red'</span>,linewidth<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>,<span class="op">-</span><span class="dv">2</span>],[<span class="dv">0</span>,<span class="dv">3</span>])</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="op">-</span><span class="dv">3</span>,<span class="op">-</span><span class="dv">2</span>],[<span class="op">-</span><span class="dv">2</span>,<span class="dv">3</span>])</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">2.4</span>,<span class="dv">3</span>,<span class="vs">r'w'</span>)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="dv">3</span>,<span class="op">-</span><span class="fl">2.3</span>,<span class="vs">r'x'</span>)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">3.6</span>,<span class="dv">0</span>,<span class="vs">r'$\|w-x\|$'</span>)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">1.9</span>,<span class="fl">2.2</span>,<span class="vs">r'$\theta$'</span>)</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">.5</span>,<span class="fl">1.4</span>,<span class="vs">r'$\|w-x\|\cos(\theta)$'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>Text(-0.5, 1.4, '$\\|w-x\\|\\cos(\\theta)$')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="linear_algebra_files/figure-html/cell-12-output-2.png" width="569" height="430"></p>
+</div>
+</div>
+</section>
+<section id="matrices" class="level2">
+<h2 class="anchored" data-anchor-id="matrices">Matrices</h2>
+<p>An <span class="math inline">\(n\times m\)</span> matrix is an array of real numbers with <span class="math inline">\(n\)</span> rows, <span class="math inline">\(m\)</span> columns, and a total of <span class="math inline">\(nm\)</span> entries.</p>
+</section>
+<section id="matrix-times-vector" class="level2">
+<h2 class="anchored" data-anchor-id="matrix-times-vector">Matrix times Vector</h2>
+<p>If <span class="math inline">\(M\)</span> is an <span class="math inline">\(n\times m\)</span> matrix and <span class="math inline">\(v\)</span> is an <span class="math inline">\(m\times 1\)</span> vector (a column vector) then <span class="math inline">\(Mv\)</span> is the <span class="math inline">\(n\times 1\)</span> column vector whose entries are <span class="math display">\[
+M[i,:]\cdot v
+\]</span> where <span class="math inline">\(i\)</span> runs from 1 to <span class="math inline">\(n\)</span>. Here <span class="math inline">\(M[i,:]\)</span> is the <span class="math inline">\(i^{th}\)</span> row of <span class="math inline">\(M\)</span>.</p>
+<p>If <span class="math inline">\(v\)</span> is a <span class="math inline">\(1\times n\)</span> row vector then <span class="math inline">\(vM\)</span> is the <span class="math inline">\(1\times m\)</span> row vector whose entries are <span class="math inline">\(v\cdot M[:,i]\)</span> as <span class="math inline">\(i\)</span> runs from 1 to <span class="math inline">\(m\)</span>.</p>
+</section>
+<section id="matrix-times-vector-is-linear" class="level2">
+<h2 class="anchored" data-anchor-id="matrix-times-vector-is-linear">Matrix times vector is linear</h2>
+<p><span class="math display">\[M(v+w) = Mv+Mw\]</span> <span class="math display">\[M(aw) = aMw\]</span></p>
+</section>
+<section id="matrix-times-standard-vector-gives-rowcolumn" class="level2">
+<h2 class="anchored" data-anchor-id="matrix-times-standard-vector-gives-rowcolumn">Matrix times standard vector gives row/column</h2>
+<p>If <span class="math inline">\(v\)</span> is a column vector with a a <span class="math inline">\(1\)</span> in position <span class="math inline">\(i\)</span> and zeros elsewhere, then <span class="math inline">\(Mv\)</span> is the <span class="math inline">\(i^{th}\)</span> column of <span class="math inline">\(M\)</span>.</p>
+<p>If <span class="math inline">\(v\)</span> is a row vector with a <span class="math inline">\(1\)</span> in position <span class="math inline">\(i\)</span> and zeros elsewhere, then <span class="math inline">\(vM\)</span> is the <span class="math inline">\(i^{th}\)</span> row of <span class="math inline">\(M\)</span>.</p>
+</section>
+<section id="mvvm-gives-linear-combination-of-columnsrows" class="level2">
+<h2 class="anchored" data-anchor-id="mvvm-gives-linear-combination-of-columnsrows"><span class="math inline">\(Mv\)</span>/<span class="math inline">\(vM\)</span> gives linear combination of columns/rows</h2>
+<p><span class="math inline">\(Mv\)</span> is a linear combination of the columns of <span class="math inline">\(M\)</span> weighted by the entries of <span class="math inline">\(v\)</span>.</p>
+<p><span class="math inline">\(vM\)</span> is a linear combination of the rows of <span class="math inline">\(M\)</span> weighted by the entries of <span class="math inline">\(v\)</span>.</p>
+</section>
+<section id="matrix-times-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="matrix-times-matrix">Matrix times matrix</h2>
+<p>An <span class="math inline">\(n\times m\)</span> matrix times an <span class="math inline">\(m\times k\)</span> matrix yields an <span class="math inline">\(n\times k\)</span> matrix.</p>
+<p>You can view <span class="math inline">\(MN\)</span> as <span class="math inline">\(Mv\)</span> where <span class="math inline">\(v\)</span> runs through the columns of <span class="math inline">\(N\)</span>. Each column has <span class="math inline">\(n\)</span> rows.</p>
+<p><span class="math display">\[
+MN=\left[
+    \begin{matrix}
+     M[0,:]N &amp; M[1,:]N &amp;\cdots&amp;M[m,:]N\\
+    \end{matrix}
+    \right]
+\]</span></p>
+<p>OR you can view <span class="math inline">\(MN\)</span> as <span class="math inline">\(wN\)</span> where <span class="math inline">\(w\)</span> runs through the rows of <span class="math inline">\(M\)</span>.</p>
+<p><span class="math display">\[
+MN = \left[\begin{matrix} MN[:,0] \\ MN[:,1] \\\vdots\\MN[:,k]\end{matrix}\right]
+\]</span></p>
+<p>OR</p>
+<p>you can view <span class="math inline">\(MN\)</span> where the <span class="math inline">\(i,j\)</span> entry of <span class="math inline">\(MN\)</span> is the dot product of the <span class="math inline">\(i^{th}\)</span> row of <span class="math inline">\(M\)</span> with the <span class="math inline">\(j^{th}\)</span> column of <span class="math inline">\(N\)</span> (each of which has <span class="math inline">\(m\)</span> entries).</p>
+<p><span class="math display">\[(MN)_{ij} = M[i,:]\cdot N[;,j]\]</span></p>
+</section>
+<section id="python-1" class="level2">
+<h2 class="anchored" data-anchor-id="python-1">Python</h2>
+<p>The ‘@’ sign gives matrix multiplication in python. In R, it’s %*%.</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>],[<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>],[<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>]])</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.array([[<span class="op">-</span><span class="dv">1</span>],[<span class="dv">0</span>],[<span class="dv">1</span>]])</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(M)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(v)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(M<span class="op">@</span>v)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Compare -M[:,0]+M[:,2] with M@v</span><span class="ch">\n</span><span class="st"> both are </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(<span class="op">-</span>M[:,<span class="dv">0</span>]<span class="op">+</span>M[:,<span class="dv">2</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1 2 3]
+ [2 3 4]
+ [3 4 5]]
+[[-1]
+ [ 0]
+ [ 1]]
+[[2]
+ [2]
+ [2]]
+Compare -M[:,0]+M[:,2] with M@v
+ both are [2 2 2]</code></pre>
+</div>
+</div>
+</section>
+<section id="where-does-matrix-multiplication-come-from" class="level2">
+<h2 class="anchored" data-anchor-id="where-does-matrix-multiplication-come-from">Where does matrix multiplication come from?</h2>
+<p>If <span class="math inline">\(v\)</span> is in <span class="math inline">\(\mathbf{R}^{m}\)</span> as a column vector, and <span class="math inline">\(M\)</span> is an <span class="math inline">\(n\times m\)</span> matrix, then <span class="math inline">\(Mv\in\mathbf{R}^{n}\)</span>. So the function <span class="math inline">\(v\to Mv\)</span> is a function from <span class="math inline">\(\mathbf{R}^{m}\to \mathbf{R}^{m}\)</span>.</p>
+<p>Now if <span class="math inline">\(N\)</span> is a <span class="math inline">\(k\times n\)</span> matrix, then <span class="math inline">\(NMv\)</span> is in <span class="math inline">\(\mathbf{R}^{k}\)</span>.</p>
+<p>If we want <span class="math inline">\(N(Mv)=(NM)v\)</span> to be true then this forces the definition of matrix multiplication.</p>
+<p><strong>The Matrix Product gives composition of functions</strong></p>
+</section>
+<section id="transpose-of-a-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="transpose-of-a-matrix">Transpose of a matrix</h2>
+<p>The transpose <span class="math inline">\(M^{T}\)</span> of a matrix is the matrix obtained from <span class="math inline">\(M\)</span> by switching rows and columns.</p>
+<p>The transpose switches the order of a product.</p>
+<p><span class="math display">\[(MN)^{T}=N^{T}M^{T}\]</span></p>
+</section>
+<section id="covariance-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="covariance-matrix">Covariance Matrix</h2>
+<p>Remember that if <span class="math inline">\(v\)</span> and <span class="math inline">\(w\)</span> are feature vectors, then <span class="math inline">\((v-\overline{v})\cdot (w-\overline{w})\)</span> is the covariance of <span class="math inline">\(v\)</span> and <span class="math inline">\(w\)</span>.</p>
+<p>Suppose <span class="math inline">\(v_1,\ldots, v_n\)</span> are features forming a data matrix <span class="math inline">\(X\)</span>.</p>
+<p>Let <span class="math inline">\(X_{0}\)</span> be the matrix whose columns are <span class="math inline">\(v_{i}-\overline{v_{i}}\)</span>.</p>
+<p>Then <span class="math inline">\(\frac{1}{N}X_{0}^{T}X_{0}\)</span> is <span class="math inline">\(n\times n\)</span> and called the <em>covariance matrix</em>.</p>
+<p>If <span class="math inline">\(Y_{0}\)</span> is obtained from <span class="math inline">\(X_{0}\)</span> by dividing each column by its norm, then <span class="math inline">\(Y_{0}^{T}Y_{0}\)</span> is the correlation matrix – ones on the diagonal, correlation coefficients off diagonal.</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"data/penguins-raw.csv"</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data[[<span class="st">'Culmen Length (mm)'</span>,<span class="st">'Culmen Depth (mm)'</span>,<span class="st">'Flipper Length (mm)'</span>,<span class="st">'Body Mass (g)'</span>]].dropna().values</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># axis=0 means take the average of the columns (summarize over rows)</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>data.mean(axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># "center" each column; scale column 3</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>data0 <span class="op">=</span> (data <span class="op">-</span> data.mean(axis<span class="op">=</span><span class="dv">0</span>))</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.linalg.norm(data0,axis<span class="op">=</span><span class="dv">0</span>))</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>data0 <span class="op">=</span> data0<span class="op">/</span>np.linalg.norm(data0,axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> (data0.transpose()<span class="op">@</span>data0)</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(D)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>plt.imshow(D,cmap<span class="op">=</span><span class="st">'hot'</span>,interpolation<span class="op">=</span><span class="st">'nearest'</span>)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'covariance matrix heatmap'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[  100.81768459    36.46689639   259.66621062 14809.0410685 ]
+[[ 1.         -0.23505287  0.65618134  0.59510982]
+ [-0.23505287  1.         -0.58385122 -0.47191562]
+ [ 0.65618134 -0.58385122  1.          0.87120177]
+ [ 0.59510982 -0.47191562  0.87120177  1.        ]]</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>Text(0.5, 1.0, 'covariance matrix heatmap')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="linear_algebra_files/figure-html/cell-14-output-3.png" width="441" height="431"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(x<span class="op">=</span>data0[:,<span class="dv">2</span>],y<span class="op">=</span>data0[:,<span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>&lt;matplotlib.collections.PathCollection at 0x7fcad801c730&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="linear_algebra_files/figure-html/cell-15-output-2.png" width="590" height="411"></p>
+</div>
+</div>
 </section>
 <section id="rank-and-invertibility" class="level2">
 <h2 class="anchored" data-anchor-id="rank-and-invertibility">Rank and invertibility</h2>
-</section>
-<section id="orthogonal-projection-minimum-distance-to-a-hyperspace" class="level2">
-<h2 class="anchored" data-anchor-id="orthogonal-projection-minimum-distance-to-a-hyperspace">orthogonal projection, minimum distance to a hyperspace</h2>
-</section>
-<section id="transpose-of-a-matrix-covariance-matrix-principal-directions" class="level2">
-<h2 class="anchored" data-anchor-id="transpose-of-a-matrix-covariance-matrix-principal-directions">Transpose of a matrix, covariance matrix, principal directions</h2>
+<p>The column rank of a matrix is the dimension of the space spanned by its columns; this is the number of linearly independent columns.</p>
+<p>The row rank is the number of linearly independent rows.</p>
+<p><strong>Theorem:</strong> These two numbers are equal.</p>
 
 
 </section>
