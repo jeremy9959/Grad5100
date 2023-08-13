@@ -564,19 +564,68 @@ print(M@v)
 print('Compare -M[:,0]+M[:,2] with M@v\n both are {}'.format(-M[:,0]+M[:,2]))
 ```
 
+## Where does matrix multiplication come from?
+
+If $v$ is in $\mathbf{R}^{m}$ as a column vector, and $M$ is an $n\times m$
+matrix, then $Mv\in\mathbf{R}^{n}$.  So the function $v\to Mv$ is a function
+from $\mathbf{R}^{m}\to \mathbf{R}^{m}$.
+
+Now if $N$ is a $k\times n$ matrix, then $NMv$ is in $\mathbf{R}^{k}$.
+
+If we want $N(Mv)=(NM)v$ to be true then this forces the definition of matrix multiplication.  
+
+**The Matrix Product gives composition of functions**
+
+
 ## Transpose of a matrix
+
+The transpose $M^{T}$ of a matrix is the matrix obtained from $M$ by switching rows and columns.
+
+The transpose switches the order of a product. 
+
+$$(MN)^{T}=N^{T}M^{T}$$
+
 
 ## Covariance Matrix
 
+Remember that if $v$ and $w$ are feature vectors, then
+$(v-\overline{v})\cdot (w-\overline{w})$ is the covariance of $v$ and $w$.
 
+Suppose $v_1,\ldots, v_n$ are features forming a data matrix $X$.
 
-## Linear maps
+Let $X_{0}$ be the matrix whose columns are $v_{i}-\overline{v_{i}}$.
 
+Then $\frac{1}{N}X_{0}^{T}X_{0}$ is $n\times n$ and called the *covariance matrix*.
+
+```{python}
+# axis=0 means take the average of the columns (summarize over rows)
+data.mean(axis=0)
+
+# "center" each column; scale column 3
+data0 = (data - data.mean(axis=0))
+print(np.linalg.norm(data0,axis=0))
+data0 = data0/np.linalg.norm(data0,axis=0)
+D = (data0.transpose()@data0)
+print(D)
+plt.imshow(D,cmap='hot',interpolation='nearest')
+plt.title('covariance matrix heatmap')
+```
+
+```{python}
+plt.scatter(x=data0[:,2],y=data0[:,3])
+
+```
 
 ## Rank and invertibility
 
+The column rank of a matrix is the dimension of the
+space spanned by its columns; this is the number
+of linearly independent columns.
 
-## Transpose of a matrix, covariance matrix, 
+The row rank is the number of linearly independent rows. 
+
+**Theorem:** These two numbers are equal.
+
 
 
 
