@@ -1,0 +1,108 @@
+## Overview of linear algebra in R
+
+## Creating matrices
+
+```{r}
+m <- matrix(c(1, 2, 3, 4, 5, 6, 7, 8), nrow = 1)
+n <- matrix(c(1, 2, 3, 4, 5, 6, 7, 8), nrow = 2)
+print(m)
+print(n)
+```
+
+## Reshaping and broadcasting
+
+```{r}
+m <- matrix(1:8)
+print(m)
+m <- matrix(m, nrow = 2)
+print(m)
+m <- matrix(m, ncol = 2)
+print(m)
+
+# note that R repeats things if they fit
+m <- matrix(c(1, 2), ncol = 10)
+print(m)
+```
+
+## Special matrices
+
+```{r}
+one <- matrix(1, nrow = 2, ncol = 3)
+print(one)
+zero <- matrix(0, nrow = 2, ncol = 3)
+print(zero)
+d <- diag(c(1, 2, 3, 4, 5))
+print(d)
+```
+
+## Addition and scalar multiplication
+
+```{r}
+x <- rnorm(4)
+y <- rnorm(4)
+print(x + y)
+
+# note that in R this makes sense
+u <- rnorm(2)
+print(x + u)
+```
+
+## Element by element
+
+```{r}
+u = matrix(rnorm(20), ncol = 4)
+v = matrix(rnorm(20), ncol = 4)
+print(u + v)
+print(u)
+print(1 / u)
+print(log(abs(u)))
+```
+
+## Slices using apply
+
+```{r}
+u = matrix(rnorm(20), ncol = 4)
+print(colMeans(u))
+print(rowMeans(u))
+apply(u, 1, function(x) mean(x))
+apply(u, 2, function(x) var(x))
+```
+
+## Multiplication
+```{r}
+x = matrix(rnorm(12), nrow = 3)
+y = matrix(rnorm(15), ncol = 3)
+print(y %*% x)
+```
+
+## Transpose
+
+```{r}
+x = matrix(rnorm(12), nrow = 3)
+print(t(x))
+print(nrow(t(x)))
+```
+
+## Norm
+```{r}
+x = matrix(c(1, 2, 3, 4), nrow = 2)
+norm(x, type = "2")
+apply(x, 2, function(x) norm(x, type = "2"))
+apply(x, 1, function(x) norm(x, type = "2"))
+```
+
+## Dataframes and arrays
+
+Use the "[[]]" or `as.vector` to convert tibbles to vectors. 
+
+```{r}
+library(tidyverse)
+data = read_csv("data/penguins-raw.csv")
+mass <- data |> select("Body Mass (g)")
+print(mass)
+print(as.vector(mass))
+```
+
+```{r}
+print(data["Body Mass (g)"])
+print(data[['Body Mass (g)']])

@@ -11,6 +11,8 @@ project:
     - chapters/05-WorkingWithData/r_penguins.qmd
     - chapters/05-WorkingWithData/pandas_penguins.qmd
     - chapters/06-LinearAlgebra/linear_algebra.qmd  
+    - chapters/06-LinearAlgebra/linear_algebra_python.qmd
+    - chapters/06-LinearAlgebra/linear_algebra_r.qmd
 
 website:
   title: "Fundamentals of Machine Learning"
