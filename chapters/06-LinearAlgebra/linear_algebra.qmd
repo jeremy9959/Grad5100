@@ -295,6 +295,14 @@ The mean squared error is the squared distance between a true and predicted valu
 
 ## Matrices and Matrix Multiplication
 
+- columns give multiplication of standard basis on right
+- rows give mult of standard basis on left
+- matrix times vector gives linear combination of columns
+- "image" is span of columns on right
+- "image" is span of rows on left
+- column rank; row rank
+- entries of product are dot products of rows and columns
+
 ## Linear maps
 
 
