@@ -34,6 +34,6 @@ website:
   
 format:
   html:
-    theme: cosmo
+    theme: lumen
     code-block-bg: true
 
