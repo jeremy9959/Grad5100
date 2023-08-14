@@ -188,6 +188,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../chapters/05-WorkingWithData/pythonAndR.html" class="sidebar-item-text sidebar-link">Data Structures in R and Python</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/06-LinearAlgebra/linear_algebra.html" class="sidebar-item-text sidebar-link">Essential Linear Algebra</a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -222,8 +227,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="load-the-required-libraries" class="level1">
-<h1>load the required libraries</h1>
+<section id="load-the-required-libraries" class="level2">
+<h2 class="anchored" data-anchor-id="load-the-required-libraries">load the required libraries</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -246,8 +251,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="read-the-penguins-data-from-a-csv-file" class="level1">
-<h1>read the penguins data from a csv file</h1>
+<section id="read-the-penguins-data-from-a-csv-file" class="level2">
+<h2 class="anchored" data-anchor-id="read-the-penguins-data-from-a-csv-file">read the penguins data from a csv file</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/penguins-raw.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -263,8 +268,8 @@ date (1): Date Egg
 </div>
 </div>
 </section>
-<section id="print-the-number-of-rows-and-columns-in-the-data-frame" class="level1">
-<h1>print the number of rows and columns in the data frame</h1>
+<section id="print-the-number-of-rows-and-columns-in-the-data-frame" class="level2">
+<h2 class="anchored" data-anchor-id="print-the-number-of-rows-and-columns-in-the-data-frame">print the number of rows and columns in the data frame</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Rows:"</span>, <span class="fu">nrow</span>(penguins), <span class="st">", Columns:"</span>, <span class="fu">ncol</span>(penguins), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -272,8 +277,8 @@ date (1): Date Egg
 </div>
 </div>
 </section>
-<section id="print-the-column-names" class="level1">
-<h1>print the column names</h1>
+<section id="print-the-column-names" class="level2">
+<h2 class="anchored" data-anchor-id="print-the-column-names">print the column names</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Columns:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -290,8 +295,8 @@ date (1): Date Egg
 </div>
 </div>
 </section>
-<section id="select-a-subset-of-columns" class="level1">
-<h1>select a subset of columns</h1>
+<section id="select-a-subset-of-columns" class="level2">
+<h2 class="anchored" data-anchor-id="select-a-subset-of-columns">select a subset of columns</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>simpler <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">select</span>(Species, <span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span>, <span class="st">`</span><span class="at">Flipper Length (mm)</span><span class="st">`</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(simpler)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -308,8 +313,8 @@ date (1): Date Egg
 </div>
 </div>
 </section>
-<section id="print-the-index" class="level1">
-<h1>print the index</h1>
+<section id="print-the-index" class="level2">
+<h2 class="anchored" data-anchor-id="print-the-index">print the index</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">rownames</span>(penguins))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -345,8 +350,8 @@ date (1): Date Egg
 </div>
 </div>
 </section>
-<section id="print-the-23rd-row" class="level1">
-<h1>print the 23rd row</h1>
+<section id="print-the-23rd-row" class="level2">
+<h2 class="anchored" data-anchor-id="print-the-23rd-row">print the 23rd row</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>penguins[<span class="dv">23</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -361,8 +366,8 @@ date (1): Date Egg
 </div>
 </div>
 </section>
-<section id="print-the-value-of-the-culmen-length-mm-column-in-the-23rd-row" class="level1">
-<h1>print the value of the “Culmen Length (mm)” column in the 23rd row</h1>
+<section id="print-the-value-of-the-culmen-length-mm-column-in-the-23rd-row" class="level2">
+<h2 class="anchored" data-anchor-id="print-the-value-of-the-culmen-length-mm-column-in-the-23rd-row">print the value of the “Culmen Length (mm)” column in the 23rd row</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>penguins[<span class="dv">23</span>, <span class="st">"Culmen Length (mm)"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -373,8 +378,8 @@ date (1): Date Egg
 </div>
 </div>
 </section>
-<section id="print-the-sex-and-date-egg-columns-for-rows-23-to-28-remember-that-r-numbers-rows-from" class="level1">
-<h1>print the “Sex” and “Date Egg” columns for rows 23 to 28 (remember that r numbers rows from !)</h1>
+<section id="print-the-sex-and-date-egg-columns-for-rows-23-to-28-remember-that-r-numbers-rows-from" class="level2">
+<h2 class="anchored" data-anchor-id="print-the-sex-and-date-egg-columns-for-rows-23-to-28-remember-that-r-numbers-rows-from">print the “Sex” and “Date Egg” columns for rows 23 to 28 (remember that r numbers rows from !)</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>penguins[<span class="dv">23</span><span class="sc">:</span><span class="dv">28</span>, <span class="fu">c</span>(<span class="st">"Sex"</span>, <span class="st">"Date Egg"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -390,8 +395,8 @@ date (1): Date Egg
 </div>
 </div>
 </section>
-<section id="count-the-number-of-occurrences-of-each-value-in-the-island-column" class="level1">
-<h1>count the number of occurrences of each value in the “Island” column</h1>
+<section id="count-the-number-of-occurrences-of-each-value-in-the-island-column" class="level2">
+<h2 class="anchored" data-anchor-id="count-the-number-of-occurrences-of-each-value-in-the-island-column">count the number of occurrences of each value in the “Island” column</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> <span class="fu">count</span>(Island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -404,8 +409,8 @@ date (1): Date Egg
 </div>
 </div>
 </section>
-<section id="count-the-number-of-occurrences-of-each-value-in-the-species-column" class="level1">
-<h1>count the number of occurrences of each value in the “Species” column</h1>
+<section id="count-the-number-of-occurrences-of-each-value-in-the-species-column" class="level2">
+<h2 class="anchored" data-anchor-id="count-the-number-of-occurrences-of-each-value-in-the-species-column">count the number of occurrences of each value in the “Species” column</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> <span class="fu">count</span>(Species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -418,8 +423,8 @@ date (1): Date Egg
 </div>
 </div>
 </section>
-<section id="filter-the-data-to-keep-only-rows-where-sex-is-female" class="level1">
-<h1>filter the data to keep only rows where “Sex” is “FEMALE”</h1>
+<section id="filter-the-data-to-keep-only-rows-where-sex-is-female" class="level2">
+<h2 class="anchored" data-anchor-id="filter-the-data-to-keep-only-rows-where-sex-is-female">filter the data to keep only rows where “Sex” is “FEMALE”</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>females <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="st">"FEMALE"</span>)</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(females)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -440,8 +445,8 @@ date (1): Date Egg
 </div>
 </div>
 </section>
-<section id="filter-the-data-to-keep-only-rows-where-flipper-length-mm-is-greater-than-body-mass-g-divided-by-20" class="level1">
-<h1>filter the data to keep only rows where “Flipper Length (mm)” is greater than “Body Mass (g)” divided by 20</h1>
+<section id="filter-the-data-to-keep-only-rows-where-flipper-length-mm-is-greater-than-body-mass-g-divided-by-20" class="level2">
+<h2 class="anchored" data-anchor-id="filter-the-data-to-keep-only-rows-where-flipper-length-mm-is-greater-than-body-mass-g-divided-by-20">filter the data to keep only rows where “Flipper Length (mm)” is greater than “Body Mass (g)” divided by 20</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="st">`</span><span class="at">Flipper Length (mm)</span><span class="st">`</span> <span class="sc">&gt;</span> <span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span> <span class="sc">/</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -466,8 +471,8 @@ date (1): Date Egg
 </div>
 </div>
 </section>
-<section id="count-the-number-of-missing-values-in-each-column" class="level1">
-<h1>count the number of missing values in each column</h1>
+<section id="count-the-number-of-missing-values-in-each-column" class="level2">
+<h2 class="anchored" data-anchor-id="count-the-number-of-missing-values-in-each-column">count the number of missing values in each column</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(penguins))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -484,14 +489,14 @@ date (1): Date Egg
 </div>
 </div>
 </section>
-<section id="drop-the-comments-column" class="level1">
-<h1>drop the “Comments” column</h1>
+<section id="drop-the-comments-column" class="level2">
+<h2 class="anchored" data-anchor-id="drop-the-comments-column">drop the “Comments” column</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>Comments)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="drop-rows-with-missing-values" class="level1">
-<h1>drop rows with missing values</h1>
+<section id="drop-rows-with-missing-values" class="level2">
+<h2 class="anchored" data-anchor-id="drop-rows-with-missing-values">drop rows with missing values</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>penguins_nona <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">drop_na</span>()</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(penguins_nona)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -500,33 +505,33 @@ date (1): Date Egg
 </div>
 </div>
 </section>
-<section id="impute-missing-values-in-the-culmen-length-mm-column-with-the-mean-value" class="level1">
-<h1>impute missing values in the “Culmen Length (mm)” column with the mean value</h1>
+<section id="impute-missing-values-in-the-culmen-length-mm-column-with-the-mean-value" class="level2">
+<h2 class="anchored" data-anchor-id="impute-missing-values-in-the-culmen-length-mm-column-with-the-mean-value">impute missing values in the “Culmen Length (mm)” column with the mean value</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>penguins_imputed <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Culmen Length (mm)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(<span class="st">`</span><span class="at">Culmen Length (mm)</span><span class="st">`</span>), <span class="fu">mean</span>(<span class="st">`</span><span class="at">Culmen Length (mm)</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">`</span><span class="at">Culmen Length (mm)</span><span class="st">`</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="set-the-sex-column-as-a-categorical-variable" class="level1">
-<h1>set the “Sex” column as a categorical variable</h1>
+<section id="set-the-sex-column-as-a-categorical-variable" class="level2">
+<h2 class="anchored" data-anchor-id="set-the-sex-column-as-a-categorical-variable">set the “Sex” column as a categorical variable</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">Sex =</span> <span class="fu">as.factor</span>(Sex))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="create-a-new-column-simplespecies-by-extracting-the-first-word-from-the-species-column" class="level1">
-<h1>create a new column “SimpleSpecies” by extracting the first word from the “Species” column</h1>
+<section id="create-a-new-column-simplespecies-by-extracting-the-first-word-from-the-species-column" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-new-column-simplespecies-by-extracting-the-first-word-from-the-species-column">create a new column “SimpleSpecies” by extracting the first word from the “Species” column</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">SimpleSpecies =</span> <span class="fu">word</span>(Species, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="create-a-new-column-body-mass-kg-by-dividing-the-body-mass-g-column-by-1000" class="level1">
-<h1>create a new column “Body Mass (kg)” by dividing the “Body Mass (g)” column by 1000</h1>
+<section id="create-a-new-column-body-mass-kg-by-dividing-the-body-mass-g-column-by-1000" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-new-column-body-mass-kg-by-dividing-the-body-mass-g-column-by-1000">create a new column “Body Mass (kg)” by dividing the “Body Mass (g)” column by 1000</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Body Mass (kg)</span><span class="st">`</span> <span class="ot">=</span> <span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span> <span class="sc">/</span> <span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="sort-the-data-by-body-mass-g-in-ascending-order" class="level1">
-<h1>sort the data by “Body Mass (g)” in ascending order</h1>
+<section id="sort-the-data-by-body-mass-g-in-ascending-order" class="level2">
+<h2 class="anchored" data-anchor-id="sort-the-data-by-body-mass-g-in-ascending-order">sort the data by “Body Mass (g)” in ascending order</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>penguins_small <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">select</span>(Species, Island, <span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span>)</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>penguins_small <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -548,14 +553,14 @@ date (1): Date Egg
 </div>
 </div>
 </section>
-<section id="group-the-data-by-species" class="level1">
-<h1>group the data by “Species”</h1>
+<section id="group-the-data-by-species" class="level2">
+<h2 class="anchored" data-anchor-id="group-the-data-by-species">group the data by “Species”</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>penguins_by_species <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="summarize-the-body-mass-g-column-for-each-group" class="level1">
-<h1>summarize the “Body Mass (g)” column for each group</h1>
+<section id="summarize-the-body-mass-g-column-for-each-group" class="level2">
+<h2 class="anchored" data-anchor-id="summarize-the-body-mass-g-column-for-each-group">summarize the “Body Mass (g)” column for each group</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>penguins_by_species <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span>), <span class="at">sd =</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span>), <span class="at">n =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -568,14 +573,14 @@ date (1): Date Egg
 </div>
 </div>
 </section>
-<section id="group-the-data-by-sex-and-species" class="level1">
-<h1>group the data by “Sex” and “Species”</h1>
+<section id="group-the-data-by-sex-and-species" class="level2">
+<h2 class="anchored" data-anchor-id="group-the-data-by-sex-and-species">group the data by “Sex” and “Species”</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>penguins_by_sex_and_species <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Sex, Species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="summarize-the-body-mass-g-column-for-each-group-1" class="level1">
-<h1>summarize the “Body Mass (g)” column for each group</h1>
+<section id="summarize-the-body-mass-g-column-for-each-group-1" class="level2">
+<h2 class="anchored" data-anchor-id="summarize-the-body-mass-g-column-for-each-group-1">summarize the “Body Mass (g)” column for each group</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>penguins_by_sex_and_species <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span>), <span class="at">sd =</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span>), <span class="at">n =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -598,8 +603,8 @@ argument.</code></pre>
 </div>
 </div>
 </section>
-<section id="create-a-pivot-table-of-the-mean-body-mass-g-for-each-combination-of-sex-and-species" class="level1">
-<h1>create a pivot table of the mean “Body Mass (g)” for each combination of “Sex” and “Species”</h1>
+<section id="create-a-pivot-table-of-the-mean-body-mass-g-for-each-combination-of-sex-and-species" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-pivot-table-of-the-mean-body-mass-g-for-each-combination-of-sex-and-species">create a pivot table of the mean “Body Mass (g)” for each combination of “Sex” and “Species”</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>penguins_by_sex_and_species <span class="sc">|&gt;</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span>)) <span class="sc">|&gt;</span></span>
@@ -622,8 +627,8 @@ argument.</code></pre>
 </div>
 </div>
 </section>
-<section id="plot-a-histogram-of-body-mass-g-for-female-adelie-and-gentoo-penguins" class="level1">
-<h1>plot a histogram of “Body Mass (g)” for female Adelie and Gentoo penguins</h1>
+<section id="plot-a-histogram-of-body-mass-g-for-female-adelie-and-gentoo-penguins" class="level2">
+<h2 class="anchored" data-anchor-id="plot-a-histogram-of-body-mass-g-for-female-adelie-and-gentoo-penguins">plot a histogram of “Body Mass (g)” for female Adelie and Gentoo penguins</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Adelie Penguin (Pygoscelis adeliae)"</span>, <span class="st">"Gentoo penguin (Pygoscelis papua)"</span>), Sex <span class="sc">==</span> <span class="st">"FEMALE"</span>) <span class="sc">|&gt;</span></span>
@@ -632,6 +637,144 @@ argument.</code></pre>
 <span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>Species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="r_penguins_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="excel-files" class="level2">
+<h2 class="anchored" data-anchor-id="excel-files">excel files</h2>
+<p>One can also work with excel files. You need the <code>readxl</code> library.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"readxl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As an example, we use an excel spreadsheet violent crime data from the FBI.</p>
+</section>
+<section id="read-the-2019-crime-data-and-remove-d.c." class="level1">
+<h1>read the 2019 crime data, and remove D.C.</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>ViolentCrime2019 <span class="ot">&lt;-</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">read_excel</span>(<span class="st">"data/Violent Crime-by state-2019-table-5.xls"</span>,</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">range =</span> <span class="st">"A4:M514"</span>, <span class="at">trim_ws =</span> <span class="cn">TRUE</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+• `` -&gt; `...3`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>ViolentCrime2019</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 510 × 13
+   State  Area  ...3  Population `Violent \ncrime1` Murder and \nnonnegl…¹ Rape2
+   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;                   &lt;dbl&gt;                  &lt;dbl&gt; &lt;dbl&gt;
+ 1 ALABA… Metr… &lt;NA&gt;  3728978                    NA                     NA    NA
+ 2 &lt;NA&gt;   &lt;NA&gt;  Area… 0.7660000…              12880                    182  1141
+ 3 &lt;NA&gt;   &lt;NA&gt;  Esti… 1                       19951                    300  1542
+ 4 &lt;NA&gt;   Citi… &lt;NA&gt;  528518                     NA                     NA    NA
+ 5 &lt;NA&gt;   &lt;NA&gt;  Area… 0.8930000…               3327                     36   297
+ 6 &lt;NA&gt;   &lt;NA&gt;  Esti… 1                        3541                     37   310
+ 7 &lt;NA&gt;   Nonm… &lt;NA&gt;  645689                     NA                     NA    NA
+ 8 &lt;NA&gt;   &lt;NA&gt;  Area… 0.7239999…                874                     13   148
+ 9 &lt;NA&gt;   &lt;NA&gt;  Esti… 1                        1554                     21   216
+10 &lt;NA&gt;   Stat… &lt;NA&gt;  4903185                 25046                    358  2068
+# ℹ 500 more rows
+# ℹ abbreviated name: ¹​`Murder and \nnonnegligent \nmanslaughter`
+# ℹ 6 more variables: Robbery &lt;dbl&gt;, `Aggravated \nassault` &lt;dbl&gt;,
+#   `Property \ncrime` &lt;dbl&gt;, Burglary &lt;dbl&gt;, `Larceny-theft` &lt;dbl&gt;,
+#   `Motor \nvehicle \ntheft` &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Notice that the third column got a “made-up” name (‘..3’) and the other column names are a bit weird, they have newlines in them and also in some case footnotes. Let’s clean this up. First we replace all of the newlines and spaces by underlines in the column names.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ViolentCrime2019) <span class="ot">=</span> <span class="fu">gsub</span>(<span class="st">"[ </span><span class="sc">\n</span><span class="st">]+"</span>, <span class="st">"_"</span>, <span class="fu">colnames</span>(ViolentCrime2019))</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>ViolentCrime2019</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 510 × 13
+   State   Area     ...3  Population Violent_crime1 Murder_and_nonneglig…¹ Rape2
+   &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;               &lt;dbl&gt;                  &lt;dbl&gt; &lt;dbl&gt;
+ 1 ALABAMA Metropo… &lt;NA&gt;  3728978                NA                     NA    NA
+ 2 &lt;NA&gt;    &lt;NA&gt;     Area… 0.7660000…          12880                    182  1141
+ 3 &lt;NA&gt;    &lt;NA&gt;     Esti… 1                   19951                    300  1542
+ 4 &lt;NA&gt;    Cities … &lt;NA&gt;  528518                 NA                     NA    NA
+ 5 &lt;NA&gt;    &lt;NA&gt;     Area… 0.8930000…           3327                     36   297
+ 6 &lt;NA&gt;    &lt;NA&gt;     Esti… 1                    3541                     37   310
+ 7 &lt;NA&gt;    Nonmetr… &lt;NA&gt;  645689                 NA                     NA    NA
+ 8 &lt;NA&gt;    &lt;NA&gt;     Area… 0.7239999…            874                     13   148
+ 9 &lt;NA&gt;    &lt;NA&gt;     Esti… 1                    1554                     21   216
+10 &lt;NA&gt;    State T… &lt;NA&gt;  4903185             25046                    358  2068
+# ℹ 500 more rows
+# ℹ abbreviated name: ¹​Murder_and_nonnegligent_manslaughter
+# ℹ 6 more variables: Robbery &lt;dbl&gt;, Aggravated_assault &lt;dbl&gt;,
+#   Property_crime &lt;dbl&gt;, Burglary &lt;dbl&gt;, `Larceny-theft` &lt;dbl&gt;,
+#   Motor_vehicle_theft &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Next we pull out the names from taking the state column, omitting the “NA” values, and treating this as strings. We also want a list for later work, not a tibble.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>States <span class="ot">&lt;-</span> ViolentCrime2019 <span class="sc">|&gt;</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="st">"State"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">drop_na</span>()</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>States <span class="ot">=</span> States<span class="sc">$</span>State</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>States</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "ALABAMA"               "ALASKA"                "ARIZONA"              
+ [4] "ARKANSAS"              "CALIFORNIA"            "COLORADO"             
+ [7] "CONNECTICUT"           "DELAWARE"              "DISTRICT OF COLUMBIA3"
+[10] "FLORIDA"               "GEORGIA"               "HAWAII"               
+[13] "IDAHO"                 "ILLINOIS"              "INDIANA"              
+[16] "IOWA"                  "KANSAS"                "KENTUCKY"             
+[19] "LOUISIANA"             "MAINE"                 "MARYLAND"             
+[22] "MASSACHUSETTS"         "MICHIGAN"              "MINNESOTA"            
+[25] "MISSISSIPPI4"          "MISSOURI"              "MONTANA"              
+[28] "NEBRASKA"              "NEVADA"                "NEW HAMPSHIRE"        
+[31] "NEW JERSEY"            "NEW MEXICO"            "NEW YORK"             
+[34] "NORTH CAROLINA"        "NORTH DAKOTA"          "OHIO4"                
+[37] "OKLAHOMA"              "OREGON4"               "PENNSYLVANIA"         
+[40] "PUERTO RICO"           "RHODE ISLAND"          "SOUTH CAROLINA"       
+[43] "SOUTH DAKOTA"          "TENNESSEE"             "TEXAS"                
+[46] "UTAH"                  "VERMONT"               "VIRGINIA"             
+[49] "WASHINGTON"            "WEST VIRGINIA"         "WISCONSIN"            
+[52] "WYOMING"              </code></pre>
+</div>
+</div>
+<p>State number 9 is DC and state number 40 is Puerto Rico. We can drop those.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>States <span class="ot">&lt;-</span> States[<span class="fu">c</span>(<span class="sc">-</span><span class="dv">9</span>, <span class="sc">-</span><span class="dv">40</span>)]</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>States</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "ALABAMA"        "ALASKA"         "ARIZONA"        "ARKANSAS"      
+ [5] "CALIFORNIA"     "COLORADO"       "CONNECTICUT"    "DELAWARE"      
+ [9] "FLORIDA"        "GEORGIA"        "HAWAII"         "IDAHO"         
+[13] "ILLINOIS"       "INDIANA"        "IOWA"           "KANSAS"        
+[17] "KENTUCKY"       "LOUISIANA"      "MAINE"          "MARYLAND"      
+[21] "MASSACHUSETTS"  "MICHIGAN"       "MINNESOTA"      "MISSISSIPPI4"  
+[25] "MISSOURI"       "MONTANA"        "NEBRASKA"       "NEVADA"        
+[29] "NEW HAMPSHIRE"  "NEW JERSEY"     "NEW MEXICO"     "NEW YORK"      
+[33] "NORTH CAROLINA" "NORTH DAKOTA"   "OHIO4"          "OKLAHOMA"      
+[37] "OREGON4"        "PENNSYLVANIA"   "RHODE ISLAND"   "SOUTH CAROLINA"
+[41] "SOUTH DAKOTA"   "TENNESSEE"      "TEXAS"          "UTAH"          
+[45] "VERMONT"        "VIRGINIA"       "WASHINGTON"     "WEST VIRGINIA" 
+[49] "WISCONSIN"      "WYOMING"       </code></pre>
+</div>
+</div>
+<p>Finally, suppose we’re only interested in the state totals. That means which need to extract the rows where the “Area” column is “State Total”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a> VCrimeRate2019 <span class="ot">&lt;-</span> ViolentCrime2019 <span class="sc">|&gt;</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">filter</span>(<span class="st">`</span><span class="at">Area</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"State Total"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">select</span>(<span class="st">`</span><span class="at">Violent_crime1</span><span class="st">`</span>)</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a> VCrimeRate2019</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 50 × 1
+   Violent_crime1
+            &lt;dbl&gt;
+ 1          25046
+ 2           6343
+ 3          33141
+ 4          17643
+ 5         174331
+ 6          21938
+ 7           6546
+ 8           4115
+ 9          81270
+10          36170
+# ℹ 40 more rows</code></pre>
 </div>
 </div>
 
