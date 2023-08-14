@@ -1,3 +1,10 @@
+---
+jupyter: 
+    kernelspec: 
+        name: "base"
+        language: "python"
+        display_name: "python3"
+---
 ## Overview of linear algebra operations in python
 
 The `numpy` library is the main tool for linear algebra in python.
