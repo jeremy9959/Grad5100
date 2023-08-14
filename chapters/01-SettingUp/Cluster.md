@@ -32,9 +32,9 @@ $ conda install -c anaconda libstdcxx-ng
 2. **On the cluster:** Start an interactive process
 
 ```bash
-$ srun --nodes=1 --mem=32G --pty=bash
+$ srun  --partition=class --account=classroom --qos=classroom --pty bash 
 ```
-Make a note of the node where your interactive process is running.  This is in the prompt. 
+Make a note of the node where your interactive process is running.  This is in the prompt. It will be something like `cn560`.
 
 3. **On the cluster:** Start jupyter on the interactive node
 

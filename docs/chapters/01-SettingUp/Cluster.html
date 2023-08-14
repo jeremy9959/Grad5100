@@ -245,8 +245,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol start="2" type="1">
 <li><strong>On the cluster:</strong> Start an interactive process</li>
 </ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> srun <span class="at">--nodes</span><span class="op">=</span>1 <span class="at">--mem</span><span class="op">=</span>32G <span class="at">--pty</span><span class="op">=</span>bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Make a note of the node where your interactive process is running. This is in the prompt.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> srun  <span class="at">--partition</span><span class="op">=</span>class <span class="at">--account</span><span class="op">=</span>classroom <span class="at">--qos</span><span class="op">=</span>classroom <span class="at">--pty</span> bash </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Make a note of the node where your interactive process is running. This is in the prompt. It will be something like <code>cn560</code>.</p>
 <ol start="3" type="1">
 <li><strong>On the cluster:</strong> Start jupyter on the interactive node</li>
 </ol>
