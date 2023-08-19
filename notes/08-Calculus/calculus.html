@@ -147,11 +147,11 @@ f'(x) = \lim_{h\to 0}\frac{f(x+h)-f(x)}{h}
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-annotation="1" data-code-lines="4">Here we compute the (approximate) slope/derivative <code>m</code> at the point <code>(x[40],y[40])</code></span>
+<span data-code-annotation="1" data-code-cell="annotated-cell-2" data-code-lines="4">Here we compute the (approximate) slope/derivative <code>m</code> at the point <code>(x[40],y[40])</code></span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-annotation="2" data-code-lines="5">This is the equation of the line through that point with the computed slope.</span>
+<span data-code-annotation="2" data-code-cell="annotated-cell-2" data-code-lines="5">This is the equation of the line through that point with the computed slope.</span>
 </dd>
 </dl>
 </div>
@@ -186,7 +186,7 @@ f'(x) = \lim_{h\to 0}\frac{f(x+h)-f(x)}{h}
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-annotation="1" data-code-lines="10">The array <code>y</code> has the y values corresponding to the x values in the array <code>x</code>. So the difference <code>y[1:]-y[:-1]</code> is <span class="math inline">\(f(x+h)-f(x)\)</span>. Since there are 100 x values between 0 and 1, <span class="math inline">\(h=.01\)</span>.</span>
+<span data-code-annotation="1" data-code-cell="annotated-cell-3" data-code-lines="10">The array <code>y</code> has the y values corresponding to the x values in the array <code>x</code>. So the difference <code>y[1:]-y[:-1]</code> is <span class="math inline">\(f(x+h)-f(x)\)</span>. Since there are 100 x values between 0 and 1, <span class="math inline">\(h=.01\)</span>.</span>
 </dd>
 </dl>
 </div>
@@ -221,11 +221,11 @@ f'(x) = \lim_{h\to 0}\frac{f(x+h)-f(x)}{h}
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-4" data-code-annotation="1" data-code-lines="2">Here we find <span class="math inline">\(y=3x+1+\epsilon\)</span> where <span class="math inline">\(\epsilon\)</span> is drawn from a normal random variable with standard deviation <span class="math inline">\(2\)</span>.</span>
+<span data-code-annotation="1" data-code-cell="annotated-cell-4" data-code-lines="2">Here we find <span class="math inline">\(y=3x+1+\epsilon\)</span> where <span class="math inline">\(\epsilon\)</span> is drawn from a normal random variable with standard deviation <span class="math inline">\(2\)</span>.</span>
 </dd>
 </dl>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>Text(0.5, 1.0, '$y=3+1+\\epsilon$ where $\\epsilon$ is a normal error')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -256,11 +256,11 @@ E(m,b) = \frac{1}{N}\sum_{i=1}^{N} (y_i-mx_i-b)^2
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-5" data-code-annotation="1" data-code-lines="4">Why do you need this?</span>
+<span data-code-annotation="1" data-code-cell="annotated-cell-5" data-code-lines="4">Why do you need this?</span>
 </dd>
 <dt data-target-cell="annotated-cell-5" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-5" data-code-annotation="2" data-code-lines="5">meshgrid changes two one-dimensional arrays into two two dimensional arrays - examine them to see what happens.</span>
+<span data-code-annotation="2" data-code-cell="annotated-cell-5" data-code-lines="5">meshgrid changes two one-dimensional arrays into two two dimensional arrays - examine them to see what happens.</span>
 </dd>
 </dl>
 </div>
@@ -291,7 +291,7 @@ E(m,b) = \frac{1}{N}\sum_{i=1}^{N} (y_i-mx_i-b)^2
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>fig.set_size_inches(<span class="dv">10</span>,<span class="dv">10</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>fig.set_size_inches(<span class="dv">20</span>,<span class="dv">10</span>)</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">211</span>,projection<span class="op">=</span><span class="st">'3d'</span>)</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">30</span>)</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">30</span>)</span>
@@ -299,15 +299,26 @@ E(m,b) = \frac{1}{N}\sum_{i=1}^{N} (y_i-mx_i-b)^2
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> norm.pdf(np.sqrt(xx<span class="op">**</span><span class="dv">2</span><span class="op">+</span>yy<span class="op">**</span><span class="dv">2</span>))</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>ax.plot_wireframe(xx,yy,z,cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">212</span>)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>ax.contour(xx,yy,z)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>Q<span class="op">=</span>ax.contour(xx,yy,z)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>ax.clabel(Q)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="calculus_files/figure-html/cell-8-output-1.png" width="408" height="781"></p>
 </div>
 </div>
+<p>```{python</p>
+<p>fig = plt.figure() fig.set_size_inches(20,10) ax = fig.add_subplot(211,projection=‘3d’) x = np.linspace(-5,5,30) y = np.linspace(-5,5,30) xx,yy = np.meshgrid(x,y) z = xx<strong>2-yy</strong>2 ax.plot_wireframe(xx,yy,z,cmap=‘gray’) ax = fig.add_subplot(212) Q=ax.contour(xx,yy,z,levels=10) ax.clabel(Q) ax.set_aspect(‘equal’) ax.grid() ``` ## Vector functions</p>
+<p>It’s convenient to think of a function of multiple variables <span class="math inline">\(x_1,\ldots, x_n\)</span> as a function of a vector <span class="math inline">\(\mathbf{x}=(x_1,\ldots, x_n)\)</span>.</p>
 </section>
 <section id="directional-derivatives" class="level2">
 <h2 class="anchored" data-anchor-id="directional-derivatives">Directional Derivatives</h2>
+<p>For a function of multiple variables, the <em>directional derivative</em> is the rate of change in a particular direction.</p>
+<p>The direction is given by a vector <span class="math inline">\(v\)</span>.</p>
+<p><span class="math display">\[
+D_{v}(f)(x) = \frac{d}{dt}f(x+tv)|_{t=0}
+\]</span></p>
+<p>Depends on direction <em>and</em> magnitude of <span class="math inline">\(v\)</span>.</p>
+<p>Can think of this as rate of change of <span class="math inline">\(f\)</span> as you fly with speed <span class="math inline">\(v\)</span>.</p>
 </section>
 <section id="partial-derivatives" class="level2">
 <h2 class="anchored" data-anchor-id="partial-derivatives">Partial Derivatives</h2>
