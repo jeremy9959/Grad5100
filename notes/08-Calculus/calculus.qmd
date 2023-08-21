@@ -7,6 +7,7 @@ format: html
 ```{python}
 import numpy as np
 import matplotlib.pyplot as plt
+plt.style.use('seaborn-v0_8-dark')
 
 ```
 
@@ -86,6 +87,35 @@ x values between 0 and 1, $h=.01$.
 - The derivative of $x^{n}$ is $nx^{n-1}$.  
 - The derivative of $e^{x}$ is $e^{x}$.
 - The derivative of $\log(x)$ is $1/x$ (natural logarithm).
+
+
+## Notation
+
+Sometimes we write $f'(x)$, sometimes $\frac{df}{dx}$.
+
+## The product rule 
+
+The derivative of a product of functions $fg$ satisfies
+the product rule
+$$
+(fg)'=fg'+f'g
+$$
+
+
+
+## The chain rule 
+
+The chain rule is extremely important.
+
+$$
+\frac{d}{dt}f(x+th)|_{t=0}=hf'(x)
+$$
+
+and more generally
+
+$$
+\frac{d}{dx}(f(g(x))) = f'(g(x))g'(x)
+$$
 
 
 ## Functions of several variables
@@ -193,7 +223,7 @@ ax.clabel(Q)
 ax.set_aspect('equal')
 ax.grid()
 ```
-## Vector functions
+## Vectors and  functions
 
 It's useful to think of a function of  multiple variables $x_1,\ldots, x_n$ as a function of a vector $\mathbf{x}=(x_1,\ldots, x_n)$.
 
@@ -210,33 +240,115 @@ $$
 $$
 
 ```{python}
-# We need to watch out for shapes here
-
-x = np.array([1,1]).reshape(2,1)
+x = np.array([1,1]).reshape(2,1)  # <1>
 v = np.array([-2,3]).reshape(2,1)
-t=np.linspace(-5,5,10)
+t=np.arange(-5,5,1)
 pts = x+t*v
-print(pts.shape)
-plt.plot(pts[0,:],pts[1,:])
 plt.grid()
+plt.plot(pts[0,:],pts[1,:],color='black')
+plt.plot([1],[1],marker="*",markersize=12,color='red')
+plt.arrow(1,1,-2,3,color='blue',width=.4)
+plt.scatter(pts[0,:],pts[1,:])
+plt.title("Vector form of a line from (1,1) towards v=(-2,3)")
+plt.xlabel('x')
+_=plt.ylabel('y')
 ```
+1. To see why x and v need to be column vectors, try this without the reshape and look at the error you get. 
+
+In this version, the vector $v$ represents the *velocity* of a point travelling along the line.  So the dots are the position of the object at different times $t$.
+
+If we scale $v$ by a constant:
+
+- the line stays the same
+- the speed is different
+
+The speed is $\|v\|$. 
 
 ## Directional Derivatives
 
 For a function of multiple variables, the *directional derivative* is the rate of change in a particular direction.  
 
-The direction is given by a vector $v$.
+$$
+D_{v}(f)(\mathbf{x}) = \frac{d}{dt}f(\mathbf{x}+t\mathbf{v})|_{t=0}
+$$
 
-$$
-D_{v}(f)(x) = \frac{d}{dt}f(x+tv)|_{t=0}
-$$
+This means: how fast is $f$  at time zero  as you travel through space in a straight line 
+with velocity $v$ passing through point $x$.
 
 Depends on direction *and* magnitude of $v$.
 
-Can think of this as rate of change of $f$
-as you fly with speed $v$.
+Suppose that $f(\overline{x})=x_1^2-x_0^2$, 
+that $\mathbf{x}=(1,1)$ and that $v=(-.4,.6)$  Then 
 
+$$ 
+\mathbf{x}+t\mathbf{v} = (1-.4t,1+.6t)
+$$
+
+and
+$$
+f(\mathbf{x}+t\mathbf{v}) = (1-.4t)^2-(1+.6t)^2
+$$
+
+```{python}
+fig = plt.figure()
+fig.set_size_inches(20,10)
+ax = fig.add_subplot(211)
+ax.set_title('contour plot with path')
+x = np.linspace(-5,5,30)
+y = np.linspace(-5,5,30)
+xx,yy = np.meshgrid(x,y)
+z = xx**2-yy**2
+Q=ax.contour(xx,yy,z,levels=10)
+ax.clabel(Q)
+ax.set_aspect('equal')
+ax.grid()
+
+x = np.array([1,1]).reshape(2,1) 
+v = np.array([-.4,.6]).reshape(2,1)
+t=np.arange(-10,10,1)
+pts = x+t*v
+ax.set_xlim((-5,5))
+ax.set_ylim((-5,5))
+ax.plot(pts[0,:],pts[1,:],color='black')
+ax.plot([1],[1],marker="*",markersize=12,color='red')
+ax.arrow(1,1,-.4,.6,color='blue',width=.2)
+ax.scatter(pts[0,:],pts[1,:])
+
+ax1 = fig.add_subplot(212)
+ax1.set_aspect('equal')
+ax1.set_xticks(np.arange(-10,11,4))
+ax1.set_title('Height vs time along path')
+ht = -(1+0.6*t)**2+(1-0.4*t)**2
+ax1.plot(np.arange(-10,10,1),ht)
+ax1.plot([0],[0],marker='*',markersize=10)
+ax1.grid()
+
+
+```
 
 ## Partial Derivatives
 
+The partial derivatives of a function are the special
+cases of the directional derivative in the direction of coordinate axes.
+
+So if $f$ is a function of $\mathbf{x}=(x_0,\ldots, x_{n-1})$
+and if $\mathbf{e}_{i}$ is the vector
+$$
+e_{i} = (0,0,\ldots,0,1,0,\ldots, 0)
+$$
+where the $1$ is in the $i^{th}$ position, then
+$$
+\frac{\partial f}{\partial x_{i}}=D_{e_{i}}f.
+$$
+
+You can compute the partial derivatives very simply using calculus rules where you treat all of the variables except $x_{i}$ as constants. 
+
 ## The gradient
+
+## The chain rule
+
+## Functions from $\mathbf{R}^{m}$ to $\mathbf{R}^{n}$ and their derivatives
+
+## Linear functions
+
+## The chain rule in the general case
