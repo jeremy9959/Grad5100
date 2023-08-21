@@ -148,8 +148,8 @@ x=np.linspace(-10,10,50)
 y=np.linspace(-10,10,50)
 xx,yy = np.meshgrid(x,y)
 z = 3*norm.pdf(np.sqrt((xx-2)**2+(xx-2)*(yy-3)+(yy-3)**2))-5*norm.pdf(np.sqrt((xx+3)**2+(yy+1)**2))
-P=ax.contourf(xx,yy,z,levels=5)
-Q=ax.contour(xx,yy,z,levels=5,colors='black')
+P=ax.contourf(xx,yy,z,levels=10)
+Q=ax.contour(xx,yy,z,levels=np.linspace(-1,1,19),colors='black')
 t=ax.clabel(Q,inline=True,fontsize=5)
 t=ax.set_title("Contour Plot of sum of two Gaussians")
 ```
@@ -177,7 +177,7 @@ ax.set_aspect('equal')
 ```
 
 
-```{python
+```{python}
 
 fig = plt.figure()
 fig.set_size_inches(20,10)
