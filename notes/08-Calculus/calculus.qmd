@@ -210,11 +210,15 @@ $$
 $$
 
 ```{python}
-x = np.array([1,1])
-v = np.array([-2,3])
+# We need to watch out for shapes here
+
+x = np.array([1,1]).reshape(2,1)
+v = np.array([-2,3]).reshape(2,1)
 t=np.linspace(-5,5,10)
-pts = x+tv
+pts = x+t*v
 print(pts.shape)
+plt.plot(pts[0,:],pts[1,:])
+plt.grid()
 ```
 
 ## Directional Derivatives
