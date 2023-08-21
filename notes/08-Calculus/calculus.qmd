@@ -195,7 +195,27 @@ ax.grid()
 ```
 ## Vector functions
 
-It's convenient to think of a function of multiple variables $x_1,\ldots, x_n$ as a function of a vector $\mathbf{x}=(x_1,\ldots, x_n)$.
+It's useful to think of a function of  multiple variables $x_1,\ldots, x_n$ as a function of a vector $\mathbf{x}=(x_1,\ldots, x_n)$.
+
+If $x_0$ is a point in $\mathbf{R}^{n}$ (thought of as a vector) and $v$ is another vector, then the points
+$$
+\ell(t) = x_0+tv
+$$
+
+trace out a line as $t$ varies.
+
+For example if $x_0=(1,1)$ and $v=(-2,3)$ then
+$$
+\ell(t) = (1-2t,2+3t)
+$$
+
+```{python}
+x = np.array([1,1])
+v = np.array([-2,3])
+t=np.linspace(-5,5,10)
+pts = x+tv
+print(pts.shape)
+```
 
 ## Directional Derivatives
 
