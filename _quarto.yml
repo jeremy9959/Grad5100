@@ -15,6 +15,7 @@ project:
     - chapters/06-LinearAlgebra/linear_algebra.qmd  
     - chapters/06-LinearAlgebra/linear_algebra_python.qmd
     - chapters/06-LinearAlgebra/linear_algebra_r.qmd
+    - chapters/99-Resources/Cheatsheets.qmd
 
 website:
   title: "Fundamentals of Machine Learning"
@@ -29,7 +30,9 @@ website:
         - chapters/04-StatBasics/stat-basics.qmd  
         - chapters/05-WorkingWithData/pythonAndR.qmd
         - chapters/06-LinearAlgebra/linear_algebra.qmd
-  
+      - section: "Resources"
+        contents:
+        - chapters/99-Resources/Cheatsheets.qmd
 
   
 format:
