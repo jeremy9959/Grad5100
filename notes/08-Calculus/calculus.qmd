@@ -87,6 +87,7 @@ x values between 0 and 1, $h=.01$.
 - The derivative of $e^{x}$ is $e^{x}$.
 - The derivative of $\log(x)$ is $1/x$ (natural logarithm).
 
+
 ## Functions of several variables
 
 In data science, we generally want to look at functions that depend on many variables, rather than just one. 
@@ -153,7 +154,64 @@ t=ax.clabel(Q,inline=True,fontsize=5)
 t=ax.set_title("Contour Plot of sum of two Gaussians")
 ```
 
+
+## Plotting in 3d 
+
+Generally 3d plots aren't that useful, but sometimes you just really want one.
+
+```{python}
+from mpl_toolkits.mplot3d import Axes3D
+
+fig = plt.figure()
+fig.set_size_inches(20,10)
+ax = fig.add_subplot(211,projection='3d')
+x = np.linspace(-5,5,30)
+y = np.linspace(-5,5,30)
+xx,yy = np.meshgrid(x,y)
+z = norm.pdf(np.sqrt(xx**2+yy**2))
+ax.plot_wireframe(xx,yy,z,cmap='gray')
+ax = fig.add_subplot(212)
+Q=ax.contour(xx,yy,z)
+ax.clabel(Q)
+ax.set_aspect('equal')
+```
+
+
+```{python
+
+fig = plt.figure()
+fig.set_size_inches(20,10)
+ax = fig.add_subplot(211,projection='3d')
+x = np.linspace(-5,5,30)
+y = np.linspace(-5,5,30)
+xx,yy = np.meshgrid(x,y)
+z = xx**2-yy**2
+ax.plot_wireframe(xx,yy,z,cmap='gray')
+ax = fig.add_subplot(212)
+Q=ax.contour(xx,yy,z,levels=10)
+ax.clabel(Q)
+ax.set_aspect('equal')
+ax.grid()
+```
+## Vector functions
+
+It's convenient to think of a function of multiple variables $x_1,\ldots, x_n$ as a function of a vector $\mathbf{x}=(x_1,\ldots, x_n)$.
+
 ## Directional Derivatives
+
+For a function of multiple variables, the *directional derivative* is the rate of change in a particular direction.  
+
+The direction is given by a vector $v$.
+
+$$
+D_{v}(f)(x) = \frac{d}{dt}f(x+tv)|_{t=0}
+$$
+
+Depends on direction *and* magnitude of $v$.
+
+Can think of this as rate of change of $f$
+as you fly with speed $v$.
+
 
 ## Partial Derivatives
 
