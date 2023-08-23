@@ -341,7 +341,7 @@ $$
 \frac{\partial f}{\partial x_{i}}=D_{e_{i}}f.
 $$
 
-You can compute the partial derivatives very simply using calculus rules where you treat all of the variables except $x_{i}$ as constants. 
+You can compute the partial derivatives using calculus rules where you treat all of the variables except $x_{i}$ as constants. 
 
 ## The gradient
 
