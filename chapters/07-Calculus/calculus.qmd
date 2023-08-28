@@ -406,7 +406,7 @@ $$
 
 where $\theta$ is the angle between the gradient and the vector $v$.  This is maximum when $\theta=0$, and minimum when $\theta=\pi$.
 
-To see the significance of this, check out [this page.](./GDanimage_js.html).
+To see the significance of this, check out [this page.](./GDanimate_js.html).
 
 ## Functions from $\mathbf{R}^{m}$ to $\mathbf{R}^{n}$ and their derivatives
 
