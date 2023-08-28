@@ -4,6 +4,10 @@ author: "Jeremy Teitelbaum"
 subtitle: "Fundamentals of Data Science"
 format: html
 ---
+
+\newcommand{\dpf}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\df}[2]{\frac{d #1}{d #2}}
+
 ```{python}
 import numpy as np
 import matplotlib.pyplot as plt
@@ -105,7 +109,7 @@ $$
 
 ## The chain rule 
 
-The chain rule is extremely important.
+The chain rule is a key fact from one variable calculus.  Its simple form is
 
 $$
 \frac{d}{dt}f(x+th)|_{t=0}=hf'(x)
@@ -343,9 +347,66 @@ $$
 
 You can compute the partial derivatives using calculus rules where you treat all of the variables except $x_{i}$ as constants. 
 
+## The vector chain rule
+
+The vector chain rule says that 
+$$
+\frac{d}{dt}f(x_1(t),x_2(t),\ldots, x_n(t))=\dpf{f}{x_1}\df{x_1}{t}+\dpf{f}{x_2}\df{x_2}{t}+\cdots+\dpf{f}{x_n}\df{x_n}{t}
+$$
+
+Here $(x_1(t),\ldots,x_n(t))$ can be thought of as a *path* where the $x_i$ vary with time $t$. 
+
+
 ## The gradient
 
-## The chain rule
+Suppose that $f$ is a function of variables $x_1,\ldots, x_n$.  The **gradient** of $f$, written $\nabla f$, is a vector valued function
+where
+
+$$
+\nabla f (x) = \left[\begin{matrix} \frac{\partial f}{\partial x_0} & \frac{\partial f}{\partial x_1} & \cdots & \frac{\partial f}{\partial x_n} \end{matrix}\right]
+$$
+
+
+
+The gradient of $f$ gives a *vector at each point*.  
+
+## Key property of the gradient
+
+**Theorem:** If $v$ is any vector, then the directional derivative $D_{v}(f)=\nabla f \cdot v$.
+As a result of this fact:
+
+1. The gradient points in the direction where $f$ increases most rapidly.
+2. $-\nabla f$ points in the direction where $f$ decreases most rapidly.
+3. The gradient is perpendicular to the contour lines of the function. 
+4. The gradient is zero at local minima and maxima of a function (but possibly also at other places)
+
+These facts follow from the chain rule and properties of the dot product.
+
+First of all, 
+$$
+D_{v}(f)(\mathbf{x}) = \frac{d}{dt}f(\mathbf{x}+t\mathbf{v})=f(x_1+tv_1,x_2+tv_2,\ldots, x_n+tv_n)|_{t=0}
+$$
+
+From the vector chain rule this is the same as 
+
+$$
+D_{v}(f)(\mathbf{x}) = \dpf{f}{x_1}v_1+\dpf{f}{x_2}v_2+\cdots+\dpf{f}{x_n}v_{n}|_{t=0}
+$$
+which is 
+
+$$
+(\nabla f)(\mathbf{x})\cdot \mathbf{v}.
+$$
+
+But the dot product satisfies
+
+$$
+(\nabla f)(\mathbf{x})\cdot \mathbf{v} = \|(\nabla f)(\mathbf{x})\|\|v\|\cos(\theta)
+$$
+
+where $\theta$ is the angle between the gradient and the vector $v$.  This is maximum when $\theta=0$, and minimum when $\theta=\pi$.
+
+To see the significance of this, check out [this page.](./GDanimage_js.html).
 
 ## Functions from $\mathbf{R}^{m}$ to $\mathbf{R}^{n}$ and their derivatives
 
