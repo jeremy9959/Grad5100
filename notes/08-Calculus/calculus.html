@@ -148,16 +148,16 @@ f'(x) = \lim_{h\to 0}\frac{f(x+h)-f(x)}{h}
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-cell="annotated-cell-2" data-code-lines="4">Here we compute the (approximate) slope/derivative <code>m</code> at the point <code>(x[40],y[40])</code></span>
+<span data-code-cell="annotated-cell-2" data-code-lines="4" data-code-annotation="1">Here we compute the (approximate) slope/derivative <code>m</code> at the point <code>(x[40],y[40])</code></span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-annotation="2" data-code-cell="annotated-cell-2" data-code-lines="5">This is the equation of the line through that point with the computed slope.</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="5" data-code-annotation="2">This is the equation of the line through that point with the computed slope.</span>
 </dd>
 </dl>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="calculus_files/figure-html/cell-3-output-1.png" width="602" height="453"></p>
+<p><img src="calculus_files/figure-html/cell-3-output-1.png" width="595" height="447"></p>
 </div>
 </div>
 <p>Key facts:</p>
@@ -187,12 +187,12 @@ f'(x) = \lim_{h\to 0}\frac{f(x+h)-f(x)}{h}
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-cell="annotated-cell-3" data-code-lines="10">The array <code>y</code> has the y values corresponding to the x values in the array <code>x</code>. So the difference <code>y[1:]-y[:-1]</code> is <span class="math inline">\(f(x+h)-f(x)\)</span>. Since there are 100 x values between 0 and 1, <span class="math inline">\(h=.01\)</span>.</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="10" data-code-annotation="1">The array <code>y</code> has the y values corresponding to the x values in the array <code>x</code>. So the difference <code>y[1:]-y[:-1]</code> is <span class="math inline">\(f(x+h)-f(x)\)</span>. Since there are 100 x values between 0 and 1, <span class="math inline">\(h=.01\)</span>.</span>
 </dd>
 </dl>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="calculus_files/figure-html/cell-4-output-1.png" width="665" height="360"></p>
+<p><img src="calculus_files/figure-html/cell-4-output-1.png" width="660" height="355"></p>
 </div>
 </div>
 </section>
@@ -243,15 +243,15 @@ f'(x) = \lim_{h\to 0}\frac{f(x+h)-f(x)}{h}
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-cell="annotated-cell-4" data-code-lines="2">Here we find <span class="math inline">\(y=3x+1+\epsilon\)</span> where <span class="math inline">\(\epsilon\)</span> is drawn from a normal random variable with standard deviation <span class="math inline">\(2\)</span>.</span>
+<span data-code-cell="annotated-cell-4" data-code-lines="2" data-code-annotation="1">Here we find <span class="math inline">\(y=3x+1+\epsilon\)</span> where <span class="math inline">\(\epsilon\)</span> is drawn from a normal random variable with standard deviation <span class="math inline">\(2\)</span>.</span>
 </dd>
 </dl>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="36">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>Text(0.5, 1.0, '$y=3+1+\\epsilon$ where $\\epsilon$ is a normal error')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="calculus_files/figure-html/cell-5-output-2.png" width="564" height="431"></p>
+<p><img src="calculus_files/figure-html/cell-5-output-2.png" width="571" height="426"></p>
 </div>
 </div>
 <p>The line of best fit has the equation <span class="math inline">\(y=mx+b\)</span> where <span class="math inline">\(m\)</span> and <span class="math inline">\(b\)</span> are the unknowns. The “error” is <span class="math display">\[
@@ -278,16 +278,16 @@ E(m,b) = \frac{1}{N}\sum_{i=1}^{N} (y_i-mx_i-b)^2
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-cell="annotated-cell-5" data-code-lines="4">Why do you need this?</span>
+<span data-code-cell="annotated-cell-5" data-code-lines="4" data-code-annotation="1">Why do you need this?</span>
 </dd>
 <dt data-target-cell="annotated-cell-5" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-annotation="2" data-code-cell="annotated-cell-5" data-code-lines="5">meshgrid changes two one-dimensional arrays into two two dimensional arrays - examine them to see what happens.</span>
+<span data-code-cell="annotated-cell-5" data-code-lines="5" data-code-annotation="2">meshgrid changes two one-dimensional arrays into two two dimensional arrays - examine them to see what happens.</span>
 </dd>
 </dl>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="calculus_files/figure-html/cell-6-output-1.png" width="417" height="415"></p>
+<p><img src="calculus_files/figure-html/cell-6-output-1.png" width="412" height="410"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="6">
@@ -302,7 +302,7 @@ E(m,b) = \frac{1}{N}\sum_{i=1}^{N} (y_i-mx_i-b)^2
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span>ax.clabel(Q,inline<span class="op">=</span><span class="va">True</span>,fontsize<span class="op">=</span><span class="dv">5</span>)</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span>ax.set_title(<span class="st">"Contour Plot of sum of two Gaussians"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="calculus_files/figure-html/cell-7-output-1.png" width="596" height="430"></p>
+<p><img src="calculus_files/figure-html/cell-7-output-1.png" width="591" height="425"></p>
 </div>
 </div>
 </section>
@@ -325,7 +325,7 @@ E(m,b) = \frac{1}{N}\sum_{i=1}^{N} (y_i-mx_i-b)^2
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>ax.clabel(Q)</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="calculus_files/figure-html/cell-8-output-1.png" width="410" height="780"></p>
+<p><img src="calculus_files/figure-html/cell-8-output-1.png" width="397" height="775"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="8">
@@ -343,7 +343,7 @@ E(m,b) = \frac{1}{N}\sum_{i=1}^{N} (y_i-mx_i-b)^2
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>ax.grid()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="calculus_files/figure-html/cell-9-output-1.png" width="404" height="780"></p>
+<p><img src="calculus_files/figure-html/cell-9-output-1.png" width="392" height="775"></p>
 </div>
 </div>
 </section>
@@ -374,12 +374,12 @@ E(m,b) = \frac{1}{N}\sum_{i=1}^{N} (y_i-mx_i-b)^2
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-cell="annotated-cell-9" data-code-lines="1">To see why x and v need to be column vectors, try this without the reshape and look at the error you get.</span>
+<span data-code-cell="annotated-cell-9" data-code-lines="1" data-code-annotation="1">To see why x and v need to be column vectors, try this without the reshape and look at the error you get.</span>
 </dd>
 </dl>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="calculus_files/figure-html/cell-10-output-1.png" width="591" height="449"></p>
+<p><img src="calculus_files/figure-html/cell-10-output-1.png" width="585" height="442"></p>
 </div>
 </div>
 <p>In this version, the vector <span class="math inline">\(v\)</span> represents the <em>velocity</em> of a point travelling along the line. So the dots are the position of the object at different times <span class="math inline">\(t\)</span>.</p>
@@ -439,7 +439,7 @@ f(\mathbf{x}+t\mathbf{v}) = (1-.4t)^2-(1+.6t)^2
 <span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>ax1.plot([<span class="dv">0</span>],[<span class="dv">0</span>],marker<span class="op">=</span><span class="st">'*'</span>,markersize<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>ax1.grid()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="calculus_files/figure-html/cell-11-output-1.png" width="380" height="799"></p>
+<p><img src="calculus_files/figure-html/cell-11-output-1.png" width="375" height="795"></p>
 </div>
 </div>
 </section>
@@ -451,7 +451,7 @@ e_{i} = (0,0,\ldots,0,1,0,\ldots, 0)
 \]</span> where the <span class="math inline">\(1\)</span> is in the <span class="math inline">\(i^{th}\)</span> position, then <span class="math display">\[
 \frac{\partial f}{\partial x_{i}}=D_{e_{i}}f.
 \]</span></p>
-<p>You can compute the partial derivatives very simply using calculus rules where you treat all of the variables except <span class="math inline">\(x_{i}\)</span> as constants.</p>
+<p>You can compute the partial derivatives using calculus rules where you treat all of the variables except <span class="math inline">\(x_{i}\)</span> as constants.</p>
 </section>
 <section id="the-gradient" class="level2">
 <h2 class="anchored" data-anchor-id="the-gradient">The gradient</h2>
