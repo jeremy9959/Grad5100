@@ -23,8 +23,13 @@ There is no formal textbook for the course. Some useful references
 include the following, all of which are either open source or available
 through the UConn Library.
 
--   [An Introduction to Statistical
-    Learning](http://www.statlearning.com) by James, *et. al.* Note that
+-   [Programming Bootcamp (python)](https://justinbois.github.io/bootcamp/2021/).  
+    These are notes from a programming bootcamp at Caltech. It is very
+    well done and comprehensive and covers more than we will do in this course.
+-   [Programming Bootcamp (R)](https://gitfront.io/r/user-3679719/H8v5hTnvHh2U/R-Bootcamp-Course/)  These are notes developed at UConn by Chiranjit Dutta,
+one of Professor Ravishanker's students.
+
+-   [An Introduction to Statistical Learning](http://www.statlearning.com) by James, *et. al.* Note that
     the original version of this book uses the R language, but a new
     edition available in Summer 2023 uses Python.
 -   [R for Data Science](https://r4ds.hadley.nz/) by Wickham and
