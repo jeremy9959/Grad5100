@@ -28,7 +28,6 @@ through the UConn Library.
     well done and comprehensive and covers more than we will do in this course.
 -   [Programming Bootcamp (R)](https://gitfront.io/r/user-3679719/H8v5hTnvHh2U/R-Bootcamp-Course/)  These are notes developed at UConn by Chiranjit Dutta,
 one of Professor Ravishanker's students.
-
 -   [An Introduction to Statistical Learning](http://www.statlearning.com) by James, *et. al.* Note that
     the original version of this book uses the R language, but a new
     edition available in Summer 2023 uses Python.
