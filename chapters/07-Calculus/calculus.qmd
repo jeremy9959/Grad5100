@@ -416,6 +416,58 @@ To see the significance of this, check out [this page.](./GDanimate_js.html).
 
 ## Functions from $\mathbf{R}^{m}$ to $\mathbf{R}^{n}$ and their derivatives
 
+The most general situation we might want to consider is a function that converts a point in $\mathbf{R}^{m}$ to a point
+in $\mathbf{R}^{n}$:
+
+$$
+F:\mathbf{R}^{m}\to \mathbf{R}^{n}
+$$
+
+Here is an example.  Suppose we have $28\times 28$ images represented as arrays of pixel values.  And suppose that we
+know that this image is a handwritten number between $0$ and $9$. 
+
+An image recognition neural network takes such an image an outputs a vector of length $10$ of the form $(p_0,\ldots, p_{9})$
+where $p_i$ is the probability that the image represents the digit $i$.
+
+This neural network is a function $F:\mathbf{R}^{784}\to \mathbf{R}^{10}$.  
+
+Such a function is actually given by $10$ (or, more generally, $n$) "coordinate functions" $f_{i}$, each of which is a function of $m$
+variables.  So the neural network function $F$ consists of functions
+$$
+p_{i} = F_{i}(x_0,\ldots, x_{783})\quad i=0,\ldots, 9
+$$
+
+Each of these functions has a gradient which measures how $p_{i}$ changes if you modify the $x_i$.  The *total* derivative of $F$
+is made up of all of these gradients.  You can think of this as a column vector of row vectors:
+$$
+DF = \left[\begin{matrix} \nabla F_{0} \\ \nabla F_{1} \\  \cdots \\ \nabla F_{n}\end{matrix}\right]
+$$
+
+where each $\nabla F_{i}$ is a row  with $m$ entries.
+
+But this is really a matrix called the total derivative $DF$ of $F$ of size $n\times m$. 
+
+The total derivative tells us how a small step in $\mathbf{R}^{m}$ translates to a step in $\mathbf{R}^{m}$ 
+when you apply the function $F:\mathbf{R}^{m}\to mathbf{R}^{n}$. 
+
 ## Linear functions
 
+A very special case of a function from $F:\mathbf{R}^{m}\to mathbf{R}^{n}$ is the situation where 
+$$
+F(x) = Ax
+$$
+for an $n\times m$ matrix.  
+
+In this special case, the total derivative $DF$ of $F$ is the matrix $A$.
+
 ## The chain rule in the general case
+
+If $F:\mathbf{R}^{m}\to\mathbf{R}^{n}$ is a function, and $G:\mathbf{R}^{n}\to\mathbf{R}^{k}$
+is another function, then it makes sense to compute $G(F(x))$ for $x\in \mathbf{R}^{m}$, and
+the result is in $\mathbf{R}^{k}$.
+
+The chain rule in general says that the derivative of $G(F(x))$ is the product of the matrices
+corresponding to $DG$ and $DF$.  Here $DG$ is $k\times n$ and $DF$ is $n\times m$ so $(DG)(DF)$
+is $k\times m$ as it should be.
+
+## 

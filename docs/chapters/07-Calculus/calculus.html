@@ -630,12 +630,37 @@ D_{v}(f)(\mathbf{x}) = \frac{\partial f}{\partial x_1}v_1+\frac{\partial f}{\par
 </section>
 <section id="functions-from-mathbfrm-to-mathbfrn-and-their-derivatives" class="level2">
 <h2 class="anchored" data-anchor-id="functions-from-mathbfrm-to-mathbfrn-and-their-derivatives">Functions from <span class="math inline">\(\mathbf{R}^{m}\)</span> to <span class="math inline">\(\mathbf{R}^{n}\)</span> and their derivatives</h2>
+<p>The most general situation we might want to consider is a function that converts a point in <span class="math inline">\(\mathbf{R}^{m}\)</span> to a point in <span class="math inline">\(\mathbf{R}^{n}\)</span>:</p>
+<p><span class="math display">\[
+F:\mathbf{R}^{m}\to \mathbf{R}^{n}
+\]</span></p>
+<p>Here is an example. Suppose we have <span class="math inline">\(28\times 28\)</span> images represented as arrays of pixel values. And suppose that we know that this image is a handwritten number between <span class="math inline">\(0\)</span> and <span class="math inline">\(9\)</span>.</p>
+<p>An image recognition neural network takes such an image an outputs a vector of length <span class="math inline">\(10\)</span> of the form <span class="math inline">\((p_0,\ldots, p_{9})\)</span> where <span class="math inline">\(p_i\)</span> is the probability that the image represents the digit <span class="math inline">\(i\)</span>.</p>
+<p>This neural network is a function <span class="math inline">\(F:\mathbf{R}^{784}\to \mathbf{R}^{10}\)</span>.</p>
+<p>Such a function is actually given by <span class="math inline">\(10\)</span> (or, more generally, <span class="math inline">\(n\)</span>) “coordinate functions” <span class="math inline">\(f_{i}\)</span>, each of which is a function of <span class="math inline">\(m\)</span> variables. So the neural network function <span class="math inline">\(F\)</span> consists of functions <span class="math display">\[
+p_{i} = F_{i}(x_0,\ldots, x_{783})\quad i=0,\ldots, 9
+\]</span></p>
+<p>Each of these functions has a gradient which measures how <span class="math inline">\(p_{i}\)</span> changes if you modify the <span class="math inline">\(x_i\)</span>. The <em>total</em> derivative of <span class="math inline">\(F\)</span> is made up of all of these gradients. You can think of this as a column vector of row vectors: <span class="math display">\[
+DF = \left[\begin{matrix} \nabla F_{0} \\ \nabla F_{1} \\  \cdots \\ \nabla F_{n}\end{matrix}\right]
+\]</span></p>
+<p>where each <span class="math inline">\(\nabla F_{i}\)</span> is a row with <span class="math inline">\(m\)</span> entries.</p>
+<p>But this is really a matrix called the total derivative <span class="math inline">\(DF\)</span> of <span class="math inline">\(F\)</span> of size <span class="math inline">\(n\times m\)</span>.</p>
+<p>The total derivative tells us how a small step in <span class="math inline">\(\mathbf{R}^{m}\)</span> translates to a step in <span class="math inline">\(\mathbf{R}^{m}\)</span> when you apply the function <span class="math inline">\(F:\mathbf{R}^{m}\to mathbf{R}^{n}\)</span>.</p>
 </section>
 <section id="linear-functions" class="level2">
 <h2 class="anchored" data-anchor-id="linear-functions">Linear functions</h2>
+<p>A very special case of a function from <span class="math inline">\(F:\mathbf{R}^{m}\to mathbf{R}^{n}\)</span> is the situation where <span class="math display">\[
+F(x) = Ax
+\]</span> for an <span class="math inline">\(n\times m\)</span> matrix.</p>
+<p>In this special case, the total derivative <span class="math inline">\(DF\)</span> of <span class="math inline">\(F\)</span> is the matrix <span class="math inline">\(A\)</span>.</p>
 </section>
 <section id="the-chain-rule-in-the-general-case" class="level2">
 <h2 class="anchored" data-anchor-id="the-chain-rule-in-the-general-case">The chain rule in the general case</h2>
+<p>If <span class="math inline">\(F:\mathbf{R}^{m}\to\mathbf{R}^{n}\)</span> is a function, and <span class="math inline">\(G:\mathbf{R}^{n}\to\mathbf{R}^{k}\)</span> is another function, then it makes sense to compute <span class="math inline">\(G(F(x))\)</span> for <span class="math inline">\(x\in \mathbf{R}^{m}\)</span>, and the result is in <span class="math inline">\(\mathbf{R}^{k}\)</span>.</p>
+<p>The chain rule in general says that the derivative of <span class="math inline">\(G(F(x))\)</span> is the product of the matrices corresponding to <span class="math inline">\(DG\)</span> and <span class="math inline">\(DF\)</span>. Here <span class="math inline">\(DG\)</span> is <span class="math inline">\(k\times n\)</span> and <span class="math inline">\(DF\)</span> is <span class="math inline">\(n\times m\)</span> so <span class="math inline">\((DG)(DF)\)</span> is <span class="math inline">\(k\times m\)</span> as it should be.</p>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
 
 
 </section>
