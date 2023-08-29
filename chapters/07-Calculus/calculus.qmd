@@ -3,6 +3,12 @@ title: "Key ideas from calculus"
 author: "Jeremy Teitelbaum"
 subtitle: "Fundamentals of Data Science"
 format: html
+title-block-style: plain
+jupyter: 
+    kernelspec: 
+        name: "base"
+        language: "python"
+        display_name: "python3"
 ---
 
 \newcommand{\dpf}[2]{\frac{\partial #1}{\partial #2}}

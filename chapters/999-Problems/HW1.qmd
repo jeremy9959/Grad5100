@@ -1,0 +1,66 @@
+---
+title: Homework One
+subtitle: Fundamentals of Data Science
+author: Jeremy Teitelbaum
+format: html
+execute:
+    enabled: false
+---
+
+## First homework assignment
+
+This assignment is due *Sunday, September 10th* by midnight.  Please submit it
+using HuskyCT.  Follow the instructions below.
+
+0.  Create a project directory named Homework_One, and inside it create a subdirectory
+called python. 
+1.  In the python directory, create a jupyter notebook named `Homework_One.ipynb`.
+2.  Using a markdown cell, add text at the beginning of your notebook that yields text
+following this template:
+
+    Header: First Homework Assignment for Grad 5100
+
+    Text: Submitted by [your name] on [the date]
+
+    Topic: Some features of the `python` language.
+
+(Hint: you can get the word python formatted this way by using backticks: \`python\`)
+3. Using a code cell, create the following variables:
+```{python}
+first_name = # your first name (a string)
+last_name = # your last name (a string)
+year = # current year, an integer
+states = # a list of strings containing the names of the New England states (look them up)
+```
+
+Working in code cells, complete the following
+```{python}
+first_name_345 = first_name[] # fill in the [] to extract the third, fourth, and fifth letters of your first name (note this could be an empty string, or shorter than three letters)
+print() # complete the print statement to show your answer
+```
+```{python}
+last_name_last = last_name[] # fill in the [] to extract the last letter of your last name. Do not assume you know how many letters are in your last name. 
+print() # complete the print statement to show your answer
+```
+
+```{python}
+year_5 = # compute the year multipled by 5
+print() # print the answer
+```
+
+The `sorted` command takes a list and returns it sorted.
+
+```{python}
+states_sorted = sorted(states) # sort your list of states
+mid = states+_sorted[][] # complete the []'s to find the last letter of the third New England state in alphabetical order. 
+print() # print the answer
+```
+
+5. Export your jupyter notebook as a pdffile and submit it using HuskyCT.
+6. Go back to your project directory and create a subdirectory called R.  In that directory,
+start Rstudio.
+7. Create an RMD file called Homework_One.rmd and repeat the steps above, but working in R and Rstudio. Notice that you'll have to make some small modifications to the syntax:
+    * change "Python" to "R"
+    * replace "=" by "<-"
+    * in R, you use `sort` not `sorted`
+8. Export your RMD file as a pdf file and submit it using HuskyCT.
