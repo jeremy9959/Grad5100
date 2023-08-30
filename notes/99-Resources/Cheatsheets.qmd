@@ -54,4 +54,6 @@ From the [vscode home page](https://code.visualstudio.com)
 2. [mac keybindings](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf)
 3. [linux keybindings](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf)
 
+### Markdown
 
+1. [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/)
