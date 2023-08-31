@@ -421,11 +421,15 @@ $$
 \overline{x} = \frac{1}{N-1}\sum (x_{i}-\overline{x})^2
 $$
 
-are called the sample mean and variance; they are estimates of the mean and variance of the underlying random variable. 
+## Sample Mean and Variance
+
+The formulae above are called the sample mean and variance; they are estimates of the mean and variance of the underlying random variable. 
 
 The law of large numbers says that, as $N\to\infty$, these estimates converge to the true values. 
 
 In general these values are also random (they depend on the particular choices drawn from the distribution) and follow their own probabilility distribution.
+
+## Distribution of sample mean and variance
 
 So for example, if you sample a Bernoulli random variable $10$ times, the mean is
 $$
