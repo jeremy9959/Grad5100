@@ -53,7 +53,7 @@
     "href": "chapters/02-JupyterBasics/jupyter-walkthrough.html",
     "title": "Jupyter Lab and Python Walkthrough",
     "section": "",
-    "text": "Use the ‘text editor’ feature in Jupyter Lab to create your README.md file.\nRENAME YOUR NOTEBOOK FILE IMMEDIATELY to something relevant\nCTRL-ENTER executes a cell.\n\n\n\nThis is a markdown cell:\n\nHeadings are #, ##, etc.\nBold is marked **make me bold** like this.\nItalics are marked *make me italic* like this.\nMath can be typeset with if you know it: \\[f(x)=e^{-x}\\cos(x)\\]\nBulleted lists are marked with -.\n\n\n# code cells\n## Code cells contain python code that gets executed.\n# indicates a comment that is ignored.\nprint(\"Hello World!\")\n\nHello World!\n\n\nIn this walkthrough we will look at the following elements of Python in a jupyter notebook.\nThe print statement\n\nprint(\"hello world!\")\n\nhello world!\n\n\nVariables, variable names, and assignment/datatypes\n\ncount = 5  # an integer\nname = \"Jeremy Teitelbaum\"  # a string\nparagraph = \"\"\"This is how you enter a multiline string\nin python. It is enclosed in triple quotes.\"\"\"\npi = 3.14159  # a float\nepsilon = 1.0e-6  # a float\nstudents = [\"Jeremy\", \"Phillip\", \"Sara\", \"Molly\"]  # a list\nHotDog = True\n\n\nprint(students)\n\n['Jeremy', 'Phillip', 'Sara', 'Molly']\n\n\nCompare print for multiline strings with the string value. (\\n means newline)\n\nprint(paragraph)\n\nThis is how you enter a multiline string\nin python. It is enclosed in triple quotes.\n\n\n\nparagraph\n\n'This is how you enter a multiline string\\nin python. It is enclosed in triple quotes.'\n\n\nArithmetic operations\n\nprint(count)\ncount = count + 1\nprint(count)\n\n5\n6\n\n\n\n1 / pi\n\n0.31831015504887655\n\n\n\nprint(2**3)  # exponent\nprint(1 / 2)  # division (converts integer to float)\nprint(1 / (1 / 2))  # 2 becomes 2.0\n\n8\n0.5\n2.0\n\n\n\nquotient = 5 // 3  # integer division\nremainder = 5 % 3  # remainder\nprint(quotient, remainder)\n\n1 2\n\n\nOperations on strings and lists\n\n\"Jeremy\" + \" Teitelbaum\"\n\n'Jeremy Teitelbaum'\n\n\n\n[\"a\", \"b\", \"c\"] + [\"d\"]\n\n['a', 'b', 'c', 'd']\n\n\n\nlen(\"Jeremy\")\n\n6\n\n\n\nlen([\"Jeremy\", \"Teitelbaum\"])\n\n2\n\n\n\nfirstName = \"Jeremy\"\nlastName = \"Teitelbaum\"\nfullName = firstName + \" \" + lastName\n\nSome fancier printing\n\nprint(f\"The first name is {firstName}\")\nprint(f\"The last name is {lastName}\")\nprint(f\"The full name is {firstName} {lastName}\")\nprint(firstName, lastName, sep=\",\")\nprint(firstName, lastName, sep=\":\")\n\nThe first name is Jeremy\nThe last name is Teitelbaum\nThe full name is Jeremy Teitelbaum\nJeremy,Teitelbaum\nJeremy:Teitelbaum\n\n\nSlicing\nIn python, we always count from zero!!!\n\nfirstName[0]\n\n'J'\n\n\n\nlastName[1]\n\n'e'\n\n\n\n# [a:b] means from a to b-1 inclusive\n\nprint(firstName[0:3])\nprint(firstName[3:])\nprint(firstName[3:5])\n\nJer\nemy\nem\n\n\n\n# negative indices count from the end\nprint(firstName[-1])  # the last element\nprint(firstName[-3:-1])  # elements -3 and -2, but not -1\n\ny\nem\n\n\n\n# [a:b:c] means from a to b-1 in steps of c\n# missing numbers mean (beginnging):(end)\nprint(firstName[:5:2])\nprint(firstName[::2])\nprint(firstName[::-1])  # reverse the string\nprint(firstName[3::-1])  # 3,2,1,0\nprint(firstName[3:0:-1])  # 3,2,1\n\nJrm\nJrm\nymereJ\nereJ\nere\n\n\nSlices work the same on list elements\n\nprint(students[0])\nprint(students[-1])\nevery_other_student = students[::2]\nprint(every_other_student)\n\nJeremy\nMolly\n['Jeremy', 'Sara']\n\n\nLibraries\n\nimport math\n\n\nmath.log(23)\n\n3.1354942159291497\n\n\n\nmath.pi\n\n3.141592653589793\n\n\n\nmath.cos(math.pi / 2)  # should be zero\n\n6.123233995736766e-17\n\n\n\nmath.cos(math.pi / 2) == 0\n\nFalse\n\n\n\nabs(math.cos(math.pi / 2)) < 1e-6\n\nTrue\n\n\n\nmath.pi == pi\n\nFalse\n\n\n\nimport numpy as np\n\n\nprint(np.random.randint(0, 10))\n\n6\n\n\n\nprint(np.__version__)\n\n1.21.5\n\n\n\nfrom numpy.random import randint\n\n\nrandint(1, 10)\n\n3\n\n\n\n\n\nA numpy array is like a list, but:\n- it's itended for use with numbers\n- it's designed for fast arithmetic and numerical operations\n- it can be multi-dimensional -- like a table or matrix -- although we won't use that here.\n\nx = np.array([1, 2, 3, 4, 5, 6])\nprint(x)\n\n[1 2 3 4 5 6]\n\n\nYou access arrays like lists, and can use slices; indices start at zero.\n\nx[2:4]\n\narray([3, 4])\n\n\nWhen you apply an operation to an array, it gets applied to every element of the array.\n\nprint(f\"Square of x is {x**2}\")\nprint(f\"1/x is {1/x}\")\nprint(f\"cos(x) is {np.cos(x)}\")\n\nSquare of x is [ 1  4  9 16 25 36]\n1/x is [1.         0.5        0.33333333 0.25       0.2        0.16666667]\ncos(x) is [ 0.54030231 -0.41614684 -0.9899925  -0.65364362  0.28366219  0.96017029]\n\n\nSome special arrays.\n\nx = np.zeros(10)  # 10 zeros\ny = np.ones(20)  # 20 ones\nz = np.linspace(0, 10, 100)  # 100 equally spaced numbers from 0 to 10 **inclusive**\nw = np.array(list(range(-10, 10, 2)))\n\n\nprint(w)\n\n[-10  -8  -6  -4  -2   0   2   4   6   8]\n\n\n\nprint(z)\n\n[ 0.          0.1010101   0.2020202   0.3030303   0.4040404   0.50505051\n  0.60606061  0.70707071  0.80808081  0.90909091  1.01010101  1.11111111\n  1.21212121  1.31313131  1.41414141  1.51515152  1.61616162  1.71717172\n  1.81818182  1.91919192  2.02020202  2.12121212  2.22222222  2.32323232\n  2.42424242  2.52525253  2.62626263  2.72727273  2.82828283  2.92929293\n  3.03030303  3.13131313  3.23232323  3.33333333  3.43434343  3.53535354\n  3.63636364  3.73737374  3.83838384  3.93939394  4.04040404  4.14141414\n  4.24242424  4.34343434  4.44444444  4.54545455  4.64646465  4.74747475\n  4.84848485  4.94949495  5.05050505  5.15151515  5.25252525  5.35353535\n  5.45454545  5.55555556  5.65656566  5.75757576  5.85858586  5.95959596\n  6.06060606  6.16161616  6.26262626  6.36363636  6.46464646  6.56565657\n  6.66666667  6.76767677  6.86868687  6.96969697  7.07070707  7.17171717\n  7.27272727  7.37373737  7.47474747  7.57575758  7.67676768  7.77777778\n  7.87878788  7.97979798  8.08080808  8.18181818  8.28282828  8.38383838\n  8.48484848  8.58585859  8.68686869  8.78787879  8.88888889  8.98989899\n  9.09090909  9.19191919  9.29292929  9.39393939  9.49494949  9.5959596\n  9.6969697   9.7979798   9.8989899  10.        ]\n\n\n\n## Plotting with matplotlib\n\n\nimport matplotlib.pyplot as plt\n\n\nplt.plot(z, z**2)\n\n\n\n\n\nz = np.linspace(-10, 10, 100)\nplt.axes()\nplt.plot(z, np.cos(z), color=\"red\")\nplt.title(\"A cosine curve\")\nplt.grid()\nplt.xlim(-10, 10)\nplt.ylim(-10, 10)\nplt.xticks(list(range(-10, 11)))\nplt.xlabel(\"x\")\nplt.ylabel(\"y\")\n\nText(0, 0.5, 'y')"
+    "text": "Use the ‘text editor’ feature in Jupyter Lab to create your README.md file.\nRENAME YOUR NOTEBOOK FILE IMMEDIATELY to something relevant\nCTRL-ENTER executes a cell.\n\n\n\nThis is a markdown cell:\n\nHeadings are #, ##, etc.\nBold is marked **make me bold** like this.\nItalics are marked *make me italic* like this.\nMath can be typeset with if you know it: \\[f(x)=e^{-x}\\cos(x)\\]\nBulleted lists are marked with -.\n\n\n# code cells\n## Code cells contain python code that gets executed.\n# indicates a comment that is ignored.\nprint(\"Hello World!\")\n\nHello World!\n\n\nIn this walkthrough we will look at the following elements of Python in a jupyter notebook.\nThe print statement\n\nprint(\"hello world!\")\n\nhello world!\n\n\nVariables, variable names, and assignment/datatypes\n\ncount = 5  # an integer\nname = \"Jeremy Teitelbaum\"  # a string\nparagraph = \"\"\"This is how you enter a multiline string\nin python. It is enclosed in triple quotes.\"\"\"\npi = 3.14159  # a float\nepsilon = 1.0e-6  # a float\nstudents = [\"Jeremy\", \"Phillip\", \"Sara\", \"Molly\"]  # a list\nHotDog = True\n\n\nprint(students)\n\n['Jeremy', 'Phillip', 'Sara', 'Molly']\n\n\nCompare print for multiline strings with the string value. (\\n means newline)\n\nprint(paragraph)\n\nThis is how you enter a multiline string\nin python. It is enclosed in triple quotes.\n\n\n\nparagraph\n\n'This is how you enter a multiline string\\nin python. It is enclosed in triple quotes.'\n\n\nArithmetic operations\n\nprint(count)\ncount = count + 1\nprint(count)\n\n5\n6\n\n\n\n1 / pi\n\n0.31831015504887655\n\n\n\nprint(2**3)  # exponent\nprint(1 / 2)  # division (converts integer to float)\nprint(1 / (1 / 2))  # 2 becomes 2.0\n\n8\n0.5\n2.0\n\n\n\nquotient = 5 // 3  # integer division\nremainder = 5 % 3  # remainder\nprint(quotient, remainder)\n\n1 2\n\n\nOperations on strings and lists\n\n\"Jeremy\" + \" Teitelbaum\"\n\n'Jeremy Teitelbaum'\n\n\n\n[\"a\", \"b\", \"c\"] + [\"d\"]\n\n['a', 'b', 'c', 'd']\n\n\n\nlen(\"Jeremy\")\n\n6\n\n\n\nlen([\"Jeremy\", \"Teitelbaum\"])\n\n2\n\n\n\nfirstName = \"Jeremy\"\nlastName = \"Teitelbaum\"\nfullName = firstName + \" \" + lastName\n\nSome fancier printing\n\nprint(f\"The first name is {firstName}\")\nprint(f\"The last name is {lastName}\")\nprint(f\"The full name is {firstName} {lastName}\")\nprint(firstName, lastName, sep=\",\")\nprint(firstName, lastName, sep=\":\")\n\nThe first name is Jeremy\nThe last name is Teitelbaum\nThe full name is Jeremy Teitelbaum\nJeremy,Teitelbaum\nJeremy:Teitelbaum\n\n\nSlicing\nIn python, we always count from zero!!!\n\nfirstName[0]\n\n'J'\n\n\n\nlastName[1]\n\n'e'\n\n\n\n# [a:b] means from a to b-1 inclusive\n\nprint(firstName[0:3])\nprint(firstName[3:])\nprint(firstName[3:5])\n\nJer\nemy\nem\n\n\n\n# negative indices count from the end\nprint(firstName[-1])  # the last element\nprint(firstName[-3:-1])  # elements -3 and -2, but not -1\n\ny\nem\n\n\n\n# [a:b:c] means from a to b-1 in steps of c\n# missing numbers mean (beginnging):(end)\nprint(firstName[:5:2])\nprint(firstName[::2])\nprint(firstName[::-1])  # reverse the string\nprint(firstName[3::-1])  # 3,2,1,0\nprint(firstName[3:0:-1])  # 3,2,1\n\nJrm\nJrm\nymereJ\nereJ\nere\n\n\nSlices work the same on list elements\n\nprint(students[0])\nprint(students[-1])\nevery_other_student = students[::2]\nprint(every_other_student)\n\nJeremy\nMolly\n['Jeremy', 'Sara']\n\n\nLibraries\n\nimport math\n\n\nmath.log(23)\n\n3.1354942159291497\n\n\n\nmath.pi\n\n3.141592653589793\n\n\n\nmath.cos(math.pi / 2)  # should be zero\n\n6.123233995736766e-17\n\n\n\nmath.cos(math.pi / 2) == 0\n\nFalse\n\n\n\nabs(math.cos(math.pi / 2)) < 1e-6\n\nTrue\n\n\n\nmath.pi == pi\n\nFalse\n\n\n\nimport numpy as np\n\n\nprint(np.random.randint(0, 10))\n\n8\n\n\n\nprint(np.__version__)\n\n1.21.5\n\n\n\nfrom numpy.random import randint\n\n\nrandint(1, 10)\n\n4\n\n\n\n\n\nA numpy array is like a list, but:\n- it's itended for use with numbers\n- it's designed for fast arithmetic and numerical operations\n- it can be multi-dimensional -- like a table or matrix -- although we won't use that here.\n\nx = np.array([1, 2, 3, 4, 5, 6])\nprint(x)\n\n[1 2 3 4 5 6]\n\n\nYou access arrays like lists, and can use slices; indices start at zero.\n\nx[2:4]\n\narray([3, 4])\n\n\nWhen you apply an operation to an array, it gets applied to every element of the array.\n\nprint(f\"Square of x is {x**2}\")\nprint(f\"1/x is {1/x}\")\nprint(f\"cos(x) is {np.cos(x)}\")\n\nSquare of x is [ 1  4  9 16 25 36]\n1/x is [1.         0.5        0.33333333 0.25       0.2        0.16666667]\ncos(x) is [ 0.54030231 -0.41614684 -0.9899925  -0.65364362  0.28366219  0.96017029]\n\n\nSome special arrays.\n\nx = np.zeros(10)  # 10 zeros\ny = np.ones(20)  # 20 ones\nz = np.linspace(0, 10, 100)  # 100 equally spaced numbers from 0 to 10 **inclusive**\nw = np.array(list(range(-10, 10, 2)))\n\n\nprint(w)\n\n[-10  -8  -6  -4  -2   0   2   4   6   8]\n\n\n\nprint(z)\n\n[ 0.          0.1010101   0.2020202   0.3030303   0.4040404   0.50505051\n  0.60606061  0.70707071  0.80808081  0.90909091  1.01010101  1.11111111\n  1.21212121  1.31313131  1.41414141  1.51515152  1.61616162  1.71717172\n  1.81818182  1.91919192  2.02020202  2.12121212  2.22222222  2.32323232\n  2.42424242  2.52525253  2.62626263  2.72727273  2.82828283  2.92929293\n  3.03030303  3.13131313  3.23232323  3.33333333  3.43434343  3.53535354\n  3.63636364  3.73737374  3.83838384  3.93939394  4.04040404  4.14141414\n  4.24242424  4.34343434  4.44444444  4.54545455  4.64646465  4.74747475\n  4.84848485  4.94949495  5.05050505  5.15151515  5.25252525  5.35353535\n  5.45454545  5.55555556  5.65656566  5.75757576  5.85858586  5.95959596\n  6.06060606  6.16161616  6.26262626  6.36363636  6.46464646  6.56565657\n  6.66666667  6.76767677  6.86868687  6.96969697  7.07070707  7.17171717\n  7.27272727  7.37373737  7.47474747  7.57575758  7.67676768  7.77777778\n  7.87878788  7.97979798  8.08080808  8.18181818  8.28282828  8.38383838\n  8.48484848  8.58585859  8.68686869  8.78787879  8.88888889  8.98989899\n  9.09090909  9.19191919  9.29292929  9.39393939  9.49494949  9.5959596\n  9.6969697   9.7979798   9.8989899  10.        ]\n\n\n\n## Plotting with matplotlib\n\n\nimport matplotlib.pyplot as plt\n\n\nplt.plot(z, z**2)\n\n\n\n\n\nz = np.linspace(-10, 10, 100)\nplt.axes()\nplt.plot(z, np.cos(z), color=\"red\")\nplt.title(\"A cosine curve\")\nplt.grid()\nplt.xlim(-10, 10)\nplt.ylim(-10, 10)\nplt.xticks(list(range(-10, 11)))\nplt.xlabel(\"x\")\nplt.ylabel(\"y\")\n\nText(0, 0.5, 'y')"
   },
   {
     "objectID": "chapters/03-RBasics/r-walkthrough.html",
@@ -110,13 +110,6 @@
     "title": "R Notebook Walkthrough",
     "section": "Plotting",
     "text": "Plotting\n\nlibrary(ggplot2)\n\n\nx <- seq(-10, 10, .1)\ny <- x**2\ndata <- tibble(\"x\" = x, \"y\" = y)\n\n\nggplot(data = data, aes(x = x)) +\n    geom_point(aes(y = y), color = \"red\") +\n    ggtitle(\"A Parabola\") +\n    scale_x_continuous(breaks = seq(-10, 10, 1)) +\n    scale_y_continuous(breaks = seq(0, 100, 20))\n\n\n\n\n\nx <- seq(-10, 10, .1)\ny <- cos(x)\ndata <- tibble(\"x\" = x, \"y\" = y)\nggplot(data = data, aes(x = x)) +\n    geom_line(aes(y = y), color = \"darkgreen\") +\n    ggtitle(\"A Cosine Curve\") +\n    scale_x_continuous(breaks = seq(-10, 10, 1)) +\n    scale_y_continuous(breaks = seq(-1, 1, 5))"
-  },
-  {
-    "objectID": "chapters/04-StatBasics/stat-basics.html",
-    "href": "chapters/04-StatBasics/stat-basics.html",
-    "title": "Statistical Basics",
-    "section": "",
-    "text": "── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.1     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors"
   },
   {
     "objectID": "chapters/04-StatBasics/stat-basics.html#probability-theory",
@@ -182,6 +175,13 @@
     "text": "Bernoulli example\n\nSample space is \\(\\{H,T\\}\\)\n\\(P(H)=p\\)\n\\(X\\) is the random variable with \\(X(H)=1\\) and \\(X(T)=0\\)\n\nThen:\n\n\\(X=1\\) is the same as the event \\(H\\)\n\\(P(X=1)\\)=p"
   },
   {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#independence",
+    "href": "chapters/04-StatBasics/stat-basics.html#independence",
+    "title": "Statistical Basics",
+    "section": "Independence",
+    "text": "Independence\nTwo events are independent if the chance of both occurring is the product of the chances of them occurring separately.\n\\[\nP(X\\cap Y)=P(X)P(Y)\n\\]"
+  },
+  {
     "objectID": "chapters/04-StatBasics/stat-basics.html#binomial-example",
     "href": "chapters/04-StatBasics/stat-basics.html#binomial-example",
     "title": "Statistical Basics",
@@ -193,7 +193,7 @@
     "href": "chapters/04-StatBasics/stat-basics.html#binomial-distribution",
     "title": "Statistical Basics",
     "section": "Binomial Distribution",
-    "text": "Binomial Distribution\n\nlibrary(ggplot2)\nx <- dbinom(seq(0, 10), 10, .3)\nggplot() +\n    geom_bar(aes(x = seq(0, 10), y = x), stat = \"identity\") +\n    scale_x_continuous(breaks = seq(0, 10)) +\n    xlab(\"Number of Heads\") +\n    ylab(\"Probability\") +\n    ggtitle(\"10 Flips, P(H)=.3\")"
+    "text": "Binomial Distribution"
   },
   {
     "objectID": "chapters/04-StatBasics/stat-basics.html#continuous-example",
@@ -221,7 +221,7 @@
     "href": "chapters/04-StatBasics/stat-basics.html#area-gives-probability",
     "title": "Statistical Basics",
     "section": "Area gives probability",
-    "text": "Area gives probability\n\n\n\n\n\n\n\n\nThe shaded area gives probability 0.87 for temp between 21.7 and 22.3."
+    "text": "Area gives probability\n\n\n\n\nThe shaded area gives probability 0.87 for temp between 21.7 and 22.3."
   },
   {
     "objectID": "chapters/04-StatBasics/stat-basics.html#standard-normal",
@@ -249,7 +249,7 @@
     "href": "chapters/04-StatBasics/stat-basics.html#cumulative-distribution-1",
     "title": "Statistical Basics",
     "section": "Cumulative Distribution",
-    "text": "Cumulative Distribution\n\n\n\n\n\nSo the median of the samples occurs where the \\(y\\)-axis is \\(.5\\)."
+    "text": "Cumulative Distribution\n\nSo the median of the samples occurs where the \\(y\\)-axis is \\(.5\\)."
   },
   {
     "objectID": "chapters/04-StatBasics/stat-basics.html#quantiles",
@@ -257,6 +257,34 @@
     "title": "Statistical Basics",
     "section": "Quantiles",
     "text": "Quantiles\n\nIf \\(q\\) is between \\(0\\) and \\(1\\), then the \\(q^{th}\\) quantile \\(Q\\) of a random variable \\(x\\) is the value of \\(x\\) such that the fraction of the population with \\(x<Q\\) is \\(q\\).\nThe median of \\(x\\) is the \\(.5\\) quantile for \\(x\\) because half of the population has values less than the median.\nOne can read quantiles from the cumulative distribution."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#distributions-in-r",
+    "href": "chapters/04-StatBasics/stat-basics.html#distributions-in-r",
+    "title": "Statistical Basics",
+    "section": "Distributions in R",
+    "text": "Distributions in R\nThere are many distributions in R. We’ve talked about the binomial (discrete) and normal (continuous).\n\nrnorm (rbinom) draws samples from the distribution\ndnorm (dbinom) gives the value of the probability density function\npnorm (pbinom) gives the value of the cumulative density function\nqnorm (qbinom) gives the quantiles, that is, qnorm(p) gives the value of the parameter so that the probability of getting a result less than that parameter is p."
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#examples-in-r",
+    "href": "chapters/04-StatBasics/stat-basics.html#examples-in-r",
+    "title": "Statistical Basics",
+    "section": "Examples in R",
+    "text": "Examples in R\n\nsamples <- rnorm(10, mean = 0, sd = 1)\n\ndensityfn <- dnorm(1, mean = 0, sd = 1)\ncdf <- pnorm(1, mean = 0, sd = 1)\nquant <- qnorm(.05, mean = 0, sd = 1)\ncat(\"samples: \", samples, \"\\n\")\n\nsamples:  1.102849 0.4938165 0.2123698 -0.484157 0.7425426 0.08802758 -0.1669334 1.230903 0.848861 0.1928609 \n\ncat(\"Density=\", densityfn, \" CDF value=\", cdf, \" Quantile=\", quant)\n\nDensity= 0.2419707  CDF value= 0.8413447  Quantile= -1.644854"
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#distributions-in-python",
+    "href": "chapters/04-StatBasics/stat-basics.html#distributions-in-python",
+    "title": "Statistical Basics",
+    "section": "Distributions in Python",
+    "text": "Distributions in Python\nIn python the distributions are available in the scipy.stats library. Assuming import scipy.stats as sps:\n\nsps.norm.rvs draws from the distribution\nsps.norm.pdf is the density\nsps.norm.cdf is the cumulative distribution\nsps.norm.ppf are the quantiles"
+  },
+  {
+    "objectID": "chapters/04-StatBasics/stat-basics.html#examples-in-python",
+    "href": "chapters/04-StatBasics/stat-basics.html#examples-in-python",
+    "title": "Statistical Basics",
+    "section": "Examples in Python",
+    "text": "Examples in Python\n\nimport scipy.stats as sps\n\nsamples = sps.norm.rvs(0, 1, size=10)\n\ndensityfn = sps.norm.pdf(1, 0, 1)\ncdf = sps.norm.cdf(1, 0, 1)\nquant = sps.norm.ppf(0.05, 0, 1)\nprint(\n    (\"samples = [ \" + \"{:.3f} \" * len(samples)).format(*samples) + \"]\",\n    \"Density={:.3f} CDF value={:.3f} Quantile={:.3f}\".format(densityfn, cdf, quant),\n)\n\nsamples = [ -0.125 -0.069 0.467 -0.515 2.443 -0.245 0.020 -1.579 2.010 1.028 ] Density=0.242 CDF value=0.841 Quantile=-1.645"
   },
   {
     "objectID": "chapters/04-StatBasics/stat-basics.html#order-statistics",
@@ -368,7 +396,7 @@
     "href": "chapters/04-StatBasics/stat-basics.html#sampling-1",
     "title": "Statistical Basics",
     "section": "Sampling",
-    "text": "Sampling\nIf we draw \\(N\\) sample values \\(x_i\\) ofa random variable, then the mean and variance of those sampled values, computed by\n\\[\n\\overline{x} = \\frac{1}{N}\\sum x_{i}\n\\]\nand \\[\n\\overline{x} = \\frac{1}{N-1}\\sum (x_{i}-\\overline{x})^2\n\\]\nare called the sample mean and variance; they are estimates of the mean and variance of the underlying random variable.\nThe law of large numbers says that, as \\(N\\to\\infty\\), these estimates converge to the true values.\nIn general these values are also random (they depend on the particular choices drawn from the distribution) and follow their own probabilility distribution.\nSo for example, if you sample a Bernoulli random variable \\(10\\) times, the mean is \\[\n\\frac{k}{N}\n\\] where \\(k\\) is the number of heads.\nThis mean follows a binomial distribution.\n\np <- dbinom(seq(0,10),10,.3)\nggplot()+geom_bar(aes(x=seq(0,1,1/10),y=10*p),stat=\"identity\")+xlab(\"x\")+ylab(\"P(x)\")+ggtitle(\"Distribution of sample mean for 10 bernoulli flips with p=.3\")\n\n\n\n\n)\nBy looking at sample means (or other sample statistics) we can try to uncover information about the underlying probability distribution."
+    "text": "Sampling\nIf we draw \\(N\\) sample values \\(x_i\\) ofa random variable, then the mean and variance of those sampled values, computed by\n\\[\n\\overline{x} = \\frac{1}{N}\\sum x_{i}\n\\]\nand \\[\n\\overline{x} = \\frac{1}{N-1}\\sum (x_{i}-\\overline{x})^2\n\\]\nare called the sample mean and variance; they are estimates of the mean and variance of the underlying random variable.\nThe law of large numbers says that, as \\(N\\to\\infty\\), these estimates converge to the true values.\nIn general these values are also random (they depend on the particular choices drawn from the distribution) and follow their own probabilility distribution.\nSo for example, if you sample a Bernoulli random variable \\(10\\) times, the mean is \\[\n\\frac{k}{N}\n\\] where \\(k\\) is the number of heads.\nThis mean follows a binomial distribution.\n\n)\nBy looking at sample means (or other sample statistics) we can try to uncover information about the underlying probability distribution."
   },
   {
     "objectID": "chapters/04-StatBasics/stat-basics.html#hypothesis-testing",
@@ -431,7 +459,7 @@
     "href": "chapters/04-StatBasics/stat-basics.html#rejection-region-plotted",
     "title": "Statistical Basics",
     "section": "Rejection Region (plotted)",
-    "text": "Rejection Region (plotted)\n\nrejection2(10, 1)"
+    "text": "Rejection Region (plotted)"
   },
   {
     "objectID": "chapters/04-StatBasics/stat-basics.html#one-sided-test",
@@ -445,14 +473,14 @@
     "href": "chapters/04-StatBasics/stat-basics.html#one-sided-rejection-region",
     "title": "Statistical Basics",
     "section": "One-sided rejection region",
-    "text": "One-sided rejection region\n\nrejection2(50, 1)"
+    "text": "One-sided rejection region"
   },
   {
     "objectID": "chapters/04-StatBasics/stat-basics.html#one-sided-rejection-region-1",
     "href": "chapters/04-StatBasics/stat-basics.html#one-sided-rejection-region-1",
     "title": "Statistical Basics",
     "section": "One-sided rejection region",
-    "text": "One-sided rejection region\n\nrejection1(50, 1)"
+    "text": "One-sided rejection region"
   },
   {
     "objectID": "chapters/04-StatBasics/stat-basics.html#normal-approximation",
@@ -466,7 +494,7 @@
     "href": "chapters/04-StatBasics/stat-basics.html#normal-and-binomial-distribution",
     "title": "Statistical Basics",
     "section": "Normal and binomial distribution",
-    "text": "Normal and binomial distribution\n\ncompare <- function(n, p = .5) {\n    results <- data.frame(x = seq(0, n), y = dbinom(seq(0, n), n, p), z = dnorm(seq(0, n), mean = p * n, sd = sqrt(n * p * (1 - p))))\n    ggplot(data = results) +\n        geom_bar(aes(x = x, y = y), stat = \"identity\", fill = \"lightgreen\") +\n        geom_line(aes(x = x, y = z), color = \"red\", size = 2) +\n        ggtitle(glue(\"Normal Approximation to the binomial with n={n} and p={p}\"))\n}\ncompare(100, .3)\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\n\n\n\n\n\nSo one can use the normal distribution to determine the rejection region if \\(n\\) is large."
+    "text": "Normal and binomial distribution\n\nSo one can use the normal distribution to determine the rejection region if \\(n\\) is large."
   },
   {
     "objectID": "chapters/04-StatBasics/stat-basics.html#errors",
@@ -529,7 +557,7 @@
     "href": "chapters/04-StatBasics/stat-basics.html#simulation",
     "title": "Statistical Basics",
     "section": "Simulation",
-    "text": "Simulation\nBy simulation:\n\nsimulated <- rbinom(10000, 4600, .224)\nsum(simulated >= 1133)\n\n[1] 1"
+    "text": "Simulation\nBy simulation:\n\nsimulated <- rbinom(10000, 4600, .224)\nsum(simulated >= 1133)\n\n[1] 3"
   },
   {
     "objectID": "chapters/05-WorkingWithData/pythonAndR.html",
@@ -893,7 +921,7 @@
     "href": "chapters/05-WorkingWithData/pandas_penguins.html#grouping",
     "title": "Working with data in python/pandas",
     "section": "Grouping",
-    "text": "Grouping\nGrouping is a powerful tool. Let’s first group our penguins by species. The result is a “grouped” object which needs to pass through a summarize operation to be useful.\n\npenguins_by_species = penguins.groupby('Species')\npenguins_by_species\n\n<pandas.core.groupby.generic.DataFrameGroupBy object at 0x7fc1ea91f6d0>"
+    "text": "Grouping\nGrouping is a powerful tool. Let’s first group our penguins by species. The result is a “grouped” object which needs to pass through a summarize operation to be useful.\n\npenguins_by_species = penguins.groupby('Species')\npenguins_by_species\n\n<pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f1f305c7be0>"
   },
   {
     "objectID": "chapters/05-WorkingWithData/pandas_penguins.html#summarizing",
@@ -984,7 +1012,7 @@
     "href": "chapters/06-LinearAlgebra/linear_algebra.html#image-embeddings",
     "title": "Essential Linear Algebra",
     "section": "Image Embeddings",
-    "text": "Image Embeddings\nEach sample in the MNIST database is a \\(28x28\\) gray scale image, represented by a \\(28\\times 28\\) array of integers between 0 and 255.\n\nwith open(\"data/train-images.idx3-ubyte\", \"rb\") as f:\n    f.read(16)\n    buf = f.read(28 * 28)\n    data = np.frombuffer(buf, dtype=np.uint8).astype(np.float32)\n    data = data.reshape(1, 28, 28)\nfor x in range(28):\n    for y in range(28):\n        print(\"{:>4}\".format(int(data[0, x, y])), end=\"\")\n    print(\"\\n\")\n\nimage = np.asarray(data[0].squeeze())\nplt.imshow(image)\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   3  18  18  18 126 136 175  26 166 255 247 127   0   0   0   0\n\n   0   0   0   0   0   0   0   0  30  36  94 154 170 253 253 253 253 253 225 172 253 242 195  64   0   0   0   0\n\n   0   0   0   0   0   0   0  49 238 253 253 253 253 253 253 253 253 251  93  82  82  56  39   0   0   0   0   0\n\n   0   0   0   0   0   0   0  18 219 253 253 253 253 253 198 182 247 241   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0  80 156 107 253 253 205  11   0  43 154   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0  14   1 154 253  90   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0 139 253 190   2   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0  11 190 253  70   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0  35 241 225 160 108   1   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0  81 240 253 253 119  25   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0  45 186 253 253 150  27   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0  16  93 252 253 187   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 249 253 249  64   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0  46 130 183 253 253 207   2   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0  39 148 229 253 253 253 250 182   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0  24 114 221 253 253 253 253 201  78   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0  23  66 213 253 253 253 253 198  81   2   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0  18 171 219 253 253 253 253 195  80   9   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0  55 172 226 253 253 253 253 244 133  11   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0 136 253 253 253 212 135 132  16   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n\n\n<matplotlib.image.AxesImage at 0x7f2a804fba60>\n\n\n\n\n\nHere we can view each image as a vector in a 784 dimensional (=28*28) space.\nA collection of 100 images would be represented by an array with 100 rows and 784 columns\nA 28x28 image in color has 28283 numbers to account for the RGB channels."
+    "text": "Image Embeddings\nEach sample in the MNIST database is a \\(28x28\\) gray scale image, represented by a \\(28\\times 28\\) array of integers between 0 and 255.\n\nwith open(\"data/train-images.idx3-ubyte\", \"rb\") as f:\n    f.read(16)\n    buf = f.read(28 * 28)\n    data = np.frombuffer(buf, dtype=np.uint8).astype(np.float32)\n    data = data.reshape(1, 28, 28)\nfor x in range(28):\n    for y in range(28):\n        print(\"{:>4}\".format(int(data[0, x, y])), end=\"\")\n    print(\"\\n\")\n\nimage = np.asarray(data[0].squeeze())\nplt.imshow(image)\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   3  18  18  18 126 136 175  26 166 255 247 127   0   0   0   0\n\n   0   0   0   0   0   0   0   0  30  36  94 154 170 253 253 253 253 253 225 172 253 242 195  64   0   0   0   0\n\n   0   0   0   0   0   0   0  49 238 253 253 253 253 253 253 253 253 251  93  82  82  56  39   0   0   0   0   0\n\n   0   0   0   0   0   0   0  18 219 253 253 253 253 253 198 182 247 241   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0  80 156 107 253 253 205  11   0  43 154   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0  14   1 154 253  90   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0 139 253 190   2   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0  11 190 253  70   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0  35 241 225 160 108   1   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0  81 240 253 253 119  25   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0  45 186 253 253 150  27   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0  16  93 252 253 187   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 249 253 249  64   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0  46 130 183 253 253 207   2   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0  39 148 229 253 253 253 250 182   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0  24 114 221 253 253 253 253 201  78   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0  23  66 213 253 253 253 253 198  81   2   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0  18 171 219 253 253 253 253 195  80   9   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0  55 172 226 253 253 253 253 244 133  11   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0 136 253 253 253 212 135 132  16   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0\n\n\n\n<matplotlib.image.AxesImage at 0x7f676ba55e20>\n\n\n\n\n\nHere we can view each image as a vector in a 784 dimensional (=28*28) space.\nA collection of 100 images would be represented by an array with 100 rows and 784 columns\nA 28x28 image in color has 28283 numbers to account for the RGB channels."
   },
   {
     "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#one-hot-embedding",
@@ -1019,7 +1047,7 @@
     "href": "chapters/06-LinearAlgebra/linear_algebra.html#linear-relations-in-python",
     "title": "Essential Linear Algebra",
     "section": "Linear relations in python",
-    "text": "Linear relations in python\n\nvectors = [np.random.uniform(size=8) for i in range(5)]  # 10 random vectors\nscalars = [np.random.normal() for i in range(5)]  # 10 random scalars\nprods = [scalars[i] * vectors[i] for i in range(5)]  # products\nresult = sum(prods)  # sum of products\nprint(result)\n\n[ 0.50305945 -0.41297708  0.92142764  0.71619255  1.93437351  2.98883075\n  0.52582181  2.07508918]"
+    "text": "Linear relations in python\n\nvectors = [np.random.uniform(size=8) for i in range(5)]  # 10 random vectors\nscalars = [np.random.normal() for i in range(5)]  # 10 random scalars\nprods = [scalars[i] * vectors[i] for i in range(5)]  # products\nresult = sum(prods)  # sum of products\nprint(result)\n\n[-1.20398744 -0.41806873 -0.71784202 -0.25902376 -1.47187983 -0.18061477\n  0.50318364 -0.54038005]"
   },
   {
     "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#approximate-linear-dependence",
@@ -1215,7 +1243,7 @@
     "href": "chapters/06-LinearAlgebra/linear_algebra.html#covariance-matrix",
     "title": "Essential Linear Algebra",
     "section": "Covariance Matrix",
-    "text": "Covariance Matrix\nRemember that if \\(v\\) and \\(w\\) are feature vectors, then \\((v-\\overline{v})\\cdot (w-\\overline{w})\\) is the covariance of \\(v\\) and \\(w\\).\nSuppose \\(v_1,\\ldots, v_n\\) are features forming a data matrix \\(X\\).\nLet \\(X_{0}\\) be the matrix whose columns are \\(v_{i}-\\overline{v_{i}}\\).\nThen \\(\\frac{1}{N}X_{0}^{T}X_{0}\\) is \\(n\\times n\\) and called the covariance matrix.\nIf \\(Y_{0}\\) is obtained from \\(X_{0}\\) by dividing each column by its norm, then \\(Y_{0}^{T}Y_{0}\\) is the correlation matrix – ones on the diagonal, correlation coefficients off diagonal.\n\ndata = pd.read_csv(\"data/penguins-raw.csv\")\ndata = (\n    data[\n        [\n            \"Culmen Length (mm)\",\n            \"Culmen Depth (mm)\",\n            \"Flipper Length (mm)\",\n            \"Body Mass (g)\",\n        ]\n    ]\n    .dropna()\n    .values\n)\n# axis=0 means take the average of the columns (summarize over rows)\ndata.mean(axis=0)\n\n# \"center\" each column; scale column 3\ndata0 = data - data.mean(axis=0)\nprint(np.linalg.norm(data0, axis=0))\ndata0 = data0 / np.linalg.norm(data0, axis=0)\nD = data0.transpose() @ data0\nprint(D)\nplt.imshow(D, cmap=\"hot\", interpolation=\"nearest\")\nplt.title(\"covariance matrix heatmap\")\n\n[  100.81768459    36.46689639   259.66621062 14809.0410685 ]\n[[ 1.         -0.23505287  0.65618134  0.59510982]\n [-0.23505287  1.         -0.58385122 -0.47191562]\n [ 0.65618134 -0.58385122  1.          0.87120177]\n [ 0.59510982 -0.47191562  0.87120177  1.        ]]\n\n\nText(0.5, 1.0, 'covariance matrix heatmap')\n\n\n\n\n\n\nplt.scatter(x=data0[:, 2], y=data0[:, 3])\n\n<matplotlib.collections.PathCollection at 0x7f2a75a77f10>"
+    "text": "Covariance Matrix\nRemember that if \\(v\\) and \\(w\\) are feature vectors, then \\((v-\\overline{v})\\cdot (w-\\overline{w})\\) is the covariance of \\(v\\) and \\(w\\).\nSuppose \\(v_1,\\ldots, v_n\\) are features forming a data matrix \\(X\\).\nLet \\(X_{0}\\) be the matrix whose columns are \\(v_{i}-\\overline{v_{i}}\\).\nThen \\(\\frac{1}{N}X_{0}^{T}X_{0}\\) is \\(n\\times n\\) and called the covariance matrix.\nIf \\(Y_{0}\\) is obtained from \\(X_{0}\\) by dividing each column by its norm, then \\(Y_{0}^{T}Y_{0}\\) is the correlation matrix – ones on the diagonal, correlation coefficients off diagonal.\n\ndata = pd.read_csv(\"data/penguins-raw.csv\")\ndata = (\n    data[\n        [\n            \"Culmen Length (mm)\",\n            \"Culmen Depth (mm)\",\n            \"Flipper Length (mm)\",\n            \"Body Mass (g)\",\n        ]\n    ]\n    .dropna()\n    .values\n)\n# axis=0 means take the average of the columns (summarize over rows)\ndata.mean(axis=0)\n\n# \"center\" each column; scale column 3\ndata0 = data - data.mean(axis=0)\nprint(np.linalg.norm(data0, axis=0))\ndata0 = data0 / np.linalg.norm(data0, axis=0)\nD = data0.transpose() @ data0\nprint(D)\nplt.imshow(D, cmap=\"hot\", interpolation=\"nearest\")\nplt.title(\"covariance matrix heatmap\")\n\n[  100.81768459    36.46689639   259.66621062 14809.0410685 ]\n[[ 1.         -0.23505287  0.65618134  0.59510982]\n [-0.23505287  1.         -0.58385122 -0.47191562]\n [ 0.65618134 -0.58385122  1.          0.87120177]\n [ 0.59510982 -0.47191562  0.87120177  1.        ]]\n\n\nText(0.5, 1.0, 'covariance matrix heatmap')\n\n\n\n\n\n\nplt.scatter(x=data0[:, 2], y=data0[:, 3])\n\n<matplotlib.collections.PathCollection at 0x7f676522f370>"
   },
   {
     "objectID": "chapters/06-LinearAlgebra/linear_algebra.html#rank-and-invertibility",
@@ -1250,7 +1278,7 @@
     "href": "chapters/06-LinearAlgebra/linear_algebra_python.html#addition-and-scalar-multiplication",
     "title": "Fundamentals of Machine Learning",
     "section": "Addition and scalar multiplication",
-    "text": "Addition and scalar multiplication\n\nx = np.random.normal(size=(4,))\ny = np.random.normal(size=(4,))\nprint(x + y)\nu = np.random.normal(size=(2,))\ntry:\n    print(x + u)\nexcept:\n    print(\"Cant Mix These\")\n\n[0.44410839 0.61359029 0.60839887 2.34512156]\nCant Mix These"
+    "text": "Addition and scalar multiplication\n\nx = np.random.normal(size=(4,))\ny = np.random.normal(size=(4,))\nprint(x + y)\nu = np.random.normal(size=(2,))\ntry:\n    print(x + u)\nexcept:\n    print(\"Cant Mix These\")\n\n[ 0.61593427 -1.18204249 -0.14053903  0.53756862]\nCant Mix These"
   },
   {
     "objectID": "chapters/06-LinearAlgebra/linear_algebra_python.html#broadcasting",
@@ -1271,7 +1299,7 @@
     "href": "chapters/06-LinearAlgebra/linear_algebra_python.html#multiplication",
     "title": "Fundamentals of Machine Learning",
     "section": "Multiplication",
-    "text": "Multiplication\n\nx = np.random.normal(size=(3, 4))\nprint(x)\ny = np.random.normal(size=(4, 1))\nprint(y)\nprint(x @ y)\n\n[[-0.60787929  0.70961353 -0.38437746 -2.05936398]\n [-1.17474071  1.15759275  0.21851558  0.53541008]\n [ 2.16385166  0.69619937  1.4426357  -0.69317232]]\n[[-0.35290559]\n [-0.09891743]\n [-0.79818575]\n [-0.91874229]]\n[[ 2.34316025]\n [-0.36625344]\n [-1.34714613]]"
+    "text": "Multiplication\n\nx = np.random.normal(size=(3, 4))\nprint(x)\ny = np.random.normal(size=(4, 1))\nprint(y)\nprint(x @ y)\n\n[[ 0.80293942  2.65815962  0.16442482  0.64100164]\n [ 2.03766333 -0.26575711 -0.13525724  0.85539097]\n [ 0.29313839  0.64721127 -0.70023183  0.26332111]]\n[[ 0.03018089]\n [ 1.11535233]\n [-0.07731558]\n [-0.12685875]]\n[[ 2.89498867]\n [-0.33297066]\n [ 0.75145002]]"
   },
   {
     "objectID": "chapters/06-LinearAlgebra/linear_algebra_python.html#transpose",
@@ -1327,35 +1355,35 @@
     "href": "chapters/06-LinearAlgebra/linear_algebra_r.html#addition-and-scalar-multiplication",
     "title": "Fundamentals of Machine Learning",
     "section": "Addition and scalar multiplication",
-    "text": "Addition and scalar multiplication\n\nx <- rnorm(4)\ny <- rnorm(4)\nprint(x + y)\n\n[1] -0.04295625 -1.25275321  0.44864606  1.54660280\n\n# note that in R this makes sense\nu <- rnorm(2)\nprint(x + u)\n\n[1] -0.34685753 -0.20192879  0.04423135  1.19416146"
+    "text": "Addition and scalar multiplication\n\nx <- rnorm(4)\ny <- rnorm(4)\nprint(x + y)\n\n[1]  0.05654235 -0.66253931 -1.15118455 -2.25194597\n\n# note that in R this makes sense\nu <- rnorm(2)\nprint(x + u)\n\n[1] -0.9641883 -1.4708134 -1.1406099 -1.0718438"
   },
   {
     "objectID": "chapters/06-LinearAlgebra/linear_algebra_r.html#element-by-element",
     "href": "chapters/06-LinearAlgebra/linear_algebra_r.html#element-by-element",
     "title": "Fundamentals of Machine Learning",
     "section": "Element by element",
-    "text": "Element by element\n\nu = matrix(rnorm(20), ncol = 4)\nv = matrix(rnorm(20), ncol = 4)\nprint(u + v)\n\n           [,1]       [,2]        [,3]       [,4]\n[1,] -1.4378843 -4.5862493 -1.46629538  0.3232085\n[2,]  0.6231260 -0.9986009 -0.78479310 -0.1136793\n[3,] -0.6001961 -0.4213860  2.51554736 -0.2829567\n[4,] -0.5911407  1.5425628  0.08680524 -1.2353620\n[5,]  0.9102632  1.7422913  2.86998271  0.4829673\n\nprint(u)\n\n             [,1]       [,2]       [,3]       [,4]\n[1,]  0.008558944 -2.5715221 -0.4839131  0.4016918\n[2,] -0.222234987 -0.2618914 -0.4477106 -0.8693427\n[3,] -0.209714024  0.5118702  2.7948707  0.1780774\n[4,] -0.383547460  1.5718762 -0.5078042 -1.1902909\n[5,]  0.934618946 -0.8000312  1.6752948  0.4358692\n\nprint(1 / u)\n\n           [,1]       [,2]       [,3]       [,4]\n[1,] 116.836849 -0.3888747 -2.0664868  2.4894710\n[2,]  -4.499742 -3.8183770 -2.2335858 -1.1502944\n[3,]  -4.768398  1.9536204  0.3577983  5.6155358\n[4,]  -2.607239  0.6361824 -1.9692631 -0.8401308\n[5,]   1.069955 -1.2499513  0.5969099  2.2942665\n\nprint(log(abs(u)))\n\n            [,1]       [,2]       [,3]       [,4]\n[1,] -4.76077851  0.9444980 -0.7258500 -0.9120702\n[2,] -1.50401995 -1.3398255 -0.8036083 -0.1400179\n[3,] -1.56201047 -0.6696842  1.0277859 -1.7255370\n[4,] -0.95829191  0.4522699 -0.6776594  0.1741977\n[5,] -0.06761638 -0.2231046  0.5159891 -0.8304132"
+    "text": "Element by element\n\nu = matrix(rnorm(20), ncol = 4)\nv = matrix(rnorm(20), ncol = 4)\nprint(u + v)\n\n           [,1]       [,2]       [,3]        [,4]\n[1,] -0.7859290  0.6203746 1.22401670  0.72913239\n[2,] -0.8729915 -1.3696926 0.37356499 -0.09813121\n[3,]  2.2918960  0.9992254 0.01635751  0.99036962\n[4,] -1.1608997  0.1378167 0.93764150  0.49598215\n[5,] -1.2424846  0.1680970 0.69150257  0.03499356\n\nprint(u)\n\n           [,1]       [,2]        [,3]       [,4]\n[1,] -0.6674943  0.1548416  1.44234282  1.1754484\n[2,] -0.4686590 -0.3306289 -0.09971544 -0.2195801\n[3,]  1.8729747  1.4658327  0.99252936  1.5343842\n[4,] -1.5251692 -0.3113888  0.10417805  0.3774740\n[5,] -1.0191301  0.3931130  1.40487179  0.3079997\n\nprint(1 / u)\n\n          [,1]       [,2]        [,3]       [,4]\n[1,] -1.498140  6.4582142   0.6933164  0.8507392\n[2,] -2.133748 -3.0245388 -10.0285376 -4.5541463\n[3,]  0.533910  0.6822061   1.0075269  0.6517273\n[4,] -0.655665 -3.2114188   9.5989507  2.6491889\n[5,] -0.981229  2.5437981   0.7118087  3.2467567\n\nprint(log(abs(u)))\n\n           [,1]       [,2]         [,3]       [,4]\n[1,] -0.4042245 -1.8653528  0.366268750  0.1616497\n[2,] -0.7578800 -1.1067586 -2.305434791 -1.5160381\n[3,]  0.6275279  0.3824235 -0.007498687  0.4281291\n[4,]  0.4221053 -1.1667128 -2.261653790 -0.9742535\n[5,]  0.0189494 -0.9336583  0.339946049 -1.1776565"
   },
   {
     "objectID": "chapters/06-LinearAlgebra/linear_algebra_r.html#slices-using-apply",
     "href": "chapters/06-LinearAlgebra/linear_algebra_r.html#slices-using-apply",
     "title": "Fundamentals of Machine Learning",
     "section": "Slices using apply",
-    "text": "Slices using apply\n\nu = matrix(rnorm(20), ncol = 4)\nprint(colMeans(u))\n\n[1] -0.24199524  0.01145136  0.02628779 -0.14141032\n\nprint(rowMeans(u))\n\n[1]  0.37917030 -0.10588188 -0.16142851 -0.05557563 -0.48836730\n\napply(u, 1, function(x) mean(x))\n\n[1]  0.37917030 -0.10588188 -0.16142851 -0.05557563 -0.48836730\n\napply(u, 2, function(x) var(x))\n\n[1] 1.1573171 1.1532614 1.0805041 0.4776444"
+    "text": "Slices using apply\n\nu = matrix(rnorm(20), ncol = 4)\nprint(colMeans(u))\n\n[1] -0.7879874 -0.6636585  0.5096771 -1.0416046\n\nprint(rowMeans(u))\n\n[1] -1.6190478  0.3180778 -0.4395222 -0.1990287 -0.5399458\n\napply(u, 1, function(x) mean(x))\n\n[1] -1.6190478  0.3180778 -0.4395222 -0.1990287 -0.5399458\n\napply(u, 2, function(x) var(x))\n\n[1] 1.0931454 2.7281275 0.9454318 0.9984022"
   },
   {
     "objectID": "chapters/06-LinearAlgebra/linear_algebra_r.html#multiplication",
     "href": "chapters/06-LinearAlgebra/linear_algebra_r.html#multiplication",
     "title": "Fundamentals of Machine Learning",
     "section": "Multiplication",
-    "text": "Multiplication\n\nx = matrix(rnorm(12), nrow = 3)\ny = matrix(rnorm(15), ncol = 3)\nprint(y %*% x)\n\n           [,1]        [,2]       [,3]       [,4]\n[1,] -3.7085900 -0.31101736  0.5134750 -4.8819660\n[2,]  0.9386888  0.62225651 -1.1744093  0.2520451\n[3,] -1.9701376  0.41858320  1.2727095 -1.4671245\n[4,] -0.8672449  0.09119658  2.0427963  0.8638747\n[5,]  0.5242686  1.10436117 -0.6517521  0.2716096"
+    "text": "Multiplication\n\nx = matrix(rnorm(12), nrow = 3)\ny = matrix(rnorm(15), ncol = 3)\nprint(y %*% x)\n\n            [,1]       [,2]        [,3]       [,4]\n[1,] -0.35738765 -3.3327848 -2.64467602 -1.9976658\n[2,]  1.58405812 -0.2465073 -0.79381421 -0.3886785\n[3,] -1.51365448  3.1436528  7.92656152  2.0914581\n[4,]  0.04808481  1.3922401  0.04770934  0.8657304\n[5,]  1.08797573 -1.8447263 -0.02137872 -1.3262850"
   },
   {
     "objectID": "chapters/06-LinearAlgebra/linear_algebra_r.html#transpose",
     "href": "chapters/06-LinearAlgebra/linear_algebra_r.html#transpose",
     "title": "Fundamentals of Machine Learning",
     "section": "Transpose",
-    "text": "Transpose\n\nx = matrix(rnorm(12), nrow = 3)\nprint(t(x))\n\n          [,1]       [,2]       [,3]\n[1,] 0.3297486  1.3963037 -0.4633572\n[2,] 0.4138411  2.4109100  0.9918228\n[3,] 1.4688093 -0.6713191  1.8310531\n[4,] 1.2724705 -0.6031052 -0.8274535\n\nprint(nrow(t(x)))\n\n[1] 4"
+    "text": "Transpose\n\nx = matrix(rnorm(12), nrow = 3)\nprint(t(x))\n\n           [,1]      [,2]       [,3]\n[1,] -0.1148143 0.9412811 -0.4806496\n[2,]  0.4800059 0.3796230  0.4983938\n[3,]  0.0871707 2.6874883 -1.2870599\n[4,]  0.4121558 1.1238658  1.0017109\n\nprint(nrow(t(x)))\n\n[1] 4"
   },
   {
     "objectID": "chapters/06-LinearAlgebra/linear_algebra_r.html#norm",
