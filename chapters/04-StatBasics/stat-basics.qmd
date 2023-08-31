@@ -400,7 +400,8 @@ $$
 \sigma^2 = np(1-p).
 $$
 
-Note: there are easier ways to get this formula.
+Note: there are easier ways to get this formula.  If two random variables are independent, then
+the variance of their sum is the sum of their variances. 
 
 ## Sampling
 

@@ -38,6 +38,7 @@ In addition, both R and Python have plotting libraries that rely on dataframes/t
 
 ## Walkthroughs
 
+- [Python/basics of python programming](python_programming.qmd)
 - [Python/pandas walkthrough](pandas_penguins.qmd)
 - [R/tidyverse walkthrough](r_penguins.qmd)
 

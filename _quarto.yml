@@ -9,9 +9,7 @@ project:
     - chapters/02-JupyterBasics/jupyter-walkthrough.qmd
     - chapters/03-RBasics/r-walkthrough.qmd
     - chapters/04-StatBasics/stat-basics.qmd
-    - chapters/05-WorkingWithData/pythonAndR.qmd
-    - chapters/05-WorkingWithData/r_penguins.qmd
-    - chapters/05-WorkingWithData/pandas_penguins.qmd
+    - chapters/05-WorkingWithData/*.qmd
     - chapters/06-LinearAlgebra/linear_algebra.qmd  
     - chapters/06-LinearAlgebra/linear_algebra_python.qmd
     - chapters/06-LinearAlgebra/linear_algebra_r.qmd
