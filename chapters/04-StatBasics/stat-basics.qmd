@@ -441,11 +441,18 @@ where $k$ is the number of heads.
 
 This mean follows a binomial distribution.
 
+## Sampling Distribution
+
+
 ```{r}
-p <- dbinom(seq(0,10),10,.3)
-ggplot()+geom_bar(aes(x=seq(0,1,1/10),y=10*p),stat="identity")+xlab("x")+ylab("P(x)")+ggtitle("Distribution of sample mean for 10 bernoulli flips with p=.3")
+p <- dbinom(seq(0, 10), 10, .3)
+ggplot() +
+    geom_bar(aes(x = seq(0, 1, 1 / 10), y = 10 * p), stat = "identity") +
+    xlab("x") +
+    ylab("P(x)") +
+    ggtitle("Distribution of sample mean for 10 bernoulli flips with p=.3")
 ```
-)
+
 
 By looking at sample means (or other *sample statistics*) we can try to uncover information
 about the underlying probability distribution. 
