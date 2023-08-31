@@ -3,8 +3,6 @@ title: "Basics of Programming in Python"
 subtitle: "Fundamentals of Data Science"
 author: "Jeremy Teitelbaum"
 format: html
-execute:
-    daemon: false
 title-block-style: plain
 ---
 

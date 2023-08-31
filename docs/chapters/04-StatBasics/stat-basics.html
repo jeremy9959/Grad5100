@@ -587,7 +587,7 @@ z = \frac{x-\mu}{\sigma}
 <span id="cb1-5"><a href="#cb1-5"></a>quant <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(.<span class="dv">05</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
 <span id="cb1-6"><a href="#cb1-6"></a><span class="fu">cat</span>(<span class="st">"samples: "</span>, samples, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>samples:  1.716329 -0.8773501 0.1245073 -0.41598 0.3043374 0.6215999 -0.3696841 -0.3606362 -0.173996 -0.6656627 </code></pre>
+<pre><code>samples:  0.855898 0.7532344 -0.453443 -0.05001504 0.9009231 0.2824896 0.09438694 -1.237132 -0.2099953 -0.395281 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">cat</span>(<span class="st">"Density="</span>, densityfn, <span class="st">" CDF value="</span>, cdf, <span class="st">" Quantile="</span>, quant)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -620,7 +620,7 @@ z = \frac{x-\mu}{\sigma}
 <span id="cb5-10"><a href="#cb5-10"></a>    <span class="st">"Density=</span><span class="sc">{:.3f}</span><span class="st"> CDF value=</span><span class="sc">{:.3f}</span><span class="st"> Quantile=</span><span class="sc">{:.3f}</span><span class="st">"</span>.<span class="bu">format</span>(densityfn, cdf, quant),</span>
 <span id="cb5-11"><a href="#cb5-11"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>samples = [ 0.535 -0.474 0.783 0.919 2.160 -1.048 -0.670 -0.953 0.086 1.098 ] Density=0.242 CDF value=0.841 Quantile=-1.645</code></pre>
+<pre><code>samples = [ 0.156 -0.285 0.373 -1.000 1.295 0.183 -0.419 0.579 -0.444 1.060 ] Density=0.242 CDF value=0.841 Quantile=-1.645</code></pre>
 </div>
 </div>
 </section>
@@ -944,7 +944,7 @@ p(1)+(1-p)(0)=p.
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>simulated <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">10000</span>, <span class="dv">4600</span>, .<span class="dv">224</span>)</span>
 <span id="cb20-2"><a href="#cb20-2"></a><span class="fu">sum</span>(simulated <span class="sc">&gt;=</span> <span class="dv">1133</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1</code></pre>
+<pre><code>[1] 4</code></pre>
 </div>
 </div>
 <!--

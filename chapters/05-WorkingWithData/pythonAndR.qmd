@@ -1,5 +1,5 @@
 ---
-title: "Data Structures in R and Python"
+title: "Data Structures and Functions in R and Python"
 subtitle: "Fundamentals of Data Science"
 author: "Jeremy Teitelbaum"
 format: html
