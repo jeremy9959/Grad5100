@@ -2,7 +2,6 @@
 title: "Statistical Basics"
 subtitle: "Fundamentals of Data Science"
 author: "Jeremy Teitelbaum"
-format: html
 title-block-style: plain
 ---
 ```{r echo=FALSE}
@@ -155,7 +154,6 @@ A normal curve is defined by two parameters:
 
 - the mean $\mu$, which sets the *location*
 - the standard deviation $\sigma$ or its square, the variance $\sigma^2$, which sets the *scale*.
-
 
 ## Z-score
 
