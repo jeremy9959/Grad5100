@@ -8,8 +8,8 @@ title-block-style: plain
 ```{r echo=FALSE}
 library(tidyverse)
 library(glue)
-library(reticulate)
-use_python("/home/jet08013/anaconda3/bin/python")
+# library(reticulate)
+# use_python("/home/jet08013/anaconda3/bin/python")
 ```
 
 # Populations and Samples
