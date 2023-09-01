@@ -1,0 +1,116 @@
+---
+title: "Supplement to Class Sep. 1, 2023"
+format: html
+---
+
+## Things I did in class on Friday, September 1.
+
+### The four functions
+
+As I mentioned in class, every probability distribution in R comes with 4 functions.  In the case of the binomial distribution, they are:
+
+1. `rbinom` -- draws random samples
+2. `dbinom` -- computes the probability distribution
+3. `pbinom` -- gives the cumulative distribution
+4. `qbinom` -- gives the quantile function
+
+Also, we need ggplot2.
+
+```{r}
+library(ggplot2)
+```
+
+**Examples**
+
+1.  Suppose that the probability of heads is .3 and we flip a coin 15 times.  What's the chance of getting 6 heads?
+
+```{r}
+p<-dbinom(6,15,.3)
+cat("The chance is ",p)
+```
+
+2.  Let's find the probabilities of each number of heads.
+
+```{r}
+xs<-seq(0,10) # x holds 0,1,...,10
+fs<-dbinom(xs,10,.3)
+print(fs)
+```
+
+3.  Let's plot this.  We'll use ggplot.  This is a very simple use of ggplot to make a bar chart.
+We'll talk about ggplot more comprehensively later.  For now, you can use this as a "black box".  In the part that says `aes(x=?,y=?)` you put the data for the x and y coordinates. The `scale_x_continous(break=?)` says where to put the x-ticks. The `xlab("?")` labels the x-axis. The `ylab` labels the y-axis.
+
+
+```{r}
+ggplot()+geom_col(aes(x=xs,y=fs))+scale_x_continuous(breaks=seq(0,10))+xlab("Number of Heads")+ylab("Probability")
+```
+
+4. Let's sample this distribution.  We'll flip a coin with p=.3 10 times, and we'll repeat this experiment 100 times, counting how many heads we get each repetition.
+
+```{r}
+heads <- rbinom(100,10,.3)
+heads
+```
+Now let's make a histogram.  Again, here is a "black box" command for ggplot.  Again, you put the data in `aes(x=?)`
+and you put the location for the x-ticks in `scale_x_continous(breaks=?)`.
+
+```{r}
+ggplot()+geom_histogram(aes(x=heads),stat='count')+scale_x_continuous(breaks=seq(0,10))+xlab("Number of Heads")+ylab("Count")
+```
+
+5.  Suppose we flip the coin 80 times (and p=.3).
+What's the chance of getting between 20 and 40 heads?
+This is what pbinom is for. `pbinom(40,80,.3)` is the chance of getting *fewer than or equal to 40* heads.  If we want
+*20 to 40 inclusive* we need to look at `pbinom(41,80,.3)`.
+
+```{r}
+chance<-pbinom(40,80,.3)-pbinom(19,80,.3)
+cat("Chance  of between 40 and 20 inclusive is ",chance)
+
+```
+
+6.  Among the number of heads in 100 flips of a coin with .3, what's the 25th percentile for the number of heads?
+That's what `qbinom` is for.
+
+```{r}
+twentyFifth<-qbinom(.25,100,.3)
+paste("The 25th percentile is ",twentyFifth)
+```
+
+Let's check.  
+```{r}
+check<-pbinom(twentyFifth,100,.3)
+check
+```
+
+This says that the chance of fewer than 27 heads is actually a bit more than .25 but the chance of fewer
+than 26 heads is less than .25.  
+
+7.  An experiment
+
+Let's sample from the binomial 10000 times and look at the 25th percentile.
+
+```{r}
+data<-rbinom(10000,100,.3)
+t1<-sum(data<twentyFifth)
+t2<-sum(data<twentyFifth+1)
+cat("Number less than ",twentyFifth, "is ",t1,"\n")
+cat("Number less than ",twentyFifth+1,"is",t2)
+```
+
+These numbers show that the 25th percentile (2500 heads) is somewhere between these two values. 
+
+## Practice
+
+1.  Let X be a binomial random variable with n=50 and p=.7.  
+  a. Draw 1000 samples from X.  How many of your sampled values are less than 30?
+  b. Based on the probability distribution, how many sampled values would you expect to see that are less than 30?
+  c. Plot a histogram of your sampled values. 
+  
+2.  The poisson distribution is a discrete probability distribution that arises in queuing theory (and many other places).  For example, imagine that customers arrive at a server at a rate so that, in a typical one hour period, 20 customers come. But the intervals between customers are random and independent of one another. Then
+in a randomly chosen hour, the probability of k customers arriving is `dpois(k,20)`.  
+  a. Sample this distribution 1000 times (hint: use `rpois`).  What is the largest number of people who arrive in an one of these random hours?  What is the smallest?
+  b. Suppose you want to design your system so that it can handle the number of arriving customers 95% of the time.  How many people should you design for? (Hint: use `qpois`).
+  c. What's the chance that between 18 and 22 people arrive in a given hour? (Hint: use `ppois`).
+  d. Plot the Poisson distribution probabilities. (Hint: use `dpois`).
+  
