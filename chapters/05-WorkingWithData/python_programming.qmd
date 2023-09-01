@@ -168,10 +168,44 @@ else:
     print("ba")
 ```
 
+
+```{python}
+if 3+5==8 and 3-5==-2:
+    print("Yeah!")
+else:
+    print("Nah!")
+```
+
+```{python}
+if 3+5 in [1,2,3,4,5,6,7]:
+    print("Yeah")
+else:
+    print("nah!")
+```
+
+
 ## A few other tricks
 
 - default arguments
 - docstrings
+
+
+```{python}
+
+def f(x=0,y=1):
+    return x+y
+
+print(f())
+print(f(1))
+print(f(3,4))
+```
+
+
+```{python}
+def first_letter_cap(s):
+    "Returns s but first letter of string is upper case"
+    return s[0].upper()+s[1:]
+```
 
 ## Some examples
 
@@ -199,3 +233,13 @@ def h(L):
 h(["hello","HELLO","jeremy","JEREMY","jerEmy"])
 ```
 
+## list Comprehensions
+
+This is one of the most useful things about python.
+
+```{python}
+L = ["hello","Hello","HELLO","jeremy","jereMy"]
+N = [f(x) for x in L]
+M = [f(x) for x in L if x[0]=="H"]
+print(N,M)
+```
