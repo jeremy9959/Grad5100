@@ -1888,5 +1888,54 @@
     "title": "Homework One",
     "section": "",
     "text": "This assignment is due Sunday, September 10th by midnight. Please submit it using HuskyCT. Follow the instructions below.\n\nCreate a project directory named Homework_One, and inside it create a subdirectory called python.\nIn the python directory, create a jupyter notebook named Homework_One.ipynb.\nUsing a markdown cell, add text at the beginning of your notebook that yields text following this template:\nHeader: First Homework Assignment for Grad 5100\nText: Submitted by [your name] on [the date]\nTopic: Some features of the python language.\n\n(Hint: you can get the word python formatted this way by using backticks: `python`) 3. Using a code cell, create the following variables:\n\nfirst_name = # your first name (a string)\nlast_name = # your last name (a string)\nyear = # current year, an integer\nstates = # a list of strings containing the names of the New England states (look them up)\n\nWorking in code cells, complete the following\n\nfirst_name_345 = first_name[] # fill in the [] to extract the third, fourth, and fifth letters of your first name (note this could be an empty string, or shorter than three letters)\nprint() # complete the print statement to show your answer\n\n\nlast_name_last = last_name[] # fill in the [] to extract the last letter of your last name. Do not assume you know how many letters are in your last name. \nprint() # complete the print statement to show your answer\n\n\nyear_5 = # compute the year multipled by 5\nprint() # print the answer\n\nThe sorted command takes a list and returns it sorted.\n\nstates_sorted = sorted(states) # sort your list of states\nmid = states+_sorted[][] # complete the []'s to find the last letter of the third New England state in alphabetical order. \nprint() # print the answer\n\n\nExport your jupyter notebook as a pdffile and submit it using HuskyCT.\nGo back to your project directory and create a subdirectory called R. In that directory, start Rstudio.\nCreate an RMD file called Homework_One.rmd and repeat the steps above, but working in R and Rstudio. Notice that you’ll have to make some small modifications to the syntax:\n\nchange “Python” to “R”\nreplace “=” by “&lt;-”\nin R, you use sort not sorted\n\nExport your RMD file as a pdf file and submit it using HuskyCT."
+  },
+  {
+    "objectID": "chapters/05-WorkingWithData/r_programming.html",
+    "href": "chapters/05-WorkingWithData/r_programming.html",
+    "title": "Basics of Programming in R",
+    "section": "",
+    "text": "The assignment operator in R is &lt;-\nThere is no built-in “dictionary” datatype.\nThe basic datatype in R is the vector, which can contain objects of the same type.\n\nVectors are indexed from 1.\n\n\n# n\nx &lt;- c(\"Hello\", 1)\nclass(x)\n\n[1] \"character\"\n\n\nNotice that x is now all characters, and in fact if you now compute 2*x[2] you will get an error.\n\nRanges are inclusive\n\n\n1:10\n\n [1]  1  2  3  4  5  6  7  8  9 10\n\n\n\nTRUE and FALSE instead of True and False\nindentation does not matter and you can use ; to string multiple statements together.\n\n\nx &lt;- 1\ny &lt;- 1\nz &lt;- 1\n\n\nlength gives the length of a vector, nchar gives the number of characters of a string.\n\n\nlength(\"Hello\")\n\n[1] 1\n\n\n\nlength(c(\"Hello\", \"GoodBye\"))\n\n[1] 2\n\n\n\nnchar(\"Hello\")\n\n[1] 5\n\n\n\nnchar(c(\"Hello\", \"GoodBye\"))\n\n[1] 5 7\n\n\n\nYou need to use substr to extract substrings, not subscripts.\n\n\ns &lt;- \"Hello\"\ns[1]\n\n[1] \"Hello\"\n\n\n\nSome things are easy in python but hard in R (extract every other letter from a string)."
+  },
+  {
+    "objectID": "chapters/05-WorkingWithData/r_programming.html#some-differences-between-r-and-python",
+    "href": "chapters/05-WorkingWithData/r_programming.html#some-differences-between-r-and-python",
+    "title": "Basics of Programming in R",
+    "section": "",
+    "text": "The assignment operator in R is &lt;-\nThere is no built-in “dictionary” datatype.\nThe basic datatype in R is the vector, which can contain objects of the same type.\n\nVectors are indexed from 1.\n\n\n# n\nx &lt;- c(\"Hello\", 1)\nclass(x)\n\n[1] \"character\"\n\n\nNotice that x is now all characters, and in fact if you now compute 2*x[2] you will get an error.\n\nRanges are inclusive\n\n\n1:10\n\n [1]  1  2  3  4  5  6  7  8  9 10\n\n\n\nTRUE and FALSE instead of True and False"
+  },
+  {
+    "objectID": "chapters/05-WorkingWithData/r_programming.html#some-basic-differences-between-r-and-python",
+    "href": "chapters/05-WorkingWithData/r_programming.html#some-basic-differences-between-r-and-python",
+    "title": "Basics of Programming in R",
+    "section": "",
+    "text": "The assignment operator in R is &lt;-\nThere is no built-in “dictionary” datatype.\nThe basic datatype in R is the vector, which can contain objects of the same type.\n\nVectors are indexed from 1.\n\n\n# n\nx &lt;- c(\"Hello\", 1)\nclass(x)\n\n[1] \"character\"\n\n\nNotice that x is now all characters, and in fact if you now compute 2*x[2] you will get an error.\n\nRanges are inclusive\n\n\n1:10\n\n [1]  1  2  3  4  5  6  7  8  9 10\n\n\n\nTRUE and FALSE instead of True and False\nindentation does not matter and you can use ; to string multiple statements together.\n\n\nx &lt;- 1\ny &lt;- 1\nz &lt;- 1\n\n\nlength gives the length of a vector, nchar gives the number of characters of a string.\n\n\nlength(\"Hello\")\n\n[1] 1\n\n\n\nlength(c(\"Hello\", \"GoodBye\"))\n\n[1] 2\n\n\n\nnchar(\"Hello\")\n\n[1] 5\n\n\n\nnchar(c(\"Hello\", \"GoodBye\"))\n\n[1] 5 7\n\n\n\nYou need to use substr to extract substrings, not subscripts.\n\n\ns &lt;- \"Hello\"\ns[1]\n\n[1] \"Hello\"\n\n\n\nSome things are easy in python but hard in R (extract every other letter from a string)."
+  },
+  {
+    "objectID": "chapters/05-WorkingWithData/r_programming.html#functions",
+    "href": "chapters/05-WorkingWithData/r_programming.html#functions",
+    "title": "Basics of Programming in R",
+    "section": "Functions",
+    "text": "Functions\nFunctions are constructed like this:\n\nf &lt;- function(n) {\n    n**2\n}\nf(5)\n\n[1] 25\n\n\nThe last evaluated expression is the value of the function but it is better style to actually use the return statement.\n\nf &lt;- function(n) {\n    return(n**2)\n}\nf(10)\n\n[1] 100\n\n\nFunctions are automatically “vectorized.”\n\nf(1:10)\n\n [1]   1   4   9  16  25  36  49  64  81 100"
+  },
+  {
+    "objectID": "chapters/05-WorkingWithData/r_programming.html#iteration-in-r",
+    "href": "chapters/05-WorkingWithData/r_programming.html#iteration-in-r",
+    "title": "Basics of Programming in R",
+    "section": "Iteration in R",
+    "text": "Iteration in R\n\ny &lt;- 0\nfor (x in c(1, 2, 3, 10)) {\n    print(x)\n    y &lt;- y + x\n}\n\n[1] 1\n[1] 2\n[1] 3\n[1] 10\n\ncat(\"y=\", y)\n\ny= 16\n\n\n\ny&lt;-0\nwhile(y&lt;10) {\n    cat(\"y = \",y,\" \",sep=\"\")\n    y &lt;- y+1\n}\n\ny = 0 y = 1 y = 2 y = 3 y = 4 y = 5 y = 6 y = 7 y = 8 y = 9"
+  },
+  {
+    "objectID": "chapters/05-WorkingWithData/r_programming.html#logical-statements",
+    "href": "chapters/05-WorkingWithData/r_programming.html#logical-statements",
+    "title": "Basics of Programming in R",
+    "section": "Logical statements",
+    "text": "Logical statements\n\nif(substr(\"Hesterday\",1,1)==\"H\") {\n    print(\"Yes\")\n} else {\n    print(\"No\")\n}\n\n[1] \"Yes\"\n\n\n\nless_than_one &lt;- function(x) {\nif (any(x&lt;1)) {\n    print(\"Yes\")\n} \nelse {\n    print(\"No\")\n}\n}"
+  },
+  {
+    "objectID": "chapters/05-WorkingWithData/r_programming.html#example",
+    "href": "chapters/05-WorkingWithData/r_programming.html#example",
+    "title": "Basics of Programming in R",
+    "section": "Example",
+    "text": "Example\nTake a string and make its first charactdr upper case and the rest lower.\n\nf&lt;-function(s) {\n    a&lt;-paste(toupper(substr(s,1,1)),substr(s,2,nchar(s)),sep=\"\")\n    return(a)\n}\n\nYou can assign to substrings.\n\nf&lt;-function(s) {\n    substr(s,1,1)&lt;-toupper(substr(s,1,1))\n    return(s)\n}"
   }
 ]
