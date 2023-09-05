@@ -3,11 +3,6 @@ title: "Basics of Programming in Python"
 subtitle: "Fundamentals of Data Science"
 author: "Jeremy Teitelbaum"
 format: html
-jupyter: 
-    kernelspec: 
-        name: "base"
-        language: "python"
-        display_name: "python3"
 title-block-style: plain
 ---
 
@@ -44,23 +39,6 @@ The `typeof` operator tells you what something is.
 ```{python}
 print("type of n is {}, type of name is {}".format(type(n), type(name)))
 ```
-
-## Working with Lists and Strings
-
-Split a string to a list.
-
-```{python}
-L = list("My name is Jeremy")
-print(L)
-```
-
-Join a list to a string.
-
-```{python}
-print(''.join(["A","B","C"]))
-print('_'.join(["A","B","C"]))
-```
-
 
 ## Dictionaries
 
@@ -181,7 +159,7 @@ for x in ["a","b","c"]:
 # Also available: while
 ```
 
-## Logic
+## logic
 
 ```{python}
 if 3<5:
@@ -205,33 +183,6 @@ else:
     print("nah!")
 ```
 
-## List Comprehensions
-
-This is one of the most useful things about python.
-
-```{python}
-L = ["hello","Hello","HELLO","jeremy","jereMy"]
-N = [f(x) for x in L]
-M = [f(x) for x in L if x[0]=="H"]
-print(N,M)
-```
-
-Another example.
-
-```{python}
-s="Jeremy Teitelbaum"
-L=[x for x in list(s) if x not in [" "]]
-print(L)
-```
-
-Compare:
-
-```{python}
-S=""
-for x in "Jeremy Teitelbaum":
-    if x not in [" "]:
-        S+=x
-```
 
 ## A few other tricks
 
@@ -282,54 +233,13 @@ def h(L):
 h(["hello","HELLO","jeremy","JEREMY","jerEmy"])
 ```
 
-## Problems
+## list Comprehensions
 
-1.  Write a function which takes a string and standardizes it by:
-    - removes all characters which are not letters, numbers, or spaces
-    - makes all the letters lower case
-    - replacing all spaces by underscore '_'
-
-Hint: convert the string to a vector of letters.
-
-2. The `penguins_raw.csv` file can get loaded into a pandas dataframe,
-which is a fancy type of tabular layout. 
-It has named columns that you can extract with `.`.
+This is one of the most useful things about python.
 
 ```{python}
-import pandas as pd
-penguins_raw = pd.read_csv("data/penguins-raw.csv")
+L = ["hello","Hello","HELLO","jeremy","jereMy"]
+N = [f(x) for x in L]
+M = [f(x) for x in L if x[0]=="H"]
+print(N,M)
 ```
-
-By assigning to colnames you can change the column names. (In other words, `colnames(penguins_raw)<-c(...)` replaces the column names from the given vector.  Use your function
-from part(1) to simplify the column names of this tibble. 
-
-3.  You can access a column of the tibble using `$`, so for example `penguins_raw$species`
-should give you the vector of species.  Replace this column with just the first word of the species name (Gentoo, Adelie, Chinstrap).
-
-4.  Let $n$ be a positive real number and let $x_0$ be 1.  The iteration
-$$
-x_{k+1} = x_{k}/2+n/(2x_k)
-$$
-
-converges to the square root of $n$.  (This is Newton's Method).  Write an R
-function which computes the square root using this iteration.  You should continue to iterate
-until $x_{k+1}$ is within $10^{-6}$ of $x_{k}$. 
-
-```{r}
-s<-function(n) {
-    x<-1
-    tol<-1
-    while(tol>1e-6) {
-        xnew<- x/2+n/(2*x)
-        tol<-abs(xnew-x)
-        x<-xnew
-    }
-    return(x)
-}
-```
-
-Suppose you want to save the successive values you computed during the iteration for plotting purposes.  How could you do that (and return them)?
-
-Suppose you want the tolerance (here $10^{6}$) to be a parameter?
-
-Suppose you want to set a maximum number of iterations, in case something goes wrong, to prevent an infinite loop?
