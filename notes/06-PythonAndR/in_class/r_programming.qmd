@@ -66,7 +66,20 @@ s <- "Hello"
 s[1]
 ```
 
-- Some things are easy in python but hard in R (extract every other letter from a string).
+- Convert a vector to a string
+
+```{r}
+s <- paste(c("A", "B", "C"), collapse = "")
+t <- paste(c("A", "B", "C"), c("D", "E", "F"), sep = ",", collapse = " ")
+print(s)
+print(t)
+```
+
+```{r}
+s <- "This is a string of letters"
+t <- substr(rep(s, nchar(s) / 2), seq(1, nchar(s), 2), seq(1, nchar(s), 2))
+paste(t, collapse = "")
+```
 
 ## Lists
 
@@ -76,7 +89,38 @@ A list can contain objects of different types.
 lst <- list("a", 1.5)
 ```
 
-Lists are subscripted by vectors.
+In particular, a list can contain vectors and can have named entries. 
+
+```{r}
+lst <- list(first = c(1, 2, 3), second = c(4, 5, 6))
+print(lst)
+```
+
+The presence of [[]] indicates a list.
+
+```{r}
+print(lst[[1]])
+print(lst$first)
+```
+
+
+```{r}
+class(lst[1])
+class(lst[[1]])
+```
+
+- Split a string to a list
+
+```{r}
+a <- strsplit("This is a string", split = " ")
+b <- strsplit("this is a string split into letters", split = "")
+print(a)
+print(b)
+```
+
+- Extract every other letter
+
+
 
 ## Functions
 
@@ -110,6 +154,8 @@ R automatically "recyles" when things fit.
 1:3 + 1:6
 ```
 
+The principle of `scope` is essentially the same as discussed in the [python programming](python_programming.html) notes. 
+
 ## Iteration in R
 
 ```{r}
@@ -129,9 +175,28 @@ while(y<10) {
 }
 ```
 
-```{r}
+Often iteration in R is unnecessary.  Suppose you want to compute the sum of the squares of the first n integers.
 
+```{r}
+f <- function(n) {
+    s <- 0
+    for (i in seq(1, n)) {
+        s <- s + i^2
+    }
+    return(s)
+}
+f(10)
 ```
+
+```{r}
+f <- function(n) {
+    return(sum(seq(1, n)^2))
+}
+f(10)
+```
+
+
+
 
 
 ## Logical statements
@@ -154,9 +219,17 @@ else {
 }
 ```
 
+Again you can avoid iteration.
+
+```{r}
+x <- rnorm(20)
+x[x < 1]
+```
+
+
 ## Example
 
-Take a string and make its first charactdr upper case and the rest lower.
+Take a string and make its first character upper case and the rest lower.
 
 ```{r}
 f<-function(s) {
@@ -174,3 +247,54 @@ f<-function(s) {
 }
 ```
 
+## Problems
+
+1.  Write a function which takes a string and standardizes it by:
+    - removes all characters which are not letters, numbers, or spaces
+    - makes all the letters lower case
+    - replacing all spaces by underscore '_'
+
+Hint: convert the string to a vector of letters
+
+2. The object `penguins_raw` is a "tibble", which is a fancy type of tabular layout. 
+It has named columns that you can extract with $.  
+
+```{r}
+library(palmerpenguins)
+# view(penguins_raw)
+colnames(penguins_raw)
+```
+
+By assigning to colnames you can change the column names. (In other words, `colnames(penguins_raw)<-c(...)` replaces the column names from the given vector.  Use your function
+from part(1) to simplify the column names of this tibble. 
+
+3.  You can access a column of the tibble using `$`, so for example `penguins_raw$species`
+should give you the vector of species.  Replace this column with just the first word of the species name (Gentoo, Adelie, Chinstrap).
+
+4.  Let $n$ be a positive real number and let $x_0$ be 1.  The iteration
+$$
+x_{k+1} = x_{k}/2+n/(2x_k)
+$$
+
+converges to the square root of $n$.  (This is Newton's Method).  Write an R
+function which computes the square root using this iteration.  You should continue to iterate
+until $x_{k+1}$ is within $10^{-6}$ of $x_{k}$. 
+
+```{r}
+s<-function(n) {
+    x<-1
+    tol<-1
+    while(tol>1e-6) {
+        xnew<- x/2+n/(2*x)
+        tol<-abs(xnew-x)
+        x<-xnew
+    }
+    return(x)
+}
+```
+
+Suppose you want to save the successive values you computed during the iteration for plotting purposes.  How could you do that (and return them)?
+
+Suppose you want the tolerance (here $10^{6}$) to be a parameter?
+
+Suppose you want to set a maximum number of iterations, in case something goes wrong, to prevent an infinite loop?
