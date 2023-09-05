@@ -293,18 +293,20 @@ Hint: convert the string to a vector of letters.
 
 2. The `penguins_raw.csv` file can get loaded into a pandas dataframe,
 which is a fancy type of tabular layout. 
-It has named columns that you can extract with `.`.
+It has named columns that you can extract with `.columns`
 
 ```{python}
 import pandas as pd
 penguins_raw = pd.read_csv("data/penguins-raw.csv")
+penguins_raw.columns
 ```
 
-By assigning to colnames you can change the column names. (In other words, `colnames(penguins_raw)<-c(...)` replaces the column names from the given vector.  Use your function
-from part(1) to simplify the column names of this tibble. 
+You can assign to `penguins_raw.columns` to change the column names.  Use your function from part 1 to standardize and simplify the column names. 
 
-3.  You can access a column of the tibble using `$`, so for example `penguins_raw$species`
-should give you the vector of species.  Replace this column with just the first word of the species name (Gentoo, Adelie, Chinstrap).
+
+3.  You can access a column of the dataframe using `.`, so for example `penguins_raw.Species`
+should give you the column species.  Replace this column with just the first word of the species name (Gentoo, Adelie, Chinstrap).  To do this, you have to use the `map` method.
+If `f` is a function that picks out the first word of a string, then `penguins_raw.species.map(f)` returns the result of applying `f` to every element of `penguins_raw.species`. 
 
 4.  Let $n$ be a positive real number and let $x_0$ be 1.  The iteration
 $$
@@ -315,17 +317,11 @@ converges to the square root of $n$.  (This is Newton's Method).  Write an R
 function which computes the square root using this iteration.  You should continue to iterate
 until $x_{k+1}$ is within $10^{-6}$ of $x_{k}$. 
 
-```{r}
-s<-function(n) {
-    x<-1
-    tol<-1
-    while(tol>1e-6) {
-        xnew<- x/2+n/(2*x)
-        tol<-abs(xnew-x)
-        x<-xnew
-    }
-    return(x)
-}
+```{python}
+
+# def f(n):
+# 
+# ...
 ```
 
 Suppose you want to save the successive values you computed during the iteration for plotting purposes.  How could you do that (and return them)?
