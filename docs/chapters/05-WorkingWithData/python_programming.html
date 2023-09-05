@@ -591,30 +591,33 @@ a,b,c,</code></pre>
 </ol>
 <p>Hint: convert the string to a vector of letters.</p>
 <ol start="2" type="1">
-<li>The <code>penguins_raw.csv</code> file can get loaded into a pandas dataframe, which is a fancy type of tabular layout. It has named columns that you can extract with <code>.</code>.</li>
+<li>The <code>penguins_raw.csv</code> file can get loaded into a pandas dataframe, which is a fancy type of tabular layout. It has named columns that you can extract with <code>.columns</code></li>
 </ol>
 <div class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>penguins_raw <span class="op">=</span> pd.read_csv(<span class="st">"data/penguins-raw.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>penguins_raw <span class="op">=</span> pd.read_csv(<span class="st">"data/penguins-raw.csv"</span>)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>penguins_raw.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<pre><code>Index(['studyName', 'Sample Number', 'Species', 'Region', 'Island', 'Stage',
+       'Individual ID', 'Clutch Completion', 'Date Egg', 'Culmen Length (mm)',
+       'Culmen Depth (mm)', 'Flipper Length (mm)', 'Body Mass (g)', 'Sex',
+       'Delta 15 N (o/oo)', 'Delta 13 C (o/oo)', 'Comments'],
+      dtype='object')</code></pre>
 </div>
-<p>By assigning to colnames you can change the column names. (In other words, <code>colnames(penguins_raw)&lt;-c(...)</code> replaces the column names from the given vector. Use your function from part(1) to simplify the column names of this tibble.</p>
+</div>
+<p>You can assign to <code>penguins_raw.columns</code> to change the column names. Use your function from part 1 to standardize and simplify the column names.</p>
 <ol start="3" type="1">
-<li><p>You can access a column of the tibble using <code>$</code>, so for example <code>penguins_raw$species</code> should give you the vector of species. Replace this column with just the first word of the species name (Gentoo, Adelie, Chinstrap).</p></li>
+<li><p>You can access a column of the dataframe using <code>.</code>, so for example <code>penguins_raw.Species</code> should give you the column species. Replace this column with just the first word of the species name (Gentoo, Adelie, Chinstrap). To do this, you have to use the <code>map</code> method. If <code>f</code> is a function that picks out the first word of a string, then <code>penguins_raw.species.map(f)</code> returns the result of applying <code>f</code> to every element of <code>penguins_raw.species</code>.</p></li>
 <li><p>Let <span class="math inline">\(n\)</span> be a positive real number and let <span class="math inline">\(x_0\)</span> be 1. The iteration <span class="math display">\[
 x_{k+1} = x_{k}/2+n/(2x_k)
 \]</span></p></li>
 </ol>
 <p>converges to the square root of <span class="math inline">\(n\)</span>. (This is Newton’s Method). Write an R function which computes the square root using this iteration. You should continue to iterate until <span class="math inline">\(x_{k+1}\)</span> is within <span class="math inline">\(10^{-6}\)</span> of <span class="math inline">\(x_{k}\)</span>.</p>
-<pre class="{r}"><code>s&lt;-function(n) {
-    x&lt;-1
-    tol&lt;-1
-    while(tol&gt;1e-6) {
-        xnew&lt;- x/2+n/(2*x)
-        tol&lt;-abs(xnew-x)
-        x&lt;-xnew
-    }
-    return(x)
-}</code></pre>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># def f(n):</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Suppose you want to save the successive values you computed during the iteration for plotting purposes. How could you do that (and return them)?</p>
 <p>Suppose you want the tolerance (here <span class="math inline">\(10^{6}\)</span>) to be a parameter?</p>
 <p>Suppose you want to set a maximum number of iterations, in case something goes wrong, to prevent an infinite loop?</p>
