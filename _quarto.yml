@@ -35,6 +35,7 @@ website:
         contents:
         - chapters/999-Problems/HW1.qmd
         - chapters/999-Problems/Distributions.qmd
+        - chapters/999-Problems/HW2.qmd
       - section: "Resources"
         contents:
         - chapters/99-Resources/Cheatsheets.qmd
