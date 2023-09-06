@@ -16,36 +16,43 @@ A simple gradient descent function that returns the fitted weights
 and a vector of the losses found.
 
 ```{r}
-gd <- function(x,y,step=.0001) {
-  e<-rep(1,length(x))
-  xe <- matrix(c(x,e),ncol=2)
-  y <- matrix(y,ncol=1)
-  wts <- matrix(c(0,1),ncol=1)
-  loss <-  1
-  losses <-c()
-  er<-1
-  while (er>.01) {
-    p <- y- xe %*% wts
+gd <- function(x, y, step = .0001) {
+  e <- rep(1, length(x))
+  xe <- matrix(c(x, e), ncol = 2)
+  y <- matrix(y, ncol = 1)
+  wts <- matrix(c(0, 1), ncol = 1)
+  loss <- 1
+  losses <- c()
+  er <- 1
+  while (er > .01) {
+    p <- y - xe %*% wts
     nloss <- sum(p^2)
-    er <- abs(loss-nloss)
-    loss<-nloss
-    losses<-append(losses,loss)
+    er <- abs(loss - nloss)
+    loss <- nloss
+    losses <- append(losses, loss)
     grad <- t(xe) %*% p
-    wts <- wts+step*grad
+    wts <- wts + step * grad
   }
-return(list(wts,losses))
+  return(list(wts, losses))
 }
 ```
 
 ```{r}
-x<-seq(0,10)
-y<-3*x+1+rnorm(10)
-descent<-gd(x,y)
+x <- seq(0, 10)
+y <- 3 * x + 1 + rnorm(10)
+descent <- gd(x, y)
 # why two brackets?  Because descent[1] is a one element vector whose entry is the weights; descent[[1]] are the actual weights.
 # similarly for the losses
-wts<-descent[[1]]
-losses<-descent[[2]]
-q<-ggplot()+geom_point(aes(x=x,y=y))+geom_line(aes(x=x,y=wts[1,1]*x+wts[2,1]))+ggtitle("Data with fitted line")
-p<-ggplot()+geom_line(aes(x=seq(length(losses)),y=losses))+xlab("Iterations")+ylab("Loss")+ggtitle("Gradient Descent Loss")
-grid.arrange(q,p,nrow=1)
+wts <- descent[[1]]
+losses <- descent[[2]]
+q <- ggplot() +
+  geom_point(aes(x = x, y = y)) +
+  geom_line(aes(x = x, y = wts[1, 1] * x + wts[2, 1])) +
+  ggtitle("Data with fitted line")
+p <- ggplot() +
+  geom_line(aes(x = seq(length(losses)), y = losses)) +
+  xlab("Iterations") +
+  ylab("Loss") +
+  ggtitle("Gradient Descent Loss")
+grid.arrange(q, p, nrow = 1)
 ```

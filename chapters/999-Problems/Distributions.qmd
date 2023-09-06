@@ -1,5 +1,5 @@
 ---
-title: "Supplement to Class Sep. 1, 2023"
+title: "Notes on Probability in R"
 format: html
 ---
 
@@ -100,7 +100,7 @@ cat("Number less than ",twentyFifth+1,"is",t2)
 
 These numbers show that the 25th percentile (2500 heads) is somewhere between these two values. 
 
-## Practice
+## Practice (note: these are now assigned in HW 2)
 
 1.  Let X be a binomial random variable with n=50 and p=.7.  
   a. Draw 1000 samples from X.  How many of your sampled values are less than 30?

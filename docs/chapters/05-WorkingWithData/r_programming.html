@@ -549,10 +549,9 @@ $second
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">20</span>)</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>x[x <span class="sc">&lt;</span> <span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] -1.0369640040 -0.0695057541 -0.7032245685 -0.0005600626 -0.3319817380
- [6] -0.2102945620 -1.2420069148  0.3148167863  0.5800353728  0.9828499320
-[11] -0.6863167613 -0.6295778890  0.7151406411 -0.6425090742 -0.2307258404
-[16]  0.2342336407</code></pre>
+<pre><code> [1]  0.4626298  0.8465930 -0.3716574  0.3038123 -0.1605038 -0.5255829
+ [7] -0.5793896 -0.2216564 -0.6247648  0.8559570  0.1651220 -1.8563170
+[13] -0.6548768  0.5315640 -1.7584150 -1.2444576  0.1191912</code></pre>
 </div>
 </div>
 </section>
@@ -609,16 +608,9 @@ x_{k+1} = x_{k}/2+n/(2x_k)
 </ol>
 <p>converges to the square root of <span class="math inline">\(n\)</span>. (This is Newton’s Method). Write an R function which computes the square root using this iteration. You should continue to iterate until <span class="math inline">\(x_{k+1}\)</span> is within <span class="math inline">\(10^{-6}\)</span> of <span class="math inline">\(x_{k}\)</span>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>s<span class="ot">&lt;-</span><span class="cf">function</span>(n) {</span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>    x<span class="ot">&lt;-</span><span class="dv">1</span></span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>    tol<span class="ot">&lt;-</span><span class="dv">1</span></span>
-<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span>(tol<span class="sc">&gt;</span><span class="fl">1e-6</span>) {</span>
-<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>        xnew<span class="ot">&lt;-</span> x<span class="sc">/</span><span class="dv">2</span><span class="sc">+</span>n<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>x)</span>
-<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>        tol<span class="ot">&lt;-</span><span class="fu">abs</span>(xnew<span class="sc">-</span>x)</span>
-<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>        x<span class="ot">&lt;-</span>xnew</span>
-<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(x)</span>
-<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co">#f&lt;-function(n) {</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="co">#}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Suppose you want to save the successive values you computed during the iteration for plotting purposes. How could you do that (and return them)?</p>
 <p>Suppose you want the tolerance (here <span class="math inline">\(10^{6}\)</span>) to be a parameter?</p>
