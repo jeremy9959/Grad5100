@@ -1,0 +1,96 @@
+---
+title: "Homework Two"
+subtitle: "Fundamentals of Data Science"
+format: html
+execute:
+    enabled: false
+---
+
+This homework is due *Sunday, September 24th* at midnight.  Please submit it using HuskyCT.
+
+There are two files you need to submit (one for R, one for python).
+For the R part of the homework (problems 1 and 2), you submit a QMD file with the following YAML material at the top.  For the Python part (problem 3) submit an ipynb file. 
+
+```{yaml}
+---
+title: "Homework Two - R"
+author: [your name]
+format: html
+---
+```
+
+
+ 1.  Let X be a binomial random variable with n=50 and p=.7.  
+  a. Draw 1000 samples from X.  How many of your sampled values are less than 30?
+  b. Based on the probability distribution, how many sampled values would you expect to see that are less than 30?  
+  c. Plot a histogram of your sampled values. 
+
+Your answer should be in the form of an r code block in your qmd file.
+
+```{r}
+Xsamples <- #
+less_than_30_observed <- #
+less_than_30_predicted <- #
+# code to plot histogram of Xsamples
+```
+
+2.  The poisson distribution is a discrete probability distribution that arises in queuing theory (and many other places).  For example, imagine that customers arrive at a server at a rate so that, in a typical one hour period, 20 customers come. But the intervals between customers are random and independent of one another. Then
+in a randomly chosen hour, the probability of k customers arriving is `dpois(k,20)`.  
+  a. Sample this distribution 1000 times (hint: use `rpois`).  What is the largest number of people who arrive in an one of these random hours?  What is the smallest?
+  b. Suppose you want to design your system so that it can handle the number of arriving customers 95% of the time.  How many people should you design for? (Hint: use `qpois`).
+  c. What's the chance that between 18 and 22 people arrive in a given hour? (Hint: use `ppois`).
+  d. Plot the Poisson distribution probabilities. (Hint: use `dpois`).
+
+```{r}
+
+  poisson_samples <- #
+  max_arrivals <- #
+  min_arrivals <- #
+  threshold_95 <-#
+  # code to plot the distribution
+```
+
+3. Write an R function that takes a string as input, removes all characters that are not
+numbers, letters, or spaces, makes all the letters lower case, converts all the spaces to '_',
+and returns the result.  
+
+Hints:
+
+- the `gsub` function replaces things in a string. 
+- the `tolower` function makes things lower case
+- the builtin variable `letters` (resp `LETTERS`) is a vector of all lower (resp upper) case letters.
+
+4.  Do problem 3 in Python.
+
+Hints:
+
+- the python string method `replace()` replaces thngs in a string.  So if `x` is a string,
+`x.replace("a","b")` replaces all a's by b.
+- the python string method `lower()` makes a string lower case.  So if `x` is a string,
+`x.lower()` is x in lower case.
+
+
+5.  If $x_0=1$ and $n$ is a positive real number, the iteration
+$$
+x_{k+1} = x_{k}/2+n/(2x_k)
+$$
+
+converges to the square root of $n$.  Write a Python function that runs this iteration
+until the difference between $x_{k+1}$ and $x_{k}$ is less than a tolerance.
+
+```{python}
+def sq(n):
+    x=1
+    tol = 1
+    while(tol>1e-6):
+        xnew = # fill this in
+        tol = xnew - x
+        x = xnew
+    return x
+```
+
+Now improve the function above so that:
+
+- one can optionally provide a threshold to replace 1e-6
+- if the code runs for more than `max_iter` iterations of the while loop, it quits while printing
+"Failed to converge".  `max_iter` is by default 1000 but can be modified when the function is called.
