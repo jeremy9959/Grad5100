@@ -75,11 +75,6 @@ print(s)
 print(t)
 ```
 
-```{r}
-s <- "This is a string of letters"
-t <- substr(rep(s, nchar(s) / 2), seq(1, nchar(s), 2), seq(1, nchar(s), 2))
-paste(t, collapse = "")
-```
 
 ## Lists
 
@@ -118,9 +113,6 @@ print(a)
 print(b)
 ```
 
-- Extract every other letter
-
-
 
 ## Functions
 
@@ -156,6 +148,28 @@ R automatically "recyles" when things fit.
 
 The principle of `scope` is essentially the same as discussed in the [python programming](python_programming.html) notes. 
 
+## More on vectorization
+
+Vectorization is very powerful.
+
+```{r}
+tolower(LETTERS)
+```
+
+```{r}
+x<-rnorm(20,15,2)
+z<-(x-15)/2. # move normal samples to z-scores
+```
+
+
+- pull out every other letter from a string
+
+```{r}
+s <- "This is a string of letters"
+t <- substr(rep(s, nchar(s) / 2), seq(1, nchar(s), 2), seq(1, nchar(s), 2))
+paste(t, collapse = "")
+```
+
 ## Iteration in R
 
 ```{r}
@@ -175,7 +189,12 @@ while(y<10) {
 }
 ```
 
-Often iteration in R is unnecessary.  Suppose you want to compute the sum of the squares of the first n integers.
+Often iteration in R is unnecessary; you can achieve it with vectorization and recycling.
+
+```{r}
+cat(paste("y =",seq(0,9),collapse=" "))
+```
+
 
 ```{r}
 f <- function(n) {
@@ -194,7 +213,6 @@ f <- function(n) {
 }
 f(10)
 ```
-
 
 
 
