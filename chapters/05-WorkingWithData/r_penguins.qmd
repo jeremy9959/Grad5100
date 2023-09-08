@@ -139,10 +139,9 @@ penguins_small |> arrange(`Body Mass (g)`)
 #### group the data by "Species"
 ```{r}
 penguins_by_species <- penguins |> group_by(Species)
-```
 #### summarize the "Body Mass (g)" column for each group
 ```{r}
-penguins_by_species |> summarize(mean = mean(`Body Mass (g)`), sd = sd(`Body Mass (g)`), n = n())
+penguins_by_species |> drop_na()|> summarize(mean = mean(`Body Mass (g)`), sd = sd(`Body Mass (g)`), n = n())
 ```
 #### group the data by "Sex" and "Species"
 ```{r}
@@ -162,6 +161,14 @@ penguins_by_sex_and_species |>
 ```
 
 #### plot a histogram of "Body Mass (g)" for female Adelie and Gentoo penguins
+```{r}
+penguins |>
+    filter(Species %in% c("Adelie Penguin (Pygoscelis adeliae)", "Gentoo penguin (Pygoscelis papua)"), Sex == "FEMALE") |>
+    ggplot(aes(x = `Body Mass (g)`)) +
+    geom_histogram(bins = 30) +
+    facet_wrap(~Species)
+```
+
 ```{r}
 penguins |>
     filter(Species %in% c("Adelie Penguin (Pygoscelis adeliae)", "Gentoo penguin (Pygoscelis papua)"), Sex == "FEMALE") |>

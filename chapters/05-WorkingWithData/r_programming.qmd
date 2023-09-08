@@ -281,16 +281,9 @@ function which computes the square root using this iteration.  You should contin
 until $x_{k+1}$ is within $10^{-6}$ of $x_{k}$. 
 
 ```{r}
-s<-function(n) {
-    x<-1
-    tol<-1
-    while(tol>1e-6) {
-        xnew<- x/2+n/(2*x)
-        tol<-abs(xnew-x)
-        x<-xnew
-    }
-    return(x)
-}
+#f<-function(n) {
+
+#}
 ```
 
 Suppose you want to save the successive values you computed during the iteration for plotting purposes.  How could you do that (and return them)?
