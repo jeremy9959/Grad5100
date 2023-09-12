@@ -101,6 +101,13 @@ y = np.linalg.norm(x, axis=1)
 print("axis=1 yields column norms: {}".format(y))
 ```
 
+## Rank
+```{python}
+x = np.array([[1,2],[3,4]])
+np.linalg.matrix_rank(x)
+```
+
+
 ## Dataframes and matrices
 
 ```{python}
