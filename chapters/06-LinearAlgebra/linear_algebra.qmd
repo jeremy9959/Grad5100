@@ -175,6 +175,46 @@ a 300 dimensional vector representing it.
 See [this google page.](https://code.google.com/archive/p/word2vec/)
 
 
+## The Curse of Dimensionality
+
+Our intuition misleads us when we think about high dimensional space.  There is just
+vastly more "space" in high dimensional space then we expect.
+
+One way to see this is to compare the unit sphere in $\mathbf{R}^{n}$ and the unit cube in $\mathbf{R}^{n}$.  
+
+In the plane, the unit cube has volume 4 and the unit circle has volume 3.14.  So the unit circle fills up most of the cube.
+Given vectors with coordinates $(x,y)$ between $-1$ and $1$,
+about 75 percent are within distance one of the origin.
+
+```{python}
+rng = np.random.default_rng()
+def hypercube(n,d):
+    data = rng.uniform(-1,1,size=(n,d))
+    r = np.linalg.norm(data,axis=1)
+    hist, edges = np.histogram(r,bins=20,density=True)
+    fig = plt.figure()
+    axes = fig.subplots()
+    axes.bar(x=edges[:-1], height=hist,align='edge',width=edges[1]-edges[0],edgecolor='white')
+    axes.set_title("Distance to zero for {} points\n in the hypercube in {} dimensions".format(n,d))
+hypercube(10000,2)
+```
+
+In 20 dimensions, the situation is quite different.
+The hypercube has volume 2^{20} (this volume grows exponentially
+with the dimension) while the sphere has volume
+$$
+\frac{\pi^{10}}{10!}=.025
+$$
+
+
+If you compare the distribution you see that most of the points are very far from the origin; basically none are within the unit sphere.
+
+```{python}
+hypercube(10000,20)
+```
+
+This means that even huge numbers of points in relatively high dimensions are very sparsely distributed.
+
 ## Linear combinations
 
 If $v_1,\ldots, v_k$ are vectors in $\mathbf{R}^{n}$ then a weighted sum of the
