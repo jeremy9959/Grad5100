@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-99.9.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -18,10 +18,9 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -48,13 +47,43 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
+    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -104,18 +133,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      Fundamentals of Machine Learning
-      </li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Working with data in python/pandas</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
       </button>
     </div>
   </nav>
@@ -123,120 +145,105 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">Fundamentals of Machine Learning</a> 
     </div>
       </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
+      <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-        </div>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Contents</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Contents</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/00-OrientationProject/orientation-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Orientation Project</span></a>
+  <a href="../../chapters/00-OrientationProject/orientation-project.html" class="sidebar-item-text sidebar-link">Orientation Project</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/01-SettingUp/setting-up.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Key Tools for Data Science</span></a>
+  <a href="../../chapters/01-SettingUp/setting-up.html" class="sidebar-item-text sidebar-link">Key Tools for Data Science</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-JupyterBasics/jupyter-walkthrough.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Jupyter Lab and Python Walkthrough</span></a>
+  <a href="../../chapters/02-JupyterBasics/jupyter-walkthrough.html" class="sidebar-item-text sidebar-link">Jupyter Lab and Python Walkthrough</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-RBasics/r-walkthrough.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R Notebook Walkthrough</span></a>
+  <a href="../../chapters/03-RBasics/r-walkthrough.html" class="sidebar-item-text sidebar-link">R Notebook Walkthrough</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/04-StatBasics/stat-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Statistical Basics</span></a>
+  <a href="../../chapters/04-StatBasics/stat-basics.html" class="sidebar-item-text sidebar-link">Statistical Basics</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/05-WorkingWithData/pythonAndR.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data Structures and Functions in R and Python</span></a>
+  <a href="../../chapters/05-WorkingWithData/pythonAndR.html" class="sidebar-item-text sidebar-link">Data Structures and Functions in R and Python</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/06-LinearAlgebra/linear_algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Essential Linear Algebra</span></a>
+  <a href="../../chapters/06-LinearAlgebra/linear_algebra.html" class="sidebar-item-text sidebar-link">Essential Linear Algebra</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/07-Calculus/calculus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Key ideas from calculus</span></a>
+  <a href="../../chapters/07-Calculus/calculus.html" class="sidebar-item-text sidebar-link">Key ideas from calculus</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Problems</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Problems</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/999-Problems/HW1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Homework One</span></a>
+  <a href="../../chapters/999-Problems/HW1.html" class="sidebar-item-text sidebar-link">Homework One</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/999-Problems/Distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Notes on Probability in R</span></a>
+  <a href="../../chapters/999-Problems/Distributions.html" class="sidebar-item-text sidebar-link">Notes on Probability in R</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/999-Problems/HW2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Homework Two</span></a>
+  <a href="../../chapters/999-Problems/HW2.html" class="sidebar-item-text sidebar-link">Homework Two</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Resources</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Resources</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/99-Resources/Cheatsheets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Cheatsheets and other References</span></a>
+  <a href="../../chapters/99-Resources/Cheatsheets.html" class="sidebar-item-text sidebar-link">Cheatsheets and other References</a>
   </div>
 </li>
       </ul>
@@ -244,7 +251,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
@@ -252,7 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Working with data in python/pandas</h1>
+<h1 class="title d-none d-lg-block">Working with data in python/pandas</h1>
 <p class="subtitle lead">Fundamentals of Data Science</p>
 </div>
 
@@ -286,11 +292,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"numpy version </span><span class="sc">{</span>np<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(<span class="ss">f"Python </span><span class="sc">{</span>sys<span class="sc">.</span>version<span class="sc">}</span><span class="ss">"</span>.split(<span class="st">"|"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>pandas version 2.0.0
-numpy version 1.24.2
-Python 3.11.5 
- packaged by conda-forge 
- (main, Aug 27 2023, 03:33:12) [Clang 15.0.7 ]</code></pre>
+<pre><code>pandas version 1.5.3
+numpy version 1.21.5
+Python 3.9.16 (main, Mar  8 2023, 14:00:05) 
+[GCC 11.2.0]</code></pre>
 </div>
 </div>
 </section>
@@ -406,21 +411,19 @@ Name: Sex, Length: 344, dtype: object</code></pre>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>penguins[<span class="st">'Island'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>Island
-Biscoe       168
+<pre><code>Biscoe       168
 Dream        124
 Torgersen     52
-Name: count, dtype: int64</code></pre>
+Name: Island, dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>penguins[<span class="st">'Species'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>Species
-Adelie Penguin (Pygoscelis adeliae)          152
+<pre><code>Adelie Penguin (Pygoscelis adeliae)          152
 Gentoo penguin (Pygoscelis papua)            124
 Chinstrap penguin (Pygoscelis antarctica)     68
-Name: count, dtype: int64</code></pre>
+Name: Species, dtype: int64</code></pre>
 </div>
 </div>
 </section>
@@ -430,52 +433,51 @@ Name: count, dtype: int64</code></pre>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>simpler <span class="op">=</span> penguins[[<span class="st">'Species'</span>, <span class="st">'Body Mass (g)'</span>, <span class="st">'Flipper Length (mm)'</span>]]</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>simpler.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Species</th>
-<th data-quarto-table-cell-role="th">Body Mass (g)</th>
-<th data-quarto-table-cell-role="th">Flipper Length (mm)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>3750.0</td>
-<td>181.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>3800.0</td>
-<td>186.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>3250.0</td>
-<td>195.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>3450.0</td>
-<td>193.0</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Species</th>
+      <th>Body Mass (g)</th>
+      <th>Flipper Length (mm)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>3750.0</td>
+      <td>181.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>3800.0</td>
+      <td>186.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>3250.0</td>
+      <td>195.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>3450.0</td>
+      <td>193.0</td>
+    </tr>
+  </tbody>
 </table>
-
 </div>
 </div>
 </div>
@@ -526,51 +528,50 @@ Name: 23, dtype: object</code></pre>
 <div class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>penguins.loc[<span class="dv">23</span>:<span class="dv">28</span>,[<span class="st">'Sex'</span>,<span class="st">'Date Egg'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Sex</th>
-<th data-quarto-table-cell-role="th">Date Egg</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">23</td>
-<td>MALE</td>
-<td>2007-11-12</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">24</td>
-<td>MALE</td>
-<td>2007-11-10</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">25</td>
-<td>FEMALE</td>
-<td>2007-11-10</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">26</td>
-<td>MALE</td>
-<td>2007-11-12</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">27</td>
-<td>FEMALE</td>
-<td>2007-11-12</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">28</td>
-<td>FEMALE</td>
-<td>2007-11-10</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Sex</th>
+      <th>Date Egg</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>23</th>
+      <td>MALE</td>
+      <td>2007-11-12</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>MALE</td>
+      <td>2007-11-10</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>FEMALE</td>
+      <td>2007-11-10</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>MALE</td>
+      <td>2007-11-12</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>FEMALE</td>
+      <td>2007-11-12</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>FEMALE</td>
+      <td>2007-11-10</td>
+    </tr>
+  </tbody>
 </table>
-
 </div>
 </div>
 </div>
@@ -599,136 +600,135 @@ Name: Sex, Length: 344, dtype: bool</code></pre>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>females <span class="op">=</span> penguins[penguins[<span class="st">'Sex'</span>]<span class="op">==</span><span class="st">'FEMALE'</span>]</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>females.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">studyName</th>
-<th data-quarto-table-cell-role="th">Sample Number</th>
-<th data-quarto-table-cell-role="th">Species</th>
-<th data-quarto-table-cell-role="th">Region</th>
-<th data-quarto-table-cell-role="th">Island</th>
-<th data-quarto-table-cell-role="th">Stage</th>
-<th data-quarto-table-cell-role="th">Individual ID</th>
-<th data-quarto-table-cell-role="th">Clutch Completion</th>
-<th data-quarto-table-cell-role="th">Date Egg</th>
-<th data-quarto-table-cell-role="th">Culmen Length (mm)</th>
-<th data-quarto-table-cell-role="th">Culmen Depth (mm)</th>
-<th data-quarto-table-cell-role="th">Flipper Length (mm)</th>
-<th data-quarto-table-cell-role="th">Body Mass (g)</th>
-<th data-quarto-table-cell-role="th">Sex</th>
-<th data-quarto-table-cell-role="th">Delta 15 N (o/oo)</th>
-<th data-quarto-table-cell-role="th">Delta 13 C (o/oo)</th>
-<th data-quarto-table-cell-role="th">Comments</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1</td>
-<td>PAL0708</td>
-<td>2</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>Anvers</td>
-<td>Torgersen</td>
-<td>Adult, 1 Egg Stage</td>
-<td>N1A2</td>
-<td>Yes</td>
-<td>2007-11-11</td>
-<td>39.5</td>
-<td>17.4</td>
-<td>186.0</td>
-<td>3800.0</td>
-<td>FEMALE</td>
-<td>8.94956</td>
-<td>-24.69454</td>
-<td>NaN</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2</td>
-<td>PAL0708</td>
-<td>3</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>Anvers</td>
-<td>Torgersen</td>
-<td>Adult, 1 Egg Stage</td>
-<td>N2A1</td>
-<td>Yes</td>
-<td>2007-11-16</td>
-<td>40.3</td>
-<td>18.0</td>
-<td>195.0</td>
-<td>3250.0</td>
-<td>FEMALE</td>
-<td>8.36821</td>
-<td>-25.33302</td>
-<td>NaN</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>PAL0708</td>
-<td>5</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>Anvers</td>
-<td>Torgersen</td>
-<td>Adult, 1 Egg Stage</td>
-<td>N3A1</td>
-<td>Yes</td>
-<td>2007-11-16</td>
-<td>36.7</td>
-<td>19.3</td>
-<td>193.0</td>
-<td>3450.0</td>
-<td>FEMALE</td>
-<td>8.76651</td>
-<td>-25.32426</td>
-<td>NaN</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">6</td>
-<td>PAL0708</td>
-<td>7</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>Anvers</td>
-<td>Torgersen</td>
-<td>Adult, 1 Egg Stage</td>
-<td>N4A1</td>
-<td>No</td>
-<td>2007-11-15</td>
-<td>38.9</td>
-<td>17.8</td>
-<td>181.0</td>
-<td>3625.0</td>
-<td>FEMALE</td>
-<td>9.18718</td>
-<td>-25.21799</td>
-<td>Nest never observed with full clutch.</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">12</td>
-<td>PAL0708</td>
-<td>13</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>Anvers</td>
-<td>Torgersen</td>
-<td>Adult, 1 Egg Stage</td>
-<td>N7A1</td>
-<td>Yes</td>
-<td>2007-11-15</td>
-<td>41.1</td>
-<td>17.6</td>
-<td>182.0</td>
-<td>3200.0</td>
-<td>FEMALE</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Not enough blood for isotopes.</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>studyName</th>
+      <th>Sample Number</th>
+      <th>Species</th>
+      <th>Region</th>
+      <th>Island</th>
+      <th>Stage</th>
+      <th>Individual ID</th>
+      <th>Clutch Completion</th>
+      <th>Date Egg</th>
+      <th>Culmen Length (mm)</th>
+      <th>Culmen Depth (mm)</th>
+      <th>Flipper Length (mm)</th>
+      <th>Body Mass (g)</th>
+      <th>Sex</th>
+      <th>Delta 15 N (o/oo)</th>
+      <th>Delta 13 C (o/oo)</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>PAL0708</td>
+      <td>2</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N1A2</td>
+      <td>Yes</td>
+      <td>2007-11-11</td>
+      <td>39.5</td>
+      <td>17.4</td>
+      <td>186.0</td>
+      <td>3800.0</td>
+      <td>FEMALE</td>
+      <td>8.94956</td>
+      <td>-24.69454</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>PAL0708</td>
+      <td>3</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N2A1</td>
+      <td>Yes</td>
+      <td>2007-11-16</td>
+      <td>40.3</td>
+      <td>18.0</td>
+      <td>195.0</td>
+      <td>3250.0</td>
+      <td>FEMALE</td>
+      <td>8.36821</td>
+      <td>-25.33302</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>PAL0708</td>
+      <td>5</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N3A1</td>
+      <td>Yes</td>
+      <td>2007-11-16</td>
+      <td>36.7</td>
+      <td>19.3</td>
+      <td>193.0</td>
+      <td>3450.0</td>
+      <td>FEMALE</td>
+      <td>8.76651</td>
+      <td>-25.32426</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>PAL0708</td>
+      <td>7</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N4A1</td>
+      <td>No</td>
+      <td>2007-11-15</td>
+      <td>38.9</td>
+      <td>17.8</td>
+      <td>181.0</td>
+      <td>3625.0</td>
+      <td>FEMALE</td>
+      <td>9.18718</td>
+      <td>-25.21799</td>
+      <td>Nest never observed with full clutch.</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>PAL0708</td>
+      <td>13</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N7A1</td>
+      <td>Yes</td>
+      <td>2007-11-15</td>
+      <td>41.1</td>
+      <td>17.6</td>
+      <td>182.0</td>
+      <td>3200.0</td>
+      <td>FEMALE</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Not enough blood for isotopes.</td>
+    </tr>
+  </tbody>
 </table>
-
 </div>
 </div>
 </div>
@@ -737,136 +737,135 @@ Name: Sex, Length: 344, dtype: bool</code></pre>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>females <span class="op">=</span> penguins.query(<span class="st">"`Sex`=='FEMALE'"</span>)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>females.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">studyName</th>
-<th data-quarto-table-cell-role="th">Sample Number</th>
-<th data-quarto-table-cell-role="th">Species</th>
-<th data-quarto-table-cell-role="th">Region</th>
-<th data-quarto-table-cell-role="th">Island</th>
-<th data-quarto-table-cell-role="th">Stage</th>
-<th data-quarto-table-cell-role="th">Individual ID</th>
-<th data-quarto-table-cell-role="th">Clutch Completion</th>
-<th data-quarto-table-cell-role="th">Date Egg</th>
-<th data-quarto-table-cell-role="th">Culmen Length (mm)</th>
-<th data-quarto-table-cell-role="th">Culmen Depth (mm)</th>
-<th data-quarto-table-cell-role="th">Flipper Length (mm)</th>
-<th data-quarto-table-cell-role="th">Body Mass (g)</th>
-<th data-quarto-table-cell-role="th">Sex</th>
-<th data-quarto-table-cell-role="th">Delta 15 N (o/oo)</th>
-<th data-quarto-table-cell-role="th">Delta 13 C (o/oo)</th>
-<th data-quarto-table-cell-role="th">Comments</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1</td>
-<td>PAL0708</td>
-<td>2</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>Anvers</td>
-<td>Torgersen</td>
-<td>Adult, 1 Egg Stage</td>
-<td>N1A2</td>
-<td>Yes</td>
-<td>2007-11-11</td>
-<td>39.5</td>
-<td>17.4</td>
-<td>186.0</td>
-<td>3800.0</td>
-<td>FEMALE</td>
-<td>8.94956</td>
-<td>-24.69454</td>
-<td>NaN</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2</td>
-<td>PAL0708</td>
-<td>3</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>Anvers</td>
-<td>Torgersen</td>
-<td>Adult, 1 Egg Stage</td>
-<td>N2A1</td>
-<td>Yes</td>
-<td>2007-11-16</td>
-<td>40.3</td>
-<td>18.0</td>
-<td>195.0</td>
-<td>3250.0</td>
-<td>FEMALE</td>
-<td>8.36821</td>
-<td>-25.33302</td>
-<td>NaN</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>PAL0708</td>
-<td>5</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>Anvers</td>
-<td>Torgersen</td>
-<td>Adult, 1 Egg Stage</td>
-<td>N3A1</td>
-<td>Yes</td>
-<td>2007-11-16</td>
-<td>36.7</td>
-<td>19.3</td>
-<td>193.0</td>
-<td>3450.0</td>
-<td>FEMALE</td>
-<td>8.76651</td>
-<td>-25.32426</td>
-<td>NaN</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">6</td>
-<td>PAL0708</td>
-<td>7</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>Anvers</td>
-<td>Torgersen</td>
-<td>Adult, 1 Egg Stage</td>
-<td>N4A1</td>
-<td>No</td>
-<td>2007-11-15</td>
-<td>38.9</td>
-<td>17.8</td>
-<td>181.0</td>
-<td>3625.0</td>
-<td>FEMALE</td>
-<td>9.18718</td>
-<td>-25.21799</td>
-<td>Nest never observed with full clutch.</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">12</td>
-<td>PAL0708</td>
-<td>13</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>Anvers</td>
-<td>Torgersen</td>
-<td>Adult, 1 Egg Stage</td>
-<td>N7A1</td>
-<td>Yes</td>
-<td>2007-11-15</td>
-<td>41.1</td>
-<td>17.6</td>
-<td>182.0</td>
-<td>3200.0</td>
-<td>FEMALE</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Not enough blood for isotopes.</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>studyName</th>
+      <th>Sample Number</th>
+      <th>Species</th>
+      <th>Region</th>
+      <th>Island</th>
+      <th>Stage</th>
+      <th>Individual ID</th>
+      <th>Clutch Completion</th>
+      <th>Date Egg</th>
+      <th>Culmen Length (mm)</th>
+      <th>Culmen Depth (mm)</th>
+      <th>Flipper Length (mm)</th>
+      <th>Body Mass (g)</th>
+      <th>Sex</th>
+      <th>Delta 15 N (o/oo)</th>
+      <th>Delta 13 C (o/oo)</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>PAL0708</td>
+      <td>2</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N1A2</td>
+      <td>Yes</td>
+      <td>2007-11-11</td>
+      <td>39.5</td>
+      <td>17.4</td>
+      <td>186.0</td>
+      <td>3800.0</td>
+      <td>FEMALE</td>
+      <td>8.94956</td>
+      <td>-24.69454</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>PAL0708</td>
+      <td>3</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N2A1</td>
+      <td>Yes</td>
+      <td>2007-11-16</td>
+      <td>40.3</td>
+      <td>18.0</td>
+      <td>195.0</td>
+      <td>3250.0</td>
+      <td>FEMALE</td>
+      <td>8.36821</td>
+      <td>-25.33302</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>PAL0708</td>
+      <td>5</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N3A1</td>
+      <td>Yes</td>
+      <td>2007-11-16</td>
+      <td>36.7</td>
+      <td>19.3</td>
+      <td>193.0</td>
+      <td>3450.0</td>
+      <td>FEMALE</td>
+      <td>8.76651</td>
+      <td>-25.32426</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>PAL0708</td>
+      <td>7</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N4A1</td>
+      <td>No</td>
+      <td>2007-11-15</td>
+      <td>38.9</td>
+      <td>17.8</td>
+      <td>181.0</td>
+      <td>3625.0</td>
+      <td>FEMALE</td>
+      <td>9.18718</td>
+      <td>-25.21799</td>
+      <td>Nest never observed with full clutch.</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>PAL0708</td>
+      <td>13</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N7A1</td>
+      <td>Yes</td>
+      <td>2007-11-15</td>
+      <td>41.1</td>
+      <td>17.6</td>
+      <td>182.0</td>
+      <td>3200.0</td>
+      <td>FEMALE</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Not enough blood for isotopes.</td>
+    </tr>
+  </tbody>
 </table>
-
 </div>
 </div>
 </div>
@@ -876,256 +875,255 @@ Name: Sex, Length: 344, dtype: bool</code></pre>
 <div class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>penguins[penguins[<span class="st">"Flipper Length (mm)"</span>]<span class="op">&gt;</span>penguins[<span class="st">"Body Mass (g)"</span>]<span class="op">/</span><span class="dv">20</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">studyName</th>
-<th data-quarto-table-cell-role="th">Sample Number</th>
-<th data-quarto-table-cell-role="th">Species</th>
-<th data-quarto-table-cell-role="th">Region</th>
-<th data-quarto-table-cell-role="th">Island</th>
-<th data-quarto-table-cell-role="th">Stage</th>
-<th data-quarto-table-cell-role="th">Individual ID</th>
-<th data-quarto-table-cell-role="th">Clutch Completion</th>
-<th data-quarto-table-cell-role="th">Date Egg</th>
-<th data-quarto-table-cell-role="th">Culmen Length (mm)</th>
-<th data-quarto-table-cell-role="th">Culmen Depth (mm)</th>
-<th data-quarto-table-cell-role="th">Flipper Length (mm)</th>
-<th data-quarto-table-cell-role="th">Body Mass (g)</th>
-<th data-quarto-table-cell-role="th">Sex</th>
-<th data-quarto-table-cell-role="th">Delta 15 N (o/oo)</th>
-<th data-quarto-table-cell-role="th">Delta 13 C (o/oo)</th>
-<th data-quarto-table-cell-role="th">Comments</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>PAL0708</td>
-<td>3</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>Anvers</td>
-<td>Torgersen</td>
-<td>Adult, 1 Egg Stage</td>
-<td>N2A1</td>
-<td>Yes</td>
-<td>2007-11-16</td>
-<td>40.3</td>
-<td>18.0</td>
-<td>195.0</td>
-<td>3250.0</td>
-<td>FEMALE</td>
-<td>8.36821</td>
-<td>-25.33302</td>
-<td>NaN</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">4</td>
-<td>PAL0708</td>
-<td>5</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>Anvers</td>
-<td>Torgersen</td>
-<td>Adult, 1 Egg Stage</td>
-<td>N3A1</td>
-<td>Yes</td>
-<td>2007-11-16</td>
-<td>36.7</td>
-<td>19.3</td>
-<td>193.0</td>
-<td>3450.0</td>
-<td>FEMALE</td>
-<td>8.76651</td>
-<td>-25.32426</td>
-<td>NaN</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">5</td>
-<td>PAL0708</td>
-<td>6</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>Anvers</td>
-<td>Torgersen</td>
-<td>Adult, 1 Egg Stage</td>
-<td>N3A2</td>
-<td>Yes</td>
-<td>2007-11-16</td>
-<td>39.3</td>
-<td>20.6</td>
-<td>190.0</td>
-<td>3650.0</td>
-<td>MALE</td>
-<td>8.66496</td>
-<td>-25.29805</td>
-<td>NaN</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">8</td>
-<td>PAL0708</td>
-<td>9</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>Anvers</td>
-<td>Torgersen</td>
-<td>Adult, 1 Egg Stage</td>
-<td>N5A1</td>
-<td>Yes</td>
-<td>2007-11-09</td>
-<td>34.1</td>
-<td>18.1</td>
-<td>193.0</td>
-<td>3475.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>No blood sample obtained.</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">10</td>
-<td>PAL0708</td>
-<td>11</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>Anvers</td>
-<td>Torgersen</td>
-<td>Adult, 1 Egg Stage</td>
-<td>N6A1</td>
-<td>Yes</td>
-<td>2007-11-09</td>
-<td>37.8</td>
-<td>17.1</td>
-<td>186.0</td>
-<td>3300.0</td>
-<td>NaN</td>
-<td>8.63243</td>
-<td>-25.21315</td>
-<td>No blood sample obtained for sexing.</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">339</td>
-<td>PAL0910</td>
-<td>64</td>
-<td>Chinstrap penguin (Pygoscelis antarctica)</td>
-<td>Anvers</td>
-<td>Dream</td>
-<td>Adult, 1 Egg Stage</td>
-<td>N98A2</td>
-<td>Yes</td>
-<td>2009-11-19</td>
-<td>55.8</td>
-<td>19.8</td>
-<td>207.0</td>
-<td>4000.0</td>
-<td>MALE</td>
-<td>9.70465</td>
-<td>-24.53494</td>
-<td>NaN</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">340</td>
-<td>PAL0910</td>
-<td>65</td>
-<td>Chinstrap penguin (Pygoscelis antarctica)</td>
-<td>Anvers</td>
-<td>Dream</td>
-<td>Adult, 1 Egg Stage</td>
-<td>N99A1</td>
-<td>No</td>
-<td>2009-11-21</td>
-<td>43.5</td>
-<td>18.1</td>
-<td>202.0</td>
-<td>3400.0</td>
-<td>FEMALE</td>
-<td>9.37608</td>
-<td>-24.40753</td>
-<td>Nest never observed with full clutch.</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">341</td>
-<td>PAL0910</td>
-<td>66</td>
-<td>Chinstrap penguin (Pygoscelis antarctica)</td>
-<td>Anvers</td>
-<td>Dream</td>
-<td>Adult, 1 Egg Stage</td>
-<td>N99A2</td>
-<td>No</td>
-<td>2009-11-21</td>
-<td>49.6</td>
-<td>18.2</td>
-<td>193.0</td>
-<td>3775.0</td>
-<td>MALE</td>
-<td>9.46180</td>
-<td>-24.70615</td>
-<td>Nest never observed with full clutch.</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">342</td>
-<td>PAL0910</td>
-<td>67</td>
-<td>Chinstrap penguin (Pygoscelis antarctica)</td>
-<td>Anvers</td>
-<td>Dream</td>
-<td>Adult, 1 Egg Stage</td>
-<td>N100A1</td>
-<td>Yes</td>
-<td>2009-11-21</td>
-<td>50.8</td>
-<td>19.0</td>
-<td>210.0</td>
-<td>4100.0</td>
-<td>MALE</td>
-<td>9.98044</td>
-<td>-24.68741</td>
-<td>NaN</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">343</td>
-<td>PAL0910</td>
-<td>68</td>
-<td>Chinstrap penguin (Pygoscelis antarctica)</td>
-<td>Anvers</td>
-<td>Dream</td>
-<td>Adult, 1 Egg Stage</td>
-<td>N100A2</td>
-<td>Yes</td>
-<td>2009-11-21</td>
-<td>50.2</td>
-<td>18.7</td>
-<td>198.0</td>
-<td>3775.0</td>
-<td>FEMALE</td>
-<td>9.39305</td>
-<td>-24.25255</td>
-<td>NaN</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>studyName</th>
+      <th>Sample Number</th>
+      <th>Species</th>
+      <th>Region</th>
+      <th>Island</th>
+      <th>Stage</th>
+      <th>Individual ID</th>
+      <th>Clutch Completion</th>
+      <th>Date Egg</th>
+      <th>Culmen Length (mm)</th>
+      <th>Culmen Depth (mm)</th>
+      <th>Flipper Length (mm)</th>
+      <th>Body Mass (g)</th>
+      <th>Sex</th>
+      <th>Delta 15 N (o/oo)</th>
+      <th>Delta 13 C (o/oo)</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>PAL0708</td>
+      <td>3</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N2A1</td>
+      <td>Yes</td>
+      <td>2007-11-16</td>
+      <td>40.3</td>
+      <td>18.0</td>
+      <td>195.0</td>
+      <td>3250.0</td>
+      <td>FEMALE</td>
+      <td>8.36821</td>
+      <td>-25.33302</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>PAL0708</td>
+      <td>5</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N3A1</td>
+      <td>Yes</td>
+      <td>2007-11-16</td>
+      <td>36.7</td>
+      <td>19.3</td>
+      <td>193.0</td>
+      <td>3450.0</td>
+      <td>FEMALE</td>
+      <td>8.76651</td>
+      <td>-25.32426</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>PAL0708</td>
+      <td>6</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N3A2</td>
+      <td>Yes</td>
+      <td>2007-11-16</td>
+      <td>39.3</td>
+      <td>20.6</td>
+      <td>190.0</td>
+      <td>3650.0</td>
+      <td>MALE</td>
+      <td>8.66496</td>
+      <td>-25.29805</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>PAL0708</td>
+      <td>9</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N5A1</td>
+      <td>Yes</td>
+      <td>2007-11-09</td>
+      <td>34.1</td>
+      <td>18.1</td>
+      <td>193.0</td>
+      <td>3475.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>No blood sample obtained.</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>PAL0708</td>
+      <td>11</td>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Anvers</td>
+      <td>Torgersen</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N6A1</td>
+      <td>Yes</td>
+      <td>2007-11-09</td>
+      <td>37.8</td>
+      <td>17.1</td>
+      <td>186.0</td>
+      <td>3300.0</td>
+      <td>NaN</td>
+      <td>8.63243</td>
+      <td>-25.21315</td>
+      <td>No blood sample obtained for sexing.</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>339</th>
+      <td>PAL0910</td>
+      <td>64</td>
+      <td>Chinstrap penguin (Pygoscelis antarctica)</td>
+      <td>Anvers</td>
+      <td>Dream</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N98A2</td>
+      <td>Yes</td>
+      <td>2009-11-19</td>
+      <td>55.8</td>
+      <td>19.8</td>
+      <td>207.0</td>
+      <td>4000.0</td>
+      <td>MALE</td>
+      <td>9.70465</td>
+      <td>-24.53494</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>340</th>
+      <td>PAL0910</td>
+      <td>65</td>
+      <td>Chinstrap penguin (Pygoscelis antarctica)</td>
+      <td>Anvers</td>
+      <td>Dream</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N99A1</td>
+      <td>No</td>
+      <td>2009-11-21</td>
+      <td>43.5</td>
+      <td>18.1</td>
+      <td>202.0</td>
+      <td>3400.0</td>
+      <td>FEMALE</td>
+      <td>9.37608</td>
+      <td>-24.40753</td>
+      <td>Nest never observed with full clutch.</td>
+    </tr>
+    <tr>
+      <th>341</th>
+      <td>PAL0910</td>
+      <td>66</td>
+      <td>Chinstrap penguin (Pygoscelis antarctica)</td>
+      <td>Anvers</td>
+      <td>Dream</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N99A2</td>
+      <td>No</td>
+      <td>2009-11-21</td>
+      <td>49.6</td>
+      <td>18.2</td>
+      <td>193.0</td>
+      <td>3775.0</td>
+      <td>MALE</td>
+      <td>9.46180</td>
+      <td>-24.70615</td>
+      <td>Nest never observed with full clutch.</td>
+    </tr>
+    <tr>
+      <th>342</th>
+      <td>PAL0910</td>
+      <td>67</td>
+      <td>Chinstrap penguin (Pygoscelis antarctica)</td>
+      <td>Anvers</td>
+      <td>Dream</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N100A1</td>
+      <td>Yes</td>
+      <td>2009-11-21</td>
+      <td>50.8</td>
+      <td>19.0</td>
+      <td>210.0</td>
+      <td>4100.0</td>
+      <td>MALE</td>
+      <td>9.98044</td>
+      <td>-24.68741</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>343</th>
+      <td>PAL0910</td>
+      <td>68</td>
+      <td>Chinstrap penguin (Pygoscelis antarctica)</td>
+      <td>Anvers</td>
+      <td>Dream</td>
+      <td>Adult, 1 Egg Stage</td>
+      <td>N100A2</td>
+      <td>Yes</td>
+      <td>2009-11-21</td>
+      <td>50.2</td>
+      <td>18.7</td>
+      <td>198.0</td>
+      <td>3775.0</td>
+      <td>FEMALE</td>
+      <td>9.39305</td>
+      <td>-24.25255</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
 </table>
-
 <p>147 rows × 17 columns</p>
 </div>
 </div>
@@ -1164,8 +1162,7 @@ dtype: int64</code></pre>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>comments <span class="op">=</span> penguins[<span class="st">'Comments'</span>].value_counts()</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>comments</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
-<pre><code>Comments
-Nest never observed with full clutch.                                   34
+<pre><code>Nest never observed with full clutch.                                   34
 Not enough blood for isotopes.                                           7
 Sexing primers did not amplify.                                          4
 No blood sample obtained.                                                2
@@ -1175,7 +1172,7 @@ Nest never observed with full clutch. Not enough blood for isotopes.     1
 Sexing primers did not amplify. Not enough blood for isotopes.           1
 Adult not sampled. Nest never observed with full clutch.                 1
 No delta15N data received from lab.                                      1
-Name: count, dtype: int64</code></pre>
+Name: Comments, dtype: int64</code></pre>
 </div>
 </div>
 <p>Let’s save the comments separately and look at the rest.</p>
@@ -1292,88 +1289,87 @@ Categories (2, object): ['FEMALE', 'MALE']</code></pre>
 <span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="co"># can also provide a key which is a function of prototype Series -&gt; Series</span></span>
 <span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="co"># inplace = True doesn't return a new dataframe, sorts the given one in place</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Species</th>
-<th data-quarto-table-cell-role="th">Island</th>
-<th data-quarto-table-cell-role="th">Body Mass (g)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">314</td>
-<td>Chinstrap penguin (Pygoscelis antarctica)</td>
-<td>Dream</td>
-<td>2700.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">64</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>Biscoe</td>
-<td>2850.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">58</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>Biscoe</td>
-<td>2850.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">116</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>Torgersen</td>
-<td>2900.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">98</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>Dream</td>
-<td>2900.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">269</td>
-<td>Gentoo penguin (Pygoscelis papua)</td>
-<td>Biscoe</td>
-<td>6000.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">185</td>
-<td>Gentoo penguin (Pygoscelis papua)</td>
-<td>Biscoe</td>
-<td>6050.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">169</td>
-<td>Gentoo penguin (Pygoscelis papua)</td>
-<td>Biscoe</td>
-<td>6300.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>Adelie Penguin (Pygoscelis adeliae)</td>
-<td>Torgersen</td>
-<td>NaN</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">271</td>
-<td>Gentoo penguin (Pygoscelis papua)</td>
-<td>Biscoe</td>
-<td>NaN</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Species</th>
+      <th>Island</th>
+      <th>Body Mass (g)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>314</th>
+      <td>Chinstrap penguin (Pygoscelis antarctica)</td>
+      <td>Dream</td>
+      <td>2700.0</td>
+    </tr>
+    <tr>
+      <th>64</th>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Biscoe</td>
+      <td>2850.0</td>
+    </tr>
+    <tr>
+      <th>58</th>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Biscoe</td>
+      <td>2850.0</td>
+    </tr>
+    <tr>
+      <th>116</th>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Torgersen</td>
+      <td>2900.0</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Dream</td>
+      <td>2900.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>269</th>
+      <td>Gentoo penguin (Pygoscelis papua)</td>
+      <td>Biscoe</td>
+      <td>6000.0</td>
+    </tr>
+    <tr>
+      <th>185</th>
+      <td>Gentoo penguin (Pygoscelis papua)</td>
+      <td>Biscoe</td>
+      <td>6050.0</td>
+    </tr>
+    <tr>
+      <th>169</th>
+      <td>Gentoo penguin (Pygoscelis papua)</td>
+      <td>Biscoe</td>
+      <td>6300.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Adelie Penguin (Pygoscelis adeliae)</td>
+      <td>Torgersen</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>271</th>
+      <td>Gentoo penguin (Pygoscelis papua)</td>
+      <td>Biscoe</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
 </table>
-
 <p>344 rows × 3 columns</p>
 </div>
 </div>
@@ -1386,7 +1382,7 @@ Categories (2, object): ['FEMALE', 'MALE']</code></pre>
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>penguins_by_species <span class="op">=</span> penguins.groupby(<span class="st">'Species'</span>)</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>penguins_by_species</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
-<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x104187590&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f3dde74f3a0&gt;</code></pre>
 </div>
 </div>
 </section>
@@ -1396,71 +1392,70 @@ Categories (2, object): ['FEMALE', 'MALE']</code></pre>
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># describe computes basic descriptive statistics</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>penguins_by_species[<span class="st">'Body Mass (g)'</span>].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">count</th>
-<th data-quarto-table-cell-role="th">mean</th>
-<th data-quarto-table-cell-role="th">std</th>
-<th data-quarto-table-cell-role="th">min</th>
-<th data-quarto-table-cell-role="th">25%</th>
-<th data-quarto-table-cell-role="th">50%</th>
-<th data-quarto-table-cell-role="th">75%</th>
-<th data-quarto-table-cell-role="th">max</th>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">Species</th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Adelie Penguin (Pygoscelis adeliae)</td>
-<td>151.0</td>
-<td>3700.662252</td>
-<td>458.566126</td>
-<td>2850.0</td>
-<td>3350.0</td>
-<td>3700.0</td>
-<td>4000.0</td>
-<td>4775.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Chinstrap penguin (Pygoscelis antarctica)</td>
-<td>68.0</td>
-<td>3733.088235</td>
-<td>384.335081</td>
-<td>2700.0</td>
-<td>3487.5</td>
-<td>3700.0</td>
-<td>3950.0</td>
-<td>4800.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Gentoo penguin (Pygoscelis papua)</td>
-<td>123.0</td>
-<td>5076.016260</td>
-<td>504.116237</td>
-<td>3950.0</td>
-<td>4700.0</td>
-<td>5000.0</td>
-<td>5500.0</td>
-<td>6300.0</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+    <tr>
+      <th>Species</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Adelie Penguin (Pygoscelis adeliae)</th>
+      <td>151.0</td>
+      <td>3700.662252</td>
+      <td>458.566126</td>
+      <td>2850.0</td>
+      <td>3350.0</td>
+      <td>3700.0</td>
+      <td>4000.0</td>
+      <td>4775.0</td>
+    </tr>
+    <tr>
+      <th>Chinstrap penguin (Pygoscelis antarctica)</th>
+      <td>68.0</td>
+      <td>3733.088235</td>
+      <td>384.335081</td>
+      <td>2700.0</td>
+      <td>3487.5</td>
+      <td>3700.0</td>
+      <td>3950.0</td>
+      <td>4800.0</td>
+    </tr>
+    <tr>
+      <th>Gentoo penguin (Pygoscelis papua)</th>
+      <td>123.0</td>
+      <td>5076.016260</td>
+      <td>504.116237</td>
+      <td>3950.0</td>
+      <td>4700.0</td>
+      <td>5000.0</td>
+      <td>5500.0</td>
+      <td>6300.0</td>
+    </tr>
+  </tbody>
 </table>
-
 </div>
 </div>
 </div>
@@ -1468,187 +1463,185 @@ Categories (2, object): ['FEMALE', 'MALE']</code></pre>
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this fails because some columns aren't numeric</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>penguins_by_species.mean(numeric_only<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Sample Number</th>
-<th data-quarto-table-cell-role="th">Culmen Length (mm)</th>
-<th data-quarto-table-cell-role="th">Culmen Depth (mm)</th>
-<th data-quarto-table-cell-role="th">Flipper Length (mm)</th>
-<th data-quarto-table-cell-role="th">Body Mass (g)</th>
-<th data-quarto-table-cell-role="th">Delta 15 N (o/oo)</th>
-<th data-quarto-table-cell-role="th">Delta 13 C (o/oo)</th>
-<th data-quarto-table-cell-role="th">Body Mass (kg)</th>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">Species</th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Adelie Penguin (Pygoscelis adeliae)</td>
-<td>76.5</td>
-<td>38.791391</td>
-<td>18.346358</td>
-<td>189.953642</td>
-<td>3700.662252</td>
-<td>8.859733</td>
-<td>-25.804194</td>
-<td>3.700662</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Chinstrap penguin (Pygoscelis antarctica)</td>
-<td>34.5</td>
-<td>48.833824</td>
-<td>18.420588</td>
-<td>195.823529</td>
-<td>3733.088235</td>
-<td>9.356155</td>
-<td>-24.546542</td>
-<td>3.733088</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Gentoo penguin (Pygoscelis papua)</td>
-<td>62.5</td>
-<td>47.504878</td>
-<td>14.982114</td>
-<td>217.186992</td>
-<td>5076.016260</td>
-<td>8.245338</td>
-<td>-26.185298</td>
-<td>5.076016</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Sample Number</th>
+      <th>Culmen Length (mm)</th>
+      <th>Culmen Depth (mm)</th>
+      <th>Flipper Length (mm)</th>
+      <th>Body Mass (g)</th>
+      <th>Delta 15 N (o/oo)</th>
+      <th>Delta 13 C (o/oo)</th>
+      <th>Body Mass (kg)</th>
+    </tr>
+    <tr>
+      <th>Species</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Adelie Penguin (Pygoscelis adeliae)</th>
+      <td>76.5</td>
+      <td>38.791391</td>
+      <td>18.346358</td>
+      <td>189.953642</td>
+      <td>3700.662252</td>
+      <td>8.859733</td>
+      <td>-25.804194</td>
+      <td>3.700662</td>
+    </tr>
+    <tr>
+      <th>Chinstrap penguin (Pygoscelis antarctica)</th>
+      <td>34.5</td>
+      <td>48.833824</td>
+      <td>18.420588</td>
+      <td>195.823529</td>
+      <td>3733.088235</td>
+      <td>9.356155</td>
+      <td>-24.546542</td>
+      <td>3.733088</td>
+    </tr>
+    <tr>
+      <th>Gentoo penguin (Pygoscelis papua)</th>
+      <td>62.5</td>
+      <td>47.504878</td>
+      <td>14.982114</td>
+      <td>217.186992</td>
+      <td>5076.016260</td>
+      <td>8.245338</td>
+      <td>-26.185298</td>
+      <td>5.076016</td>
+    </tr>
+  </tbody>
 </table>
-
 </div>
 </div>
 </div>
 <div class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>penguins_by_species.count()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">studyName</th>
-<th data-quarto-table-cell-role="th">Sample Number</th>
-<th data-quarto-table-cell-role="th">Region</th>
-<th data-quarto-table-cell-role="th">Island</th>
-<th data-quarto-table-cell-role="th">Stage</th>
-<th data-quarto-table-cell-role="th">Individual ID</th>
-<th data-quarto-table-cell-role="th">Clutch Completion</th>
-<th data-quarto-table-cell-role="th">Date Egg</th>
-<th data-quarto-table-cell-role="th">Culmen Length (mm)</th>
-<th data-quarto-table-cell-role="th">Culmen Depth (mm)</th>
-<th data-quarto-table-cell-role="th">Flipper Length (mm)</th>
-<th data-quarto-table-cell-role="th">Body Mass (g)</th>
-<th data-quarto-table-cell-role="th">Sex</th>
-<th data-quarto-table-cell-role="th">Delta 15 N (o/oo)</th>
-<th data-quarto-table-cell-role="th">Delta 13 C (o/oo)</th>
-<th data-quarto-table-cell-role="th">SimpleSpecies</th>
-<th data-quarto-table-cell-role="th">Body Mass (kg)</th>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">Species</th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Adelie Penguin (Pygoscelis adeliae)</td>
-<td>152</td>
-<td>152</td>
-<td>152</td>
-<td>152</td>
-<td>152</td>
-<td>152</td>
-<td>152</td>
-<td>152</td>
-<td>151</td>
-<td>151</td>
-<td>151</td>
-<td>151</td>
-<td>146</td>
-<td>141</td>
-<td>141</td>
-<td>152</td>
-<td>151</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Chinstrap penguin (Pygoscelis antarctica)</td>
-<td>68</td>
-<td>68</td>
-<td>68</td>
-<td>68</td>
-<td>68</td>
-<td>68</td>
-<td>68</td>
-<td>68</td>
-<td>68</td>
-<td>68</td>
-<td>68</td>
-<td>68</td>
-<td>68</td>
-<td>67</td>
-<td>68</td>
-<td>68</td>
-<td>68</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Gentoo penguin (Pygoscelis papua)</td>
-<td>124</td>
-<td>124</td>
-<td>124</td>
-<td>124</td>
-<td>124</td>
-<td>124</td>
-<td>124</td>
-<td>124</td>
-<td>123</td>
-<td>123</td>
-<td>123</td>
-<td>123</td>
-<td>119</td>
-<td>122</td>
-<td>122</td>
-<td>124</td>
-<td>123</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>studyName</th>
+      <th>Sample Number</th>
+      <th>Region</th>
+      <th>Island</th>
+      <th>Stage</th>
+      <th>Individual ID</th>
+      <th>Clutch Completion</th>
+      <th>Date Egg</th>
+      <th>Culmen Length (mm)</th>
+      <th>Culmen Depth (mm)</th>
+      <th>Flipper Length (mm)</th>
+      <th>Body Mass (g)</th>
+      <th>Sex</th>
+      <th>Delta 15 N (o/oo)</th>
+      <th>Delta 13 C (o/oo)</th>
+      <th>SimpleSpecies</th>
+      <th>Body Mass (kg)</th>
+    </tr>
+    <tr>
+      <th>Species</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Adelie Penguin (Pygoscelis adeliae)</th>
+      <td>152</td>
+      <td>152</td>
+      <td>152</td>
+      <td>152</td>
+      <td>152</td>
+      <td>152</td>
+      <td>152</td>
+      <td>152</td>
+      <td>151</td>
+      <td>151</td>
+      <td>151</td>
+      <td>151</td>
+      <td>146</td>
+      <td>141</td>
+      <td>141</td>
+      <td>152</td>
+      <td>151</td>
+    </tr>
+    <tr>
+      <th>Chinstrap penguin (Pygoscelis antarctica)</th>
+      <td>68</td>
+      <td>68</td>
+      <td>68</td>
+      <td>68</td>
+      <td>68</td>
+      <td>68</td>
+      <td>68</td>
+      <td>68</td>
+      <td>68</td>
+      <td>68</td>
+      <td>68</td>
+      <td>68</td>
+      <td>68</td>
+      <td>67</td>
+      <td>68</td>
+      <td>68</td>
+      <td>68</td>
+    </tr>
+    <tr>
+      <th>Gentoo penguin (Pygoscelis papua)</th>
+      <td>124</td>
+      <td>124</td>
+      <td>124</td>
+      <td>124</td>
+      <td>124</td>
+      <td>124</td>
+      <td>124</td>
+      <td>124</td>
+      <td>123</td>
+      <td>123</td>
+      <td>123</td>
+      <td>123</td>
+      <td>119</td>
+      <td>122</td>
+      <td>122</td>
+      <td>124</td>
+      <td>123</td>
+    </tr>
+  </tbody>
 </table>
-
 </div>
 </div>
 </div>
@@ -1659,108 +1652,107 @@ Categories (2, object): ['FEMALE', 'MALE']</code></pre>
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>penguins_by_sex_and_species <span class="op">=</span> penguins.groupby([<span class="st">'Sex'</span>,<span class="st">'Species'</span>])</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>penguins_by_sex_and_species[<span class="st">'Body Mass (g)'</span>].describe().<span class="bu">round</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="32">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">count</th>
-<th data-quarto-table-cell-role="th">mean</th>
-<th data-quarto-table-cell-role="th">std</th>
-<th data-quarto-table-cell-role="th">min</th>
-<th data-quarto-table-cell-role="th">25%</th>
-<th data-quarto-table-cell-role="th">50%</th>
-<th data-quarto-table-cell-role="th">75%</th>
-<th data-quarto-table-cell-role="th">max</th>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">Sex</th>
-<th data-quarto-table-cell-role="th">Species</th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td rowspan="3" data-quarto-table-cell-role="th" data-valign="top">FEMALE</td>
-<td data-quarto-table-cell-role="th">Adelie Penguin (Pygoscelis adeliae)</td>
-<td>73.0</td>
-<td>3369.0</td>
-<td>269.0</td>
-<td>2850.0</td>
-<td>3175.0</td>
-<td>3400.0</td>
-<td>3550.0</td>
-<td>3900.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Chinstrap penguin (Pygoscelis antarctica)</td>
-<td>34.0</td>
-<td>3527.0</td>
-<td>285.0</td>
-<td>2700.0</td>
-<td>3362.0</td>
-<td>3550.0</td>
-<td>3694.0</td>
-<td>4150.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Gentoo penguin (Pygoscelis papua)</td>
-<td>58.0</td>
-<td>4680.0</td>
-<td>282.0</td>
-<td>3950.0</td>
-<td>4462.0</td>
-<td>4700.0</td>
-<td>4875.0</td>
-<td>5200.0</td>
-</tr>
-<tr class="even">
-<td rowspan="3" data-quarto-table-cell-role="th" data-valign="top">MALE</td>
-<td data-quarto-table-cell-role="th">Adelie Penguin (Pygoscelis adeliae)</td>
-<td>73.0</td>
-<td>4043.0</td>
-<td>347.0</td>
-<td>3325.0</td>
-<td>3800.0</td>
-<td>4000.0</td>
-<td>4300.0</td>
-<td>4775.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Chinstrap penguin (Pygoscelis antarctica)</td>
-<td>34.0</td>
-<td>3939.0</td>
-<td>362.0</td>
-<td>3250.0</td>
-<td>3731.0</td>
-<td>3950.0</td>
-<td>4100.0</td>
-<td>4800.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Gentoo penguin (Pygoscelis papua)</td>
-<td>61.0</td>
-<td>5485.0</td>
-<td>313.0</td>
-<td>4750.0</td>
-<td>5300.0</td>
-<td>5500.0</td>
-<td>5700.0</td>
-<td>6300.0</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+    <tr>
+      <th>Sex</th>
+      <th>Species</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" valign="top">FEMALE</th>
+      <th>Adelie Penguin (Pygoscelis adeliae)</th>
+      <td>73.0</td>
+      <td>3369.0</td>
+      <td>269.0</td>
+      <td>2850.0</td>
+      <td>3175.0</td>
+      <td>3400.0</td>
+      <td>3550.0</td>
+      <td>3900.0</td>
+    </tr>
+    <tr>
+      <th>Chinstrap penguin (Pygoscelis antarctica)</th>
+      <td>34.0</td>
+      <td>3527.0</td>
+      <td>285.0</td>
+      <td>2700.0</td>
+      <td>3362.0</td>
+      <td>3550.0</td>
+      <td>3694.0</td>
+      <td>4150.0</td>
+    </tr>
+    <tr>
+      <th>Gentoo penguin (Pygoscelis papua)</th>
+      <td>58.0</td>
+      <td>4680.0</td>
+      <td>282.0</td>
+      <td>3950.0</td>
+      <td>4462.0</td>
+      <td>4700.0</td>
+      <td>4875.0</td>
+      <td>5200.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">MALE</th>
+      <th>Adelie Penguin (Pygoscelis adeliae)</th>
+      <td>73.0</td>
+      <td>4043.0</td>
+      <td>347.0</td>
+      <td>3325.0</td>
+      <td>3800.0</td>
+      <td>4000.0</td>
+      <td>4300.0</td>
+      <td>4775.0</td>
+    </tr>
+    <tr>
+      <th>Chinstrap penguin (Pygoscelis antarctica)</th>
+      <td>34.0</td>
+      <td>3939.0</td>
+      <td>362.0</td>
+      <td>3250.0</td>
+      <td>3731.0</td>
+      <td>3950.0</td>
+      <td>4100.0</td>
+      <td>4800.0</td>
+    </tr>
+    <tr>
+      <th>Gentoo penguin (Pygoscelis papua)</th>
+      <td>61.0</td>
+      <td>5485.0</td>
+      <td>313.0</td>
+      <td>4750.0</td>
+      <td>5300.0</td>
+      <td>5500.0</td>
+      <td>5700.0</td>
+      <td>6300.0</td>
+    </tr>
+  </tbody>
 </table>
-
 </div>
 </div>
 </div>
@@ -1768,40 +1760,39 @@ Categories (2, object): ['FEMALE', 'MALE']</code></pre>
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot tables</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>penguins_by_sex_and_species[<span class="st">'Body Mass (g)'</span>].mean().reset_index().pivot(index<span class="op">=</span><span class="st">'Sex'</span>,columns<span class="op">=</span><span class="st">'Species'</span>,values<span class="op">=</span><span class="st">'Body Mass (g)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="33">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th">Species</th>
-<th data-quarto-table-cell-role="th">Adelie Penguin (Pygoscelis adeliae)</th>
-<th data-quarto-table-cell-role="th">Chinstrap penguin (Pygoscelis antarctica)</th>
-<th data-quarto-table-cell-role="th">Gentoo penguin (Pygoscelis papua)</th>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">Sex</th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">FEMALE</td>
-<td>3368.835616</td>
-<td>3527.205882</td>
-<td>4679.741379</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">MALE</td>
-<td>4043.493151</td>
-<td>3938.970588</td>
-<td>5484.836066</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>Species</th>
+      <th>Adelie Penguin (Pygoscelis adeliae)</th>
+      <th>Chinstrap penguin (Pygoscelis antarctica)</th>
+      <th>Gentoo penguin (Pygoscelis papua)</th>
+    </tr>
+    <tr>
+      <th>Sex</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>FEMALE</th>
+      <td>3368.835616</td>
+      <td>3527.205882</td>
+      <td>4679.741379</td>
+    </tr>
+    <tr>
+      <th>MALE</th>
+      <td>4043.493151</td>
+      <td>3938.970588</td>
+      <td>5484.836066</td>
+    </tr>
+  </tbody>
 </table>
-
 </div>
 </div>
 </div>
@@ -1829,208 +1820,207 @@ Name: Body Mass (g), dtype: object</code></pre>
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>crime2019 <span class="op">=</span> pd.read_excel(<span class="st">"data/Violent Crime-by state-2019-table-5.xls"</span>,header<span class="op">=</span><span class="dv">3</span>,nrows<span class="op">=</span><span class="dv">510</span>)</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>crime2019</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="35">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">State</th>
-<th data-quarto-table-cell-role="th">Area</th>
-<th data-quarto-table-cell-role="th">Unnamed: 2</th>
-<th data-quarto-table-cell-role="th">Population</th>
-<th data-quarto-table-cell-role="th">Violent \ncrime1</th>
-<th data-quarto-table-cell-role="th">Murder and \nnonnegligent \nmanslaughter</th>
-<th data-quarto-table-cell-role="th">Rape2</th>
-<th data-quarto-table-cell-role="th">Robbery</th>
-<th data-quarto-table-cell-role="th">Aggravated \nassault</th>
-<th data-quarto-table-cell-role="th">Property \ncrime</th>
-<th data-quarto-table-cell-role="th">Burglary</th>
-<th data-quarto-table-cell-role="th">Larceny-theft</th>
-<th data-quarto-table-cell-role="th">Motor \nvehicle \ntheft</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>ALABAMA</td>
-<td>Metropolitan Statistical Area</td>
-<td>NaN</td>
-<td>3728978.000</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Area actually reporting</td>
-<td>0.766</td>
-<td>12880</td>
-<td>182.0</td>
-<td>1141.0</td>
-<td>1706.0</td>
-<td>9851</td>
-<td>65789</td>
-<td>12388.0</td>
-<td>47299.0</td>
-<td>6102.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Estimated total</td>
-<td>1.000</td>
-<td>19951</td>
-<td>300.0</td>
-<td>1542.0</td>
-<td>3432.0</td>
-<td>14677</td>
-<td>104658</td>
-<td>20728.0</td>
-<td>73857.0</td>
-<td>10073.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>NaN</td>
-<td>Cities outside metropolitan areas</td>
-<td>NaN</td>
-<td>528518.000</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Area actually reporting</td>
-<td>0.893</td>
-<td>3327</td>
-<td>36.0</td>
-<td>297.0</td>
-<td>266.0</td>
-<td>2728</td>
-<td>17915</td>
-<td>3140.0</td>
-<td>13382.0</td>
-<td>1393.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">505</td>
-<td>NaN</td>
-<td>Nonmetropolitan counties</td>
-<td>NaN</td>
-<td>160615.000</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">506</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Area actually reporting</td>
-<td>0.921</td>
-<td>194</td>
-<td>0.0</td>
-<td>39.0</td>
-<td>0.0</td>
-<td>155</td>
-<td>973</td>
-<td>170.0</td>
-<td>716.0</td>
-<td>87.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">507</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Estimated total</td>
-<td>1.000</td>
-<td>213</td>
-<td>0.0</td>
-<td>42.0</td>
-<td>0.0</td>
-<td>171</td>
-<td>1065</td>
-<td>188.0</td>
-<td>781.0</td>
-<td>96.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">508</td>
-<td>NaN</td>
-<td>State Total</td>
-<td>NaN</td>
-<td>578759.000</td>
-<td>1258</td>
-<td>13.0</td>
-<td>324.0</td>
-<td>67.0</td>
-<td>854</td>
-<td>9093</td>
-<td>1396.0</td>
-<td>6984.0</td>
-<td>713.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">509</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Rate per 100,000 inhabitants</td>
-<td>NaN</td>
-<td>217.4</td>
-<td>2.2</td>
-<td>56.0</td>
-<td>11.6</td>
-<td>147.6</td>
-<td>1571.1</td>
-<td>241.2</td>
-<td>1206.7</td>
-<td>123.2</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>State</th>
+      <th>Area</th>
+      <th>Unnamed: 2</th>
+      <th>Population</th>
+      <th>Violent \ncrime1</th>
+      <th>Murder and \nnonnegligent \nmanslaughter</th>
+      <th>Rape2</th>
+      <th>Robbery</th>
+      <th>Aggravated \nassault</th>
+      <th>Property \ncrime</th>
+      <th>Burglary</th>
+      <th>Larceny-theft</th>
+      <th>Motor \nvehicle \ntheft</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ALABAMA</td>
+      <td>Metropolitan Statistical Area</td>
+      <td>NaN</td>
+      <td>3728978</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Area actually reporting</td>
+      <td>0.766</td>
+      <td>12880</td>
+      <td>182.0</td>
+      <td>1141.0</td>
+      <td>1706.0</td>
+      <td>9851</td>
+      <td>65789</td>
+      <td>12388.0</td>
+      <td>47299.0</td>
+      <td>6102.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Estimated total</td>
+      <td>1</td>
+      <td>19951</td>
+      <td>300.0</td>
+      <td>1542.0</td>
+      <td>3432.0</td>
+      <td>14677</td>
+      <td>104658</td>
+      <td>20728.0</td>
+      <td>73857.0</td>
+      <td>10073.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NaN</td>
+      <td>Cities outside metropolitan areas</td>
+      <td>NaN</td>
+      <td>528518</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Area actually reporting</td>
+      <td>0.893</td>
+      <td>3327</td>
+      <td>36.0</td>
+      <td>297.0</td>
+      <td>266.0</td>
+      <td>2728</td>
+      <td>17915</td>
+      <td>3140.0</td>
+      <td>13382.0</td>
+      <td>1393.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>505</th>
+      <td>NaN</td>
+      <td>Nonmetropolitan counties</td>
+      <td>NaN</td>
+      <td>160615</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>506</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Area actually reporting</td>
+      <td>0.921</td>
+      <td>194</td>
+      <td>0.0</td>
+      <td>39.0</td>
+      <td>0.0</td>
+      <td>155</td>
+      <td>973</td>
+      <td>170.0</td>
+      <td>716.0</td>
+      <td>87.0</td>
+    </tr>
+    <tr>
+      <th>507</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Estimated total</td>
+      <td>1</td>
+      <td>213</td>
+      <td>0.0</td>
+      <td>42.0</td>
+      <td>0.0</td>
+      <td>171</td>
+      <td>1065</td>
+      <td>188.0</td>
+      <td>781.0</td>
+      <td>96.0</td>
+    </tr>
+    <tr>
+      <th>508</th>
+      <td>NaN</td>
+      <td>State Total</td>
+      <td>NaN</td>
+      <td>578759</td>
+      <td>1258</td>
+      <td>13.0</td>
+      <td>324.0</td>
+      <td>67.0</td>
+      <td>854</td>
+      <td>9093</td>
+      <td>1396.0</td>
+      <td>6984.0</td>
+      <td>713.0</td>
+    </tr>
+    <tr>
+      <th>509</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Rate per 100,000 inhabitants</td>
+      <td>NaN</td>
+      <td>217.4</td>
+      <td>2.2</td>
+      <td>56.0</td>
+      <td>11.6</td>
+      <td>147.6</td>
+      <td>1571.1</td>
+      <td>241.2</td>
+      <td>1206.7</td>
+      <td>123.2</td>
+    </tr>
+  </tbody>
 </table>
-
 <p>510 rows × 13 columns</p>
 </div>
 </div>
@@ -2040,208 +2030,207 @@ Name: Body Mass (g), dtype: object</code></pre>
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>crime2019.columns <span class="op">=</span> [x.replace(<span class="st">" </span><span class="ch">\n</span><span class="st">"</span>,<span class="st">"_"</span>) <span class="cf">for</span> x <span class="kw">in</span> crime2019.columns]</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>crime2019</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="36">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">State</th>
-<th data-quarto-table-cell-role="th">Area</th>
-<th data-quarto-table-cell-role="th">Unnamed: 2</th>
-<th data-quarto-table-cell-role="th">Population</th>
-<th data-quarto-table-cell-role="th">Violent_crime1</th>
-<th data-quarto-table-cell-role="th">Murder and_nonnegligent_manslaughter</th>
-<th data-quarto-table-cell-role="th">Rape2</th>
-<th data-quarto-table-cell-role="th">Robbery</th>
-<th data-quarto-table-cell-role="th">Aggravated_assault</th>
-<th data-quarto-table-cell-role="th">Property_crime</th>
-<th data-quarto-table-cell-role="th">Burglary</th>
-<th data-quarto-table-cell-role="th">Larceny-theft</th>
-<th data-quarto-table-cell-role="th">Motor_vehicle_theft</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>ALABAMA</td>
-<td>Metropolitan Statistical Area</td>
-<td>NaN</td>
-<td>3728978.000</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Area actually reporting</td>
-<td>0.766</td>
-<td>12880</td>
-<td>182.0</td>
-<td>1141.0</td>
-<td>1706.0</td>
-<td>9851</td>
-<td>65789</td>
-<td>12388.0</td>
-<td>47299.0</td>
-<td>6102.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Estimated total</td>
-<td>1.000</td>
-<td>19951</td>
-<td>300.0</td>
-<td>1542.0</td>
-<td>3432.0</td>
-<td>14677</td>
-<td>104658</td>
-<td>20728.0</td>
-<td>73857.0</td>
-<td>10073.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>NaN</td>
-<td>Cities outside metropolitan areas</td>
-<td>NaN</td>
-<td>528518.000</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Area actually reporting</td>
-<td>0.893</td>
-<td>3327</td>
-<td>36.0</td>
-<td>297.0</td>
-<td>266.0</td>
-<td>2728</td>
-<td>17915</td>
-<td>3140.0</td>
-<td>13382.0</td>
-<td>1393.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">505</td>
-<td>NaN</td>
-<td>Nonmetropolitan counties</td>
-<td>NaN</td>
-<td>160615.000</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">506</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Area actually reporting</td>
-<td>0.921</td>
-<td>194</td>
-<td>0.0</td>
-<td>39.0</td>
-<td>0.0</td>
-<td>155</td>
-<td>973</td>
-<td>170.0</td>
-<td>716.0</td>
-<td>87.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">507</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Estimated total</td>
-<td>1.000</td>
-<td>213</td>
-<td>0.0</td>
-<td>42.0</td>
-<td>0.0</td>
-<td>171</td>
-<td>1065</td>
-<td>188.0</td>
-<td>781.0</td>
-<td>96.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">508</td>
-<td>NaN</td>
-<td>State Total</td>
-<td>NaN</td>
-<td>578759.000</td>
-<td>1258</td>
-<td>13.0</td>
-<td>324.0</td>
-<td>67.0</td>
-<td>854</td>
-<td>9093</td>
-<td>1396.0</td>
-<td>6984.0</td>
-<td>713.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">509</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Rate per 100,000 inhabitants</td>
-<td>NaN</td>
-<td>217.4</td>
-<td>2.2</td>
-<td>56.0</td>
-<td>11.6</td>
-<td>147.6</td>
-<td>1571.1</td>
-<td>241.2</td>
-<td>1206.7</td>
-<td>123.2</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>State</th>
+      <th>Area</th>
+      <th>Unnamed: 2</th>
+      <th>Population</th>
+      <th>Violent_crime1</th>
+      <th>Murder and_nonnegligent_manslaughter</th>
+      <th>Rape2</th>
+      <th>Robbery</th>
+      <th>Aggravated_assault</th>
+      <th>Property_crime</th>
+      <th>Burglary</th>
+      <th>Larceny-theft</th>
+      <th>Motor_vehicle_theft</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ALABAMA</td>
+      <td>Metropolitan Statistical Area</td>
+      <td>NaN</td>
+      <td>3728978</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Area actually reporting</td>
+      <td>0.766</td>
+      <td>12880</td>
+      <td>182.0</td>
+      <td>1141.0</td>
+      <td>1706.0</td>
+      <td>9851</td>
+      <td>65789</td>
+      <td>12388.0</td>
+      <td>47299.0</td>
+      <td>6102.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Estimated total</td>
+      <td>1</td>
+      <td>19951</td>
+      <td>300.0</td>
+      <td>1542.0</td>
+      <td>3432.0</td>
+      <td>14677</td>
+      <td>104658</td>
+      <td>20728.0</td>
+      <td>73857.0</td>
+      <td>10073.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NaN</td>
+      <td>Cities outside metropolitan areas</td>
+      <td>NaN</td>
+      <td>528518</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Area actually reporting</td>
+      <td>0.893</td>
+      <td>3327</td>
+      <td>36.0</td>
+      <td>297.0</td>
+      <td>266.0</td>
+      <td>2728</td>
+      <td>17915</td>
+      <td>3140.0</td>
+      <td>13382.0</td>
+      <td>1393.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>505</th>
+      <td>NaN</td>
+      <td>Nonmetropolitan counties</td>
+      <td>NaN</td>
+      <td>160615</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>506</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Area actually reporting</td>
+      <td>0.921</td>
+      <td>194</td>
+      <td>0.0</td>
+      <td>39.0</td>
+      <td>0.0</td>
+      <td>155</td>
+      <td>973</td>
+      <td>170.0</td>
+      <td>716.0</td>
+      <td>87.0</td>
+    </tr>
+    <tr>
+      <th>507</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Estimated total</td>
+      <td>1</td>
+      <td>213</td>
+      <td>0.0</td>
+      <td>42.0</td>
+      <td>0.0</td>
+      <td>171</td>
+      <td>1065</td>
+      <td>188.0</td>
+      <td>781.0</td>
+      <td>96.0</td>
+    </tr>
+    <tr>
+      <th>508</th>
+      <td>NaN</td>
+      <td>State Total</td>
+      <td>NaN</td>
+      <td>578759</td>
+      <td>1258</td>
+      <td>13.0</td>
+      <td>324.0</td>
+      <td>67.0</td>
+      <td>854</td>
+      <td>9093</td>
+      <td>1396.0</td>
+      <td>6984.0</td>
+      <td>713.0</td>
+    </tr>
+    <tr>
+      <th>509</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Rate per 100,000 inhabitants</td>
+      <td>NaN</td>
+      <td>217.4</td>
+      <td>2.2</td>
+      <td>56.0</td>
+      <td>11.6</td>
+      <td>147.6</td>
+      <td>1571.1</td>
+      <td>241.2</td>
+      <td>1206.7</td>
+      <td>123.2</td>
+    </tr>
+  </tbody>
 </table>
-
 <p>510 rows × 13 columns</p>
 </div>
 </div>
@@ -2425,23 +2414,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
   });
   clipboard.on('success', function(e) {
@@ -2506,92 +2481,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
