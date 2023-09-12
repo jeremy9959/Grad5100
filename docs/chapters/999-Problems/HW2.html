@@ -280,10 +280,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol type="1">
-<li>Let X be a binomial random variable with n=50 and p=.7.<br>
-</li>
-</ol>
+<section id="problem-1" class="level4">
+<h4 class="anchored" data-anchor-id="problem-1">Problem 1</h4>
+<p>Let X be a binomial random variable with n=50 and p=.7.</p>
 <ol type="a">
 <li>Draw 1000 samples from X. How many of your sampled values are less than 30?</li>
 <li>Based on the probability distribution, how many sampled values would you expect to see that are less than 30?<br>
@@ -297,10 +296,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>less_than_30_predicted <span class="ot">&lt;-</span> <span class="co">#</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># code to plot histogram of Xsamples</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="2" type="1">
-<li>The poisson distribution is a discrete probability distribution that arises in queuing theory (and many other places). For example, imagine that customers arrive at a server at a rate so that, in a typical one hour period, 20 customers come. But the intervals between customers are random and independent of one another. Then in a randomly chosen hour, the probability of k customers arriving is <code>dpois(k,20)</code>.<br>
-</li>
-</ol>
+</section>
+<section id="problem-2" class="level4">
+<h4 class="anchored" data-anchor-id="problem-2">Problem 2</h4>
+<p>The poisson distribution is a discrete probability distribution that arises in queuing theory (and many other places). For example, imagine that customers arrive at a server at a rate so that, in a typical one hour period, 20 customers come. But the intervals between customers are random and independent of one another. Then in a randomly chosen hour, the probability of k customers arriving is <code>dpois(k,20)</code>.</p>
 <ol type="a">
 <li>Sample this distribution 1000 times (hint: use <code>rpois</code>). What is the largest number of people who arrive in an one of these random hours? What is the smallest?</li>
 <li>Suppose you want to design your system so that it can handle the number of arriving customers 95% of the time. How many people should you design for? (Hint: use <code>qpois</code>).</li>
@@ -314,28 +313,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  threshold_95 <span class="ot">&lt;-</span><span class="co">#</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># code to plot the distribution</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="3" type="1">
-<li>Write an R function that takes a string as input, removes all characters that are not numbers, letters, or spaces, makes all the letters lower case, converts all the spaces to ’_’, and returns the result.</li>
-</ol>
+</section>
+<section id="problem-3" class="level4">
+<h4 class="anchored" data-anchor-id="problem-3">Problem 3</h4>
+<p>Write an R function that takes a string as input, removes all characters that are not numbers, letters, or spaces, makes all the letters lower case, converts all the spaces to ’_’, and returns the result.</p>
 <p>Hints:</p>
 <ul>
 <li>the <code>gsub</code> function replaces things in a string.</li>
 <li>the <code>tolower</code> function makes things lower case</li>
 <li>the builtin variable <code>letters</code> (resp <code>LETTERS</code>) is a vector of all lower (resp upper) case letters.</li>
 </ul>
-<ol start="4" type="1">
-<li>Do problem 3 in Python.</li>
-</ol>
+</section>
+<section id="problem-4" class="level4">
+<h4 class="anchored" data-anchor-id="problem-4">Problem 4</h4>
+<p>Do problem 3 in Python.</p>
 <p>Hints:</p>
 <ul>
 <li>the python string method <code>replace()</code> replaces thngs in a string. So if <code>x</code> is a string, <code>x.replace("a","b")</code> replaces all a’s by b.</li>
 <li>the python string method <code>lower()</code> makes a string lower case. So if <code>x</code> is a string, <code>x.lower()</code> is x in lower case.</li>
 </ul>
-<ol start="5" type="1">
-<li>If <span class="math inline">\(x_0=1\)</span> and <span class="math inline">\(n\)</span> is a positive real number, the iteration <span class="math display">\[
+</section>
+<section id="problem-5" class="level4">
+<h4 class="anchored" data-anchor-id="problem-5">Problem 5</h4>
+<p>If <span class="math inline">\(x_0=1\)</span> and <span class="math inline">\(n\)</span> is a positive real number, the iteration <span class="math display">\[
 x_{k+1} = x_{k}/2+n/(2x_k)
-\]</span></li>
-</ol>
+\]</span></p>
 <p>converges to the square root of <span class="math inline">\(n\)</span>. Write a Python function that runs this iteration until the difference between <span class="math inline">\(x_{k+1}\)</span> and <span class="math inline">\(x_{k}\)</span> is less than a tolerance.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sq(n):</span>
@@ -354,6 +356,7 @@ x_{k+1} = x_{k}/2+n/(2x_k)
 </ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
