@@ -321,7 +321,7 @@ Reshaped array to column vector:
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Cant Mix These"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[-0.94260357 -0.51025874 -1.0242889   0.30871172]
+<pre><code>[-1.50803521  1.05967845  1.3455611   0.10865527]
 Cant Mix These</code></pre>
 </div>
 </div>
@@ -378,16 +378,16 @@ x-z=[[-2 -1]
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x <span class="op">@</span> y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[[-1.05930328  1.40431715 -0.48586574 -0.80213615]
- [-0.73759816 -0.799913   -0.7420804   0.10504075]
- [ 0.52269789 -0.69729952  1.66042364  0.59416119]]
-[[-2.112799  ]
- [ 0.58153572]
- [ 1.50489563]
- [ 0.66553364]]
-[[1.78972966]
- [0.04637329]
- [1.38433839]]</code></pre>
+<pre><code>[[-0.80058602  1.85036268  1.57114112  0.95065538]
+ [ 0.14865433 -0.15517846 -0.81799108  0.42133238]
+ [-2.05946657 -2.01587488  0.07375019  0.59482133]]
+[[0.41593481]
+ [0.57841026]
+ [2.32591965]
+ [0.22344738]]
+[[ 4.60404663]
+ [-1.83636221]
+ [-1.71815826]]</code></pre>
 </div>
 </div>
 </section>
@@ -427,12 +427,22 @@ axis=1 yields column norms: [2.23606798 5.        ]</code></pre>
 </div>
 </div>
 </section>
+<section id="rank" class="level2">
+<h2 class="anchored" data-anchor-id="rank">Rank</h2>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">2</span>],[<span class="dv">3</span>,<span class="dv">4</span>]])</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>np.linalg.matrix_rank(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>2</code></pre>
+</div>
+</div>
+</section>
 <section id="dataframes-and-matrices" class="level2">
 <h2 class="anchored" data-anchor-id="dataframes-and-matrices">Dataframes and matrices</h2>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"data/penguins-raw.csv"</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[[<span class="st">"Body Mass (g)"</span>]])</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[[<span class="st">"Body Mass (g)"</span>]].values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"data/penguins-raw.csv"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[[<span class="st">"Body Mass (g)"</span>]])</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[[<span class="st">"Body Mass (g)"</span>]].values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     Body Mass (g)
 0           3750.0
@@ -797,12 +807,12 @@ axis=1 yields column norms: [2.23606798 5.        ]</code></pre>
 </section>
 <section id="datatypes" class="level2">
 <h2 class="anchored" data-anchor-id="datatypes">Datatypes</h2>
-<div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]], dtype<span class="op">=</span><span class="bu">int</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]], dtype<span class="op">=</span><span class="bu">float</span>)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x <span class="op">+</span> y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]], dtype<span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]], dtype<span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x <span class="op">+</span> y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1 2 3]
  [2 3 4]]
