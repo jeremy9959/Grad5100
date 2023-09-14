@@ -368,7 +368,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Each penguin is represented by a vector in <span class="math inline">\(\mathbf{R}^{4}\)</span>. So for example penguin number 34 is represented as follows.</p>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">34</span>, :]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="37">
 <pre><code>array([  39.2,   21.1,  196. , 4150. ])</code></pre>
 </div>
 </div>
@@ -453,8 +453,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
 </code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>&lt;matplotlib.image.AxesImage at 0x7f87b62f8f40&gt;</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="38">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7fbac8ac42e0&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="linear_algebra_files/figure-html/cell-7-output-3.png" width="415" height="411"></p>
@@ -578,8 +578,8 @@ b_1v_1+...+b_kv_k=0
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="bu">sum</span>(prods)  <span class="co"># sum of products</span></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[ 0.29047472  0.50153743 -0.05837093 -0.33501962 -0.34201305 -1.13318552
- -0.11990157 -0.60970654]</code></pre>
+<pre><code>[-1.52572548 -1.37077011 -2.29816584 -0.73291072 -2.19047921 -0.3894729
+ -0.3466777  -1.25016392]</code></pre>
 </div>
 </div>
 </section>
@@ -608,7 +608,7 @@ b_1v_1+...+b_kv_k=0
 <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>plt.plot(x0, predictions, color<span class="op">=</span><span class="st">"red"</span>)</span>
 <span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Miles per Gallon vs Engine Displacement"</span>)</span>
 <span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Displacement"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="42">
 <pre><code>Text(0.5, 0, 'Displacement')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -646,7 +646,7 @@ b_1v_1+...+b_kv_k=0
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(disp0, mpg0)</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>plt.scatter(disp0, predicted)</span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"MSE=</span><span class="sc">{:.2f}</span><span class="st">"</span>.<span class="bu">format</span>(np.linalg.norm(mpg0 <span class="op">-</span> predicted) <span class="op">/</span> mpg0.shape[<span class="dv">0</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="43">
 <pre><code>Text(0.5, 1.0, 'MSE=0.23')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -716,7 +716,7 @@ v_1\cdot v_2 = \|v_1\|\|v_2\|\cos(\theta)
 <section id="variance-correlation-and-cosine-similarity" class="level2">
 <h2 class="anchored" data-anchor-id="variance-correlation-and-cosine-similarity">Variance, Correlation and cosine similarity</h2>
 <p>If <span class="math inline">\(v\)</span> is a feature vector, let <span class="math inline">\(\overline{v}=\frac{1}{n}\sum_{i=1}^{n} v_{i}\)</span>.</p>
-<p>Notice that <span class="math inline">\(\overline{v}=v\cdot E\)</span> where <span class="math inline">\(E\)</span> is the vector with <span class="math inline">\(1/n\)</span> in each entry.</p>
+<p>Notice that <span class="math inline">\(\overline{v}=\frac{v\cdot E}{n}\)</span> where <span class="math inline">\(E\)</span> is the vector with <span class="math inline">\(1\)</span> in each entry.</p>
 <p><span class="math display">\[
 \|(v-\overline{v}E)\|=\sigma^{2}
 \]</span></p>
@@ -724,13 +724,13 @@ v_1\cdot v_2 = \|v_1\|\|v_2\|\cos(\theta)
 <section id="covariance" class="level2">
 <h2 class="anchored" data-anchor-id="covariance">Covariance</h2>
 <p>If <span class="math inline">\(v\)</span> and <span class="math inline">\(w\)</span> are two vectors, their <em>covariance</em> is <span class="math display">\[
-\sigma_{vw} = (v-\overline{v}E)\cdot (w-\overline{w}E)
+\sigma_{vw} = \frac{(v-\overline{v}E)\cdot (w-\overline{w}E)}{n}
 \]</span></p>
 </section>
 <section id="correlation" class="level2">
 <h2 class="anchored" data-anchor-id="correlation">Correlation</h2>
 <p>The correlation coefficient of <span class="math inline">\(v\)</span> and <span class="math inline">\(w\)</span> is <span class="math display">\[
-r_{vw}^2 = \frac{\sigma_{vw}}{\sigma{v}\sigma{w}}
+r_{vw} = \frac{\sigma_{vw}}{\sigma_{v}\sigma_{w}}=\frac{|(v-\overline{v}E)\cdot(w-\overline{w}E)|}{\|v-\overline{v}E)\|\|w-\overline{w}E\|}=\cos\theta
 \]</span></p>
 <p>It measures the cosine of the angle between <span class="math inline">\(v-\overline{v}E\)</span> and <span class="math inline">\(w-\overline{w}E\)</span>.</p>
 </section>
@@ -762,7 +762,7 @@ v\cdot x = b
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">2</span>])</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>], [<span class="dv">3</span>, <span class="fl">2.6</span>])</span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Hyperplane 2x-3y=0 with normal vector [-2,3]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="44">
 <pre><code>Text(0.5, 1.0, 'Hyperplane 2x-3y=0 with normal vector [-2,3]')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -798,7 +798,7 @@ D = \frac{w\cdot v-b}{\|v\|}.
 <span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">3.6</span>, <span class="dv">0</span>, <span class="vs">r"$\|w-x\|$"</span>)</span>
 <span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">1.9</span>, <span class="fl">2.2</span>, <span class="vs">r"$\theta$"</span>)</span>
 <span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">1.4</span>, <span class="vs">r"$\|w-x\|\cos(\theta)$"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="45">
 <pre><code>Text(-0.5, 1.4, '$\\|w-x\\|\\cos(\\theta)$')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -927,7 +927,7 @@ Compare -M[:,0]+M[:,2] with M@v
  [ 0.65618134 -0.58385122  1.          0.87120177]
  [ 0.59510982 -0.47191562  0.87120177  1.        ]]</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="47">
 <pre><code>Text(0.5, 1.0, 'covariance matrix heatmap')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -936,8 +936,8 @@ Compare -M[:,0]+M[:,2] with M@v
 </div>
 <div class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(x<span class="op">=</span>data0[:, <span class="dv">2</span>], y<span class="op">=</span>data0[:, <span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
-<pre><code>&lt;matplotlib.collections.PathCollection at 0x7f8797df9250&gt;</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="48">
+<pre><code>&lt;matplotlib.collections.PathCollection at 0x7fbac8953e20&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="linear_algebra_files/figure-html/cell-17-output-2.png" width="590" height="411"></p>

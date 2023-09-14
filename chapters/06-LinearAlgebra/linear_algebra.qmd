@@ -437,8 +437,8 @@ into the direction given by $u$.
 If $v$ is a feature vector, let 
 $\overline{v}=\frac{1}{n}\sum_{i=1}^{n} v_{i}$.
 
-Notice that $\overline{v}=v\cdot E$ where $E$
-is the vector with $1/n$ in each entry. 
+Notice that $\overline{v}=\frac{v\cdot E}{n}$ where $E$
+is the vector with $1$ in each entry. 
 
 $$
 \|(v-\overline{v}E)\|=\sigma^{2}
@@ -450,14 +450,14 @@ $$
 If $v$ and $w$ are two vectors, their *covariance*
 is
 $$
-\sigma_{vw} = (v-\overline{v}E)\cdot (w-\overline{w}E)
+\sigma_{vw} = \frac{(v-\overline{v}E)\cdot (w-\overline{w}E)}{n}
 $$
 
 ## Correlation
 
 The correlation coefficient of $v$ and $w$ is
 $$
-r_{vw}^2 = \frac{\sigma_{vw}}{\sigma{v}\sigma{w}}
+r_{vw} = \frac{\sigma_{vw}}{\sigma_{v}\sigma_{w}}=\frac{|(v-\overline{v}E)\cdot(w-\overline{w}E)|}{\|v-\overline{v}E)\|\|w-\overline{w}E\|}=\cos\theta
 $$
 
 It measures the cosine of the angle between $v-\overline{v}E$
