@@ -1,0 +1,28 @@
+---
+title: "ECDF and QQ Plot"
+format: html
+editor: source
+---
+
+```{r}
+library(ggplot2)
+v<-trees$Volume
+q<-ecdf(v)
+predicted<-pnorm(v,mean=mean(v),sd=sd(v))
+observed<-q(v)
+ggplot()+geom_point(aes(x=predicted,y=observed),alpha=.5)+xlim(0,1)+ylim(0,1)+ggtitle("QQ Plot of Volumes of Trees")
+```
+
+```{r}
+
+length(v)
+length(observed)
+length(predicted)
+```
+```{r}
+predicted
+```
+```{r}
+length(v[v<mean(v)])
+```
+
