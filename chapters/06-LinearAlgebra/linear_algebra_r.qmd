@@ -70,8 +70,8 @@ apply(u, 2, function(x) var(x))
 
 ## Multiplication
 ```{r}
-x = matrix(rnorm(12), nrow = 3)
-y = matrix(rnorm(15), ncol = 3)
+x <- matrix(rnorm(12), nrow = 3)
+y <- matrix(rnorm(15), ncol = 3)
 print(y %*% x)
 ```
 
@@ -89,6 +89,13 @@ x = matrix(c(1, 2, 3, 4), nrow = 2)
 norm(x, type = "2")
 apply(x, 2, function(x) norm(x, type = "2"))
 apply(x, 1, function(x) norm(x, type = "2"))
+```
+## Rank
+```{r}
+library(Matrix)
+x = matrix(c(1,2,3,4),nrow=2)
+z=rankMatrix(x)
+z[[1]]
 ```
 
 ## Dataframes and arrays
