@@ -14,6 +14,7 @@ project:
     - chapters/06-LinearAlgebra/linear_algebra_python.qmd
     - chapters/06-LinearAlgebra/linear_algebra_r.qmd
     - chapters/07-Calculus/*.qmd
+    - chapters/08-Summarizing/*.qmd
     - chapters/99-Resources/Cheatsheets.qmd
     - chapters/999-Problems/*.qmd
 
@@ -31,6 +32,8 @@ website:
         - chapters/05-WorkingWithData/pythonAndR.qmd
         - chapters/06-LinearAlgebra/linear_algebra.qmd
         - chapters/07-Calculus/calculus.qmd
+        - chapters/08-Summarizing/grouping_pandas.qmd
+        - chapters/08-Summarizing/groupingR.qmd
       - section: "Problems"
         contents:
         - chapters/999-Problems/HW1.qmd

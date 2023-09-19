@@ -1,5 +1,5 @@
 ---
-title: "Pandas Grouping and Summarizing"
+title: "Grouping and Summarizing in Pandas"
 format: html
 jupyter:
     kernelspec:
@@ -7,6 +7,11 @@ jupyter:
         language: "python"
         display_name: "python3"
 ---
+
+## Two python techniques
+
+1. dictionaries
+2. lambda functions
 
 ## Grouping and Summarizing
 
@@ -18,7 +23,7 @@ import  numpy as np
 Our first pass will be with our old friends the penguins.
 
 ```{python}
-penguins = pd.read_csv("penguins-raw.csv")
+penguins = pd.read_csv("data/penguins-raw.csv")
 ```
 
 ## Some basic data cleaning
@@ -43,7 +48,7 @@ edited_columns = ['species','island','sex','culmen_length', 'culmen_depth','flip
 simplified.columns = edited_columns
 ```
 
-4. Simplify factor names
+4. Simplify factor names. (Note use of dictionary)
 
 
 ```{python}
@@ -84,7 +89,7 @@ simplified = simplified.assign(sex = lambda x: x['sex'].str.lower())
 #simplified = simplified.assign(culmen_length_std = lambda x: (x.culmen_length-x.culmen_length.mean())/x.culmen_length.std())
 ```
 
-or make a standardization function.
+or make a standardization function. (note use of **)
 
 ```{python}
 def standardize(x):
@@ -100,8 +105,6 @@ simplified = simplified.assign(
 simplified.isna().sum()
 simplified = simplified.dropna(axis=0)
 ```
-
-
 
 
 7.  Grouping
@@ -130,4 +133,23 @@ To access individual elements, use tuples as names.
 
 ```{python}
 by_sex.loc[:,('culmen_depth','mean')]
+```
+
+One can also group on multiple factors.
+
+```{python}
+by_sex_and_species = simplified[['sex','species']+numerical_variables].groupby(['sex','species']).mean()
+females_by_species = by_sex_and_species.loc[('female',)]
+males_by_species = by_sex_and_species.loc[('male',)]
+```
+
+8.  Pivot tables
+
+```{python}
+expanded = by_sex_and_species.reset_index()
+expanded.pivot(index='sex',columns='species',values='culmen_length')
+```
+
+```{python}
+pd.pivot_table(simplified,values='culmen_length',index='sex',columns='species',aggfunc='mean')
 ```
