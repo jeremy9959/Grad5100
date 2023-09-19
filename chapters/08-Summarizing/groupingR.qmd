@@ -1,5 +1,5 @@
 ---
-title: "Grouping in R"
+title: "Grouping and Summarizing in R"
 subtitle: "Fundamentals of Data Science"
 author: "Jeremy Teitelbaum"
 format: html
@@ -49,8 +49,10 @@ simplified <- rename_with(simplified,fixer)
 4. Simplify factor names
 
 ```{r}
-species <- simplified |> select(`species`) |> unique()
-simplified <- simplified |> mutate(`species` = tolower(word(`species`,1)))by_
+species <- simplified |>
+    select(`species`) |>
+    unique()
+simplified <- simplified |> mutate(`species` = tolower(word(`species`, 1)))
 simplified <- simplified |> mutate(`island` = tolower(`island`))
 simplified <- simplified |> mutate(`sex` = tolower(`sex`))
 ```
