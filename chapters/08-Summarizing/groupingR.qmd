@@ -34,7 +34,7 @@ edited_columns <- c(species = "Species", island = "Island", culmen_length='Culme
 rename(simplified, all_of(edited_columns))
 ```
 
-Renaming with a function:
+Renaming with a function:.  Note the escape codes (double \).
 
 ```{r}
 fixer <- function(n) {
