@@ -138,9 +138,20 @@ by_sex.loc[:,('culmen_depth','mean')]
 One can also group on multiple factors.
 
 ```{python}
-by_sex_and_species = simplified[['sex','species']+numerical_variables].groupby(['sex','species']).mean()
-females_by_species = by_sex_and_species.loc[('female',)]
-males_by_species = by_sex_and_species.loc[('male',)]
+by_sex_and_species = (
+    simplified[["sex", "species"] + numerical_variables]
+    .groupby(["sex", "species"])
+    .mean()
+)
+females_by_species = by_sex_and_species.loc[("female",)]
+males_by_species = by_sex_and_species.loc[("male",)]
+```
+
+You can skip levels in the hierarchy using `slice(None)`:
+
+
+```{python}
+by_sex_and_species.loc[(slice('female'),slice('adelie','chinstrap')),:]
 ```
 
 8.  Pivot tables
@@ -152,4 +163,16 @@ expanded.pivot(index='sex',columns='species',values='culmen_length')
 
 ```{python}
 pd.pivot_table(simplified,values='culmen_length',index='sex',columns='species',aggfunc='mean')
+```
+
+9. Making a function
+
+```{python}
+def ptable(value, aggfunc="mean"):
+    return pd.pivot_table(
+        simplified, values=value, index="sex", columns="species", aggfunc=aggfunc
+    )
+
+
+ptable("body_mass", "std")
 ```

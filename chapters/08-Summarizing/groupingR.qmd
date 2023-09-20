@@ -106,3 +106,14 @@ by_sex_and_species |>
     select(species, sex, culmen_length) |>
     pivot_wider(names_from = species, values_from = culmen_length)
 ```
+
+9.  Making a function for each possibility
+
+```{r}
+ptable <- function(value) {
+    by_sex_and_species |>
+        select(species, sex, {{ value }}) |>
+        pivot_wider(names_from = species, values_from = {{ value }})
+}
+ptable("body_mass")
+```
