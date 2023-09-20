@@ -433,17 +433,68 @@ Name: (culmen_depth, mean), dtype: float64</code></pre>
 </div>
 <p>One can also group on multiple factors.</p>
 <div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>by_sex_and_species <span class="op">=</span> simplified[[<span class="st">'sex'</span>,<span class="st">'species'</span>]<span class="op">+</span>numerical_variables].groupby([<span class="st">'sex'</span>,<span class="st">'species'</span>]).mean()</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>females_by_species <span class="op">=</span> by_sex_and_species.loc[(<span class="st">'female'</span>,)]</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>males_by_species <span class="op">=</span> by_sex_and_species.loc[(<span class="st">'male'</span>,)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>by_sex_and_species <span class="op">=</span> (</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    simplified[[<span class="st">"sex"</span>, <span class="st">"species"</span>] <span class="op">+</span> numerical_variables]</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    .groupby([<span class="st">"sex"</span>, <span class="st">"species"</span>])</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    .mean()</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>females_by_species <span class="op">=</span> by_sex_and_species.loc[(<span class="st">"female"</span>,)]</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>males_by_species <span class="op">=</span> by_sex_and_species.loc[(<span class="st">"male"</span>,)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can skip levels in the hierarchy using <code>slice(None)</code>:</p>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>by_sex_and_species.loc[(<span class="bu">slice</span>(<span class="st">'female'</span>),<span class="bu">slice</span>(<span class="st">'adelie'</span>,<span class="st">'chinstrap'</span>)),:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>culmen_length</th>
+      <th>culmen_depth</th>
+      <th>flipper_length</th>
+      <th>body_mass</th>
+    </tr>
+    <tr>
+      <th>sex</th>
+      <th>species</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">female</th>
+      <th>adelie</th>
+      <td>37.257534</td>
+      <td>17.621918</td>
+      <td>187.794521</td>
+      <td>3368.835616</td>
+    </tr>
+    <tr>
+      <th>chinstrap</th>
+      <td>46.573529</td>
+      <td>17.588235</td>
+      <td>191.735294</td>
+      <td>3527.205882</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
 </div>
 <ol start="8" type="1">
 <li>Pivot tables</li>
 </ol>
-<div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>expanded <span class="op">=</span> by_sex_and_species.reset_index()</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>expanded.pivot(index<span class="op">=</span><span class="st">'sex'</span>,columns<span class="op">=</span><span class="st">'species'</span>,values<span class="op">=</span><span class="st">'culmen_length'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="19">
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>expanded <span class="op">=</span> by_sex_and_species.reset_index()</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>expanded.pivot(index<span class="op">=</span><span class="st">'sex'</span>,columns<span class="op">=</span><span class="st">'species'</span>,values<span class="op">=</span><span class="st">'culmen_length'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
 
 <div>
 
@@ -480,9 +531,9 @@ Name: (culmen_depth, mean), dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>pd.pivot_table(simplified,values<span class="op">=</span><span class="st">'culmen_length'</span>,index<span class="op">=</span><span class="st">'sex'</span>,columns<span class="op">=</span><span class="st">'species'</span>,aggfunc<span class="op">=</span><span class="st">'mean'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>pd.pivot_table(simplified,values<span class="op">=</span><span class="st">'culmen_length'</span>,index<span class="op">=</span><span class="st">'sex'</span>,columns<span class="op">=</span><span class="st">'species'</span>,aggfunc<span class="op">=</span><span class="st">'mean'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
 
 <div>
 
@@ -513,6 +564,54 @@ Name: (culmen_depth, mean), dtype: float64</code></pre>
       <td>40.390411</td>
       <td>51.094118</td>
       <td>49.473770</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<ol start="9" type="1">
+<li>Making a function</li>
+</ol>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ptable(value, aggfunc<span class="op">=</span><span class="st">"mean"</span>):</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.pivot_table(</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>        simplified, values<span class="op">=</span>value, index<span class="op">=</span><span class="st">"sex"</span>, columns<span class="op">=</span><span class="st">"species"</span>, aggfunc<span class="op">=</span>aggfunc</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>ptable(<span class="st">"body_mass"</span>, <span class="st">"std"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>species</th>
+      <th>adelie</th>
+      <th>chinstrap</th>
+      <th>gentoo</th>
+    </tr>
+    <tr>
+      <th>sex</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>female</th>
+      <td>269.380102</td>
+      <td>285.333912</td>
+      <td>281.578294</td>
+    </tr>
+    <tr>
+      <th>male</th>
+      <td>346.811553</td>
+      <td>362.137550</td>
+      <td>313.158596</td>
     </tr>
   </tbody>
 </table>

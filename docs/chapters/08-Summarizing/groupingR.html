@@ -360,7 +360,7 @@ date (1): Date Egg
 # ℹ 334 more rows</code></pre>
 </div>
 </div>
-<p>Renaming with a function:</p>
+<p>Renaming with a function:. Note the escape codes (double ).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fixer <span class="ot">&lt;-</span> <span class="cf">function</span>(n) {</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>        a <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">" </span><span class="sc">\\</span><span class="st">(mm</span><span class="sc">\\</span><span class="st">)"</span>,<span class="st">""</span>,n)</span>
@@ -477,6 +477,24 @@ date (1): Date Egg
   &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;
 1 female   37.3      46.6   45.6
 2 male     40.4      51.1   49.5</code></pre>
+</div>
+</div>
+<ol start="9" type="1">
+<li>Making a function for each possibility</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ptable <span class="ot">&lt;-</span> <span class="cf">function</span>(value) {</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    by_sex_and_species <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(species, sex, {{ value }}) <span class="sc">|&gt;</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> species, <span class="at">values_from =</span> {{ value }})</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ptable</span>(<span class="st">"body_mass"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+  sex    adelie chinstrap gentoo
+  &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;
+1 female  3369.     3527.  4680.
+2 male    4043.     3939.  5485.</code></pre>
 </div>
 </div>
 
