@@ -13,6 +13,15 @@ jupyter:
 1. dictionaries
 2. lambda functions
 
+## Refactoring
+
+See [this python script file](penguins_setup.py) for an example of how to pull out code into a python function that standardizes your data preparation.  To use
+this, you can use the `%load` command in a jupyter notebook.  The command `%load filename` loads
+the content of the file into an executable cell.
+You need to execute that cell. 
+
+If you modify the script, you need to reload it.
+
 ## Grouping and Summarizing
 
 ```{python}
@@ -138,9 +147,20 @@ by_sex.loc[:,('culmen_depth','mean')]
 One can also group on multiple factors.
 
 ```{python}
-by_sex_and_species = simplified[['sex','species']+numerical_variables].groupby(['sex','species']).mean()
-females_by_species = by_sex_and_species.loc[('female',)]
-males_by_species = by_sex_and_species.loc[('male',)]
+by_sex_and_species = (
+    simplified[["sex", "species"] + numerical_variables]
+    .groupby(["sex", "species"])
+    .mean()
+)
+females_by_species = by_sex_and_species.loc[("female",)]
+males_by_species = by_sex_and_species.loc[("male",)]
+```
+
+You can skip levels in the hierarchy using `slice(None)`:
+
+
+```{python}
+by_sex_and_species.loc[(slice('female'),slice('adelie','chinstrap')),:]
 ```
 
 8.  Pivot tables
@@ -152,4 +172,16 @@ expanded.pivot(index='sex',columns='species',values='culmen_length')
 
 ```{python}
 pd.pivot_table(simplified,values='culmen_length',index='sex',columns='species',aggfunc='mean')
+```
+
+9. Making a function
+
+```{python}
+def ptable(value, aggfunc="mean"):
+    return pd.pivot_table(
+        simplified, values=value, index="sex", columns="species", aggfunc=aggfunc
+    )
+
+
+ptable("body_mass", "std")
 ```

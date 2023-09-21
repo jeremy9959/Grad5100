@@ -34,7 +34,7 @@ edited_columns <- c(species = "Species", island = "Island", culmen_length='Culme
 rename(simplified, all_of(edited_columns))
 ```
 
-Renaming with a function:
+Renaming with a function:.  Note the escape codes (double \).
 
 ```{r}
 fixer <- function(n) {
@@ -105,4 +105,15 @@ by_sex_and_species |> filter(sex=='male')
 by_sex_and_species |>
     select(species, sex, culmen_length) |>
     pivot_wider(names_from = species, values_from = culmen_length)
+```
+
+9.  Making a function for each possibility
+
+```{r}
+ptable <- function(value) {
+    by_sex_and_species |>
+        select(species, sex, {{ value }}) |>
+        pivot_wider(names_from = species, values_from = {{ value }})
+}
+ptable("body_mass")
 ```
