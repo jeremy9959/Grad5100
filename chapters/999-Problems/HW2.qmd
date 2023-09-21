@@ -91,7 +91,7 @@ until the difference between $x_{k+1}$ and $x_{k}$ is less than a tolerance.
 def sq(n):
     x=1
     tol = 1
-    while(tol>1e-6):
+    while(np.abs(tol)>1e-6):
         xnew = # fill this in
         tol = xnew - x
         x = xnew
