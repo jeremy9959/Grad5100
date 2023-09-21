@@ -13,6 +13,15 @@ jupyter:
 1. dictionaries
 2. lambda functions
 
+## Refactoring
+
+See [this python script file](penguins_setup.py) for an example of how to pull out code into a python function that standardizes your data preparation.  To use
+this, you can use the `%load` command in a jupyter notebook.  The command `%load filename` loads
+the content of the file into an executable cell.
+You need to execute that cell. 
+
+If you modify the script, you need to reload it.
+
 ## Grouping and Summarizing
 
 ```{python}
