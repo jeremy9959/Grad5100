@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Jeremy Teitelbaum">
 
-<title>Fundamentals of Machine Learning - Data Structures and Functions in R and Python</title>
+<title>Fundamentals of Machine Learning - Pandas Grouping and Summarizing</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -72,7 +105,9 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/00-OrientationProject/orientation-project.html">Contents</a></li><li class="breadcrumb-item"><a href="../../chapters/05-WorkingWithData/pythonAndR.html">Data Structures and Functions in R and Python</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      Fundamentals of Machine Learning
+      </li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -138,7 +173,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/05-WorkingWithData/pythonAndR.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../chapters/05-WorkingWithData/pythonAndR.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data Structures and Functions in R and Python</span></a>
   </div>
 </li>
@@ -225,20 +260,13 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Structures and Functions in R and Python</h1>
-<p class="subtitle lead">Fundamentals of Data Science</p>
+<h1 class="title">Pandas Grouping and Summarizing</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Jeremy Teitelbaum </p>
-          </div>
-  </div>
     
   
     
@@ -247,37 +275,18 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="basic-data-structures-for-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="basic-data-structures-for-analysis">Basic data structures for analysis</h2>
-<p>Both R and Python have data structures like excel spreadsheets that are the basic way to organize tabular data.</p>
-<p>In R, these tools are packaged together in a family of libraries called the <code>tidyverse</code>.</p>
-<p>In Python they are packaged in two closely related libraries, <code>numpy</code> (which handles numerical linear algebra) and <code>pandas</code> which handles tabular data.</p>
-<p>In Python, these tabular data structures are called <em>dataframes</em>; in R they are called <em>tibbles</em> (there are dataframes in R as well but the tidyverse package mainly uses tibbles.)</p>
-</section>
-<section id="features" class="level2">
-<h2 class="anchored" data-anchor-id="features">Features</h2>
-<p>The basic operations that both R and Python offer are</p>
-<ul>
-<li><em>mapping</em> a function to a column of data and creating a new column</li>
-<li><em>selecting</em> a particular column</li>
-<li><em>filtering</em> to select rows where column entries meet a condition</li>
-<li><em>grouping</em> rows by keys</li>
-<li><em>summarizing</em> data by computing sums, counts, averages, variances, and so on.</li>
-</ul>
-</section>
-<section id="visualization" class="level2">
-<h2 class="anchored" data-anchor-id="visualization">Visualization</h2>
-<p>In addition, both R and Python have plotting libraries that rely on dataframes/tibbles as input and libraries that apply ML algorithms to tabular data stored in dataframes/tibbles.</p>
-</section>
-<section id="walkthroughs" class="level2">
-<h2 class="anchored" data-anchor-id="walkthroughs">Walkthroughs</h2>
-<ul>
-<li><a href="../../chapters/05-WorkingWithData/r_programming.html">R/basics of R programming</a></li>
-<li><a href="../../chapters/05-WorkingWithData/r_penguins.html">R/tidyverse walkthrough</a></li>
-<li><a href="../../chapters/05-WorkingWithData/python_programming.html">Python/basics of python programming</a></li>
-<li><a href="../../chapters/05-WorkingWithData/pandas_penguins.html">Python/pandas walkthrough</a></li>
-</ul>
-<p>To download the materials including the data so you can work with them locally, <a href="programming.zip">follow this link</a>.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>abnb <span class="op">=</span> pd.read_csv(<span class="st">"data/AB_NYC_2019.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
+<p>Are there missing values? If so, where?</p>
+<p>Suppose you want to study the price differential by neighborhood. To start, make a pivot table showing average price by neighborhood and room type.</p>
+<p>Do these exercises in R as well.</p>
 
 
 </section>
