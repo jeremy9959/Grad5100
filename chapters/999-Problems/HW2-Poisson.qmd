@@ -1,0 +1,50 @@
+---
+title: HW2 - Comments on Poisson
+subtitle: Fundamentals of Data Science
+author: Jeremy Teitelbaum
+format: html
+---
+
+## The Poisson Distribution
+
+The Poisson distribution measures the probability of $k$ events occurring
+in a given time interval, assuming:
+
+- the interarrival times are independent of one another
+- the mean number of arrivals in any interval is a constant $\lambda$.
+
+```{r echo=FALSE}
+library(ggplot2)
+library(dplyr)
+library(gridExtra)
+```
+
+```{r}
+pdata <- tibble(
+    x = seq(0, 20),
+)
+plts <- list()
+i <- 1
+
+for (n in seq(1, 10, 2)) {
+    cname <- paste0("y", n)
+    pdata <- pdata |> mutate({{ cname }} := dpois(`x`, n))
+}
+
+p1 <- ggplot(data = pdata, aes(x = x)) +
+    geom_col(aes(y = y1)) +
+    ggtitle("mean=1")
+p3 <- ggplot(data = pdata, aes(x = x)) +
+    geom_col(aes(y = y3)) +
+    ggtitle("mean=3")
+p5 <- ggplot(data = pdata, aes(x = x)) +
+    geom_col(aes(y = y5)) +
+    ggtitle("mean=5")
+p7 <- ggplot(data = pdata, aes(x = x)) +
+    geom_col(aes(y = y7)) +
+    ggtitle("mean=7")
+p9 <- ggplot(data = pdata, aes(x = x)) +
+    geom_col(aes(y = y9)) +
+    ggtitle("mean=9")
+grid.arrange(p1, p3, p5, p7, p9)
+```
