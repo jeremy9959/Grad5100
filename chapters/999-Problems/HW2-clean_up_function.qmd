@@ -1,0 +1,118 @@
+---
+title: Comments on HW2 - String Clean Up
+author: Jeremy Teitelbaum
+subtitle: Fundamentals of Data Science
+format: html
+---
+
+## Python
+
+4 Sample Solutions
+
+```{python}
+def clean_up(s):
+    new_s = ""
+    for x in s:
+        if x in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ":
+            if x == " ":
+                new_s = new_s + "_"
+            else:
+                new_s = new_s + x
+    return new_s.lower()
+
+
+```
+
+```{python}
+
+
+def clean_string(input_string):
+    # Remove characters that are not numbers, letters, or spaces
+    cleaned_string = "".join(
+        char for char in input_string if char.isalnum() or char == " "
+    )
+    # Convert to lowercase
+    cleaned_string = cleaned_string.lower()
+    # Convert spaces to underscores
+    cleaned_string = cleaned_string.replace(" ", "_")
+
+    return cleaned_string
+
+
+```
+
+```{python}
+def editing_2(x):
+    text_2 = ""
+    for char in x:
+        if char.isalnum() or char.isspace() or char.isalpha():
+            text_2 = text_2 + char
+    text_2 = text_2.lower()
+    text_2 = text_2.replace(" ", "_")
+    return text_2
+
+
+```
+
+```{python}
+import re
+
+
+def p4(s):
+    s = re.sub(r"[^a-zA-Z0-9 ]", "", s)
+    s = s.replace(" ", "_")
+    return s.lower()
+
+
+```
+
+## R
+
+```{r}
+clean_up <- function(s) {
+    valid <- c(letters, LETTERS, " ", seq(0, 9)) # a vector of the things I want to keep
+    split_string <- strsplit(s, "")[[1]]
+    keepers <- split_string[split_string %in% valid]
+    keepers <- tolower(gsub(" ", "_", keepers))
+    paste(keepers, collapse = "")
+}
+```
+
+```{r}
+string_edit <- function(string) {
+    acceptable_characters <- c(letters, LETTERS, as.character(seq(0, 9)), " ")
+    unacceptable_characters <- paste("[^", paste0(acceptable_characters, collapse = ""), "]", sep = "")
+
+    cleaned_string <- string
+
+    for (character in unacceptable_characters) {
+        cleaned_string <- gsub(character, "", cleaned_string)
+    }
+
+    cleaned_string <- tolower(cleaned_string)
+
+    cleaned_string <- gsub(" ", "_", cleaned_string)
+
+    return(cleaned_string)
+}
+```
+
+```{r}
+i_function <- function(input) {
+    a1 <- gsub("[^[:alnum:] ]", "", input)
+    a2 <- gsub(" ", "_", a1)
+    tolower(a2)
+}
+```
+
+```{r}
+clean_and_format_string <- function(input_string) {
+    cleaned_string <- gsub("[^0-9a-zA-Z[:space:]]", "", input_string)
+
+    cleaned_string <- tolower(cleaned_string)
+
+    cleaned_string <- gsub(" ", "_", cleaned_string)
+
+    return(cleaned_string)
+}
+```

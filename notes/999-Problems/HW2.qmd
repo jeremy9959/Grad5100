@@ -1,0 +1,38 @@
+---
+title: Homework 2 - R 
+author: Jeremy Teitelbaum
+format: html
+---
+```{r}
+library(ggplot2)
+```
+
+```{r}
+Xsamples <- rbinom(1000,50,.7)
+less_than_30_observed <- sum(Xsamples<30)
+less_than_30_predicted <- pbinom(29,50,.7)
+ggplot()+geom_histogram(aes(x=Xsamples),bins=50,binwidth=1)+xlim(0,50)+ggtitle('Binomial Samples, p=.7, N=50')
+```
+
+```{r}
+poisson_samples <- rpois(1000,20)
+max_arrivals <- max(poisson_samples)
+min_arrivals <- min(poisson_samples)
+threshold_95 <- qpois(.95,20)
+p18_22 <- ppois(22,20)-ppois(18,20)
+```
+
+```{r}
+x<-seq(0,40)
+y<-dpois(x,20)
+ggplot()+geom_col(aes(x=x,y=y))+geom_line(aes(x=x,y=y,color='red'),size=2)
+```
+
+```{r}
+clean_up <- function(s) {
+    valid <- c(letters, LETTERS, " ", seq(0, 9)) # a vector of the things I want to keep
+    split_string <- strsplit(s, "")[[1]]
+    keepers <- split_string[split_string %in% valid]
+    keepers <- tolower(gsub(" ", "_", keepers))
+    paste(keepers, collapse = "")
+}
