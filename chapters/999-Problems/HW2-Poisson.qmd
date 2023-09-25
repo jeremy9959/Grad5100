@@ -13,10 +13,13 @@ in a given time interval, assuming:
 - the interarrival times are independent of one another
 - the mean number of arrivals in any interval is a constant $\lambda$.
 
-```{r echo=FALSE}
+```{r}
+#| echo: false
+#|
 library(ggplot2)
 library(dplyr)
 library(gridExtra)
+
 ```
 
 ```{r}
@@ -67,7 +70,8 @@ ggplot() +
 
 In a "Poisson Process", events occur randomly in time.  The interval between two consecutive events is chosen (independently) from an exponential distribution.
 
-```{r, warnings=FALSE}
+```{r}
+#| warning: false
 t <- rexp(100, 1)
 arrivals <- cumsum(t)
 ggplot() +
