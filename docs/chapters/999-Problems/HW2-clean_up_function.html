@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jeremy Teitelbaum">
 
-<title>Fundamentals of Machine Learning - Key Tools for Data Science</title>
+<title>Fundamentals of Machine Learning - Comments on HW2 - String Clean Up</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -132,7 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Key Tools for Data Science</h1>
+      <h1 class="quarto-secondary-nav-title">Comments on HW2 - String Clean Up</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -170,7 +170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/01-SettingUp/setting-up.html" class="sidebar-item-text sidebar-link active">Key Tools for Data Science</a>
+  <a href="../../chapters/01-SettingUp/setting-up.html" class="sidebar-item-text sidebar-link">Key Tools for Data Science</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -240,7 +240,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/999-Problems/HW2-clean_up_function.html" class="sidebar-item-text sidebar-link">Comments on HW2 - String Clean Up</a>
+  <a href="../../chapters/999-Problems/HW2-clean_up_function.html" class="sidebar-item-text sidebar-link active">Comments on HW2 - String Clean Up</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -275,7 +275,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Key Tools for Data Science</h1>
+<h1 class="title d-none d-lg-block">Comments on HW2 - String Clean Up</h1>
 <p class="subtitle lead">Fundamentals of Data Science</p>
 </div>
 
@@ -297,138 +297,104 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="key-software-tools" class="level1">
-<h1>Key Software Tools</h1>
-<section id="anaconda-install-for-python" class="level2">
-<h2 class="anchored" data-anchor-id="anaconda-install-for-python">Anaconda Install for Python</h2>
-<ul>
-<li>Download from <a href="https://www.anaconda.com">https://www.anaconda.com</a></li>
-</ul>
-<p>Anaconda includes:</p>
-<ul>
-<li>python</li>
-<li>jupyter: notebook working environment</li>
-<li>python libraries: ML, visualization, I/O and others</li>
-<li>conda package manager: for dealing with multiple versions of libraries</li>
-<li>anaconda navigator: a GUI gateway to anaconda tools</li>
-<li>lots of other stuff</li>
-</ul>
+<section id="python" class="level2">
+<h2 class="anchored" data-anchor-id="python">Python</h2>
+<p>4 Sample Solutions</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_up(s):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    new_s <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x <span class="kw">in</span> s:</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> x <span class="kw">in</span> <span class="st">"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 "</span>:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> x <span class="op">==</span> <span class="st">" "</span>:</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                new_s <span class="op">=</span> new_s <span class="op">+</span> <span class="st">"_"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                new_s <span class="op">=</span> new_s <span class="op">+</span> x</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> new_s.lower()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_string(input_string):</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Remove characters that are not numbers, letters, or spaces</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    cleaned_string <span class="op">=</span> <span class="st">""</span>.join(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        char <span class="cf">for</span> char <span class="kw">in</span> input_string <span class="cf">if</span> char.isalnum() <span class="kw">or</span> char <span class="op">==</span> <span class="st">" "</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert to lowercase</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    cleaned_string <span class="op">=</span> cleaned_string.lower()</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert spaces to underscores</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    cleaned_string <span class="op">=</span> cleaned_string.replace(<span class="st">" "</span>, <span class="st">"_"</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> cleaned_string</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> editing_2(x):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    text_2 <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> char <span class="kw">in</span> x:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> char.isalnum() <span class="kw">or</span> char.isspace() <span class="kw">or</span> char.isalpha():</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>            text_2 <span class="op">=</span> text_2 <span class="op">+</span> char</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    text_2 <span class="op">=</span> text_2.lower()</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    text_2 <span class="op">=</span> text_2.replace(<span class="st">" "</span>, <span class="st">"_"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> text_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> p4(s):</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> re.sub(<span class="vs">r"[^a-zA-Z0-9 ]"</span>, <span class="st">""</span>, s)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> s.replace(<span class="st">" "</span>, <span class="st">"_"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s.lower()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="verify-jupyter" class="level2">
-<h2 class="anchored" data-anchor-id="verify-jupyter">Verify Jupyter</h2>
-<ul>
-<li>Verify JupyterLab</li>
-</ul>
-<p>From a command line</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> jupyter lab </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>or use anaconda navigator to launch jupyterlab.</p>
-<p><img src="./jupyterlab.png" class="img-fluid"></p>
-<ul>
-<li>Verify python version</li>
-</ul>
-<p>From a command line</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>or inside a jupyter notebook cell:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sys.version)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="optional-jupyter-on-uconns-hpc-cluster" class="level2">
-<h2 class="anchored" data-anchor-id="optional-jupyter-on-uconns-hpc-cluster">Optional: Jupyter on UConn’s HPC Cluster</h2>
-<ol type="1">
-<li><a href="../../chapters/01-SettingUp/Cluster.html">Some notes on how to run Jupyter on the HPC cluster</a></li>
-</ol>
-</section>
-<section id="r-and-rstudio-install-for-r" class="level2">
-<h2 class="anchored" data-anchor-id="r-and-rstudio-install-for-r">R and Rstudio Install for R</h2>
-<ul>
-<li><p>R is an open source language for statistical computations.</p></li>
-<li><p>Rstudio is a working environment for the R language.</p></li>
-<li><p>R and Rstudio need to be installed separately.</p></li>
-<li><p>R is available at <a href="https://cran.r-project.org">https://cran.r-project.org</a></p></li>
-<li><p>Rstudio is available at <a href="https://posit.co/download/rstudio-desktop">https://posit.co/download/rstudio-desktop</a></p></li>
-</ul>
-</section>
-<section id="verify-r-and-rstudio" class="level2">
-<h2 class="anchored" data-anchor-id="verify-r-and-rstudio">Verify R and Rstudio</h2>
-<p>For R, From a command line:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> R </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>For Rstudio, use the icon/shortcut or from a command line:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> rstudio </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="vscode" class="level2">
-<h2 class="anchored" data-anchor-id="vscode">VSCode</h2>
-<ul>
-<li>vscode is a very powerful “IDE” (integrated development environment).</li>
-<li>it can integrate jupyter notebooks and r workbooks, though it takes some setting up</li>
-<li>vscode is integrated with GitHub copilot, a version of ChatGPT-3 that helps write code.</li>
-<li>vscode is available at <a href="http://code.visualstudio.com">http://code.visualstudio.com</a> for windows, linux, and macOS.</li>
-</ul>
-</section>
-<section id="using-vscode" class="level2">
-<h2 class="anchored" data-anchor-id="using-vscode">Using vscode</h2>
-<p>VSCode (visual studio code) is a freely distributed code editor/IDE distributed by microsoft.</p>
-<p>It is extremely capable and well-suited for software development in python and other languages.</p>
-<p>It is perhaps not as optimized for R as Rstudio but it does work.</p>
-<p>You can access github copilot a version of chatGPT optimized for code, inside vscode in a straightforward way.</p>
-</section>
-<section id="installing-vscode" class="level2">
-<h2 class="anchored" data-anchor-id="installing-vscode">Installing vscode</h2>
-<p><a href="https://code.visualstudio.com">The software is available here</a>.</p>
-<p>You need a <a href="https://github.com">github account</a> to use github copilot, and you need to sign in to that account from inside vscode. GitHub copilot is free to students, but you need to sign up for the <a href="https://education.github.com/benefits?type=student">student developer pack.</a>.</p>
-<p><img src="./vscode.png" class="img-fluid"></p>
-</section>
-<section id="overview-of-vscode" class="level2">
-<h2 class="anchored" data-anchor-id="overview-of-vscode">Overview of vscode</h2>
-<ul>
-<li>Opening folders (as projects)</li>
-<li>Opening files</li>
-<li>Install Extensions:
-<ul>
-<li>python</li>
-<li>R</li>
-<li>many others</li>
-</ul></li>
-<li>The command palette</li>
-</ul>
-</section>
-<section id="more-on-vscode" class="level2">
-<h2 class="anchored" data-anchor-id="more-on-vscode">More on vscode</h2>
-<ul>
-<li>jupyter notebooks inside vscode with github copilot</li>
-<li>Interactive python with code cells (# %%)</li>
-<li>The terminal</li>
-</ul>
-</section>
-<section id="setting-up-a-project" class="level2">
-<h2 class="anchored" data-anchor-id="setting-up-a-project">Setting up a Project</h2>
-<ul>
-<li>Create a project directory</li>
-<li>Subdirectories
-<ul>
-<li>data for data files</li>
-<li>docs for notes and documentation</li>
-<li>others?</li>
-</ul></li>
-<li>Create a README.md file</li>
-</ul>
-</section>
-<section id="tools" class="level2">
-<h2 class="anchored" data-anchor-id="tools">Tools</h2>
-<p>For the directories:</p>
-<ul>
-<li>the finder or File Manager</li>
-<li>the command line</li>
-</ul>
-<p>For the README file:</p>
-<ul>
-<li>a text editor such as <code>nano</code> or notepad</li>
-<li>jupyter or Rstudio (as we will see soon)</li>
-<li>vscode</li>
-</ul>
+<section id="r" class="level2">
+<h2 class="anchored" data-anchor-id="r">R</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>clean_up <span class="ot">&lt;-</span> <span class="cf">function</span>(s) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    valid <span class="ot">&lt;-</span> <span class="fu">c</span>(letters, LETTERS, <span class="st">" "</span>, <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">9</span>)) <span class="co"># a vector of the things I want to keep</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    split_string <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(s, <span class="st">""</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    keepers <span class="ot">&lt;-</span> split_string[split_string <span class="sc">%in%</span> valid]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    keepers <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">gsub</span>(<span class="st">" "</span>, <span class="st">"_"</span>, keepers))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(keepers, <span class="at">collapse =</span> <span class="st">""</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>string_edit <span class="ot">&lt;-</span> <span class="cf">function</span>(string) {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    acceptable_characters <span class="ot">&lt;-</span> <span class="fu">c</span>(letters, LETTERS, <span class="fu">as.character</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">9</span>)), <span class="st">" "</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    unacceptable_characters <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"[^"</span>, <span class="fu">paste0</span>(acceptable_characters, <span class="at">collapse =</span> <span class="st">""</span>), <span class="st">"]"</span>, <span class="at">sep =</span> <span class="st">""</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    cleaned_string <span class="ot">&lt;-</span> string</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (character <span class="cf">in</span> unacceptable_characters) {</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        cleaned_string <span class="ot">&lt;-</span> <span class="fu">gsub</span>(character, <span class="st">""</span>, cleaned_string)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    cleaned_string <span class="ot">&lt;-</span> <span class="fu">tolower</span>(cleaned_string)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    cleaned_string <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">" "</span>, <span class="st">"_"</span>, cleaned_string)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(cleaned_string)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>i_function <span class="ot">&lt;-</span> <span class="cf">function</span>(input) {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    a1 <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"[^[:alnum:] ]"</span>, <span class="st">""</span>, input)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    a2 <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">" "</span>, <span class="st">"_"</span>, a1)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tolower</span>(a2)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>clean_and_format_string <span class="ot">&lt;-</span> <span class="cf">function</span>(input_string) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    cleaned_string <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"[^0-9a-zA-Z[:space:]]"</span>, <span class="st">""</span>, input_string)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    cleaned_string <span class="ot">&lt;-</span> <span class="fu">tolower</span>(cleaned_string)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    cleaned_string <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">" "</span>, <span class="st">"_"</span>, cleaned_string)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(cleaned_string)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

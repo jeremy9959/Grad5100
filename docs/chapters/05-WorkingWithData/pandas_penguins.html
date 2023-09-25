@@ -241,6 +241,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../chapters/999-Problems/HW2.html" class="sidebar-item-text sidebar-link">Homework Two</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/999-Problems/HW2-clean_up_function.html" class="sidebar-item-text sidebar-link">Comments on HW2 - String Clean Up</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/999-Problems/HW2-Iteration.html" class="sidebar-item-text sidebar-link">Comments on HW2 - iteration</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -302,9 +312,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"numpy version </span><span class="sc">{</span>np<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(<span class="ss">f"Python </span><span class="sc">{</span>sys<span class="sc">.</span>version<span class="sc">}</span><span class="ss">"</span>.split(<span class="st">"|"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>pandas version 1.5.3
+<pre><code>pandas version 1.4.4
 numpy version 1.21.5
-Python 3.9.16 (main, Mar  8 2023, 14:00:05) 
+Python 3.9.15 (main, Nov 24 2022, 14:31:59) 
 [GCC 11.2.0]</code></pre>
 </div>
 </div>
@@ -1217,7 +1227,7 @@ Name: Comments, dtype: int64</code></pre>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Culmen length mean is </span><span class="sc">{</span>culmen_mean<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>penguins_imputed[<span class="st">'Culmen Length (mm)'</span>] <span class="op">=</span> penguins_imputed[<span class="st">'Culmen Length (mm)'</span>].fillna(culmen_mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Culmen length mean is 43.9219298245614</code></pre>
+<pre><code>Culmen length mean is 43.921929824561424</code></pre>
 </div>
 </div>
 <p>There are many other imputation methods. For example, if the data is ordered, you can fill missing data with linear interpolation. (See the <code>interpolate</code> method).</p>
@@ -1392,7 +1402,7 @@ Categories (2, object): ['FEMALE', 'MALE']</code></pre>
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>penguins_by_species <span class="op">=</span> penguins.groupby(<span class="st">'Species'</span>)</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>penguins_by_species</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
-<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f3b4ad0e4f0&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7fbffd7de880&gt;</code></pre>
 </div>
 </div>
 </section>
@@ -1814,8 +1824,8 @@ Categories (2, object): ['FEMALE', 'MALE']</code></pre>
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>penguins[penguins[<span class="st">'Species'</span>].<span class="bu">str</span>.startswith(<span class="st">"Adel"</span>)].groupby([<span class="st">'Sex'</span>])[<span class="st">'Body Mass (g)'</span>].hist(bins<span class="op">=</span><span class="dv">30</span>,legend<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
 <pre><code>Sex
-FEMALE    Axes(0.125,0.11;0.775x0.77)
-MALE      Axes(0.125,0.11;0.775x0.77)
+FEMALE    AxesSubplot(0.125,0.11;0.775x0.77)
+MALE      AxesSubplot(0.125,0.11;0.775x0.77)
 Name: Body Mass (g), dtype: object</code></pre>
 </div>
 <div class="cell-output cell-output-display">
