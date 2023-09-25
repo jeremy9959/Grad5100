@@ -48,3 +48,35 @@ p9 <- ggplot(data = pdata, aes(x = x)) +
     ggtitle("mean=9")
 grid.arrange(p1, p3, p5, p7, p9)
 ```
+
+## The Exponential Distribution
+
+The exponential distribution is a continuous probability distribution
+given by an exponential function with a fixed rate $\lambda$.
+
+```{r}
+x <- seq(0, 3, .01)
+y <- dexp(x, 1)
+ggplot() +
+    geom_line(aes(x = x, y = y)) +
+    ggtitle("Exponential Distribution with parameter 1")
+```
+
+
+## Poisson Process
+
+In a "Poisson Process", events occur randomly in time.  The interval between two consecutive events is chosen (independently) from an exponential distribution.
+
+```{r, warnings=FALSE}
+t <- rexp(100, 1)
+arrivals <- cumsum(t)
+ggplot() +
+    geom_col(aes(x = arrivals, y = 1), width = .015, color = "black") +
+    ggtitle("Arrival Times in a Poisson Process")
+```
+
+```{r}
+sum(arrivals < 25)
+sum(arrivals < 50)
+sum(arrivals > 25 & arrivals < 50)
+```
