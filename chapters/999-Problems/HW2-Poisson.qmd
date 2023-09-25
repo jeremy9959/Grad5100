@@ -15,7 +15,7 @@ in a given time interval, assuming:
 
 ```{r}
 #| echo: false
-#|
+#| output: false
 library(ggplot2)
 library(dplyr)
 library(gridExtra)
