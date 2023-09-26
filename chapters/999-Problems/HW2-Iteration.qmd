@@ -8,7 +8,7 @@ format: html
 ```{python}
 def sq(n, threshold=1e-6, max_iter=1000):
     x = 1
-    tol = 1
+    tol = 1 + threshold  # make sure the tolerance starts bigger than the threshold
     iterations = 0
 
     while tol > threshold and iterations < max_iter:
