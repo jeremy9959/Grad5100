@@ -15,7 +15,7 @@ project:
     - chapters/06-LinearAlgebra/linear_algebra_r.qmd
     - chapters/07-Calculus/*.qmd
     - chapters/08-Summarizing/*.qmd
-    - chapters/99-Resources/Cheatsheets.qmd
+    - chapters/99-Resources/*.qmd
     - chapters/999-Problems/*.qmd
 
 website:
