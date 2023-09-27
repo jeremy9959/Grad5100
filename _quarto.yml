@@ -45,7 +45,7 @@ website:
       - section: "Resources"
         contents:
         - chapters/99-Resources/Cheatsheets.qmd
-
+		- chapters/99-Resources/regexps.qmd
   
 format:
   html:
