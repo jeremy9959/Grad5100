@@ -1,0 +1,88 @@
+---
+title: Python regexps
+author: Jeremy Teitelbaum
+subtitle: Fundamentals of Data Science
+format: html
+---
+
+
+```{python}
+# Regular Expressions
+import re
+from collections import Counter
+
+```
+
+```{python}
+text = """
+Long ago, I travelled to the far west, seeking my fortune. I found
+frosty mountains, arid deserts, lush oases, and a huge ocean.
+At times, I was gripped by despair, and at other times filled with Joy.
+
+- Anonymous, 1865
+"""
+```
+
+## Guide
+
+- Letters, Numbers match themselves
+- '.' matches one of anything
+- '+' means one or more of the preceeding
+- '*' means 0 or more of the preceding
+- [] groups things ([A-Z]+ matches a sequence of one or more capital letters);
+-  '\\w' matches "word" characters
+- '\\W' matches non-word characters
+- '\\b' matches boundaries (end or start of string)
+- '{5}'' matches 5 times
+- '\\s' matches whitespace
+- '\\S' matches non-whitespace
+
+```{python}
+if re.search(r"travel", text):
+    print("Yes")
+
+if re.match(r"travel", text):
+    print("Yes")
+
+# m = re.search(r"travel",text)
+# print(m,m.start(), m.end(),m.span(),m.string)
+
+m = re.search(r"I (\w+) to ", text)
+print(m[0], m[1])
+```
+```{python}
+astrings = re.findall(r"a\w+", text)
+print(astrings)
+
+awords = re.findall(r"\ba\w+\b", text)
+print(awords)
+```
+
+```{python}
+re.findall(r"\w+", text)
+
+re.findall(r"\w+", text.lower())
+```
+
+## Match Objects
+- %%
+- finditer
+- match objects
+- x a match object: x[0] returns the match; x.span() returns (start, end) of the match
+
+```{python}
+for x in re.finditer(r"\w+", text):
+    print(x[0])
+```
+
+## Counter
+
+Counter creates a dictionary that counts the number of occurrences
+of elements of a list.
+
+```{python}
+words = re.findall(r"\b\w\w+\b", text.lower())
+counts = Counter(words)
+sorted_words = dict(sorted(counts.items(), key=lambda x: x[0], reverse=True))
+print(sorted_words)
+```
