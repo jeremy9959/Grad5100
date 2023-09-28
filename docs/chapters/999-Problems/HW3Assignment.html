@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Jeremy Teitelbaum">
 
-<title>Fundamentals of Machine Learning – exp</title>
+<title>Fundamentals of Machine Learning - Homework 3</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -68,7 +69,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Fundamentals of Machine Learning</h1>
+      <h1 class="quarto-secondary-nav-title">Homework 3</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -191,7 +192,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/999-Problems/HW3Assignment.html" class="sidebar-item-text sidebar-link">Homework 3</a>
+  <a href="../../chapters/999-Problems/HW3Assignment.html" class="sidebar-item-text sidebar-link active">Homework 3</a>
   </div>
 </li>
       </ul>
@@ -224,11 +225,63 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-
-
-<div class="cell">
-
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Homework 3</h1>
+<p class="subtitle lead">Fundamentals of Data Science</p>
 </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jeremy Teitelbaum </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>The third homework assignment is due at midnight, October 15th. Submit it on HuskyCT.</p>
+<p><em>You may do this assignment using either R or Python, your choice.</em></p>
+<p>We will work with this file containing <a href="AmazonBooksData.csv">Amazon Books</a>. Load this file into a tibble (for R) or a pandas dataframe (for Python) and then carry out the following steps. READ THE INSTRUCTIONS CAREFULLY!</p>
+<p>Your solution should come in the form of a report that shows the steps you carried out to achieve each goal. You should submit a jupyter notebook or a qmd file that I can execute to verify each of the steps.</p>
+<ol type="1">
+<li><p>There are a rows in this dataframe with missing titles and there are a bunch of extra columns at the end of the dataframe. Clean up the dataset by deleting the extra columns and the rows where the title is missing.</p></li>
+<li><p>After the changes in (1), how many rows have missing authors? Show the titles of the books with missing authors and then delete those from the data frame.</p></li>
+<li><p>In the remaining dataset, the price column <em>mostly</em> consists of strings with a $ and then the price. But a few of the entries don’t have the $ and are already numbers.</p>
+<ul>
+<li>Delete any books with missing prices from the data set.</li>
+<li>Fix this column so every entry is a number and you can do arithmetic on it.<br>
+</li>
+<li>Which books are missing a price? Show those books.</li>
+</ul></li>
+</ol>
+<p>Hint: In python, you can determine if something is a string by using the <code>isinstance</code> command. So <code>isinstance(x,str)</code> is <code>True</code>if <code>x</code> is of type string, and <code>False</code> otherwise. You can convert a string to a number using <code>float</code>: <code>float(x)</code> converts a string x to a number, assuming x is in a valid form to be a number.</p>
+<p>Hint: in R, you can convert a string to a number using the <code>as.numeric</code> function.</p>
+<ol start="4" type="1">
+<li><p>Of the remaining books, which ones are missing a rating?</p>
+<ul>
+<li>show the books that are missing a rating</li>
+<li>delete these books from the data set.</li>
+</ul></li>
+<li><p>The ratings are entered as strings, and, for some reason, a few of the ratings are entered with a $. (So it says $4.40 instead of 4.4). How many of these are there? Fix this column so that all of the entries are numbers, and get rid of the $. Drop any rows where the rating is missing.</p></li>
+<li><p>Make a new column ‘quality’ where the entry is “Excellent” if the rating is &gt;=4.5, “Good” if it is between &gt;=3.8 and &lt;4.5, and “Fair” if it is &lt;3.8.</p></li>
+<li><p>Make a table with rows “Excellent”, “Good” and “Fair” and Columns “count” and “mean” where the entries are the number of books with each class of ratings and the mean value of the price of the books within each rating class.</p></li>
+<li><p>Make a new column called “python” which has a one if the title of the book includes the word “Python” or “python” and a zero if it doesn’t.</p></li>
+</ol>
+<p>Hint: In R, the function <code>grepl</code> detects the presence of a substring. So <code>grepl("Python",x)</code> is TRUE if Python is a substring of x, and false otherwise.</p>
+<p>Hint: In python, you can use <code>in</code>: <code>"Python" in x</code> is true if “Python” is a substring.</p>
+<ol start="9" type="1">
+<li>Make a pivot table with rows the rating classes, columns the yes/no values for Python, and entries the average price within each class.</li>
+</ol>
 
 
 
