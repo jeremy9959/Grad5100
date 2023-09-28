@@ -1,0 +1,58 @@
+---
+title: Homework 3
+subtitle: Fundamentals of Data Science
+author: Jeremy Teitelbaum
+format: html
+---
+
+The third homework assignment is due at midnight, October 15th.  Submit it on HuskyCT.
+
+*You may do this assignment using either R or Python, your choice.*
+
+We will work with this file containing [Amazon Books](AmazonBooksData.csv).  Load this file
+into a tibble (for R) or a pandas dataframe (for Python) and then carry out the following steps.
+READ THE INSTRUCTIONS CAREFULLY!
+
+Your solution should come in the form of a report that shows the steps you carried out to achieve each goal.  You should submit a jupyter notebook or a qmd file that I can execute to verify each of the steps. 
+
+
+1. There are a rows in this dataframe with missing titles and there are a bunch of extra columns at the end of the dataframe. Clean up the dataset by deleting the extra columns and the rows where the title is missing.
+
+2. After the changes in (1), how many rows have missing authors?
+Show the titles of the books with missing authors and then
+delete those from the data frame. 
+
+3. In the remaining dataset, the price column *mostly* consists of strings with a \$ and then the price.  But a few of the entries don't have the \$ and are already numbers.  
+    
+    - Delete any books with missing prices from the data set.
+    - Fix this column so every entry is a number and you can do arithmetic on it.   
+    - Which books are missing a price? Show those books.
+
+
+Hint: In python, you can determine if something is a string by using the `isinstance` command.
+So `isinstance(x,str)` is `True`if `x` is of type string, and `False` otherwise. You can convert
+a string to a number using `float`: `float(x)` converts a string x to a number, assuming x is in a valid form to be a number. 
+
+Hint: in R, you can convert a string to a number using the `as.numeric` function. 
+
+4.  Of the remaining books, which ones  are missing a rating?
+
+    - show the books that are missing a rating
+    - delete these books from the data set.
+
+5. The ratings are entered as strings, and, for some reason, a few of the ratings are entered with a $. (So it says \$4.40 instead of 4.4). How many of these are there? Fix this column so that all of the entries are numbers, and get rid of the \$. Drop any rows where the rating is missing. 
+
+6. Make a new column 'quality' where the entry is "Excellent" if the rating is >=4.5,
+"Good" if it is between >=3.8 and <4.5, and "Fair" if it is <3.8.  
+
+7. Make a table with rows "Excellent", "Good" and "Fair" and Columns "count" and "mean" where the entries are the number of books with each class of ratings and the mean value of the price of the books within each rating class.
+
+8. Make a new column called "python" which has a one if the title of the book includes the word "Python" or "python" and a zero if it doesn't.
+
+Hint: In R, the function `grepl` detects the presence of a substring.  So `grepl("Python",x)` is TRUE
+if Python is a substring of x, and false otherwise.  
+
+Hint: In python, you can use `in`: `"Python" in x` is true if "Python" is a substring. 
+
+9. Make a pivot table with rows the rating classes, columns the yes/no values for Python, and entries the average price within each class.
+

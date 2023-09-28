@@ -42,6 +42,7 @@ website:
         - chapters/999-Problems/HW2-clean_up_function.qmd
         - chapters/999-Problems/HW2-Iteration.qmd
         - chapters/999-Problems/HW2-Poisson.qmd
+        - chapters/999-Problems/HW3Assignment.qmd
       - section: "Resources"
         contents:
         - chapters/99-Resources/Cheatsheets.qmd
