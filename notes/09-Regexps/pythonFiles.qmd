@@ -1,0 +1,107 @@
+---
+title: Reading and Writing to Files in Python
+subtitle: Fundamentals of Data Science
+author: Jeremy Teitelbaum
+format: html
+---
+
+We have already seen how to use the read_csv commands (in R and python/pandas) to read data from files into dataframes/tibbles.  But sometimes
+we need to work directly with text files. 
+
+## The basics
+
+```{python}
+with open("path","r") as f:
+#    (put logic to read file here)
+```
+
+This structure guarantees that the file will be properly closed when you're done. 
+
+#### Slurp up the whole file into a string.
+
+```{python}
+with open("data/aircrashesFullData.csv","r") as f:
+    data = f.read()
+len(data)
+```
+
+```{python}
+lines = data.split('\n')
+for x in lines[:10]:
+    print(x)
+```
+
+#### Read the file line by line
+
+```{python}
+with open("data/aircrashesFullData.csv","r") as f:
+    for i in range(10):
+        line = f.readline()
+        first_field = line.split(',')[0]
+        print(first_field)
+```
+
+#### Slurp the file into a list
+
+```{python}
+with open("data/aircrashesFullData.csv","r") as f:
+    line_list = f.readlines()
+print(len(line_list))
+first_fields = [x.split(',')[0] for x in line_list]
+first_fields
+```
+
+## Writing to a file
+
+An entire string to the file. **This will overwrite what is in the file.**
+
+```{python}
+with open("data/crash_years.txt","w") as f:
+    f.write('\n'.join(first_fields))
+```
+
+One line at a time.
+**This will overwrite what is in the file.**
+
+```{python}
+with open("data/crash_years.txt","w") as f:
+    for x in first_fields:
+        f.write(x+"\n")
+```
+
+## Appending to a file
+
+```{python}
+with open("data/crash_years.txt","a") as f:
+    f.write("This goes at the end\n")
+```
+
+
+## Working with directories (folders)
+
+```{python}
+import os
+import shutil
+#os.getcwd()
+#os.chdir('/home/jet08013')
+#os.getcwd()
+#files = os.listdir('.')
+#os.rename()
+#shutil.copy()
+
+```
+
+## Problems
+
+Read in the gettysburg address from the file 'data/gettysburg.txt'.
+
+- How many words does it contain?
+- Make it lower case and write it back to a file called 'data/gettysburg_lower.txt'.
+
+
+```{python}
+os.chdir("/home/jet08013/GitHub/Grad5100/notes/09-Regexps")
+with open("data/gettysburg.txt","r") as f:
+    address = f.read()
+print(address)
+```

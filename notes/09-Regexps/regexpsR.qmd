@@ -1,0 +1,38 @@
+---
+title: Regexps in R
+author: Jeremy Teitelbaum
+subtitle: Fundamentals of Data Science
+format: html
+---
+
+## Regexps in R
+
+The language is the same, but the wrapper functions are different. 
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+str_view(c("Help", "Hero", "Hello", "Friend"), "Hel")
+```
+
+```{r}
+str_view(c("Help", "Hero", "Hello", "Friend"), "He.*l")
+```
+
+```{r}
+str_view(c("Now is the time for us to rise up"), "[A-Za-z]+[a-z]?")
+```
+
+```{r}
+str_detect(c("Now is the", "time to rise up"), "\\b\\w+\\b")
+str_view(c("Now is the", "time to rise up"), "\\b\\w+\\b")
+```
+
+```{r}
+str_count(c("Now is the", "time to rise up"), "\\b\\w+\\b")
+```
+
+
+
