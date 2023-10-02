@@ -11,8 +11,11 @@ we need to work directly with text files.
 ## The basics
 
 ```{python}
-with open("path","r") as f:
+#with open("path","r") as f:
 #    (put logic to read file here)
+ #   pass
+
+
 ```
 
 This structure guarantees that the file will be properly closed when you're done. 

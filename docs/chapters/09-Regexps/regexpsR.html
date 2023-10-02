@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jeremy Teitelbaum">
 
-<title>Fundamentals of Machine Learning - Orientation Project</title>
+<title>Fundamentals of Machine Learning - Regexps in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -69,7 +132,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Orientation Project</h1>
+      <h1 class="quarto-secondary-nav-title">Regexps in R</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -102,7 +165,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/00-OrientationProject/orientation-project.html" class="sidebar-item-text sidebar-link active">Orientation Project</a>
+  <a href="../../chapters/00-OrientationProject/orientation-project.html" class="sidebar-item-text sidebar-link">Orientation Project</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -167,7 +230,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/09-Regexps/regexpsR.html" class="sidebar-item-text sidebar-link">Regexps in R</a>
+  <a href="../../chapters/09-Regexps/regexpsR.html" class="sidebar-item-text sidebar-link active">Regexps in R</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -247,8 +310,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Orientation Project</h1>
-<p class="subtitle lead">Creating a GitHub Personal Page</p>
+<h1 class="title d-none d-lg-block">Regexps in R</h1>
+<p class="subtitle lead">Fundamentals of Data Science</p>
 </div>
 
 
@@ -269,37 +332,108 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>GitHub is a huge repository of open source software projects managed by the version control software <code>git</code>. GitHub and <code>git</code> are designed to allow many people working independently to contribute to a software project, keeping track of different versions and the contributions of different people</p>
-<p>Later we will use GitHub to actually manage software but our goal today is to take advantage of the ability to create a personal web page on GitHub.</p>
-</section>
-<section id="steps" class="level2">
-<h2 class="anchored" data-anchor-id="steps">Steps</h2>
-<ol type="1">
-<li>Create a GitHub account with your selected <code>username</code></li>
-<li>Create a new repository named <code>username.github.io</code>. Include a basic README.md file.</li>
-</ol>
-<p><img src="./make_repo.gif" class="img-fluid"></p>
-<ol start="3" type="1">
-<li>Turn on github pages for this repository from the <code>settings</code> link. This is probably done already. Check the published site at <code>https://username.github.io</code></li>
-</ol>
-<p><img src="./check_settings.gif" class="img-fluid"></p>
-<ol start="4" type="1">
-<li>Create a file <code>_config.yml</code> so you can choose a theme. Here we use the <code>architect</code> theme to start with.</li>
-</ol>
-<p><img src="./create_yaml.gif" class="img-fluid"></p>
-<ol start="5" type="1">
-<li>Wait a bit and then look at the results.</li>
-</ol>
-<p><img src="./architect.png" class="img-fluid"></p>
-<ol start="6" type="1">
-<li><a href="https://pages.github.com/themes/">Look at the theme possibilities and pick one you like by modifying the _config.yaml file.</a> Notice that it takes a while to deploy the new theme.</li>
-</ol>
-<p><img src="./minimal.gif" class="img-fluid"></p>
-<ol start="7" type="1">
-<li>Add more content! Add more info to the <code>_config.yml</code> file using the theme documentation!</li>
-</ol>
+<section id="regexps-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="regexps-in-r">Regexps in R</h2>
+<p>The language is the same, but the wrapper functions are different.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(<span class="fu">c</span>(<span class="st">"Help"</span>, <span class="st">"Hero"</span>, <span class="st">"Hello"</span>, <span class="st">"Friend"</span>), <span class="st">"Hel"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] │ &lt;Hel&gt;p
+[3] │ &lt;Hel&gt;lo</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(<span class="fu">c</span>(<span class="st">"Help"</span>, <span class="st">"Hero"</span>, <span class="st">"Hello"</span>, <span class="st">"Friend"</span>), <span class="st">"He.*l"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] │ &lt;Hel&gt;p
+[3] │ &lt;Hell&gt;o</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(<span class="fu">c</span>(<span class="st">"Now is the time for us to rise up"</span>), <span class="st">"[A-Za-z]+[a-z]?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] │ &lt;Now&gt; &lt;is&gt; &lt;the&gt; &lt;time&gt; &lt;for&gt; &lt;us&gt; &lt;to&gt; &lt;rise&gt; &lt;up&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(<span class="fu">c</span>(<span class="st">"Now is the"</span>, <span class="st">"time to rise up"</span>), <span class="st">"</span><span class="sc">\\</span><span class="st">b</span><span class="sc">\\</span><span class="st">w+</span><span class="sc">\\</span><span class="st">b"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(<span class="fu">c</span>(<span class="st">"Now is the"</span>, <span class="st">"time to rise up"</span>), <span class="st">"</span><span class="sc">\\</span><span class="st">b</span><span class="sc">\\</span><span class="st">w+</span><span class="sc">\\</span><span class="st">b"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] │ &lt;Now&gt; &lt;is&gt; &lt;the&gt;
+[2] │ &lt;time&gt; &lt;to&gt; &lt;rise&gt; &lt;up&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_count</span>(<span class="fu">c</span>(<span class="st">"Now is the"</span>, <span class="st">"time to rise up"</span>), <span class="st">"</span><span class="sc">\\</span><span class="st">b</span><span class="sc">\\</span><span class="st">w+</span><span class="sc">\\</span><span class="st">b"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3 4</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>gettysburg <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">"data/gettysburg.txt"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(gettysburg, <span class="st">"</span><span class="sc">\\</span><span class="st">b(</span><span class="sc">\\</span><span class="st">w+)</span><span class="sc">\\</span><span class="st">b"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Four" NA     "Now"  NA     "But" </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># str_match_all is inconvenient -- output is a list</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>words <span class="ot">&lt;-</span> <span class="fu">str_match_all</span>(gettysburg[<span class="dv">1</span>], <span class="st">"</span><span class="sc">\\</span><span class="st">b</span><span class="sc">\\</span><span class="st">w+</span><span class="sc">\\</span><span class="st">b"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>filenames <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">"data/filenames.txt"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>matches <span class="ot">&lt;-</span> <span class="fu">str_match_all</span>(filenames, <span class="st">".*_([a-z]{3}[0-9]{5})_.*</span><span class="sc">\\</span><span class="st">.(qmd|Rmd|pdf)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># separate_wider_regex works with tibbles</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># note also separate_wider_delim</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>filenames <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">"data/filenames.txt"</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>filenames <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">names =</span> filenames)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>filenames <span class="ot">&lt;-</span> filenames <span class="sc">|&gt;</span> <span class="fu">separate_wider_regex</span>(names, <span class="at">patterns =</span> <span class="fu">c</span>(</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">".*_"</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">netid =</span> <span class="st">"[a-z]{3}[0-9]{5}"</span>,</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"_.*</span><span class="sc">\\</span><span class="st">."</span>,</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">extension =</span> <span class="st">"qmd|Rmd|pdf"</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>), <span class="at">cols_remove =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co"># matches have to fill the line</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co"># use too_few = "debug" to get extra info if this fails (omit pdf from extension for example)</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>filenames <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">new_name =</span> <span class="fu">str_c</span>(netid, <span class="st">"."</span>, extension))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 40 × 4
+   netid    extension names                                             new_name
+   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;                                             &lt;chr&gt;   
+ 1 ads17007 qmd       HW2 - R - QMD_ads17007_attempt_2023-09-24-18-40-… ads1700…
+ 2 ark23013 qmd       HW2 - R - QMD_ark23013_attempt_2023-09-23-23-21-… ark2301…
+ 3 ark23013 pdf       HW2 - R - QMD_ark23013_attempt_2023-09-23-23-21-… ark2301…
+ 4 bow22005 qmd       HW2 - R - QMD_bow22005_attempt_2023-09-24-00-57-… bow2200…
+ 5 cam23009 qmd       HW2 - R - QMD_cam23009_attempt_2023-09-24-13-30-… cam2300…
+ 6 chn18009 qmd       HW2 - R - QMD_chn18009_attempt_2023-09-24-00-03-… chn1800…
+ 7 dis23007 Rmd       HW2 - R - QMD_dis23007_attempt_2023-09-24-18-53-… dis2300…
+ 8 dsv23002 qmd       HW2 - R - QMD_dsv23002_attempt_2023-09-24-22-44-… dsv2300…
+ 9 gal19008 qmd       HW2 - R - QMD_gal19008_attempt_2023-09-12-11-29-… gal1900…
+10 har23009 qmd       HW2 - R - QMD_har23009_attempt_2023-09-24-22-34-… har2300…
+# ℹ 30 more rows</code></pre>
+</div>
+</div>
 
 
 </section>

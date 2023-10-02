@@ -15,6 +15,7 @@ project:
     - chapters/06-LinearAlgebra/linear_algebra_r.qmd
     - chapters/07-Calculus/*.qmd
     - chapters/08-Summarizing/*.qmd
+    - chapters/09-Regexps/*.qmd
     - chapters/99-Resources/*.qmd
     - chapters/999-Problems/*.qmd
 
@@ -34,6 +35,11 @@ website:
         - chapters/07-Calculus/calculus.qmd
         - chapters/08-Summarizing/grouping_pandas.qmd
         - chapters/08-Summarizing/groupingR.qmd
+        - chapters/09-Regexps/pythonFiles.qmd
+        - chapters/09-Regexps/Rfiles.qmd
+        - chapters/09-Regexps/regexpsPython.qmd
+        - chapters/09-Regexps/regexpsR.qmd
+        - chapters/09-Regexps/RegexProblems.qmd
       - section: "Problems"
         contents:
         - chapters/999-Problems/HW1.qmd
@@ -46,7 +52,7 @@ website:
       - section: "Resources"
         contents:
         - chapters/99-Resources/Cheatsheets.qmd
-        - chapters/99-Resources/regexps.qmd
+
 
 format:
   html:
