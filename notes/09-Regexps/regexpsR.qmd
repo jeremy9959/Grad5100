@@ -40,14 +40,30 @@ str_extract(gettysburg, "\\b(\\w+)\\b")
 ```
 
 ```{r}
-words <- str_match_all(gettysburg, "\\b\\w+\\b")
+# str_match_all is inconvenient -- output is a list
+words <- str_match_all(gettysburg[1], "\\b\\w+\\b")
 ```
 
 ```{r}
+
 filenames <- read_lines("data/filenames.txt")
-matches <- str_match_all(filenames, ".*_([a-z]{3}[0-9]{5})_.*\\.(qmd|Rmd)")
+matches <- str_match_all(filenames, ".*_([a-z]{3}[0-9]{5})_.*\\.(qmd|Rmd|pdf)")
 ```
 
 ```{r}
+# separate_wider_regex works with tibbles
+# note also separate_wider_delim
 
+filenames <- read_lines("data/filenames.txt")
+filenames <- tibble(names = filenames)
+filenames <- filenames |> separate_wider_regex(names, patterns = c(
+    ".*_",
+    netid = "[a-z]{3}[0-9]{5}",
+    "_.*\\.",
+    extension = "qmd|Rmd|pdf"
+), cols_remove = FALSE)
+# matches have to fill the line
+# use too_few = "debug" to get extra info if this fails (omit pdf from extension for example)
+filenames |> mutate(new_name = str_c(netid, ".", extension))
 ```
+

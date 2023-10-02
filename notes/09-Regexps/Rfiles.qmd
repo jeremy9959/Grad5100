@@ -35,3 +35,16 @@ write_lines(text, "data/robots.txt", sep = "-")
 # write_file overwrites.  Use the append flag to append
 write_file(paste0(text, collapse = " ")[1], "data/robots.txt", append = TRUE)
 ```
+
+### File operations
+
+The `fs` library allows you to do file manipulations.
+
+```{r}
+library(fs)
+# file_create
+# file_move
+# file_copy
+# file_ls to list directory
+# file_exists
+# file_show

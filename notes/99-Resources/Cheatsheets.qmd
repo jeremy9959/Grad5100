@@ -39,6 +39,8 @@ From the [posit home page](https://posit.co/resources/cheatsheets/)
 1. [base r cheatsheet](https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf)
 2. [tidyverse cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
 3. [r markdown cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+4. [stringr cheatshet](https://github.com/rstudio/cheatsheets/blob/main/strings.pdf)
+
 
 ### GGPlot
 

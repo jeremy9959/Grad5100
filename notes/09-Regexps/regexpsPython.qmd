@@ -8,6 +8,8 @@ format: html
 ```{python}
 # Regular Expressions
 import re
+import pandas as pd
+
 ```
 
 ```{python}
@@ -143,3 +145,18 @@ matches = [re.search(r"_([a-z]{3}[0-9]{5})_",x) for x in selected]
 ```
 
 
+```{python}
+filenames = pd.read_csv("data/filenames.txt",names=["Name"])
+```
+
+```{python}
+filenames['Name'].map(lambda x: re.search(r"_([a-z]{3}[0-9]{5})_",x)[1])
+filenames = filenames.assign(netid = filenames['Name'].map(lambda x: re.search(r"_([a-z]{3}[0-9]{5})_",x)[1])
+ )
+filenames = filenames.assign(extension = filenames['Name'].map(lambda x: re.search(r".*\.(qmd|Rmd|pdf)$",x)[1]))
+```
+
+```{python}
+filenames = pd.read_csv("data/filenames.txt",names=["Name"])
+filenames[['netid','extension']]=filenames['Name'].str.extract(r".*_([a-z]{3}[0-9]{5})_.*\.(qmd|Rmd|pdf)$")
+```

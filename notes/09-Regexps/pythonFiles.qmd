@@ -20,7 +20,7 @@ This structure guarantees that the file will be properly closed when you're done
 #### Slurp up the whole file into a string.
 
 ```{python}
-with open("data/aircrashesFullData.csv","r") as f:
+with open("data/gettysburg.txt","r") as f:
     data = f.read()
 len(data)
 ```
@@ -34,21 +34,26 @@ for x in lines[:10]:
 #### Read the file line by line
 
 ```{python}
-with open("data/aircrashesFullData.csv","r") as f:
-    for i in range(10):
-        line = f.readline()
-        first_field = line.split(',')[0]
-        print(first_field)
+with open("data/gettysburg.txt","r") as f:
+    for line in f:
+        print(line) 
 ```
 
+#### Read a line from the file
+
+```{python}
+with open("data/gettysburg.txt","r") as f:
+    line = f.readline()
+    print(line)
+```
 #### Slurp the file into a list
 
 ```{python}
-with open("data/aircrashesFullData.csv","r") as f:
+with open("data/gettysburg.txt","r") as f:
     line_list = f.readlines()
-print(len(line_list))
-first_fields = [x.split(',')[0] for x in line_list]
-first_fields
+
+lowercase = [x.lower() for x in line_list]
+lowercase
 ```
 
 ## Writing to a file
@@ -56,23 +61,23 @@ first_fields
 An entire string to the file. **This will overwrite what is in the file.**
 
 ```{python}
-with open("data/crash_years.txt","w") as f:
-    f.write('\n'.join(first_fields))
+with open("data/gettysburg_lower.txt","w") as f:
+    f.write('\n'.join(lowercase))
 ```
 
 One line at a time.
 **This will overwrite what is in the file.**
 
 ```{python}
-with open("data/crash_years.txt","w") as f:
-    for x in first_fields:
+with open("data/gettysburg_lower.txt","w") as f:
+    for x in lowercase:
         f.write(x+"\n")
 ```
 
 ## Appending to a file
 
 ```{python}
-with open("data/crash_years.txt","a") as f:
+with open("data/gettysburg_lower.txt","a") as f:
     f.write("This goes at the end\n")
 ```
 
@@ -88,20 +93,5 @@ import shutil
 #files = os.listdir('.')
 #os.rename()
 #shutil.copy()
-
 ```
 
-## Problems
-
-Read in the gettysburg address from the file 'data/gettysburg.txt'.
-
-- How many words does it contain?
-- Make it lower case and write it back to a file called 'data/gettysburg_lower.txt'.
-
-
-```{python}
-os.chdir("/home/jet08013/GitHub/Grad5100/notes/09-Regexps")
-with open("data/gettysburg.txt","r") as f:
-    address = f.read()
-print(address)
-```
