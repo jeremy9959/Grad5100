@@ -34,5 +34,20 @@ str_view(c("Now is the", "time to rise up"), "\\b\\w+\\b")
 str_count(c("Now is the", "time to rise up"), "\\b\\w+\\b")
 ```
 
+```{r}
+gettysburg <- read_lines("data/gettysburg.txt")
+str_extract(gettysburg, "\\b(\\w+)\\b")
+```
 
+```{r}
+words <- str_match_all(gettysburg, "\\b\\w+\\b")
+```
 
+```{r}
+filenames <- read_lines("data/filenames.txt")
+matches <- str_match_all(filenames, ".*_([a-z]{3}[0-9]{5})_.*\\.(qmd|Rmd)")
+```
+
+```{r}
+
+```
