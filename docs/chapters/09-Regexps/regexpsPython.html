@@ -351,7 +351,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    filenames <span class="op">=</span> f.readlines()</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(filenames[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>HW2 - R - QMD_ads17007_attempt_2023-09-24-18-40-28_AdamSyedHomework2-R.qmd
+<pre><code>HW2 - R - QMD_aft85126_attempt_2023-09-24-18-40-28_Homework2-R.qmd
 </code></pre>
 </div>
 </div>
@@ -424,21 +424,21 @@ No</code></pre>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All the words</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>all_words <span class="op">=</span> re.findall(<span class="vs">r"\b[a-zA-Z]+\b"</span>, text)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>all_words[<span class="dv">0</span>:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="39">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>['Long', 'ago', 'I', 'travelled', 'to']</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># words (allowing numbers and underline) but lower case</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>re.findall(<span class="vs">r"\b\w+\b"</span>, text.lower())[<span class="dv">0</span>:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="40">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>['long', 'ago', 'i', 'travelled', 'to']</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># numbers</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>re.findall(<span class="vs">r"\b\d+\b"</span>, text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="41">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>['1865']</code></pre>
 </div>
 </div>
@@ -454,7 +454,7 @@ No</code></pre>
 <div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Finding capitalized words</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>re.findall(<span class="vs">r"\b[A-Z][a-z]*\b"</span>, text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="44">
+<div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>['Long', 'I', 'I', 'At', 'I', 'Joy', 'Anonymous']</code></pre>
 </div>
 </div>
@@ -470,7 +470,7 @@ No</code></pre>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(filenames[<span class="dv">0</span>])</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>filenames <span class="op">=</span> [x.strip() <span class="cf">for</span> x <span class="kw">in</span> filenames] <span class="co">#get rid of the newlines</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>HW2 - R - QMD_ads17007_attempt_2023-09-24-18-40-28_AdamSyedHomework2-R.qmd
+<pre><code>HW2 - R - QMD_aft85126_attempt_2023-09-24-18-40-28_Homework2-R.qmd
 </code></pre>
 </div>
 </div>
@@ -483,8 +483,8 @@ No</code></pre>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using grouping to extract netid</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>matches <span class="op">=</span> [re.search(<span class="vs">r"_([a-z]</span><span class="sc">{3}</span><span class="vs">[0-9]</span><span class="sc">{5}</span><span class="vs">)_"</span>,x) <span class="cf">for</span> x <span class="kw">in</span> selected]</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>[x[<span class="dv">1</span>] <span class="cf">for</span> x <span class="kw">in</span> matches][<span class="dv">0</span>:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="48">
-<pre><code>['ads17007', 'ark23013', 'bow22005', 'cam23009', 'chn18009']</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>['aft85126', 'pez35105', 'min29847', 'imk48906', 'uwc08078']</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="15">
@@ -496,10 +496,25 @@ No</code></pre>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a> )</span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>filenames <span class="op">=</span> filenames.assign(extension <span class="op">=</span> filenames[<span class="st">'Name'</span>].<span class="bu">map</span>(<span class="kw">lambda</span> x: re.search(<span class="vs">r".*\.(qmd|Rmd|pdf)$"</span>,x)[<span class="dv">1</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Adding <code>(?P&lt;name&gt;...)</code> names the submatch. You can then extract or refer to the submatch by name.</p>
 <div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>filenames <span class="op">=</span> pd.read_csv(<span class="st">"data/filenames.txt"</span>,names<span class="op">=</span>[<span class="st">"Name"</span>])</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>filenames[[<span class="st">'netid'</span>,<span class="st">'extension'</span>]]<span class="op">=</span>filenames[<span class="st">'Name'</span>].<span class="bu">str</span>.extract(<span class="vs">r".*_([a-z]</span><span class="sc">{3}</span><span class="vs">[0-9]</span><span class="sc">{5}</span><span class="vs">)_.*\.(qmd|Rmd|pdf)$"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> re.search(<span class="vs">r"(?P&lt;found&gt;[a-z]</span><span class="sc">{3}</span><span class="vs">)"</span>,<span class="st">"abcdefghij"</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(m[<span class="dv">0</span>],m.group(<span class="dv">1</span>),m.group(<span class="st">'found'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>abc abc abc</code></pre>
 </div>
+</div>
+<p>The <code>.str.extract</code> method is a powerful way to pick apart a string into columns in a pandas dataframe. It combines the operations above into a single operation. Combining it with named submatches gives names to the new columns.</p>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>filenames <span class="op">=</span> pd.read_csv(<span class="st">"data/filenames.txt"</span>,names<span class="op">=</span>[<span class="st">"Name"</span>])</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>filenames<span class="op">=</span>filenames[<span class="st">'Name'</span>].<span class="bu">str</span>.extract(<span class="vs">r"(?P&lt;name&gt;.*_(?P&lt;netid&gt;[a-z]</span><span class="sc">{3}</span><span class="vs">[0-9]</span><span class="sc">{5}</span><span class="vs">)_.*\.(?P&lt;extension&gt;qmd|Rmd|pdf))$"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>There are many other useful operations available with the pandas str library.</p>
+<ul>
+<li><code>str.split</code></li>
+<li><code>str.replace</code></li>
+<li><code>str.cat</code> (joins strings together with argument <code>sep=</code>)</li>
+</ul>
 
 
 </section>
