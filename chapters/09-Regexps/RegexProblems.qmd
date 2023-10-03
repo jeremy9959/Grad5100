@@ -23,6 +23,9 @@ You can read that file into Python or, in R, use the variable `stringr::words` t
 
 Use the `filenames.txt` file.  We saw how to extract the netid and the file extension from these files.  Now extract the date/time info.
 
+Suppose the we want to obscure the netids by making up "fake" netids
+and substituting those into the filenames.  How do you do that?
+
 
 
 ## Third batch
