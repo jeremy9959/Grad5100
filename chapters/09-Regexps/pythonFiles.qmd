@@ -82,6 +82,8 @@ with open("data/gettysburg_lower.txt","a") as f:
 ```
 
 
+
+
 ## Working with directories (folders)
 
 ```{python}

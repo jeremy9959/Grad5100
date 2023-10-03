@@ -12,6 +12,10 @@ import pandas as pd
 
 ```
 
+
+
+
+
 ```{python}
 text = """
 Long ago, I travelled to the far west, seeking my fortune. I found
@@ -88,12 +92,12 @@ else:
 ```{python}
 # All the words
 all_words = re.findall(r"\b[a-zA-Z]+\b", text)
-all_words
+all_words[0:5]
 ```
 
 ```{python}
 # words (allowing numbers and underline) but lower case
-re.findall(r"\b\w+\b", text.lower())
+re.findall(r"\b\w+\b", text.lower())[0:5]
 ```
 
 ```{python}
@@ -141,7 +145,7 @@ rejected = [x for x in filenames if not re.match(r".*\.(qmd|Rmd)",x)]
 ```{python}
 # Using grouping to extract netid
 matches = [re.search(r"_([a-z]{3}[0-9]{5})_",x) for x in selected]
-[x[1] for x in matches]
+[x[1] for x in matches][0:5]
 ```
 
 
@@ -156,7 +160,25 @@ filenames = filenames.assign(netid = filenames['Name'].map(lambda x: re.search(r
 filenames = filenames.assign(extension = filenames['Name'].map(lambda x: re.search(r".*\.(qmd|Rmd|pdf)$",x)[1]))
 ```
 
+
+
+Adding `(?P<name>...)` names the submatch.  You can then extract or refer to the submatch by name.
+
+```{python}
+m = re.search(r"(?P<found>[a-z]{3})","abcdefghij")
+print(m[0],m.group(1),m.group('found'))
+```
+
+The `.str.extract` method is a powerful way to pick apart a string into columns
+in a pandas dataframe.  It combines the operations above into a single operation.  Combining it with named submatches gives names to the new columns.
+
 ```{python}
 filenames = pd.read_csv("data/filenames.txt",names=["Name"])
-filenames[['netid','extension']]=filenames['Name'].str.extract(r".*_([a-z]{3}[0-9]{5})_.*\.(qmd|Rmd|pdf)$")
+filenames=filenames['Name'].str.extract(r"(?P<name>.*_(?P<netid>[a-z]{3}[0-9]{5})_.*\.(?P<extension>qmd|Rmd|pdf))$")
 ```
+
+There are many other useful operations available with the pandas str library.
+
+- `str.split`
+- `str.replace`
+- `str.cat` (joins strings together with argument `sep=`)

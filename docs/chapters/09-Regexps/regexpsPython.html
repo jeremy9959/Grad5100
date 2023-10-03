@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-99.9.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -423,97 +423,22 @@ No</code></pre>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All the words</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>all_words <span class="op">=</span> re.findall(<span class="vs">r"\b[a-zA-Z]+\b"</span>, text)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>all_words</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>['Long',
- 'ago',
- 'I',
- 'travelled',
- 'to',
- 'the',
- 'far',
- 'west',
- 'seeking',
- 'my',
- 'fortune',
- 'I',
- 'found',
- 'frosty',
- 'mountains',
- 'arid',
- 'deserts',
- 'lush',
- 'oases',
- 'and',
- 'a',
- 'huge',
- 'ocean',
- 'At',
- 'times',
- 'I',
- 'was',
- 'gripped',
- 'by',
- 'despair',
- 'and',
- 'at',
- 'other',
- 'times',
- 'filled',
- 'with',
- 'Joy',
- 'Anonymous']</code></pre>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>all_words[<span class="dv">0</span>:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="39">
+<pre><code>['Long', 'ago', 'I', 'travelled', 'to']</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># words (allowing numbers and underline) but lower case</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>re.findall(<span class="vs">r"\b\w+\b"</span>, text.lower())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>['long',
- 'ago',
- 'i',
- 'travelled',
- 'to',
- 'the',
- 'far',
- 'west',
- 'seeking',
- 'my',
- 'fortune',
- 'i',
- 'found',
- 'frosty',
- 'mountains',
- 'arid',
- 'deserts',
- 'lush',
- 'oases',
- 'and',
- 'a',
- 'huge',
- 'ocean',
- 'at',
- 'times',
- 'i',
- 'was',
- 'gripped',
- 'by',
- 'despair',
- 'and',
- 'at',
- 'other',
- 'times',
- 'filled',
- 'with',
- 'joy',
- 'anonymous',
- '1865']</code></pre>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>re.findall(<span class="vs">r"\b\w+\b"</span>, text.lower())[<span class="dv">0</span>:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="40">
+<pre><code>['long', 'ago', 'i', 'travelled', 'to']</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># numbers</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>re.findall(<span class="vs">r"\b\d+\b"</span>, text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="41">
 <pre><code>['1865']</code></pre>
 </div>
 </div>
@@ -529,7 +454,7 @@ No</code></pre>
 <div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Finding capitalized words</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>re.findall(<span class="vs">r"\b[A-Z][a-z]*\b"</span>, text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="44">
 <pre><code>['Long', 'I', 'I', 'At', 'I', 'Joy', 'Anonymous']</code></pre>
 </div>
 </div>
@@ -557,45 +482,9 @@ No</code></pre>
 <div class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using grouping to extract netid</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>matches <span class="op">=</span> [re.search(<span class="vs">r"_([a-z]</span><span class="sc">{3}</span><span class="vs">[0-9]</span><span class="sc">{5}</span><span class="vs">)_"</span>,x) <span class="cf">for</span> x <span class="kw">in</span> selected]</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>[x[<span class="dv">1</span>] <span class="cf">for</span> x <span class="kw">in</span> matches]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
-<pre><code>['ads17007',
- 'ark23013',
- 'bow22005',
- 'cam23009',
- 'chn18009',
- 'dis23007',
- 'dsv23002',
- 'gal19008',
- 'har23009',
- 'hvr23001',
- 'hyl23003',
- 'ilb23003',
- 'jab23017',
- 'jel23006',
- 'jib17006',
- 'jjm23006',
- 'jvb23001',
- 'kmr18010',
- 'lom23002',
- 'lro16101',
- 'meb15103',
- 'mlj13003',
- 'mnm16102',
- 'msr23003',
- 'nvk23001',
- 'omf19002',
- 'peh23002',
- 'rib23004',
- 'saa23022',
- 'sab23020',
- 'srl23003',
- 'srs18007',
- 'sry23001',
- 'voa23002',
- 'wew17008',
- 'yol23003',
- 'ziy23008']</code></pre>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>[x[<span class="dv">1</span>] <span class="cf">for</span> x <span class="kw">in</span> matches][<span class="dv">0</span>:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="48">
+<pre><code>['ads17007', 'ark23013', 'bow22005', 'cam23009', 'chn18009']</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="15">
