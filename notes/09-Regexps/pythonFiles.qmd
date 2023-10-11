@@ -15,7 +15,6 @@ we need to work directly with text files.
 #    (put logic to read file here)
  #   pass
 
-
 ```
 
 This structure guarantees that the file will be properly closed when you're done. 

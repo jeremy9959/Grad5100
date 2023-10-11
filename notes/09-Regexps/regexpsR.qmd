@@ -65,5 +65,6 @@ filenames <- filenames |> separate_wider_regex(names, patterns = c(
 # matches have to fill the line
 # use too_few = "debug" to get extra info if this fails (omit pdf from extension for example)
 filenames |> mutate(new_name = str_c(netid, ".", extension))
+# str_c is a cleaner way to concatenate strings
 ```
 
