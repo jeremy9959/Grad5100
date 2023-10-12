@@ -146,7 +146,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Linux (actually a whole family of Linux OS’s) – derived from an open source system created by Linus Torvalds</li>
 <li>MacOS</li>
 </ol>
-<p>In addition, Microsoft now supports a system called WSL (Windows subsystem for Linux) that allows you to with with Linux on a windows machine.</p>
+<p>In addition, Microsoft now supports a system called WSL (Windows subsystem for Linux) that allows you to work with Linux on a windows machine.</p>
 </section>
 <section id="the-gnu-project" class="level2">
 <h2 class="anchored" data-anchor-id="the-gnu-project">The GNU project</h2>
@@ -184,9 +184,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The current working directory is abbreviated as ‘.’</li>
 <li>The <em>parent</em> of the current working directory is abbreviated as ‘..’</li>
 </ol>
-</section>
-<section id="key-navigation-commands" class="level2">
-<h2 class="anchored" data-anchor-id="key-navigation-commands">Key Navigation Commands</h2>
+<section id="key-navigation-commands" class="level3">
+<h3 class="anchored" data-anchor-id="key-navigation-commands">Key Navigation Commands</h3>
 <p>The key commands for navigation through the file system are:</p>
 <ol type="1">
 <li><code>pwd</code> prints the current working directory</li>
@@ -215,8 +214,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/jeremy9959</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="options" class="level2">
-<h2 class="anchored" data-anchor-id="options">Options</h2>
+<section id="options" class="level3">
+<h3 class="anchored" data-anchor-id="options">Options</h3>
 <p>Unix commands typically take (many) options. The general structure of these options are either <code>-</code> followed by a letter, or <code>--word</code>. Sometimes you specify the option as <code>--word=value</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> <span class="er">(</span><span class="bu">command</span><span class="kw">)</span> <span class="ex">-a</span> <span class="at">-b</span> <span class="at">-c</span> <span class="at">--name</span> <span class="at">--option</span><span class="op">=</span>whatever</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -259,8 +258,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">data/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="making-and-removing-directories" class="level2">
-<h2 class="anchored" data-anchor-id="making-and-removing-directories">Making and removing directories</h2>
+<section id="making-and-removing-directories" class="level3">
+<h3 class="anchored" data-anchor-id="making-and-removing-directories">Making and removing directories</h3>
 <p>You can always create a directory, but the system won’t let you remote directories that aren’t empty.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls </span>
@@ -285,8 +284,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="ex">test.csv</span>  training.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="working-with-files" class="level2">
-<h2 class="anchored" data-anchor-id="working-with-files">Working with files</h2>
+<section id="working-with-files" class="level3">
+<h3 class="anchored" data-anchor-id="working-with-files">Working with files</h3>
 <p>Key commands for working with files.</p>
 <ul>
 <li><code>nano</code> is a tiny text editor that works from the command line and is very easy to use. Other options are <code>vi</code> and <code>emacs</code>. <code>vscode</code> has options allowing you to work remotely as well.</li>
@@ -322,7 +321,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls</span>
 <span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="ex">test.csv</span> training.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Some variations that are useful to know about.</p>
+</section>
+<section id="notes-and-variations" class="level3">
+<h3 class="anchored" data-anchor-id="notes-and-variations">Notes and variations</h3>
 <ol type="1">
 <li>You can copy a bunch of files to a directory if the target of the copy is a directory. You can use wildcards if you want.</li>
 </ol>
@@ -353,8 +354,137 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="ex">data/</span> model2.py notes/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="5" type="1">
-<li>The -f flag means “force” and will override any warnings. So <code>cp -f</code> will do a copy over an existing file without a warning. In particular, <code>rm -f</code> will remove a directory and its contents <em>even if the directory is nonempty</em>. Use with extreme caution!</li>
+<li><p>The -f flag means “force” and will override any warnings. So <code>cp -f</code> will do a copy over an existing file without a warning. In particular, <code>rm -f</code> will remove a directory and its contents <em>even if the directory is nonempty</em>. Use with extreme caution!</p></li>
+<li><p>The shell wildcards are * (which matches anything) and ? which matches one character.</p></li>
+<li><p>The <code>ls -R</code> command lists the contents of all subdirectories as well as the directory itself. The <code>tree</code> command (which isn’t always available) gives you a nicer picture.</p></li>
 </ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> tree </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> data</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── test.csv</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   └── training.csv</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> model.py</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> notes</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> algorithm_notes.txt</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="ex">└──</span> to_do.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise" class="level3">
+<h3 class="anchored" data-anchor-id="exercise">Exercise</h3>
+<p>You receive the following note from your boss together with <a href="joe.zip">this attachment</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Hi, one of our analysts just quit and he sent me the attached zip file of his work so far</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>on one of our projects.  Can you get it organized?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Unzip the attachment. Using the command line, organize the data into appropriate directories and standardize the file names in a reasonable way.</p>
+<p>A few notes:</p>
+<p>To unzip the attachment on the command line, use the <code>unzip</code> command.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> unzip joe.zip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To run a python program from the command line, use the <code>python</code> command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python program.py </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">...program</span> runs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="redirection-pipes-and-filters" class="level2">
+<h2 class="anchored" data-anchor-id="redirection-pipes-and-filters">Redirection, Pipes, and Filters</h2>
+<section id="standard-input-and-standard-output" class="level3">
+<h3 class="anchored" data-anchor-id="standard-input-and-standard-output">Standard input and standard output</h3>
+<p>When a UNIX command runs, it typically has three I/O pathways associated to it:</p>
+<ul>
+<li>an input stream called <em>the standard input.</em></li>
+<li>an output stream called the <em>standard output.</em></li>
+<li>an output stream called the <em>standard error output.</em></li>
+</ul>
+<p>Programs which <em>read from standard input</em> and <em>write to standard output</em> are called <em>filters</em>.</p>
+<p>Some key commands for this section:</p>
+<ol type="1">
+<li><code>cat</code> combines the files given as arguments and outputs them to standard output chained together. Without any files, reads from standard input and outputs to standard output.</li>
+<li><code>wc</code> counts words, characters, and lines from the file on the command line, or from standard input, and outputs to standard output. <code>wc -c</code>, <code>wc -l</code>, and <code>wc -w</code> give the individual numbers.</li>
+<li><code>cut</code> extracts a field from the file on the command line (or from standard input) and outputs to standard output.</li>
+<li><code>echo</code> sends its command line to standard output.</li>
+<li><code>sort</code> sorts files or standard input, outputs to standard output.</li>
+<li><code>grep</code> looks for matching patterns in files or standard input, outputs matching lines to standard output.</li>
+<li><code>uniq</code> finds unique lines in a sorted file or standard input.</li>
+</ol>
+</section>
+<section id="redirection" class="level3">
+<h3 class="anchored" data-anchor-id="redirection">Redirection</h3>
+<p>One of the most powerful features of the shell is its ability to <em>redirect</em> standard input, standard output, and standard error to other files, and thereby construct pipelines.</p>
+<section id="redirection-of-output" class="level4">
+<h4 class="anchored" data-anchor-id="redirection-of-output">Redirection of output</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="op">&gt;</span> files.txt <span class="co"># the &gt; sign sends standard output to the given file.</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat files.txt <span class="co"># cat types the file to standard output</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="ex">data</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="ex">files.txt</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="ex">model2.py</span> </span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="ex">notes</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-F</span> <span class="co"># notice that files.txt has been created</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="ex">data/</span> files.txt model2.py notes/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="pipes" class="level4">
+<h4 class="anchored" data-anchor-id="pipes">Pipes</h4>
+<p>A pipe between commands is written with <code>|</code>. A pipe means the output from the first command should be sent as input to the second command.</p>
+<p>First, let’s look at the <code>wc</code> command.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> wc files.txt</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">4</span> 4 31 files.txt <span class="co"># lines words characters in files.txt</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> wc <span class="at">-l</span> files.txt <span class="co"># just the lines please</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="ex">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we put <code>wc</code> into a pipeline with <code>ls</code> to count the number of files in our directory.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span>  <span class="co"># the output of ls (one file per line) goes to wc -l which counts lines </span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here we combine the training and test files and count the number of characters.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls data/<span class="pp">*</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">test.csv</span> training.csv</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat data/<span class="pp">*</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span> </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="ex">151</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="the-standard-input" class="level3">
+<h3 class="anchored" data-anchor-id="the-standard-input">The standard input</h3>
+<p>Commands like <code>wc</code> and <code>cat</code> <em>either</em> use files specified as arguments or, if there aren’t any, they read from standard input.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> wc </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Here,</span> wc is reading this stuff <span class="er">(</span><span class="fu">which</span> comes from the terminal, i.e. standard input<span class="kw">)</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="ex">and</span> is counting words, lines and so on.</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="ex">I</span> use CTRL-D to send an end of file to tell wc that I<span class="st">'m done.</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="st">^D </span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="st">3 37 86</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can redirect standard input using <code>&lt;</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> wc <span class="op">&lt;</span> files.txt</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="ex">4</span> 4 31</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The output is the line/word/character counts, but there’s no file name because the data comes from standard input via the ‘&lt;’ operator.</p>
+<p><em>Check-in:</em> Explain what these commands do and why.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="st">"Hello There"</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="st">"Hello There"</span> <span class="op">&gt;</span> hello.txt</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="st">"Hello There"</span> <span class="kw">|</span> <span class="fu">wc</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="loops" class="level2">
+<h2 class="anchored" data-anchor-id="loops">Loops</h2>
+</section>
+<section id="scripts" class="level2">
+<h2 class="anchored" data-anchor-id="scripts">Scripts</h2>
+</section>
+<section id="searching" class="level2">
+<h2 class="anchored" data-anchor-id="searching">Searching</h2>
 </section>
 
 </main>

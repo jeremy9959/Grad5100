@@ -25,7 +25,7 @@ by Linus Torvalds
 2. MacOS 
 
 In addition, Microsoft now supports a system called WSL (Windows subsystem for Linux) that
-allows you to with with Linux on a windows machine. 
+allows you to work with Linux on a windows machine. 
 
 ## The GNU project
 
@@ -86,7 +86,7 @@ Files and directories are referred to by paths that (in UNIX derived OS's) alway
 1. The current working directory is abbreviated as '.'
 2. The *parent* of the current working directory is abbreviated as '..'
 
-## Key Navigation Commands
+### Key Navigation Commands
 
 The key commands for navigation through the file system are:
 
@@ -119,7 +119,7 @@ $ pwd # confirm our location
 /home/jeremy9959
 ```
 
-## Options
+### Options
 
 Unix commands typically take (many) options.  The general structure of these options are either 
 `-` followed by a letter, or `--word`. Sometimes you specify the option as `--word=value`.
@@ -175,7 +175,7 @@ model.py
 $ ls -Fd d* # what happens if you just do ls -F?
 data/
 ```
-## Making and removing directories
+### Making and removing directories
 
 You can always create a directory, but the system won't let you remote directories that aren't empty.
 
@@ -202,7 +202,7 @@ $ ls data
 test.csv  training.csv
 ```
 
-## Working with files
+### Working with files
 
 Key commands for working with files.
 
@@ -241,7 +241,7 @@ $ ls
 test.csv training.csv
 ```
 
-Some variations that are useful to know about.
+### Notes and variations
 
 1. You can copy a bunch of files to a directory if the target of the copy is a directory.
 You can use wildcards if you want.
@@ -296,7 +296,7 @@ $ tree
     └── to_do.txt
 ```
 
-## Exercise
+### Exercise
 
 You receive the following note from your boss together with [this attachment](joe.zip).
 
@@ -307,3 +307,131 @@ on one of our projects.  Can you get it organized?
 
 Unzip the attachment.  Using the command line, organize the data into appropriate directories
 and standardize the file names in a reasonable way.
+
+A few notes:
+
+To unzip the attachment on the command line, use the `unzip` command.
+
+```{bash}
+$ unzip joe.zip
+```
+
+To run a python program from the command line, use the `python` command:
+
+```{bash}
+$ python program.py 
+...program runs
+```
+
+
+## Redirection, Pipes, and Filters
+
+### Standard input and standard output
+
+When a UNIX command runs, it typically has three I/O pathways associated to it:
+
+- an input stream called *the standard input.*
+- an output stream called the *standard output.*
+- an output stream called the *standard error output.*
+
+Programs which *read from standard input* and *write to standard output* are called *filters*.
+
+Some key commands for this section:
+
+1. `cat` combines the files given as arguments and outputs them to standard output chained together. Without any files, reads from standard input and outputs to standard output. 
+2. `wc` counts words, characters, and lines from the file on the command line,
+or from standard input, and outputs to standard output.  `wc -c`, `wc -l`, and `wc -w` give the individual numbers.
+3. `cut` extracts a field from the file on the command line (or from standard input) and outputs to standard output.
+5. `echo` sends its command line to standard output.
+6. `sort` sorts files or standard input, outputs to standard output.
+7. `grep` looks for matching patterns in files or standard input, outputs matching lines to standard output.
+8. `uniq` finds unique lines in a sorted file or standard input. 
+
+### Redirection
+ 
+One of the most powerful features of the shell is its ability to *redirect* standard input, standard
+output, and standard error to other files, and thereby construct pipelines.
+
+#### Redirection of output
+
+```{bash}
+$ ls > files.txt # the > sign sends standard output to the given file.
+$ cat files.txt # cat types the file to standard output
+data
+files.txt
+model2.py 
+notes
+$ ls -F # notice that files.txt has been created
+data/ files.txt model2.py notes/
+```
+
+#### Pipes
+
+A pipe between commands is written with `|`.  A pipe means the output from the first command should be sent
+as input to the second command.
+
+First, let's look at the `wc` command.
+
+```{bash}
+$ wc files.txt
+4 4 31 files.txt # lines words characters in files.txt
+$ wc -l files.txt # just the lines please
+4
+```
+
+Now we put `wc` into  a pipeline with `ls` to count the number of files in our directory.
+
+```{bash}
+$ ls | wc -l  # the output of ls (one file per line) goes to wc -l which counts lines 
+4
+```
+
+Here we combine the training and test files and count the number of characters.
+
+```{bash}
+$ ls data/*
+test.csv training.csv
+$ cat data/* | wc -l 
+151
+```
+
+### The standard input
+
+Commands like `wc` and `cat` *either* use files specified as arguments or, if there aren't any, they read from standard input.  
+
+```{bash}
+$ wc 
+Here, wc is reading this stuff (which comes from the terminal, i.e. standard input)
+and is counting words, lines and so on.
+I use CTRL-D to send an end of file to tell wc that I'm done.
+^D 
+3 37 86
+```
+
+You can redirect standard input using `<`.  
+
+```{bash}
+$ wc < files.txt
+4 4 31
+```
+
+The output is the line/word/character counts, but there's no file name because the data comes
+from standard input via the '<' operator.
+
+*Check-in:* Explain what these commands do and why.
+
+```{bash}
+$ echo "Hello There"
+$ echo "Hello There" > hello.txt
+$ echo "Hello There" | wc 
+```
+
+
+
+
+## Loops
+
+## Scripts
+
+## Searching
+
