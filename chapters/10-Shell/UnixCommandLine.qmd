@@ -321,6 +321,13 @@ To unzip the attachment on the command line, use the `unzip` command.
 $ unzip joe.zip
 ```
 
+To create a `zip` file you use the `zip` command.  The `-r` option
+means to descend into directories as well.
+
+```{bash}
+$ zip -r zipfile.zip ...files and directories to zip...
+```
+
 To run a python program from the command line, use the `python` command:
 
 ```{bash}
@@ -369,6 +376,11 @@ notes
 $ ls -F # notice that files.txt has been created
 data/ files.txt model2.py notes/
 ```
+
+
+
+Ordinarily, redirecting output using `>` overwrites the target.  But if you use `>>` you can append to the end of a file.
+
 
 #### Pipes
 
@@ -437,6 +449,9 @@ The `cut` command extracts fields from a delimited file.  You can specify
 the field separator and the fields you want. The default delimiter for `cut`
 is the TAB character.
 
+**WARNING:** `cut` (and `sort`) are not sophisticated about quoted fields that contain commas,
+unlike, say, pandas or the tidyverse.  So you may not always get what you are expecting if you have quoted
+fields that contain commas.
 
 ```{bash}
 $ cut -f4 -d, data/training.csv | head
@@ -475,6 +490,7 @@ $ head -3 data/titanic_train_sorted.csv
 
 You can specify fields (sort key) with `-f`, numerical sort with `-n`,
 reverse with `-r`, case folding with `-f`, and a field separator with `-t`.
+*The quoted names throw things off here!*
 
 ```{bash}
 $ sort -k4 -t, data/titanic_train.csv | head -3 # field four, sep=,
@@ -649,6 +665,13 @@ $ echo $PS1 # the shell prompt
 $ env # print the entire environment
 ```
 
+
+## Other topics
+
+- Using `wget` to get information from the web.
+- Using `ssh` to make a remote connection.
+- Using `rsync` to copy files across computers.
+- Using `tar` or `gzip` to compress and uncompress archives of files.
 
 
 

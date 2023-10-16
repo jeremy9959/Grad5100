@@ -51,6 +51,7 @@ website:
         - chapters/999-Problems/HW2-Iteration.qmd
         - chapters/999-Problems/HW2-Poisson.qmd
         - chapters/999-Problems/HW3Assignment.qmd
+        - chapters/999-Problems/HW4Assignment.qmd
       - section: "Resources"
         contents:
         - chapters/99-Resources/Cheatsheets.qmd
