@@ -35,14 +35,13 @@ This file should contain *only four lines*.
 
 Create *a single zip file* called `hhg-exploded.zip` which, when uncompressed, yields:
 
-    - a directory called `first_last` where `first` and `last` are your first and last names.
-    Inside that directory, there should be:
+    - a directory called `first_last` where `first` and `last` are your first and last names. Inside that directory, there should be:
 
-        - a file `report.txt` that explains your method for creating the `hhgX.txt` files (*briefly*)
-        - the file `shell_answers.sh`
-        - a subdirectory whose name is `hhg-exploded`, and whose contents are the 26 files described above.
-        - a subdirectory called `bkup` which contains the original text file
-        `hhg.txt` as well as the original zip file `hhg.zip`.
+    - a file `report.txt` that explains your method for creating the `hhgX.txt` files (*briefly*)
+    - the file `shell_answers.sh` 
+    - a subdirectory whose name is `hhg-exploded`, and whose contents are the 26 files described above.
+    - a subdirectory called `bkup` which contains the original text file
+    `hhg.txt` as well as the original zip file `hhg.zip`.
     
     To illustrate (although I've only put the ABC files in hhg-exploded)
     your zip file should unpack to this:
