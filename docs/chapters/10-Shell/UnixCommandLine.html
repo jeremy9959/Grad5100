@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-99.9.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jeremy Teitelbaum">
 
-<title>The UNIX command line</title>
+<title>Fundamentals of Machine Learning - The UNIX command line</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -87,29 +87,235 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
-<script src="UnixCommandLine_files/libs/clipboard/clipboard.min.js"></script>
-<script src="UnixCommandLine_files/libs/quarto-html/quarto.js"></script>
-<script src="UnixCommandLine_files/libs/quarto-html/popper.min.js"></script>
-<script src="UnixCommandLine_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="UnixCommandLine_files/libs/quarto-html/anchor.min.js"></script>
-<link href="UnixCommandLine_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="UnixCommandLine_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="UnixCommandLine_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="UnixCommandLine_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="UnixCommandLine_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
 
 
 </head>
 
-<body class="fullcontent">
+<body class="nav-sidebar floating fullcontent">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">The UNIX command line</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Fundamentals of Machine Learning</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Contents</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/00-OrientationProject/orientation-project.html" class="sidebar-item-text sidebar-link">Orientation Project</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01-SettingUp/setting-up.html" class="sidebar-item-text sidebar-link">Key Tools for Data Science</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-JupyterBasics/jupyter-walkthrough.html" class="sidebar-item-text sidebar-link">Jupyter Lab and Python Walkthrough</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-RBasics/r-walkthrough.html" class="sidebar-item-text sidebar-link">R Notebook Walkthrough</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/04-StatBasics/stat-basics.html" class="sidebar-item-text sidebar-link">Statistical Basics</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/05-WorkingWithData/pythonAndR.html" class="sidebar-item-text sidebar-link">Data Structures and Functions in R and Python</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/06-LinearAlgebra/linear_algebra.html" class="sidebar-item-text sidebar-link">Essential Linear Algebra</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/07-Calculus/calculus.html" class="sidebar-item-text sidebar-link">Key ideas from calculus</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/08-Summarizing/grouping_pandas.html" class="sidebar-item-text sidebar-link">Grouping and Summarizing in Pandas</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/08-Summarizing/groupingR.html" class="sidebar-item-text sidebar-link">Grouping and Summarizing in R</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/09-Regexps/pythonFiles.html" class="sidebar-item-text sidebar-link">Reading and Writing to Files in Python</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/09-Regexps/Rfiles.html" class="sidebar-item-text sidebar-link">Reading from and Writing to Files in R</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/09-Regexps/regexpsPython.html" class="sidebar-item-text sidebar-link">Python regexps</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/09-Regexps/regexpsR.html" class="sidebar-item-text sidebar-link">Regexps in R</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/09-Regexps/RegexProblems.html" class="sidebar-item-text sidebar-link">Exercises with Regexps</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/10-Shell/UnixCommandLine.html" class="sidebar-item-text sidebar-link active">The UNIX command line</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Problems</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/999-Problems/HW1.html" class="sidebar-item-text sidebar-link">Homework One</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/999-Problems/Distributions.html" class="sidebar-item-text sidebar-link">Notes on Probability in R</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/999-Problems/HW2.html" class="sidebar-item-text sidebar-link">Homework Two</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/999-Problems/HW2-clean_up_function.html" class="sidebar-item-text sidebar-link">Comments on HW2 - String Clean Up</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/999-Problems/HW2-Iteration.html" class="sidebar-item-text sidebar-link">Comments on HW2 - iteration</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/999-Problems/HW2-Poisson.html" class="sidebar-item-text sidebar-link">HW2 - Comments on Poisson</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/999-Problems/HW3Assignment.html" class="sidebar-item-text sidebar-link">Homework 3</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Resources</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/99-Resources/Cheatsheets.html" class="sidebar-item-text sidebar-link">Cheatsheets and other References</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    
+<!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">The UNIX command line</h1>
+<h1 class="title d-none d-lg-block">The UNIX command line</h1>
 <p class="subtitle lead">Fundamentals of Data Science</p>
 </div>
 
@@ -179,10 +385,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Your shell process always has a notion of “current directory.” This is the folder/directory that will be accessed by default when you run commands.</p>
 <p>When you start a shell, the current directory is your home directory.</p>
 <p>Files and directories are referred to by paths that (in UNIX derived OS’s) always use the ‘/’ character.</p>
-<p><strong>Two important conventions</strong></p>
+<p><strong>Three important conventions</strong></p>
 <ol type="1">
 <li>The current working directory is abbreviated as ‘.’</li>
 <li>The <em>parent</em> of the current working directory is abbreviated as ‘..’</li>
+<li>Your <em>home directory</em> is abbreviated as ‘~’.</li>
 </ol>
 <section id="key-navigation-commands" class="level3">
 <h3 class="anchored" data-anchor-id="key-navigation-commands">Key Navigation Commands</h3>
@@ -314,12 +521,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">first</span> 5 lines<span class="kw">)</span></span>
 <span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> tail <span class="at">-5</span> test.csv <span class="co"># last 5 lines</span></span>
 <span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="fu">last</span> 5 lines<span class="kw">)</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls </span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="ex">new_test.csv</span> test.csv training.csv</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> rm new_test.csv</span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove regular file <span class="st">'new_test.csv'</span><span class="pp">?</span> y <span class="co"># you may not see this</span></span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls</span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="ex">test.csv</span> training.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> tail  +2 test.csv <span class="co"># start with line 2 and go to the end</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">lots</span> of lines<span class="kw">)</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls </span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="ex">new_test.csv</span> test.csv training.csv</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> rm new_test.csv</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove regular file <span class="st">'new_test.csv'</span><span class="pp">?</span> y <span class="co"># you may not see this</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="ex">test.csv</span> training.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="notes-and-variations" class="level3">
@@ -475,20 +684,196 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="st">"Hello There"</span> <span class="op">&gt;</span> hello.txt</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="st">"Hello There"</span> <span class="kw">|</span> <span class="fu">wc</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Two useful commands are <code>sort</code> and <code>cut</code>.</p>
+<p>The <code>cut</code> command extracts fields from a delimited file. You can specify the field separator and the fields you want. The default delimiter for <code>cut</code> is the TAB character.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cut <span class="at">-f4</span> <span class="at">-d,</span> data/training.csv <span class="kw">|</span> <span class="fu">head</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Region</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Anvers</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Anvers</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Anvers</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Anvers</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Anvers</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="ex">Anvers</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Anvers</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="ex">Anvers</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="ex">Anvers</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cut <span class="at">-f1-4</span> <span class="at">-d,</span> data/test.csv <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-3</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="ex">PAL0910,66,Chinstrap</span> penguin <span class="er">(</span><span class="ex">Pygoscelis</span> antarctica<span class="kw">)</span><span class="ex">,Anvers</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="ex">PAL0910,67,Chinstrap</span> penguin <span class="er">(</span><span class="ex">Pygoscelis</span> antarctica<span class="kw">)</span><span class="ex">,Anvers</span></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="ex">PAL0910,68,Chinstrap</span> penguin <span class="er">(</span><span class="ex">Pygoscelis</span> antarctica<span class="kw">)</span><span class="ex">,Anvers</span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-l</span>  <span class="kw">|</span> <span class="fu">cut</span>  <span class="at">-f1</span> <span class="at">-d</span><span class="st">' '</span> <span class="co"># here we use space as a delimiter.</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cut <span class="at">-c1-10</span> data/training.csv <span class="kw">|</span> <span class="fu">head</span> <span class="at">-2</span> <span class="co"># first 10 characters.</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="ex">studyName,</span></span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a><span class="ex">PAL0708,1,</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>sort</code> command sorts (not surprisingly). You can specify the file on the command line or use <code>sort</code> as a filter. Ordinarily it sorts on the entire line.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sort data/titanic_train.csv <span class="op">&gt;</span> data/titanic_train_sorted.csv</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls data</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="ex">test.csv</span>  titanic_test.csv  titanic_train.csv  titanic_train_sorted.csv  training.csv</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> head <span class="at">-3</span> data/titanic_train_sorted.csv</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="ex">100,0,2,</span><span class="st">"Kantor, Mr. Sinai"</span><span class="ex">,male,34,1,0,244367,26,,S</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="ex">101,0,3,</span><span class="st">"Petranec, Miss. Matilda"</span><span class="ex">,female,28,0,0,349245,7.8958,,S</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="ex">10,1,2,</span><span class="st">"Nasser, Mrs. Nicholas (Adele Achem)"</span><span class="ex">,female,14,1,0,237736,30.0708,,C</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can specify fields (sort key) with <code>-f</code>, numerical sort with <code>-n</code>, reverse with <code>-r</code>, case folding with <code>-f</code>, and a field separator with <code>-t</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sort <span class="at">-k4</span> <span class="at">-t,</span> data/titanic_train.csv <span class="kw">|</span> <span class="fu">head</span> <span class="at">-3</span> <span class="co"># field four, sep=,</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ex">846,0,3,</span><span class="st">"Abbing, Mr. Anthony"</span><span class="ex">,male,42,0,0,C.A.</span> 5547,7.55,,S</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="ex">747,0,3,</span><span class="st">"Abbott, Mr. Rossmore Edward"</span><span class="ex">,male,16,1,1,C.A.</span> 2673,20.25,,S</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="ex">280,1,3,</span><span class="st">"Abbott, Mrs. Stanton (Rosa Hunt)"</span><span class="ex">,female,35,1,1,C.A.</span> 2673,20.25,,S</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sort <span class="at">-k4</span> <span class="at">-r</span> <span class="at">-t,</span> data/titanic_train.csv <span class="kw">|</span> <span class="fu">head</span> <span class="at">-2</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="ex">423,0,3,</span><span class="st">"Zimmerman, Mr. Leo"</span><span class="ex">,male,29,0,0,315082,7.875,,S</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="ex">241,0,3,</span><span class="st">"Zabour, Miss. Thamine"</span><span class="ex">,female,,1,0,2665,14.4542,,C</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Sorting is normally done “alphabetically” in which case the order might not be what you expect for numbers. The <code>-n</code> flag forces numeric values to be used.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sort  data/titanic_train.csv <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-f1</span> <span class="at">-d,</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-5</span> <span class="co"># alphabetical</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="ex">100</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="ex">101</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="ex">10</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="ex">102</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="ex">103</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sort <span class="at">-n</span> data/titanic_train.csv <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-f1</span> <span class="at">-d,</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-5</span> <span class="co"># numerical</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="ex">PassengerId</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="ex">1</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="ex">2</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="ex">3</span></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="ex">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="searching" class="level4">
+<h4 class="anchored" data-anchor-id="searching">Searching</h4>
+<p>The <code>grep</code> command searches for matches in its input and outputs any that it finds. There are several variants of grep and there are many, many options to the command.</p>
+<p>The basics:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep <span class="st">'William'</span> data/titanic_train.csv <span class="kw">|</span> <span class="fu">head</span> <span class="at">-5</span>  </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="ex">5,0,3,</span><span class="st">"Allen, Mr. William Henry"</span><span class="ex">,male,35,0,0,373450,8.05,,S</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="ex">13,0,3,</span><span class="st">"Saundercock, Mr. William Henry"</span><span class="ex">,male,20,0,0,A/5.</span> 2151,8.05,,S</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="ex">18,1,2,</span><span class="st">"Williams, Mr. Charles Eugene"</span><span class="ex">,male,,0,0,244373,13,,S</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="ex">24,1,1,</span><span class="st">"Sloper, Mr. William Thompson"</span><span class="ex">,male,28,0,0,113788,35.5,A6,S</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="ex">32,1,1,</span><span class="st">"Spencer, Mrs. William Augustus (Marie Eugenie)"</span><span class="ex">,female,,1,0,PC</span> 17569,146.5208,B78,C</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep <span class="st">'^8'</span> data/titanic_train.csv <span class="kw">|</span> <span class="fu">head</span> <span class="at">-5</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="ex">8,0,3,</span><span class="st">"Palsson, Master. Gosta Leonard"</span><span class="ex">,male,2,3,1,349909,21.075,,S</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="ex">80,1,3,</span><span class="st">"Dowdell, Miss. Elizabeth"</span><span class="ex">,female,30,0,0,364516,12.475,,S</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="ex">81,0,3,</span><span class="st">"Waelens, Mr. Achille"</span><span class="ex">,male,22,0,0,345767,9,,S</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="ex">82,1,3,</span><span class="st">"Sheerlinck, Mr. Jan Baptist"</span><span class="ex">,male,29,0,0,345779,9.5,,S</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="ex">83,1,3,</span><span class="st">"McDermott, Miss. Brigdet Delia"</span><span class="ex">,female,,0,0,330932,7.7875,,Q</span></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep <span class="st">'\bWilliam\b'</span> data/titanic_train.csv <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-5</span></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="ex">803,1,1,</span><span class="st">"Carter, Master. William Thornton II"</span><span class="ex">,male,11,1,2,113760,120,B96</span> B98,S</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a><span class="ex">811,0,3,</span><span class="st">"Alexander, Mr. William"</span><span class="ex">,male,26,0,0,3474,7.8875,,S</span></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a><span class="ex">865,0,2,</span><span class="st">"Gill, Mr. John William"</span><span class="ex">,male,24,0,0,233866,13,,S</span></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a><span class="ex">881,1,2,</span><span class="st">"Shelley, Mrs. William (Imanita Parrish Hall)"</span><span class="ex">,female,25,0,1,230433,26,,S</span></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a><span class="ex">886,0,3,</span><span class="st">"Rice, Mrs. William (Margaret Norton)"</span><span class="ex">,female,39,0,5,382652,29.125,,Q</span></span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep <span class="st">'\bWilliam\b'</span> data/titanic_train.csv <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can do a lot of useful stuff by combining grep with other tools.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep female data/titanic_train.csv <span class="op">&gt;</span> data/females_train.csv</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> head data/females_train.csv</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="ex">2,1,1,</span><span class="st">"Cumings, Mrs. John Bradley (Florence Briggs Thayer)"</span><span class="ex">,female,38,1,0,PC</span> 17599,71.2833,C85,C</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="ex">3,1,3,</span><span class="st">"Heikkinen, Miss. Laina"</span><span class="ex">,female,26,0,0,STON/O2.</span> 3101282,7.925,,S</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="ex">4,1,1,</span><span class="st">"Futrelle, Mrs. Jacques Heath (Lily May Peel)"</span><span class="ex">,female,35,1,0,113803,53.1,C123,S</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="ex">9,1,3,</span><span class="st">"Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg)"</span><span class="ex">,female,27,0,2,347742,11.1333,,S</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="ex">10,1,2,</span><span class="st">"Nasser, Mrs. Nicholas (Adele Achem)"</span><span class="ex">,female,14,1,0,237736,30.0708,,C</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>UNIX tools aren’t as powerful as the <code>csv</code> tools in, for example, pandas, but you can still be clever. Suppose we want to get at the names in the titanic file. They have embedded commas but are set off with quotations</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cut <span class="at">-f2</span> <span class="at">-d\"</span> data/titanic_train.csv</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="ex">PassengerId,Survived,Pclass,Name,Sex,Age,SibSp,Parch,Ticket,Fare,Cabin,Embarked</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Braund,</span> Mr. Owen Harris</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Cumings,</span> Mrs. John Bradley <span class="er">(</span><span class="ex">Florence</span> Briggs Thayer<span class="kw">)</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Heikkinen,</span> Miss. Laina</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Futrelle,</span> Mrs. Jacques Heath <span class="er">(</span><span class="ex">Lily</span> May Peel<span class="kw">)</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cut <span class="at">-d\"</span> <span class="at">-f3</span> data/titanic_train.csv <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-f2</span> <span class="at">-d,</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-2</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="ex">Survived</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="ex">male</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="ex">female</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>uniq</code> command can be used to see the different elements in the field.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cut <span class="at">-d\"</span> <span class="at">-f3</span> data/titanic_train.csv <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-f2</span> <span class="at">-d,</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span> </span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="ex">female</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="ex">male</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Survived</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cut <span class="at">-d\"</span> <span class="at">-f3</span> data/titanic_train.csv <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-f2</span> <span class="at">-d,</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span> <span class="at">-c</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a> <span class="ex">53</span> </span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a> <span class="ex">282</span> female</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a> <span class="ex">556</span> male</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a> <span class="ex">1</span> Survived</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
-<section id="loops" class="level2">
-<h2 class="anchored" data-anchor-id="loops">Loops</h2>
+<section id="exercise-1" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1">Exercise</h3>
+<ol type="1">
+<li>Use UNIX tools to determine:
+<ul>
+<li>how many of each type of penguin there are in the <code>penguins_training.csv</code> and <code>penguins_test.csv</code> files.</li>
+<li>how many males and females there are in each file.</li>
+</ul></li>
+<li>Combine the training and test files for the penguins into a single file (<code>penguins.csv</code>). Then make a file <code>male_penguins.csv</code> containing just the males.</li>
+</ol>
+</section>
+</section>
+<section id="variables-and-loops" class="level2">
+<h2 class="anchored" data-anchor-id="variables-and-loops">Variables and Loops</h2>
+<section id="variables" class="level4">
+<h4 class="anchored" data-anchor-id="variables">Variables</h4>
+<p>You use names for variables (like <code>x</code>), but to refer to the value of a variable you use <code>$x$</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> x=<span class="st">"hello"</span> <span class="co"># no spaces!</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="va">$x</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="ex">hello</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The various UNIX shells are programming languages and they have the full set of capabilities: variables, logical statements, loops….</p>
+<p>The syntax for loops is different for <code>zsh</code> and <code>bash</code> unfortunately.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for x in <span class="pp">*</span>.csv <span class="co"># bash</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> do</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> echo <span class="va">$x</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> done</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for x in <span class="pp">*</span>.csv <span class="co"># zsh</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="ex">cmdor</span> cursh cmdand cursh then else<span class="op">&gt;</span> echo <span class="va">$x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can use loops to (for example) rename a bunch of files.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir bkup</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for x in <span class="pp">*</span>.csv </span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="ex">cmdor</span> cursh cmdand cursh then else<span class="op">&gt;</span> cp <span class="va">$x</span> bkup/<span class="va">$x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir bkup</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for x in <span class="pp">*</span>.csv</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> do</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="va">$x</span> bkup/<span class="va">$x</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> done</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 </section>
 <section id="scripts" class="level2">
 <h2 class="anchored" data-anchor-id="scripts">Scripts</h2>
+<p>A <em>shell script</em> is a file containing a sequence of shell commands. When a shell starts, it executes a startup script stored in <code>.zshrc</code> or <code>.bashrc</code>. This is where you can put commands to customize your shell.</p>
 </section>
-<section id="searching" class="level2">
-<h2 class="anchored" data-anchor-id="searching">Searching</h2>
+<section id="the-environment" class="level2">
+<h2 class="anchored" data-anchor-id="the-environment">The environment</h2>
+<p>Every shell has an <em>environment</em> which is a bunch of variables that are used by programs. Elements of the environment are called <em>environment variables</em>. Sometimes you have to set an environment variable.</p>
+<p>Some common and important shell environment variables are:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="va">$HOME</span> <span class="co"># home directory</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="va">$PATH</span> <span class="co"># search path for commands</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="va">$USER</span> <span class="co"># your user id</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="va">$PS1</span> <span class="co"># the shell prompt</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> env <span class="co"># print the entire environment</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
 </section>
 
-</main>
-<!-- /main column -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

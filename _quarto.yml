@@ -16,6 +16,7 @@ project:
     - chapters/07-Calculus/*.qmd
     - chapters/08-Summarizing/*.qmd
     - chapters/09-Regexps/*.qmd
+    - chapters/10-Shell/*.qmd
     - chapters/99-Resources/*.qmd
     - chapters/999-Problems/*.qmd
 
@@ -40,6 +41,7 @@ website:
         - chapters/09-Regexps/regexpsPython.qmd
         - chapters/09-Regexps/regexpsR.qmd
         - chapters/09-Regexps/RegexProblems.qmd
+        - chapters/10-Shell/UnixCommandLine.qmd
       - section: "Problems"
         contents:
         - chapters/999-Problems/HW1.qmd
