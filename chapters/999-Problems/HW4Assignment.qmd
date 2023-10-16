@@ -7,7 +7,7 @@ format: html
 
 ## Homework 4
 
-Please submit your solution to this problem on Husky CT by Monday, October 29th at 8:00 AM. 
+Please submit your solution to this problem on Husky CT by Monday, October 30th at 8:00 AM. 
 
 [This zip file](./hhg.zip) contains the first few chapters of "The Hitchiker's Guide to the Galaxy" by Douglas Adams in text format in a file called `hhg.txt`.
 
