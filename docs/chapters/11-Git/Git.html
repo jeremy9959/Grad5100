@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jeremy Teitelbaum">
 
-<title>Fundamentals of Machine Learning - Homework 4</title>
+<title>Fundamentals of Machine Learning - Version Control and Git</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,7 +69,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Homework 4</h1>
+      <h1 class="quarto-secondary-nav-title">Version Control and Git</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -182,7 +182,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/11-Git/Git.html" class="sidebar-item-text sidebar-link">Version Control and Git</a>
+  <a href="../../chapters/11-Git/Git.html" class="sidebar-item-text sidebar-link active">Version Control and Git</a>
   </div>
 </li>
       </ul>
@@ -232,7 +232,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/999-Problems/HW4Assignment.html" class="sidebar-item-text sidebar-link active">Homework 4</a>
+  <a href="../../chapters/999-Problems/HW4Assignment.html" class="sidebar-item-text sidebar-link">Homework 4</a>
   </div>
 </li>
       </ul>
@@ -262,7 +262,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Homework 4</h1>
+<h1 class="title d-none d-lg-block">Version Control and Git</h1>
 <p class="subtitle lead">Fundamentals of Data Science</p>
 </div>
 
@@ -284,45 +284,11 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="homework-4" class="level2">
-<h2 class="anchored" data-anchor-id="homework-4">Homework 4</h2>
-<p>Please submit your solution to this problem on Husky CT by Monday, October 30th at 8:00 AM.</p>
-<p><a href="./hhg.zip">This zip file</a> contains the first few chapters of “The Hitchiker’s Guide to the Galaxy” by Douglas Adams in text format in a file called <code>hhg.txt</code>.</p>
-<ol type="a">
-<li>What shell command will tell you if the word “adorable” occurs in this file? (does it?)</li>
-<li>What shell command will tell you how many lines are in the file? (how many are there?)</li>
-</ol>
-<p>Next, using whatever tools you prefer, create 26 text files called <code>hhgX.txt</code> where X runs from A to Z. Each file should contain all of the words from <code>hhg.txt</code> that begin with the corresponding letter, one word per line, in alphabetical order, in lower case. Each word should occur only once in <code>hhgX.txt</code> regardless of how many times it occurs in the original text.</p>
-<p>Next, answer the following questions:</p>
-<ol start="3" type="a">
-<li><p>What shell command would combine all of the <code>hhgX.txt</code> files into a single file called <code>hhgwords.txt</code>?</p></li>
-<li><p>What shell commands would carry out the following:</p>
-<ul>
-<li>create a directory called <code>orig</code></li>
-<li>move the original files <code>hhg.zip</code> and <code>hhg.txt</code> into this directory.</li>
-</ul></li>
-</ol>
-<p>Create a file that contains your answers to a,b,c,d called <code>shell_answers.sh</code>. This file should contain <em>only four lines</em>.</p>
-<p>Create <em>a single zip file</em> called <code>hhg-exploded.zip</code> which, when uncompressed, yields:</p>
-<ul>
-<li><p>a directory called <code>first_last</code> where <code>first</code> and <code>last</code> are your first and last names. Inside that directory, there should be:</p></li>
-<li><p>a file <code>report.txt</code> that explains your method for creating the <code>hhgX.txt</code> files (<em>briefly</em>)</p></li>
-<li><p>the file <code>shell_answers.sh</code></p></li>
-<li><p>a subdirectory whose name is <code>hhg-exploded</code>, and whose contents are the 26 files described above.</p></li>
-<li><p>a subdirectory called <code>bkup</code> which contains the original text file <code>hhg.txt</code> as well as the original zip file <code>hhg.zip</code>.</p></li>
-</ul>
-<p>To illustrate (although I’ve only put the ABC files in hhg-exploded) your zip file should unpack to this:</p>
-<pre class="{verbatim}"><code>jeremy_teitelbaum
-├── bkup
-│   ├── hhg.txt
-│   └── hhg.zip
-├── hhg-exploded
-│   ├── hhgA.txt
-│   ├── hhgB.txt
-│   ├── hhgC.txt
-│   
-├── report.txt
-└── shell_answers.sh</code></pre>
+<section id="using-git" class="level2">
+<h2 class="anchored" data-anchor-id="using-git">Using Git</h2>
+<p>We will be following the <a href="https://swcarpentry.github.io/git-novice/">Software Carpentries Lesson on Git</a>.</p>
+<p>To prepare for this lesson, you should have installed <a href="https://gitforwindows.org/">git for windows</a> if you are on a Windows machine.</p>
+<p>On MacOS, <code>git</code> is typically available by default, but if you want the most recent version you can download it using one of the package managers for Mac (like <code>homebrew</code>). See <a href="https://git-scm.com/download/mac">this web page</a>.</p>
 
 
 </section>
