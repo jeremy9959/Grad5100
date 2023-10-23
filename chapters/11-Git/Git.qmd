@@ -1,0 +1,16 @@
+---
+title: Version Control and Git
+author: Jeremy Teitelbaum
+subtitle: Fundamentals of Data Science
+format: html
+---
+
+## Using Git
+
+We will be following the [Software Carpentries Lesson on Git](https://swcarpentry.github.io/git-novice/).
+
+To prepare for this lesson, you should have installed [git for windows](https://gitforwindows.org/) if you are on a Windows machine. 
+
+On MacOS, `git` is typically available by default, but if you want
+the most recent version you can download it using one of the package
+managers for Mac (like `homebrew`).  See [this web page](https://git-scm.com/download/mac).
