@@ -1,0 +1,109 @@
+---
+title: A brief introduction to Databases and SQL
+subtitle: Fundamentals of Data Science
+format: html
+author: Jeremy Teitelbaum
+---
+
+## Introduction
+
+In this unit we will do some very basic work with a cloud database.  We will:
+
+- give a brief introduction to relational databases
+- illustrate how one can download information from such a database into R tibbles
+  or python dataframes
+- discuss the `join` operation on the R/python level
+- give a brief introduction to SQL
+- write some SQL queries 
+
+There are many types of relational databases.  For these examples we will work specifically with MySQL version 8.0 on Amazon Web Services. 
+Most of what we will do would carry over with minor changes to any of the major relational databases.
+
+## RDBs in (very brief)
+
+A relational database is an efficient means of storing data in a way that allows one to carry out the same family
+of operations that we have used with tibbles and dataframes: selecting, filtering, grouping, summarizing, ordering, and synthesizing
+new data.  
+
+Databases are generally designed to operate at a much larger scale than the tabular data structures we've used in Python
+and R.  Instead of storing data in a single big table, relational databases break up the data into many tables which may have
+many rows but generally have relatively few columns.  A family of indexes link the different tables together.
+
+For a very simple example, imagine we have a dataframe with 10000 people's names and addresses.  The city column in this dataframe
+probably contains many repetitions (lots of occurrences of say, New York City).  In a database, one would typically replace the
+city name column with an index into another table that just contains a list of cities. 
+
+For another example, in the `sakila` database (which is a database of films and actors often used for demo purposes) there is a table
+called `language` that contains a number which is a`language_id` and a `name` which is 20 text characters.  In the `film` table,
+there is a `language_id` field which points into the `language` table so one can find the name of the film's language.
+
+The most fundamental trick to working with relational databases is learning how to put the information together from the different tables
+in order to obtain the specific information you are interested in. 
+
+The relationship among all the tables is presented in what's called an entity-relationship diagram.
+
+![Sakila Database ER Diagram](./wb-sakila-eer.png)
+
+
+In this diagram, the box for `film_actor` shows that each row of the table is defined by the combination
+of an `actor_id` and a `film_id`.  Notice that the `film` table has two `language_id` fields, one
+for the original language and one for the language of the particular version.
+
+The database had its origins in an inventory tracking system for a video rental store (yes, it's that old) and that's where the inventory/rental tables come from.
+
+## Setting up
+
+Setting up for this lesson could be complicated.  We need the following tools.
+
+For Python, we need:
+
+  - the `sqlalchemy` python library.  
+  - the `pymysql` odbc connector package.
+
+These can be installed via the GUI package manager provided as part of anaconda Navigator,
+or using the `conda` shell command:
+
+```{python}
+#| eval: false
+$ conda install sqlalchemy
+$ conda install pymysql
+```
+
+To verify that you have the packages properly installed, start a jupyter notebook and run the following
+commands.
+
+```{python}
+import sqlalchemy as sqla
+import pymysql
+```
+
+If these commands fail, or you don't want to deal with installing this software, you 
+can use a Google colab notebook opened through Google Drive.  In the colab notebook,
+you should already have sqlalchemy available.  You can use `!pip` to install pymysql.
+The code here should work:
+
+```{python}
+#| eval: false
+import sqlalchemy as sqla
+!pip install pymysql
+import pymysql
+```
+
+For `R`, we need:
+
+  - The `dbplyr` package (which gives database functionality to `dplyr`)
+  - The `DBI` package which handles communcation
+  - The `RMariaDB` package which gives the MySQL interface
+
+In RStudio, you should be able to run the following commands.
+
+```{r}
+#| eval: false
+install.packages("dbplyr")
+install.packages("DBI")
+install.packages("RMariaDB")
+library(dbplyr)
+library(DBI)
+library(RMariaDB)
+```
+

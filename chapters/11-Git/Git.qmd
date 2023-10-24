@@ -14,3 +14,6 @@ To prepare for this lesson, you should have installed [git for windows](https://
 On MacOS, `git` is typically available by default, but if you want
 the most recent version you can download it using one of the package
 managers for Mac (like `homebrew`).  See [this web page](https://git-scm.com/download/mac).
+
+You will also need an account on `github.com`.  If you  have not created one, do so now.
+
