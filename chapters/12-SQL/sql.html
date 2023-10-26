@@ -154,9 +154,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./wb-sakila-eer.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Sakila Database ER Diagram</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Sakila Database ER Diagram (<a href="https://docs.oracle.com/cd/E17952_01/workbench-en/wb-documenting-sakila.html">from the MySQL Documentation</a>)</figcaption><p></p>
 </figure>
 </div>
+<p>In this diagram, the box for <code>film_actor</code> shows that each row of the table is defined by the combination of an <code>actor_id</code> and a <code>film_id</code>. Notice that the <code>film</code> table has two <code>language_id</code> fields, one for the original language and one for the language of the particular version.</p>
+<p>The database had its origins in an inventory tracking system for a video rental store (yes, it’s that old) and that’s where the inventory/rental tables come from.</p>
 </section>
 <section id="setting-up" class="level2">
 <h2 class="anchored" data-anchor-id="setting-up">Setting up</h2>
@@ -167,10 +169,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
 <li>the <code>pymysql</code> odbc connector package.</li>
 </ul>
-<p>These can be installed via the GUI package manager provided as part of anaconda Navigator, or using the <code>conda</code> shell command:</p>
+<p>These can be installed via the GUI package manager provided as part of anaconda Navigator, or using the <code>conda</code> shell command. If you use <code>conda</code>, execute the following commands in a terminal window.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>$ conda install sqlalchemy</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>$ conda install pymysql</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In Anaconda Navigator, you will see the “Environments” tab on the left side of the start up screen. You can select “All” from the dropdown on the top right, and search for <code>pymysql</code>; click the checkbox to install it.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./pymysql.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Installing via Anaconda Navigator</figcaption><p></p>
+</figure>
 </div>
 <p>To verify that you have the packages properly installed, start a jupyter notebook and run the following commands.</p>
 <div class="cell">
@@ -186,7 +195,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For <code>R</code>, we need:</p>
 <ul>
 <li>The <code>dbplyr</code> package (which gives database functionality to <code>dplyr</code>)</li>
-<li>The <code>DBI</code> package which handles communcation</li>
+<li>The <code>DBI</code> package which handles communication</li>
 <li>The <code>RMariaDB</code> package which gives the MySQL interface</li>
 </ul>
 <p>In RStudio, you should be able to run the following commands.</p>
