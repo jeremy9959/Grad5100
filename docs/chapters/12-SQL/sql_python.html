@@ -464,7 +464,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        sqla.text(<span class="st">"SELECT actor_id, first_name, last_name FROM actor;"</span>), conn</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>actor_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="6">
 
 <div>
 
@@ -539,7 +539,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> engine.<span class="ex">connect</span>() <span class="im">as</span> conn:</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    film_df <span class="op">=</span> pd.read_sql(sqla.text(<span class="st">"select film_id, title, rating from film;"</span>), conn)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>film_df[<span class="st">"rating"</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>PG-13    223
 NC-17    210
 R        195
@@ -552,7 +552,7 @@ Name: rating, dtype: int64</code></pre>
 <div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>GFilms <span class="op">=</span> film_df[film_df[<span class="st">"rating"</span>] <span class="op">==</span> <span class="st">"G"</span>]</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>GFilms.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>(178, 3)</code></pre>
 </div>
 </div>
@@ -606,7 +606,7 @@ select f1, f2, ... fn from table where condition order by field desc; </code></p
 <pre><code>select count(rating) from film group by rating; </code></pre>
 <div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>run_sql(<span class="st">"select rating, count(rating) from film group by rating;"</span>, engine)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="22">
+<div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>[('PG', 194), ('G', 178), ('NC-17', 210), ('PG-13', 223), ('R', 195)]</code></pre>
 </div>
 </div>
@@ -616,7 +616,7 @@ select f1, f2, ... fn from table where condition order by field desc; </code></p
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"select rating, min(length), avg(length), stddev(length), max(length) from film group by rating;"</span>,</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    engine,</span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
+<div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>[('PG', 46, Decimal('112.0052'), 39.15571575801518, 185),
  ('G', 47, Decimal('111.0506'), 41.65431205970793, 185),
  ('NC-17', 46, Decimal('113.2286'), 40.717904601072505, 184),
@@ -633,7 +633,7 @@ select f1, f2, ... fn from table where condition order by field desc; </code></p
 <div class="cell-output cell-output-stdout">
 <pre><code>Retrieved 5 records</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="24">
+<div class="cell-output cell-output-display" data-execution_count="15">
 
 <div>
 
@@ -703,7 +703,7 @@ select f1, f2, ... fn from table where condition order by field desc; </code></p
 <div class="cell-output cell-output-stdout">
 <pre><code>Retrieved 5 records</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="25">
+<div class="cell-output cell-output-display" data-execution_count="16">
 
 <div>
 
@@ -773,7 +773,7 @@ select f1, f2, ... fn from table where condition order by field desc; </code></p
 <div class="cell-output cell-output-stdout">
 <pre><code>Retrieved 5 records</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="26">
+<div class="cell-output cell-output-display" data-execution_count="17">
 
 <div>
 
@@ -834,25 +834,28 @@ select f1, f2, ... fn from table where condition order by field desc; </code></p
 </div>
 </div>
 </div>
+<p>So to summarize we have:</p>
+<pre><code>select group_field, summary(f1) as name1, summary(f2) as name2,... from table 
+group by group_field order by name1</code></pre>
 <section id="two-extras-distinct-and-limit" class="level4">
 <h4 class="anchored" data-anchor-id="two-extras-distinct-and-limit">Two extras: distinct and limit</h4>
 <p>Finally, if you just want to see the <em>possible</em> values in a field, or you only want to consider distinct values in a sum, you can use the <code>DISTINCT</code> keyword.</p>
 <div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>run_sql(<span class="st">"Select distinct rating from film"</span>, engine)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>run_sql(<span class="st">"Select distinct rating from film"</span>, engine)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>[('PG',), ('G',), ('NC-17',), ('PG-13',), ('R',)]</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>run_sql(<span class="st">"select count(distinct rating) from film"</span>, engine)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>run_sql(<span class="st">"select count(distinct rating) from film"</span>, engine)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>[(5,)]</code></pre>
 </div>
 </div>
 <p>If you only want to retrieve, say, 20 records, you can use the <code>LIMIT</code> keyword.</p>
 <div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>run_sql(<span class="st">"select title, length from film limit 20"</span>, engine)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>run_sql(<span class="st">"select title, length from film limit 20"</span>, engine)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>[('ACADEMY DINOSAUR', 86),
  ('ACE GOLDFINGER', 48),
  ('ADAPTATION HOLES', 50),
