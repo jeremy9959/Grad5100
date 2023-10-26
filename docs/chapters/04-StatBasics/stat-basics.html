@@ -587,7 +587,7 @@ z = \frac{x-\mu}{\sigma}
 <span id="cb1-5"><a href="#cb1-5"></a>quant <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(.<span class="dv">05</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
 <span id="cb1-6"><a href="#cb1-6"></a><span class="fu">cat</span>(<span class="st">"samples: "</span>, samples, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>samples:  -1.182878 -0.5653497 -1.41549 -0.6464732 1.16446 -0.2387299 -0.2444947 -0.5706414 -0.8353636 0.952836 </code></pre>
+<pre><code>samples:  0.1718119 0.6717919 0.151566 -0.7550802 0.8436761 -0.4813664 -1.036051 0.1898321 -0.1624849 -0.5628014 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">cat</span>(<span class="st">"Density="</span>, densityfn, <span class="st">" CDF value="</span>, cdf, <span class="st">" Quantile="</span>, quant)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -620,7 +620,7 @@ z = \frac{x-\mu}{\sigma}
 <span id="cb5-10"><a href="#cb5-10"></a>    <span class="st">"Density=</span><span class="sc">{:.3f}</span><span class="st"> CDF value=</span><span class="sc">{:.3f}</span><span class="st"> Quantile=</span><span class="sc">{:.3f}</span><span class="st">"</span>.<span class="bu">format</span>(densityfn, cdf, quant),</span>
 <span id="cb5-11"><a href="#cb5-11"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>samples = [ 0.239 -1.230 -0.561 -0.288 1.289 1.912 -0.299 -1.514 0.001 1.635 ] Density=0.242 CDF value=0.841 Quantile=-1.645</code></pre>
+<pre><code>samples = [ 0.345 0.179 -1.430 -1.372 0.683 -0.910 1.104 -0.418 -0.988 -2.167 ] Density=0.242 CDF value=0.841 Quantile=-1.645</code></pre>
 </div>
 </div>
 </section>

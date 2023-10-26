@@ -1,5 +1,5 @@
 ---
-title: Databases and SQL: Python
+title: Databases and SQL -  Python
 subtitle: Fundamentals of Data Science
 author: Jeremy Teitelbaum
 format: html
