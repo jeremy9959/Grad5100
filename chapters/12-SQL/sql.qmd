@@ -3,6 +3,11 @@ title: A brief introduction to Databases and SQL
 subtitle: Fundamentals of Data Science
 format: html
 author: Jeremy Teitelbaum
+jupyter:
+    kernelspec:
+        name: "base"
+        language: "python"
+        display_name: "python3"
 ---
 
 ## Introduction
@@ -42,7 +47,7 @@ in order to obtain the specific information you are interested in.
 
 The relationship among all the tables is presented in what's called an entity-relationship diagram.
 
-![Sakila Database ER Diagram ([from the MySQL Documentation](https://docs.oracle.com/cd/E17952_01/workbench-en/wb-documenting-sakila.html))](./wb-sakila-eer.png)
+![Sakila Database ER Diagram ([from the MySQL Documentation](https://docs.oracle.com/cd/E17952_01/workbench-en/wb-documenting-sakila.html))](.img/wb-sakila-eer.png)
 
 
 In this diagram, the box for `film_actor` shows that each row of the table is defined by the combination
@@ -73,7 +78,7 @@ In Anaconda Navigator, you will see the "Environments" tab on the
 left side of the start up screen. You can select "All" from the dropdown on the top right, and
 search for `pymysql`; click the checkbox to install it. 
 
-![Installing via Anaconda Navigator](./pymysql.png)
+![Installing via Anaconda Navigator](./img/pymysql.png)
 
 To verify that you have the packages properly installed, start a jupyter notebook and run the following
 commands.
