@@ -7,7 +7,7 @@ import glob
 
 print("pandas version = {}".format(pd.__version__))
 print("sqlalchemy version = {}".format(sqla.__version__))
-files = glob.glob("csv/*.csv")
+files = glob.glob("data/*.csv")
 tab = {}
 for x in files:
     df = pd.read_csv(x)
