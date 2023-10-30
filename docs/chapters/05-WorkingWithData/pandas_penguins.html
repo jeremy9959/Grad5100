@@ -1459,7 +1459,7 @@ Categories (2, object): ['FEMALE', 'MALE']</code></pre>
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>penguins_by_species <span class="op">=</span> penguins.groupby(<span class="st">'Species'</span>)</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>penguins_by_species</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
-<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f78a787fd90&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7fa74067ce10&gt;</code></pre>
 </div>
 </div>
 </section>
@@ -1729,7 +1729,7 @@ Categories (2, object): ['FEMALE', 'MALE']</code></pre>
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>penguins_by_sex_and_species <span class="op">=</span> penguins.groupby([<span class="st">'Sex'</span>,<span class="st">'Species'</span>])</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>penguins_by_sex_and_species[<span class="st">'Body Mass (g)'</span>].describe().<span class="bu">round</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_669083/3464751443.py:1: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+<pre><code>/tmp/ipykernel_704564/3464751443.py:1: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
   penguins_by_sex_and_species = penguins.groupby(['Sex','Species'])</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="32">
@@ -1884,7 +1884,7 @@ Categories (2, object): ['FEMALE', 'MALE']</code></pre>
 <div class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>penguins[penguins[<span class="st">'Species'</span>].<span class="bu">str</span>.startswith(<span class="st">"Adel"</span>)].groupby([<span class="st">'Sex'</span>])[<span class="st">'Body Mass (g)'</span>].hist(bins<span class="op">=</span><span class="dv">30</span>,legend<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_669083/3368902341.py:1: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+<pre><code>/tmp/ipykernel_704564/3368902341.py:1: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
   penguins[penguins['Species'].str.startswith("Adel")].groupby(['Sex'])['Body Mass (g)'].hist(bins=30,legend=True)</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="34">
