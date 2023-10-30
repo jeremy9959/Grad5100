@@ -58,16 +58,16 @@ First, we can make a table showing, for each actor_id, how many films that actor
 
 ```{python}
 query = """
-select actor_id, count(film_id) as num  from film_actor group by film_id order by num
+select actor_id, count(film_id) as num  from film_actor group by film_id order by num limit 5
 """
 run_sql(query, engine)
 ```
 
-To pick out the ones where `num` is one, we use the `having` clause.
+To pick out the ones where `num` is one, we use the `having` clause. (Notice that we include a limit clause to reduce the amount of output).
 
 ```{python}
 query = """
-select actor_id, count(film_id) as num  from film_actor group by film_id  having count(film_id)=1
+select actor_id, count(film_id) as num  from film_actor group by film_id   having count(film_id)=1 limit 5
 """
 run_sql(query, engine)
 ```
