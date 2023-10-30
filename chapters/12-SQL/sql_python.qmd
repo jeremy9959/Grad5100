@@ -266,14 +266,4 @@ If you only want to retrieve, say, 20 records, you can use the `LIMIT` keyword.
 run_sql("select title, length from film limit 20", engine)
 ```
 
-## Exercises
-
-1. Retrieve the list of actors first and last names, with their actor ids, 
-into a pandas dataframe. (They are in the table `actor`).
-2. Retrieve the list of actors sorted by last name.
-3. Retrieve just a count of the number of actors. 
-4. The function `substring` returns a substring so `substring(last_name, 1,1)`
-refers to the first letter of the last_name.  Retrieve all the actors whose last name starts with "A" (hint: you can use `where substring(...)=...`)
-5. Do problem 4, but sort them in alphabetical order by their first name. (hint: use `order by substring(...)...`)
-6. Retrieve a count of the number of actors grouped by the first letter of their last name. Which is the most common?
 

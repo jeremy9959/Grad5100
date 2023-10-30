@@ -123,3 +123,5 @@ of a `join`.  We look at `joins` here:
 
 - [Joins (examples in Python)](sql_joins.qmd)
 - [Joins (examples in R)](sql_joins_r.qmd)
+
+A few additional topics (HAVING and WITH) are discussed [here](sql_additional.qmd).

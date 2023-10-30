@@ -1,0 +1,114 @@
+---
+title: Databases and SQL - A few more keywords
+author: Jeremy Teitelbaum
+subtitle: Fundamentals of Data Science
+format: html
+---
+
+
+```{python}
+# | echo: false
+# | output: false
+import sqlalchemy as sqla
+import pymysql
+import pandas as pd
+import os
+
+username = ""  # get this from the instructor
+password = ""  # get this from the instructor
+awsresource = ""  # get this from the instructor
+port = 3306
+
+homedir = os.path.expanduser("~")
+with open(f"{homedir}/.rds") as f:
+    info = f.read()
+
+username, password, awsresource = info.strip().split(",")
+
+dbname = "sakila"
+dburi = f"mysql+pymysql://{username}:{password}@{awsresource}:{port}/{dbname}"
+engine = sqla.create_engine(dburi)
+
+
+def run_sql(sql, engine):
+    "send sql to database given by engine and return the result"
+    with engine.connect() as conn:
+        result = conn.execute(sqla.text(sql))
+    return result.all()
+
+
+def df_select(sql, engine):
+    "send sql to database given by engine and return the result as a pandas dataframe"
+    with engine.connect() as conn:
+        result = pd.read_sql(sqla.text(sql), con=conn)
+    print(f"Retrieved {result.shape[0]} records")
+    return result
+
+
+```
+
+There are a few additional tricks to know about. 
+
+1. the HAVING clause.  This allows you to put conditions on summary variables. 
+For example, suppose we want to find all actors in the `sakila` database 
+that appear in only one film. Remember that the relationship between films and actors
+is captured in the `film_actor` table. 
+
+First, we can make a table showing, for each actor_id, how many films that actor appears in.
+
+```{python}
+query = """
+select actor_id, count(film_id) as num  from film_actor group by film_id order by num
+"""
+run_sql(query, engine)
+```
+
+To pick out the ones where `num` is one, we use the `having` clause.
+
+```{python}
+query = """
+select actor_id, count(film_id) as num  from film_actor group by film_id  having count(film_id)=1
+"""
+run_sql(query, engine)
+```
+
+**Exercise:** How can you fill out the actor names and film names from this information?
+
+
+2. The WITH clause. 
+
+Suppose you want to find the actors that appear in the most films, it's a bit trickier
+One way is to first find the largest number of films, and then join with the table
+of film counts to pick out those actors having that number of films.
+
+The `with` clause allows you to nest queries like this.
+
+
+```{python}
+query = """
+with filmcounts as
+    (select actor_id, count(film_id) as num from film_actor group by film_id),
+    maxfilms as
+    (select max(num) as maxnum from filmcounts)
+    select actor_id, num from filmcounts join maxfilms on num=maxnum
+"""
+run_sql(query, engine)
+```
+
+**Excercise:** Extend this to include the actor names for these most prolific actors. .
+
+If you want the actors with the second largest number of films, you can try this.
+
+
+```{python}
+query = """
+with filmcounts as
+    (select actor_id, count(film_id) as num from film_actor group by film_id),
+    maxfilms as
+    (select max(num) as maxnum from filmcounts where num < (select max(num) from filmcounts))
+    select actor_id, num from filmcounts join maxfilms on num=maxnum
+"""
+run_sql(query, engine)
+```
+
+If you want, say, the top  5, then you need other techniques.

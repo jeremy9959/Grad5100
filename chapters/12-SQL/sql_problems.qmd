@@ -1,0 +1,54 @@
+---
+title: Databases and SQL - some exercises
+author: Jeremy Teitelbaum
+subtitle: Fundamentals of Data Science
+format: html
+---
+
+
+```{python}
+# | echo: false
+import pandas as pd
+
+```
+
+
+## Exercises
+
+Using the `sakila` database (R or python, your choice):
+
+1. Retrieve the list of actors first and last names, with their actor ids, 
+into a pandas dataframe. (They are in the table `actor`).
+2. Retrieve the list of actors sorted by last name.
+3. Retrieve just a count of the number of actors. 
+4. The function `substring` returns a substring so `substring(last_name, 1,1)`
+refers to the first letter of the last_name.  Retrieve all the actors whose last name starts with "A" (hint: you can use `where substring(...)=...`)
+5. Do problem 4, but sort them in alphabetical order by their first name. (hint: use `order by substring(...)...`)
+6. Retrieve a count of the number of actors grouped by the first letter of their last name. Which is the most common?
+7.  Consider the following two tables in a hypothetical database:
+```{python}
+employee = pd.DataFrame(
+    {
+        "empId": [3, 1, 2, 4],
+        "name": ["Brad", "John", "Dan", "Sue"],
+        "supervisor": [None, 3, 3, 3],
+        "salary": [4000, 1000, 2000, 4000],
+    },
+).set_index("empId")
+
+bonus = pd.DataFrame({"empId": [2, 4], "bonus": [500, 2000]}).set_index("empId")
+```
+
+You want to extract a table of the employee's names and bonuses for employees whose bonus was less than or equal to 1000 dollars,
+*including* those employees whose bonus is zero (and therefore they don't appear in the bonus table).
+
+How would you do this? (hint: joins)
+
+```{python}
+# | echo: false
+# | output: false
+merged = pd.merge(employee, bonus, left_on="empId", right_on="empId", how="outer")
+merged[(merged["bonus"] <= 1000) | (merged["bonus"].isna())]
+```
+
+
