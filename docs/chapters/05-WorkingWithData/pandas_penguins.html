@@ -367,10 +367,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"numpy version </span><span class="sc">{</span>np<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(<span class="ss">f"Python </span><span class="sc">{</span>sys<span class="sc">.</span>version<span class="sc">}</span><span class="ss">"</span>.split(<span class="st">"|"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>pandas version 1.5.3
-numpy version 1.21.5
-Python 3.9.16 (main, Mar  8 2023, 14:00:05) 
-[GCC 11.2.0]</code></pre>
+<pre><code>pandas version 2.1.1
+numpy version 1.26.0
+Python 3.11.5 (main, Sep 11 2023, 13:54:46) [GCC 11.2.0]</code></pre>
 </div>
 </div>
 </section>
@@ -486,19 +485,21 @@ Name: Sex, Length: 344, dtype: object</code></pre>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>penguins[<span class="st">'Island'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>Biscoe       168
+<pre><code>Island
+Biscoe       168
 Dream        124
 Torgersen     52
-Name: Island, dtype: int64</code></pre>
+Name: count, dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>penguins[<span class="st">'Species'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>Adelie Penguin (Pygoscelis adeliae)          152
+<pre><code>Species
+Adelie Penguin (Pygoscelis adeliae)          152
 Gentoo penguin (Pygoscelis papua)            124
 Chinstrap penguin (Pygoscelis antarctica)     68
-Name: Species, dtype: int64</code></pre>
+Name: count, dtype: int64</code></pre>
 </div>
 </div>
 </section>
@@ -1237,7 +1238,8 @@ dtype: int64</code></pre>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>comments <span class="op">=</span> penguins[<span class="st">'Comments'</span>].value_counts()</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>comments</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
-<pre><code>Nest never observed with full clutch.                                   34
+<pre><code>Comments
+Nest never observed with full clutch.                                   34
 Not enough blood for isotopes.                                           7
 Sexing primers did not amplify.                                          4
 No blood sample obtained.                                                2
@@ -1247,7 +1249,7 @@ Nest never observed with full clutch. Not enough blood for isotopes.     1
 Sexing primers did not amplify. Not enough blood for isotopes.           1
 Adult not sampled. Nest never observed with full clutch.                 1
 No delta15N data received from lab.                                      1
-Name: Comments, dtype: int64</code></pre>
+Name: count, dtype: int64</code></pre>
 </div>
 </div>
 <p>Let’s save the comments separately and look at the rest.</p>
@@ -1457,7 +1459,7 @@ Categories (2, object): ['FEMALE', 'MALE']</code></pre>
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>penguins_by_species <span class="op">=</span> penguins.groupby(<span class="st">'Species'</span>)</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>penguins_by_species</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
-<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f29842ccd00&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f78a787fd90&gt;</code></pre>
 </div>
 </div>
 </section>
@@ -1726,6 +1728,10 @@ Categories (2, object): ['FEMALE', 'MALE']</code></pre>
 <div class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>penguins_by_sex_and_species <span class="op">=</span> penguins.groupby([<span class="st">'Sex'</span>,<span class="st">'Species'</span>])</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>penguins_by_sex_and_species[<span class="st">'Body Mass (g)'</span>].describe().<span class="bu">round</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_669083/3464751443.py:1: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  penguins_by_sex_and_species = penguins.groupby(['Sex','Species'])</code></pre>
+</div>
 <div class="cell-output cell-output-display" data-execution_count="32">
 
 <div>
@@ -1832,8 +1838,8 @@ Categories (2, object): ['FEMALE', 'MALE']</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot tables</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>penguins_by_sex_and_species[<span class="st">'Body Mass (g)'</span>].mean().reset_index().pivot(index<span class="op">=</span><span class="st">'Sex'</span>,columns<span class="op">=</span><span class="st">'Species'</span>,values<span class="op">=</span><span class="st">'Body Mass (g)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot tables</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>penguins_by_sex_and_species[<span class="st">'Body Mass (g)'</span>].mean().reset_index().pivot(index<span class="op">=</span><span class="st">'Sex'</span>,columns<span class="op">=</span><span class="st">'Species'</span>,values<span class="op">=</span><span class="st">'Body Mass (g)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="33">
 
 <div>
@@ -1876,7 +1882,11 @@ Categories (2, object): ['FEMALE', 'MALE']</code></pre>
 <h2 class="anchored" data-anchor-id="pandas-plotting">Pandas plotting</h2>
 <p>Some simple plots are available directly from pandas.</p>
 <div class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>penguins[penguins[<span class="st">'Species'</span>].<span class="bu">str</span>.startswith(<span class="st">"Adel"</span>)].groupby([<span class="st">'Sex'</span>])[<span class="st">'Body Mass (g)'</span>].hist(bins<span class="op">=</span><span class="dv">30</span>,legend<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>penguins[penguins[<span class="st">'Species'</span>].<span class="bu">str</span>.startswith(<span class="st">"Adel"</span>)].groupby([<span class="st">'Sex'</span>])[<span class="st">'Body Mass (g)'</span>].hist(bins<span class="op">=</span><span class="dv">30</span>,legend<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_669083/3368902341.py:1: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  penguins[penguins['Species'].str.startswith("Adel")].groupby(['Sex'])['Body Mass (g)'].hist(bins=30,legend=True)</code></pre>
+</div>
 <div class="cell-output cell-output-display" data-execution_count="34">
 <pre><code>Sex
 FEMALE    Axes(0.125,0.11;0.775x0.77)
@@ -1884,7 +1894,7 @@ MALE      Axes(0.125,0.11;0.775x0.77)
 Name: Body Mass (g), dtype: object</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="pandas_penguins_files/figure-html/cell-35-output-2.png" width="558" height="411"></p>
+<p><img src="pandas_penguins_files/figure-html/cell-35-output-3.png" width="558" height="411"></p>
 </div>
 </div>
 </section>
@@ -1892,8 +1902,8 @@ Name: Body Mass (g), dtype: object</code></pre>
 <h2 class="anchored" data-anchor-id="excel-files">Excel files</h2>
 <p>We can read an excel file. This particular one is complicated for various reasons, including the fact that the column heads are in the third row, not at the top. Also there are a bunch of footnotes starting in row 510 that we don’t want. So we don’t read them in.</p>
 <div class="cell" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>crime2019 <span class="op">=</span> pd.read_excel(<span class="st">"data/Violent Crime-by state-2019-table-5.xls"</span>,header<span class="op">=</span><span class="dv">3</span>,nrows<span class="op">=</span><span class="dv">510</span>)</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>crime2019</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>crime2019 <span class="op">=</span> pd.read_excel(<span class="st">"data/Violent Crime-by state-2019-table-5.xls"</span>,header<span class="op">=</span><span class="dv">3</span>,nrows<span class="op">=</span><span class="dv">510</span>)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>crime2019</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="35">
 
 <div>
@@ -1923,7 +1933,7 @@ Name: Body Mass (g), dtype: object</code></pre>
       <td>ALABAMA</td>
       <td>Metropolitan Statistical Area</td>
       <td>NaN</td>
-      <td>3728978</td>
+      <td>3728978.000</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1955,7 +1965,7 @@ Name: Body Mass (g), dtype: object</code></pre>
       <td>NaN</td>
       <td>NaN</td>
       <td>Estimated total</td>
-      <td>1</td>
+      <td>1.000</td>
       <td>19951</td>
       <td>300.0</td>
       <td>1542.0</td>
@@ -1971,7 +1981,7 @@ Name: Body Mass (g), dtype: object</code></pre>
       <td>NaN</td>
       <td>Cities outside metropolitan areas</td>
       <td>NaN</td>
-      <td>528518</td>
+      <td>528518.000</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2019,7 +2029,7 @@ Name: Body Mass (g), dtype: object</code></pre>
       <td>NaN</td>
       <td>Nonmetropolitan counties</td>
       <td>NaN</td>
-      <td>160615</td>
+      <td>160615.000</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2051,7 +2061,7 @@ Name: Body Mass (g), dtype: object</code></pre>
       <td>NaN</td>
       <td>NaN</td>
       <td>Estimated total</td>
-      <td>1</td>
+      <td>1.000</td>
       <td>213</td>
       <td>0.0</td>
       <td>42.0</td>
@@ -2067,7 +2077,7 @@ Name: Body Mass (g), dtype: object</code></pre>
       <td>NaN</td>
       <td>State Total</td>
       <td>NaN</td>
-      <td>578759</td>
+      <td>578759.000</td>
       <td>1258</td>
       <td>13.0</td>
       <td>324.0</td>
@@ -2102,8 +2112,8 @@ Name: Body Mass (g), dtype: object</code></pre>
 </div>
 <p>The column names have newlines in them and we’d like to get rid of those.</p>
 <div class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>crime2019.columns <span class="op">=</span> [x.replace(<span class="st">" </span><span class="ch">\n</span><span class="st">"</span>,<span class="st">"_"</span>) <span class="cf">for</span> x <span class="kw">in</span> crime2019.columns]</span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>crime2019</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>crime2019.columns <span class="op">=</span> [x.replace(<span class="st">" </span><span class="ch">\n</span><span class="st">"</span>,<span class="st">"_"</span>) <span class="cf">for</span> x <span class="kw">in</span> crime2019.columns]</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>crime2019</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="36">
 
 <div>
@@ -2133,7 +2143,7 @@ Name: Body Mass (g), dtype: object</code></pre>
       <td>ALABAMA</td>
       <td>Metropolitan Statistical Area</td>
       <td>NaN</td>
-      <td>3728978</td>
+      <td>3728978.000</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2165,7 +2175,7 @@ Name: Body Mass (g), dtype: object</code></pre>
       <td>NaN</td>
       <td>NaN</td>
       <td>Estimated total</td>
-      <td>1</td>
+      <td>1.000</td>
       <td>19951</td>
       <td>300.0</td>
       <td>1542.0</td>
@@ -2181,7 +2191,7 @@ Name: Body Mass (g), dtype: object</code></pre>
       <td>NaN</td>
       <td>Cities outside metropolitan areas</td>
       <td>NaN</td>
-      <td>528518</td>
+      <td>528518.000</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2229,7 +2239,7 @@ Name: Body Mass (g), dtype: object</code></pre>
       <td>NaN</td>
       <td>Nonmetropolitan counties</td>
       <td>NaN</td>
-      <td>160615</td>
+      <td>160615.000</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2261,7 +2271,7 @@ Name: Body Mass (g), dtype: object</code></pre>
       <td>NaN</td>
       <td>NaN</td>
       <td>Estimated total</td>
-      <td>1</td>
+      <td>1.000</td>
       <td>213</td>
       <td>0.0</td>
       <td>42.0</td>
@@ -2277,7 +2287,7 @@ Name: Body Mass (g), dtype: object</code></pre>
       <td>NaN</td>
       <td>State Total</td>
       <td>NaN</td>
-      <td>578759</td>
+      <td>578759.000</td>
       <td>1258</td>
       <td>13.0</td>
       <td>324.0</td>
@@ -2312,8 +2322,8 @@ Name: Body Mass (g), dtype: object</code></pre>
 </div>
 <p>Let’s look at the states.</p>
 <div class="cell" data-execution_count="37">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> crime2019[<span class="st">"State"</span>].dropna().values</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>states</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> crime2019[<span class="st">"State"</span>].dropna().values</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>states</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="37">
 <pre><code>array(['ALABAMA', 'ALASKA', 'ARIZONA', 'ARKANSAS', 'CALIFORNIA',
        'COLORADO', 'CONNECTICUT', 'DELAWARE', 'DISTRICT OF COLUMBIA3',
@@ -2330,8 +2340,8 @@ Name: Body Mass (g), dtype: object</code></pre>
 </div>
 <p>Some have footnotes at the end. We don’t want them.</p>
 <div class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> [re.sub(<span class="st">"[0-9$]"</span>,<span class="st">""</span>,x) <span class="cf">for</span> x <span class="kw">in</span> states]</span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>states</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> [re.sub(<span class="st">"[0-9$]"</span>,<span class="st">""</span>,x) <span class="cf">for</span> x <span class="kw">in</span> states]</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>states</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="38">
 <pre><code>['ALABAMA',
  'ALASKA',
@@ -2389,8 +2399,8 @@ Name: Body Mass (g), dtype: object</code></pre>
 </div>
 <p>] We don’t want to include DC or Puerto Rico.</p>
 <div class="cell" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> [x <span class="cf">for</span> x <span class="kw">in</span> states <span class="cf">if</span> x<span class="op">!=</span><span class="st">'DISTRICT OF COLUMBIA'</span> <span class="kw">and</span> x<span class="op">!=</span><span class="st">'PUERTO RICO'</span>]</span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>states</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> [x <span class="cf">for</span> x <span class="kw">in</span> states <span class="cf">if</span> x<span class="op">!=</span><span class="st">'DISTRICT OF COLUMBIA'</span> <span class="kw">and</span> x<span class="op">!=</span><span class="st">'PUERTO RICO'</span>]</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>states</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="39">
 <pre><code>['ALABAMA',
  'ALASKA',
@@ -2446,8 +2456,8 @@ Name: Body Mass (g), dtype: object</code></pre>
 </div>
 <p>Finally, we want to pull out the violent crime numbers for the total area of the state. Notice that Puerto Rico and DC use “Total”, not “State Total”, for Area and so they will be excluded.</p>
 <div class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>vcrime2019 <span class="op">=</span> crime2019[crime2019[<span class="st">'Area'</span>] <span class="op">==</span> <span class="st">'State Total'</span>][<span class="st">'Violent_crime1'</span>].values</span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>vcrime2019</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>vcrime2019 <span class="op">=</span> crime2019[crime2019[<span class="st">'Area'</span>] <span class="op">==</span> <span class="st">'State Total'</span>][<span class="st">'Violent_crime1'</span>].values</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>vcrime2019</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="40">
 <pre><code>array([25046, 6343, 33141, 17643, 174331, 21938, 6546, 4115, 81270, 36170,
        4042, 4000, 51561, 24966, 8410, 11968, 9701, 25537, 1548, 27456,

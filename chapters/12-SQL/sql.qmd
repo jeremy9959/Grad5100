@@ -3,11 +3,6 @@ title: A brief introduction to Databases and SQL
 subtitle: Fundamentals of Data Science
 format: html
 author: Jeremy Teitelbaum
-jupyter:
-    kernelspec:
-        name: "base"
-        language: "python"
-        display_name: "python3"
 ---
 
 ## Introduction
@@ -47,7 +42,7 @@ in order to obtain the specific information you are interested in.
 
 The relationship among all the tables is presented in what's called an entity-relationship diagram.
 
-![Sakila Database ER Diagram ([from the MySQL Documentation](https://docs.oracle.com/cd/E17952_01/workbench-en/wb-documenting-sakila.html))](.img/wb-sakila-eer.png)
+![Sakila Database ER Diagram ([from the MySQL Documentation](https://docs.oracle.com/cd/E17952_01/workbench-en/wb-documenting-sakila.html))](img/wb-sakila-eer.png)
 
 
 In this diagram, the box for `film_actor` shows that each row of the table is defined by the combination
@@ -118,3 +113,13 @@ library(DBI)
 library(RMariaDB)
 ```
 
+To work through some examples using both `python` and `R`:
+
+- [SQL and Python](sql_python.qmd)
+- [SQL and R](sql_r.qmd)
+
+A key concept in working with databases (and tabular data generally) is the notion
+of a `join`.  We look at `joins` here:
+
+- [Joins (examples in Python)](sql_joins.qmd)
+- [Joins (examples in R)](sql_joins_r.qmd)

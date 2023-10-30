@@ -12,17 +12,32 @@ format: html
 Our first task is to make a connection to our database using python and the
 sqlalchemy package.  
 
+
 ```{python}
+#
 import sqlalchemy as sqla
 import pymysql
 import pandas as pd
+import os
 
-print(pd.__version__)
-
-username = "user"  # get this from the instructor
-password = "grad5100user"  # get this from the instructor
-awsresource = "database-1.cwvjklnp4wu3.us-east-1.rds.amazonaws.com"
+username = ""  # get this from the instructor
+password = ""  # get this from the instructor
+awsresource = ""  # get this from the instructor
 port = 3306
+```
+
+
+```{python}
+# | echo: false
+homedir = os.path.expanduser("~")
+with open(f"{homedir}/.rds") as f:
+    info = f.read()
+
+username, password, awsresource = info.strip().split(",")
+```
+
+
+```{python}
 dbname = "sakila"
 dburi = f"mysql+pymysql://{username}:{password}@{awsresource}:{port}/{dbname}"
 engine = sqla.create_engine(dburi)
@@ -30,17 +45,19 @@ engine = sqla.create_engine(dburi)
 
 ```
 
-We are going to use the following little command to send SQL to the database
-and return the result.
+The following functions make it more convenient to run SQL commands.
+
 
 ```{python}
 def run_sql(sql, engine):
+    "send sql to database given by engine and return the result"
     with engine.connect() as conn:
         result = conn.execute(sqla.text(sql))
     return result.all()
 
 
 def df_select(sql, engine):
+    "send sql to database given by engine and return the result as a pandas dataframe"
     with engine.connect() as conn:
         result = pd.read_sql(sqla.text(sql), con=conn)
     print(f"Retrieved {result.shape[0]} records")
@@ -256,7 +273,7 @@ into a pandas dataframe. (They are in the table `actor`).
 2. Retrieve the list of actors sorted by last name.
 3. Retrieve just a count of the number of actors. 
 4. The function `substring` returns a substring so `substring(last_name, 1,1)`
-refers to the first letter of the last_name.  Retrieve all the actors whose last name starts with "A".
-5. Do problem 4, but sort them in alphabetical order by their first name.
+refers to the first letter of the last_name.  Retrieve all the actors whose last name starts with "A" (hint: you can use `where substring(...)=...`)
+5. Do problem 4, but sort them in alphabetical order by their first name. (hint: use `order by substring(...)...`)
 6. Retrieve a count of the number of actors grouped by the first letter of their last name. Which is the most common?
 

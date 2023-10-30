@@ -359,39 +359,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="connecting-to-the-database-using-sqlalchemy">Connecting to the database using sqlalchemy</h2>
 <p>Our first task is to make a connection to our database using python and the sqlalchemy package.</p>
 <div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlalchemy <span class="im">as</span> sqla</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymysql</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.__version__)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlalchemy <span class="im">as</span> sqla</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymysql</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>username <span class="op">=</span> <span class="st">"user"</span>  <span class="co"># get this from the instructor</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>password <span class="op">=</span> <span class="st">"grad5100user"</span>  <span class="co"># get this from the instructor</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>awsresource <span class="op">=</span> <span class="st">"database-1.cwvjklnp4wu3.us-east-1.rds.amazonaws.com"</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>port <span class="op">=</span> <span class="dv">3306</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>dbname <span class="op">=</span> <span class="st">"sakila"</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>dburi <span class="op">=</span> <span class="ss">f"mysql+pymysql://</span><span class="sc">{</span>username<span class="sc">}</span><span class="ss">:</span><span class="sc">{</span>password<span class="sc">}</span><span class="ss">@</span><span class="sc">{</span>awsresource<span class="sc">}</span><span class="ss">:</span><span class="sc">{</span>port<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>dbname<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>engine <span class="op">=</span> sqla.create_engine(dburi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>1.5.3</code></pre>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>username <span class="op">=</span> <span class="st">""</span>  <span class="co"># get this from the instructor</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>password <span class="op">=</span> <span class="st">""</span>  <span class="co"># get this from the instructor</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>awsresource <span class="op">=</span> <span class="st">""</span>  <span class="co"># get this from the instructor</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>port <span class="op">=</span> <span class="dv">3306</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dbname <span class="op">=</span> <span class="st">"sakila"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dburi <span class="op">=</span> <span class="ss">f"mysql+pymysql://</span><span class="sc">{</span>username<span class="sc">}</span><span class="ss">:</span><span class="sc">{</span>password<span class="sc">}</span><span class="ss">@</span><span class="sc">{</span>awsresource<span class="sc">}</span><span class="ss">:</span><span class="sc">{</span>port<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>dbname<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>engine <span class="op">=</span> sqla.create_engine(dburi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We are going to use the following little command to send SQL to the database and return the result.</p>
-<div class="cell" data-execution_count="2">
+<p>The following functions make it more convenient to run SQL commands.</p>
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run_sql(sql, engine):</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> engine.<span class="ex">connect</span>() <span class="im">as</span> conn:</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> conn.execute(sqla.text(sql))</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result.<span class="bu">all</span>()</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"send sql to database given by engine and return the result"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> engine.<span class="ex">connect</span>() <span class="im">as</span> conn:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> conn.execute(sqla.text(sql))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result.<span class="bu">all</span>()</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> df_select(sql, engine):</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> engine.<span class="ex">connect</span>() <span class="im">as</span> conn:</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> pd.read_sql(sqla.text(sql), con<span class="op">=</span>conn)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Retrieved </span><span class="sc">{</span>result<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> records"</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> df_select(sql, engine):</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">"send sql to database given by engine and return the result as a pandas dataframe"</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> engine.<span class="ex">connect</span>() <span class="im">as</span> conn:</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> pd.read_sql(sqla.text(sql), con<span class="op">=</span>conn)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Retrieved </span><span class="sc">{</span>result<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> records"</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To test the connection, let’s use the <code>show</code> command to list the tables in the <code>sakila</code> database.</p>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tables <span class="op">=</span> run_sql(<span class="st">"show tables;"</span>, engine)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> tables:</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -422,7 +423,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Now let’s take a closer look at one of these tables using the <code>describe</code> command. The most important info we learn here are the names of the fields in the <code>actor</code> table, and their datatypes.</p>
-<div class="cell" data-execution_count="4">
+<div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>actor_info <span class="op">=</span> run_sql(<span class="st">"describe actor;"</span>, engine)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> actor_info[:<span class="dv">10</span>]:</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -439,7 +440,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The fundamental SQL command is <code>select</code>. The syntax for the <code>select</code> command is</p>
 <pre><code>select field, field, field from table;</code></pre>
 <p>In our case, let’s select some information from the <code>actor</code> table.</p>
-<div class="cell" data-execution_count="5">
+<div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>actor_data <span class="op">=</span> run_sql(<span class="st">"select actor_id, first_name, last_name from actor;"</span>, engine)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> actor_data[:<span class="dv">10</span>]:</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(x)  <span class="co"># result is a list of tuples</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -458,13 +459,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>It’s a lot more convenient to get this in the form of a pandas dataframe. One could convert it “by hand”, but pandas actually gives us a direct method for this. It needs a connection as an argument.</p>
 <p>The function <code>sqla.text</code> turns an SQL string into the appropriate format for passing to the pandas function.</p>
-<div class="cell" data-execution_count="6">
+<div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> engine.<span class="ex">connect</span>() <span class="im">as</span> conn:</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    actor_df <span class="op">=</span> pd.read_sql(</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        sqla.text(<span class="st">"SELECT actor_id, first_name, last_name FROM actor;"</span>), conn</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>actor_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="8">
 
 <div>
 
@@ -514,7 +515,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>For another example, let’s look at the <code>film</code> table.</p>
-<div class="cell" data-execution_count="7">
+<div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>film_info <span class="op">=</span> run_sql(<span class="st">"describe film;"</span>, engine)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> film_info:</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -535,30 +536,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Using what we already know, the simplest way to work with these tables is to move them into a pandas dataframe locally and work there. For example, suppose we want to look at the film ratings.</p>
-<div class="cell" data-execution_count="8">
+<div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> engine.<span class="ex">connect</span>() <span class="im">as</span> conn:</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    film_df <span class="op">=</span> pd.read_sql(sqla.text(<span class="st">"select film_id, title, rating from film;"</span>), conn)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>film_df[<span class="st">"rating"</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>PG-13    223
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>rating
+PG-13    223
 NC-17    210
 R        195
 PG       194
 G        178
-Name: rating, dtype: int64</code></pre>
+Name: count, dtype: int64</code></pre>
 </div>
 </div>
 <p>And, of course, if we want to pick out the ‘G’-rated films:</p>
-<div class="cell" data-execution_count="9">
+<div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>GFilms <span class="op">=</span> film_df[film_df[<span class="st">"rating"</span>] <span class="op">==</span> <span class="st">"G"</span>]</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>GFilms.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>(178, 3)</code></pre>
 </div>
 </div>
 <p>But suppose there are a huge number of films, and we don’t want to download all of them just to throw away the ones that aren’t G-rated. Then we can use a <code>where</code> clause.</p>
 <p>In this example we also use the <code>film_id</code> as the table index.</p>
-<div class="cell" data-execution_count="10">
+<div class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> engine.<span class="ex">connect</span>() <span class="im">as</span> conn:</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    g_film_df <span class="op">=</span> pd.read_sql(</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>        sqla.text(<span class="st">"select film_id, title, rating from film where rating='G'"</span>),</span>
@@ -571,7 +573,7 @@ Name: rating, dtype: int64</code></pre>
 </div>
 </div>
 <p>What about films between 90 minutes and two hours? And what if we want the result sorted by length?</p>
-<div class="cell" data-execution_count="11">
+<div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> engine.<span class="ex">connect</span>() <span class="im">as</span> conn:</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    midlength_df <span class="op">=</span> pd.read_sql(</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>        sqla.text(</span>
@@ -586,7 +588,7 @@ Name: rating, dtype: int64</code></pre>
 </div>
 </div>
 <p>For simplicity we can use the df_select function.</p>
-<div class="cell" data-execution_count="12">
+<div class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>midlength_df <span class="op">=</span> df_select(</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Select film_id, title, length from film where length&gt;=90 and length&lt;=120 order by length desc;"</span>,</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    engine,</span>
@@ -604,19 +606,19 @@ select f1, f2, ... fn from table where condition order by field desc; </code></p
 <p>The grouping and summarizing operations in pandas are modeled on those from SQL. The <code>group by</code> clause in SQL does the grouping, and then one can apply summarizing functions to fields. For example, suppose we want to count the number of movies with each rating.</p>
 <p>We say:</p>
 <pre><code>select count(rating) from film group by rating; </code></pre>
-<div class="cell" data-execution_count="13">
+<div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>run_sql(<span class="st">"select rating, count(rating) from film group by rating;"</span>, engine)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>[('PG', 194), ('G', 178), ('NC-17', 210), ('PG-13', 223), ('R', 195)]</code></pre>
 </div>
 </div>
 <p>We have the usual summary functions (<code>count</code>, <code>avg</code>, <code>min</code>, <code>max</code>,…)</p>
-<div class="cell" data-execution_count="14">
+<div class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>run_sql(</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"select rating, min(length), avg(length), stddev(length), max(length) from film group by rating;"</span>,</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    engine,</span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>[('PG', 46, Decimal('112.0052'), 39.15571575801518, 185),
  ('G', 47, Decimal('111.0506'), 41.65431205970793, 185),
  ('NC-17', 46, Decimal('113.2286'), 40.717904601072505, 184),
@@ -625,7 +627,7 @@ select f1, f2, ... fn from table where condition order by field desc; </code></p
 </div>
 </div>
 <p>You can of course put this in a dataframe.</p>
-<div class="cell" data-execution_count="15">
+<div class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df_select(</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"select rating, min(length), avg(length), stddev(length), max(length) from film group by rating;"</span>,</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    engine,</span>
@@ -633,7 +635,7 @@ select f1, f2, ... fn from table where condition order by field desc; </code></p
 <div class="cell-output cell-output-stdout">
 <pre><code>Retrieved 5 records</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="17">
 
 <div>
 
@@ -695,7 +697,7 @@ select f1, f2, ... fn from table where condition order by field desc; </code></p
 </div>
 </div>
 <p>You can rename the columns <em>inside</em> the SQL query:</p>
-<div class="cell" data-execution_count="16">
+<div class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df_select(</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"select rating, min(length) as minlen, avg(length) as avlen, stddev(length) as stdlen, max(length) as maxlen from film group by rating;"</span>,</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    engine,</span>
@@ -703,7 +705,7 @@ select f1, f2, ... fn from table where condition order by field desc; </code></p
 <div class="cell-output cell-output-stdout">
 <pre><code>Retrieved 5 records</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="18">
 
 <div>
 
@@ -765,7 +767,7 @@ select f1, f2, ... fn from table where condition order by field desc; </code></p
 </div>
 </div>
 <p>And you can sort the result:</p>
-<div class="cell" data-execution_count="17">
+<div class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df_select(</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"select rating, min(length) as minlen, avg(length) as avlen, stddev(length) as stdlen, max(length) as maxlen from film group by rating order by avlen;"</span>,</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    engine,</span>
@@ -773,7 +775,7 @@ select f1, f2, ... fn from table where condition order by field desc; </code></p
 <div class="cell-output cell-output-stdout">
 <pre><code>Retrieved 5 records</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="19">
 
 <div>
 
@@ -840,22 +842,22 @@ group by group_field order by name1</code></pre>
 <section id="two-extras-distinct-and-limit" class="level4">
 <h4 class="anchored" data-anchor-id="two-extras-distinct-and-limit">Two extras: distinct and limit</h4>
 <p>Finally, if you just want to see the <em>possible</em> values in a field, or you only want to consider distinct values in a sum, you can use the <code>DISTINCT</code> keyword.</p>
-<div class="cell" data-execution_count="18">
+<div class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>run_sql(<span class="st">"Select distinct rating from film"</span>, engine)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>[('PG',), ('G',), ('NC-17',), ('PG-13',), ('R',)]</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="19">
+<div class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>run_sql(<span class="st">"select count(distinct rating) from film"</span>, engine)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="19">
+<div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>[(5,)]</code></pre>
 </div>
 </div>
 <p>If you only want to retrieve, say, 20 records, you can use the <code>LIMIT</code> keyword.</p>
-<div class="cell" data-execution_count="20">
+<div class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>run_sql(<span class="st">"select title, length from film limit 20"</span>, engine)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>[('ACADEMY DINOSAUR', 86),
  ('ACE GOLDFINGER', 48),
  ('ADAPTATION HOLES', 50),
@@ -886,8 +888,8 @@ group by group_field order by name1</code></pre>
 <li>Retrieve the list of actors first and last names, with their actor ids, into a pandas dataframe. (They are in the table <code>actor</code>).</li>
 <li>Retrieve the list of actors sorted by last name.</li>
 <li>Retrieve just a count of the number of actors.</li>
-<li>The function <code>substring</code> returns a substring so <code>substring(last_name, 1,1)</code> refers to the first letter of the last_name. Retrieve all the actors whose last name starts with “A”.</li>
-<li>Do problem 4, but sort them in alphabetical order by their first name.</li>
+<li>The function <code>substring</code> returns a substring so <code>substring(last_name, 1,1)</code> refers to the first letter of the last_name. Retrieve all the actors whose last name starts with “A” (hint: you can use <code>where substring(...)=...</code>)</li>
+<li>Do problem 4, but sort them in alphabetical order by their first name. (hint: use <code>order by substring(...)...</code>)</li>
 <li>Retrieve a count of the number of actors grouped by the first letter of their last name. Which is the most common?</li>
 </ol>
 
