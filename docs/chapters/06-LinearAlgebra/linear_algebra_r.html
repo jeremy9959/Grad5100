@@ -302,6 +302,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../chapters/999-Problems/HW4Assignment.html" class="sidebar-item-text sidebar-link">Homework 4</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/999-Problems/HW5Assignment.html" class="sidebar-item-text sidebar-link">Homework 5</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -427,13 +432,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">4</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(x <span class="sc">+</span> y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3359081 0.1129111 0.6251614 0.5060937</code></pre>
+<pre><code>[1]  0.1761846 -1.6446566  0.1363881  0.3126752</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note that in R this makes sense</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">2</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(x <span class="sc">+</span> u)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.5598113  0.2206345  0.3053293  1.6738299</code></pre>
+<pre><code>[1] -2.4048900 -1.7685019 -2.8088663 -0.7164271</code></pre>
 </div>
 </div>
 </section>
@@ -444,39 +449,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>v <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>), <span class="at">ncol =</span> <span class="dv">4</span>)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(u <span class="sc">+</span> v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           [,1]       [,2]        [,3]       [,4]
-[1,]  1.4492365 -0.4604042  0.07868368  1.3360152
-[2,] -0.1720159  2.3035373 -0.78174334  2.8830938
-[3,]  2.5748998  2.0348140 -0.31049820  0.6094437
-[4,] -0.5334469 -0.8795308  1.85500158 -0.9634925
-[5,]  1.2487193  0.5174810  1.80262809  0.6211704</code></pre>
+<pre><code>           [,1]      [,2]       [,3]       [,4]
+[1,]  1.6751384  1.078460 -0.5411356  1.4303243
+[2,] -1.2450341 -1.341309 -0.6564655  2.8815312
+[3,] -1.8094003  2.487641  1.7654150 -1.2927452
+[4,] -1.2379538 -1.183332  0.2371829 -2.8515905
+[5,]  0.3218091  1.491712 -1.9240823 -0.4565499</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(u)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           [,1]       [,2]       [,3]      [,4]
-[1,]  1.2016848  0.0472751 -0.3719385 0.7294265
-[2,] -0.4178655  1.5477298 -2.0774371 1.1124090
-[3,]  0.9974384  0.2472171  0.6587693 0.8433003
-[4,] -0.1855011 -1.0889800  2.1728880 0.1510001
-[5,]  0.7981483  0.7645702  1.1421394 0.9936510</code></pre>
+<pre><code>           [,1]       [,2]       [,3]       [,4]
+[1,]  1.6496658  0.9744084 -0.6101469  1.5425544
+[2,] -0.4397728 -0.2485251 -0.9987332  0.9916122
+[3,] -1.8684162  0.6297093 -0.2514094 -0.3918199
+[4,]  0.2876806 -1.1068225 -0.6544121 -1.1685801
+[5,] -0.5523942  0.9212992 -0.5920342 -0.2697930</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">1</span> <span class="sc">/</span> u)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>          [,1]       [,2]       [,3]      [,4]
-[1,]  0.832165 21.1527861 -2.6886162 1.3709400
-[2,] -2.393115  0.6461076 -0.4813623 0.8989499
-[3,]  1.002568  4.0450276  1.5179822 1.1858172
-[4,] -5.390804 -0.9182905  0.4602170 6.6225139
-[5,]  1.252900  1.3079243  0.8755498 1.0063896</code></pre>
+<pre><code>           [,1]       [,2]      [,3]       [,4]
+[1,]  0.6061834  1.0262637 -1.638950  0.6482754
+[2,] -2.2739013 -4.0237384 -1.001268  1.0084588
+[3,] -0.5352127  1.5880343 -3.977576 -2.5521930
+[4,]  3.4760774 -0.9034872 -1.528089 -0.8557394
+[5,] -1.8103015  1.0854237 -1.689092 -3.7065456</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">log</span>(<span class="fu">abs</span>(u)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>             [,1]        [,2]       [,3]         [,4]
-[1,]  0.183724546 -3.05177163 -0.9890266 -0.315496635
-[2,] -0.872595678  0.43678921  0.7311350  0.106527937
-[3,] -0.002564874 -1.39748837 -0.4173820 -0.170432141
-[4,] -1.684694476  0.08524146  0.7760572 -1.890475044
-[5,] -0.225460876 -0.26844141  0.1329032 -0.006369257</code></pre>
+<pre><code>           [,1]        [,2]         [,3]         [,4]
+[1,]  0.5005727 -0.02592475 -0.494055521  0.433439744
+[2,] -0.8214970 -1.39221143 -0.001267586 -0.008423178
+[3,]  0.6250911 -0.46249696 -1.380672664 -0.936953006
+[4,] -1.2459045  0.10149332 -0.424018027  0.155789424
+[5,] -0.5934934 -0.08197042 -0.524190960 -1.310100339</code></pre>
 </div>
 </div>
 </section>
@@ -486,19 +491,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>u <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>), <span class="at">ncol =</span> <span class="dv">4</span>)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">colMeans</span>(u))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  0.1823626  0.2241085 -0.2158707  0.5711083</code></pre>
+<pre><code>[1] -0.40956732 -0.21101431  0.06544332  1.04079204</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">rowMeans</span>(u))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.38389632  0.59244707  0.02216017  0.03980697  0.68161806</code></pre>
+<pre><code>[1]  0.07331343 -0.06132726  0.29874383  0.24726225  0.04907490</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(u, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">mean</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.38389632  0.59244707  0.02216017  0.03980697  0.68161806</code></pre>
+<pre><code>[1]  0.07331343 -0.06132726  0.29874383  0.24726225  0.04907490</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(u, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">var</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.5967797 0.5343126 1.2455829 1.5942358</code></pre>
+<pre><code>[1] 0.73190425 1.15000304 0.48427926 0.09556391</code></pre>
 </div>
 </div>
 </section>
@@ -509,12 +514,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">15</span>), <span class="at">ncol =</span> <span class="dv">3</span>)</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y <span class="sc">%*%</span> x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>            [,1]       [,2]       [,3]       [,4]
-[1,] -1.46890474  1.4188822 -1.3939613 -1.1420381
-[2,]  0.06801648 -0.2256538  0.9101077 -0.3801724
-[3,]  1.39743887 -0.8013946 -1.5709372  2.5728899
-[4,] -1.02489901  1.3196802 -2.2838530  0.3961168
-[5,]  1.18718825 -0.8052665 -0.8544587  1.7251648</code></pre>
+<pre><code>          [,1]       [,2]       [,3]       [,4]
+[1,]  1.071577 -1.3321787  0.6355983  2.4596454
+[2,]  1.624499 -0.9568535  1.0904342  3.1680309
+[3,] -1.362851  0.5067122  0.1141306  0.1152974
+[4,] -2.288895 -3.1692504 -3.2486093 -4.9638858
+[5,]  1.181551 -0.8204593  0.7552783  2.3134442</code></pre>
 </div>
 </div>
 </section>
@@ -524,11 +529,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">12</span>), <span class="at">nrow =</span> <span class="dv">3</span>)</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">t</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           [,1]        [,2]       [,3]
-[1,] -1.7533268  0.71326758 -0.8289302
-[2,]  0.5211008 -0.07873838  0.2583787
-[3,]  0.4434514  1.80977936 -0.5614791
-[4,]  0.1466001  0.49116874  0.4350867</code></pre>
+<pre><code>           [,1]       [,2]       [,3]
+[1,] -1.6925193 -1.5886002  1.8593896
+[2,] -1.1753002 -0.7823013 -0.5923276
+[3,]  0.8899265 -1.0513920 -0.5884771
+[4,]  0.0866256  1.3877543  0.1804610</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">nrow</span>(<span class="fu">t</span>(x)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">

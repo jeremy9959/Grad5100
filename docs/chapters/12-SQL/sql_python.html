@@ -306,6 +306,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../chapters/999-Problems/HW4Assignment.html" class="sidebar-item-text sidebar-link">Homework 4</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/999-Problems/HW5Assignment.html" class="sidebar-item-text sidebar-link">Homework 5</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -541,13 +546,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    film_df <span class="op">=</span> pd.read_sql(sqla.text(<span class="st">"select film_id, title, rating from film;"</span>), conn)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>film_df[<span class="st">"rating"</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
-<pre><code>rating
-PG-13    223
+<pre><code>PG-13    223
 NC-17    210
 R        195
 PG       194
 G        178
-Name: count, dtype: int64</code></pre>
+Name: rating, dtype: int64</code></pre>
 </div>
 </div>
 <p>And, of course, if we want to pick out the ‘G’-rated films:</p>
