@@ -19,6 +19,7 @@ project:
     - chapters/10-Shell/*.qmd
     - chapters/11-Git/*.qmd
     - chapters/12-SQL/*.qmd
+    - chapters/13-Plotting/*.qmd
     - chapters/99-Resources/*.qmd
     - chapters/999-Problems/*.qmd
 
@@ -46,6 +47,7 @@ website:
         - chapters/10-Shell/UnixCommandLine.qmd
         - chapters/11-Git/Git.qmd
         - chapters/12-SQL/sql.qmd
+        - chapters/13-Plotting/Plotting.qmd
       - section: "Problems"
         contents:
         - chapters/999-Problems/HW1.qmd
