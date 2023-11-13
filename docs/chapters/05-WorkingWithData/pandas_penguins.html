@@ -372,10 +372,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"numpy version </span><span class="sc">{</span>np<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(<span class="ss">f"Python </span><span class="sc">{</span>sys<span class="sc">.</span>version<span class="sc">}</span><span class="ss">"</span>.split(<span class="st">"|"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>pandas version 1.5.3
-numpy version 1.21.5
-Python 3.9.16 (main, Mar  8 2023, 14:00:05) 
-[GCC 11.2.0]</code></pre>
+<pre><code>pandas version 2.0.3
+numpy version 1.24.3
+Python 3.11.5 (main, Sep 11 2023, 13:54:46) [GCC 11.2.0]</code></pre>
 </div>
 </div>
 </section>
@@ -491,19 +490,21 @@ Name: Sex, Length: 344, dtype: object</code></pre>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>penguins[<span class="st">'Island'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>Biscoe       168
+<pre><code>Island
+Biscoe       168
 Dream        124
 Torgersen     52
-Name: Island, dtype: int64</code></pre>
+Name: count, dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>penguins[<span class="st">'Species'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>Adelie Penguin (Pygoscelis adeliae)          152
+<pre><code>Species
+Adelie Penguin (Pygoscelis adeliae)          152
 Gentoo penguin (Pygoscelis papua)            124
 Chinstrap penguin (Pygoscelis antarctica)     68
-Name: Species, dtype: int64</code></pre>
+Name: count, dtype: int64</code></pre>
 </div>
 </div>
 </section>
@@ -1242,7 +1243,8 @@ dtype: int64</code></pre>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>comments <span class="op">=</span> penguins[<span class="st">'Comments'</span>].value_counts()</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>comments</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
-<pre><code>Nest never observed with full clutch.                                   34
+<pre><code>Comments
+Nest never observed with full clutch.                                   34
 Not enough blood for isotopes.                                           7
 Sexing primers did not amplify.                                          4
 No blood sample obtained.                                                2
@@ -1252,7 +1254,7 @@ Nest never observed with full clutch. Not enough blood for isotopes.     1
 Sexing primers did not amplify. Not enough blood for isotopes.           1
 Adult not sampled. Nest never observed with full clutch.                 1
 No delta15N data received from lab.                                      1
-Name: Comments, dtype: int64</code></pre>
+Name: count, dtype: int64</code></pre>
 </div>
 </div>
 <p>Let’s save the comments separately and look at the rest.</p>
@@ -1462,7 +1464,7 @@ Categories (2, object): ['FEMALE', 'MALE']</code></pre>
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>penguins_by_species <span class="op">=</span> penguins.groupby(<span class="st">'Species'</span>)</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>penguins_by_species</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
-<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f05b5e24fa0&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f32754d66d0&gt;</code></pre>
 </div>
 </div>
 </section>
@@ -1928,7 +1930,7 @@ Name: Body Mass (g), dtype: object</code></pre>
       <td>ALABAMA</td>
       <td>Metropolitan Statistical Area</td>
       <td>NaN</td>
-      <td>3728978</td>
+      <td>3728978.000</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1960,7 +1962,7 @@ Name: Body Mass (g), dtype: object</code></pre>
       <td>NaN</td>
       <td>NaN</td>
       <td>Estimated total</td>
-      <td>1</td>
+      <td>1.000</td>
       <td>19951</td>
       <td>300.0</td>
       <td>1542.0</td>
@@ -1976,7 +1978,7 @@ Name: Body Mass (g), dtype: object</code></pre>
       <td>NaN</td>
       <td>Cities outside metropolitan areas</td>
       <td>NaN</td>
-      <td>528518</td>
+      <td>528518.000</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2024,7 +2026,7 @@ Name: Body Mass (g), dtype: object</code></pre>
       <td>NaN</td>
       <td>Nonmetropolitan counties</td>
       <td>NaN</td>
-      <td>160615</td>
+      <td>160615.000</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2056,7 +2058,7 @@ Name: Body Mass (g), dtype: object</code></pre>
       <td>NaN</td>
       <td>NaN</td>
       <td>Estimated total</td>
-      <td>1</td>
+      <td>1.000</td>
       <td>213</td>
       <td>0.0</td>
       <td>42.0</td>
@@ -2072,7 +2074,7 @@ Name: Body Mass (g), dtype: object</code></pre>
       <td>NaN</td>
       <td>State Total</td>
       <td>NaN</td>
-      <td>578759</td>
+      <td>578759.000</td>
       <td>1258</td>
       <td>13.0</td>
       <td>324.0</td>
@@ -2138,7 +2140,7 @@ Name: Body Mass (g), dtype: object</code></pre>
       <td>ALABAMA</td>
       <td>Metropolitan Statistical Area</td>
       <td>NaN</td>
-      <td>3728978</td>
+      <td>3728978.000</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2170,7 +2172,7 @@ Name: Body Mass (g), dtype: object</code></pre>
       <td>NaN</td>
       <td>NaN</td>
       <td>Estimated total</td>
-      <td>1</td>
+      <td>1.000</td>
       <td>19951</td>
       <td>300.0</td>
       <td>1542.0</td>
@@ -2186,7 +2188,7 @@ Name: Body Mass (g), dtype: object</code></pre>
       <td>NaN</td>
       <td>Cities outside metropolitan areas</td>
       <td>NaN</td>
-      <td>528518</td>
+      <td>528518.000</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2234,7 +2236,7 @@ Name: Body Mass (g), dtype: object</code></pre>
       <td>NaN</td>
       <td>Nonmetropolitan counties</td>
       <td>NaN</td>
-      <td>160615</td>
+      <td>160615.000</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2266,7 +2268,7 @@ Name: Body Mass (g), dtype: object</code></pre>
       <td>NaN</td>
       <td>NaN</td>
       <td>Estimated total</td>
-      <td>1</td>
+      <td>1.000</td>
       <td>213</td>
       <td>0.0</td>
       <td>42.0</td>
@@ -2282,7 +2284,7 @@ Name: Body Mass (g), dtype: object</code></pre>
       <td>NaN</td>
       <td>State Total</td>
       <td>NaN</td>
-      <td>578759</td>
+      <td>578759.000</td>
       <td>1258</td>
       <td>13.0</td>
       <td>324.0</td>
