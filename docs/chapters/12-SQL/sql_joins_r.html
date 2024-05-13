@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Jeremy Teitelbaum">
 
-<title>Fundamentals of Machine Learning - Pandas Grouping and Summarizing</title>
+<title>Fundamentals of Machine Learning - SQL and Databases - Joins (R version)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -358,13 +359,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Pandas Grouping and Summarizing</h1>
+<h1 class="title">SQL and Databases - Joins (R version)</h1>
+<p class="subtitle lead">Fundamentals of Data Science</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jeremy Teitelbaum </p>
+          </div>
+  </div>
     
   
     
@@ -375,21 +383,251 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="47d9d4c4" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now let’s take a look at how joins work in R and the <code>tidyverse</code> library. Before bringing the database into it, let’s work with some local tibbles.</p>
+<p>As with our python discussion, we’ll make some tiny tibbles to experiment on.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="58f60cee" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>abnb <span class="op">=</span> pd.read_csv(<span class="st">"data/AB_NYC_2019.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>T1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">K =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="at">D =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>T2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">K =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">6</span>), <span class="at">D2 =</span> <span class="fu">c</span>(<span class="st">"U"</span>, <span class="st">"V"</span>, <span class="st">"W"</span>, <span class="st">"Y"</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(T1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+      K D    
+  &lt;dbl&gt; &lt;chr&gt;
+1     1 A    
+2     1 B    
+3     2 C    
+4     3 D    
+5     4 E    </code></pre>
 </div>
-<section id="exercise" class="level2">
-<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
-<p>Are there missing values? If so, where?</p>
-<p>Suppose you want to study the price differential by neighborhood. To start, make a pivot table showing average price by neighborhood and room type.</p>
-<p>Do these exercises in R as well.</p>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(T2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+      K D2   
+  &lt;dbl&gt; &lt;chr&gt;
+1     1 U    
+2     2 V    
+3     3 W    
+4     6 Y    </code></pre>
+</div>
+</div>
+<p><strong>Inner Join:</strong> The <code>inner_join</code> function does an inner join. The “by=” keyword tells which key to join on.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(T1, T2, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"K"</span>), <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">"_T1"</span>, <span class="st">"_T2"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+      K D     D2   
+  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;
+1     1 A     U    
+2     1 B     U    
+3     2 C     V    
+4     3 D     W    </code></pre>
+</div>
+</div>
+<p>If the key fields have different names in the two tables, you use a named vector. In other words, if the key in <code>T1</code> were called <code>K1</code> and in <code>T2</code> were <code>K2</code> you would say <code>by=c("K1"="K2")</code>.</p>
+<p>Suffixes are only attached in the column names are the same. For example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>T1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">K1 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="at">D =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>T2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">K2 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">6</span>), <span class="at">D =</span> <span class="fu">c</span>(<span class="st">"U"</span>, <span class="st">"V"</span>, <span class="st">"W"</span>, <span class="st">"Y"</span>))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(T1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+     K1 D    
+  &lt;dbl&gt; &lt;chr&gt;
+1     1 A    
+2     1 B    
+3     2 C    
+4     3 D    
+5     4 E    </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(T2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+     K2 D    
+  &lt;dbl&gt; &lt;chr&gt;
+1     1 U    
+2     2 V    
+3     3 W    
+4     6 Y    </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">inner_join</span>(T1, T2, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"K1"</span> <span class="ot">=</span> <span class="st">"K2"</span>), <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">"_T1"</span>, <span class="st">"_T2"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+     K1 D_T1  D_T2 
+  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;
+1     1 A     U    
+2     1 B     U    
+3     2 C     V    
+4     3 D     W    </code></pre>
+</div>
+</div>
+<p>There are similar functions <code>left_join</code>, <code>right_join</code>, and <code>full_join</code> (meaning outer join).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>leftT1_T2 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(T1, T2, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"K1"</span> <span class="ot">=</span> <span class="st">"K2"</span>), <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">"_T1"</span>, <span class="st">"_T2"</span>))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>rightT1_T2 <span class="ot">&lt;-</span> <span class="fu">right_join</span>(T1, T2, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"K1"</span> <span class="ot">=</span> <span class="st">"K2"</span>), <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">"_T1"</span>, <span class="st">"_T2"</span>))</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>fullT1_T2 <span class="ot">&lt;-</span> <span class="fu">full_join</span>(T1, T2, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"K1"</span> <span class="ot">=</span> <span class="st">"K2"</span>), <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">"_T1"</span>, <span class="st">"_T2"</span>))</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(leftT1_T2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+     K1 D_T1  D_T2 
+  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;
+1     1 A     U    
+2     1 B     U    
+3     2 C     V    
+4     3 D     W    
+5     4 E     &lt;NA&gt; </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(rightT1_T2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+     K1 D_T1  D_T2 
+  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;
+1     1 A     U    
+2     1 B     U    
+3     2 C     V    
+4     3 D     W    
+5     6 &lt;NA&gt;  Y    </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fullT1_T2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+     K1 D_T1  D_T2 
+  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;
+1     1 A     U    
+2     1 B     U    
+3     2 C     V    
+4     3 D     W    
+5     4 E     &lt;NA&gt; 
+6     6 &lt;NA&gt;  Y    </code></pre>
+</div>
+</div>
+<p>Now let’s see what happens when we bring the database into it.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dbplyr)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI) <span class="co"># this is the general DB interface library.</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RMariaDB) <span class="co"># this is the library for MySQL databases.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> DBI<span class="sc">::</span><span class="fu">dbConnect</span>(RMariaDB<span class="sc">::</span><span class="fu">MariaDB</span>(),</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">host =</span> awsresource, <span class="co"># get this from the instructor</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">user =</span> username, <span class="co"># get this from the instructor</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">password =</span> password, <span class="co"># get this from the instructor</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">dbname =</span> <span class="st">"sakila"</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s open the <code>actor</code>, <code>film</code>, and <code>film_actor</code> tables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>actor <span class="ot">&lt;-</span> <span class="fu">tbl</span>(con, <span class="st">"actor"</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>film <span class="ot">&lt;-</span> <span class="fu">tbl</span>(con, <span class="st">"film"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>film_actor <span class="ot">&lt;-</span> <span class="fu">tbl</span>(con, <span class="st">"film_actor"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The syntax looks the same as in the usual <code>dplyr</code> case.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>actor_to_film_actor <span class="ot">&lt;-</span> <span class="fu">left_join</span>(actor, film_actor, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"actor_id"</span>))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>actor_to_film_actor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Source:   SQL [?? x 6]
+# Database: mysql  [grad5100user@database-1.cr5jdmpqgv4m.us-east-1.rds.amazonaws.com:NA/sakila]
+   actor_id first_name last_name last_update.x       film_id last_update.y      
+      &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;dttm&gt;                &lt;int&gt; &lt;dttm&gt;             
+ 1        1 PENELOPE   GUINESS   2006-02-15 04:34:33       1 2006-02-15 05:05:03
+ 2        1 PENELOPE   GUINESS   2006-02-15 04:34:33      23 2006-02-15 05:05:03
+ 3        1 PENELOPE   GUINESS   2006-02-15 04:34:33      25 2006-02-15 05:05:03
+ 4        1 PENELOPE   GUINESS   2006-02-15 04:34:33     106 2006-02-15 05:05:03
+ 5        1 PENELOPE   GUINESS   2006-02-15 04:34:33     140 2006-02-15 05:05:03
+ 6        1 PENELOPE   GUINESS   2006-02-15 04:34:33     166 2006-02-15 05:05:03
+ 7        1 PENELOPE   GUINESS   2006-02-15 04:34:33     277 2006-02-15 05:05:03
+ 8        1 PENELOPE   GUINESS   2006-02-15 04:34:33     361 2006-02-15 05:05:03
+ 9        1 PENELOPE   GUINESS   2006-02-15 04:34:33     438 2006-02-15 05:05:03
+10        1 PENELOPE   GUINESS   2006-02-15 04:34:33     499 2006-02-15 05:05:03
+# ℹ more rows</code></pre>
+</div>
+</div>
+<p>To put the film titles together, we can then join on <code>film_id</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>actors_and_titles <span class="ot">&lt;-</span> <span class="fu">left_join</span>(actor_to_film_actor, film, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"film_id"</span>))</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>actors_and_titles <span class="ot">&lt;-</span> actors_and_titles <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="st">`</span><span class="at">first_name</span><span class="st">`</span>, <span class="st">`</span><span class="at">last_name</span><span class="st">`</span>, <span class="st">`</span><span class="at">title</span><span class="st">`</span>, <span class="st">`</span><span class="at">length</span><span class="st">`</span>, <span class="st">`</span><span class="at">rating</span><span class="st">`</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>actors_and_titles</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Source:   SQL [?? x 5]
+# Database: mysql  [grad5100user@database-1.cr5jdmpqgv4m.us-east-1.rds.amazonaws.com:NA/sakila]
+   first_name last_name title                 length rating
+   &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;                  &lt;int&gt; &lt;chr&gt; 
+ 1 PENELOPE   GUINESS   ACADEMY DINOSAUR          86 PG    
+ 2 PENELOPE   GUINESS   ANACONDA CONFESSIONS      92 R     
+ 3 PENELOPE   GUINESS   ANGELS LIFE               74 G     
+ 4 PENELOPE   GUINESS   BULWORTH COMMANDMENTS     61 G     
+ 5 PENELOPE   GUINESS   CHEAPER CLYDE             87 G     
+ 6 PENELOPE   GUINESS   COLOR PHILADELPHIA       149 G     
+ 7 PENELOPE   GUINESS   ELEPHANT TROJAN          126 PG-13 
+ 8 PENELOPE   GUINESS   GLEAMING JAWBREAKER       89 NC-17 
+ 9 PENELOPE   GUINESS   HUMAN GRAFFITI            68 NC-17 
+10 PENELOPE   GUINESS   KING EVOLUTION           184 NC-17 
+# ℹ more rows</code></pre>
+</div>
+</div>
+<p>The pipe notation also works.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>actors_and_titles_2 <span class="ot">&lt;-</span> actor_to_film_actor <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(film, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"film_id"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="st">`</span><span class="at">first_name</span><span class="st">`</span>, <span class="st">`</span><span class="at">last_name</span><span class="st">`</span>, <span class="st">`</span><span class="at">title</span><span class="st">`</span>, <span class="st">`</span><span class="at">length</span><span class="st">`</span>, <span class="st">`</span><span class="at">rating</span><span class="st">`</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>actors_and_titles_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Source:   SQL [?? x 5]
+# Database: mysql  [grad5100user@database-1.cr5jdmpqgv4m.us-east-1.rds.amazonaws.com:NA/sakila]
+   first_name last_name title                 length rating
+   &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;                  &lt;int&gt; &lt;chr&gt; 
+ 1 PENELOPE   GUINESS   ACADEMY DINOSAUR          86 PG    
+ 2 PENELOPE   GUINESS   ANACONDA CONFESSIONS      92 R     
+ 3 PENELOPE   GUINESS   ANGELS LIFE               74 G     
+ 4 PENELOPE   GUINESS   BULWORTH COMMANDMENTS     61 G     
+ 5 PENELOPE   GUINESS   CHEAPER CLYDE             87 G     
+ 6 PENELOPE   GUINESS   COLOR PHILADELPHIA       149 G     
+ 7 PENELOPE   GUINESS   ELEPHANT TROJAN          126 PG-13 
+ 8 PENELOPE   GUINESS   GLEAMING JAWBREAKER       89 NC-17 
+ 9 PENELOPE   GUINESS   HUMAN GRAFFITI            68 NC-17 
+10 PENELOPE   GUINESS   KING EVOLUTION           184 NC-17 
+# ℹ more rows</code></pre>
+</div>
+</div>
+<p>What’s fun about doing this in <code>R</code> is that you can retrieve the actual SQL used to do these manipulations.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>actors_and_titles <span class="sc">|&gt;</span> <span class="fu">show_query</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;SQL&gt;
+SELECT `first_name`, `last_name`, `title`, `length`, `rating`
+FROM `actor`
+LEFT JOIN `film_actor`
+  ON (`actor`.`actor_id` = `film_actor`.`actor_id`)
+LEFT JOIN `film`
+  ON (`film_actor`.`film_id` = `film`.`film_id`)</code></pre>
+</div>
+</div>
+<p>Finally, you can “pull down” the full table using <code>collect</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>actors_and_titles_local <span class="ot">&lt;-</span> actors_and_titles <span class="sc">|&gt;</span> <span class="fu">collect</span>()</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>actors_and_titles_local</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5,462 × 5
+   first_name last_name title                 length rating
+   &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;                  &lt;int&gt; &lt;chr&gt; 
+ 1 PENELOPE   GUINESS   ACADEMY DINOSAUR          86 PG    
+ 2 PENELOPE   GUINESS   ANACONDA CONFESSIONS      92 R     
+ 3 PENELOPE   GUINESS   ANGELS LIFE               74 G     
+ 4 PENELOPE   GUINESS   BULWORTH COMMANDMENTS     61 G     
+ 5 PENELOPE   GUINESS   CHEAPER CLYDE             87 G     
+ 6 PENELOPE   GUINESS   COLOR PHILADELPHIA       149 G     
+ 7 PENELOPE   GUINESS   ELEPHANT TROJAN          126 PG-13 
+ 8 PENELOPE   GUINESS   GLEAMING JAWBREAKER       89 NC-17 
+ 9 PENELOPE   GUINESS   HUMAN GRAFFITI            68 NC-17 
+10 PENELOPE   GUINESS   KING EVOLUTION           184 NC-17 
+# ℹ 5,452 more rows</code></pre>
+</div>
+</div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

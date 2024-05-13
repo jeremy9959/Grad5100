@@ -254,6 +254,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../chapters/12-SQL/sql.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A brief introduction to Databases and SQL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../chapters/13-Plotting/Plotting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Plotting (in Python)</span></a>
   </div>
@@ -377,12 +383,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="bda3c8ac" class="cell" data-execution_count="1">
+<div id="7c8a9324" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Regular Expressions</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="1e597e5e" class="cell" data-execution_count="2">
+<div id="90d2cef7" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"""</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">Long ago, I travelled to the far west, seeking my fortune. I found</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">frosty mountains, arid deserts, lush oases, and a huge ocean.</span></span>
@@ -406,7 +412,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>‘\s’ matches whitespace</li>
 <li>‘\S’ matches non-whitespace</li>
 </ul>
-<div id="5d7af26b" class="cell" data-execution_count="3">
+<div id="87af50c6" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> re.search(<span class="vs">r"travel"</span>, text):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Yes"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -423,7 +429,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 I travelled to  travelled</code></pre>
 </div>
 </div>
-<div id="28866d36" class="cell" data-execution_count="4">
+<div id="17918167" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>astrings <span class="op">=</span> re.findall(<span class="vs">r"a\w+"</span>, text)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(astrings)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -434,7 +440,7 @@ I travelled to  travelled</code></pre>
 ['ago', 'arid', 'and', 'and', 'at']</code></pre>
 </div>
 </div>
-<div id="6f10cbf1" class="cell" data-execution_count="5">
+<div id="95351b44" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>re.findall(<span class="vs">r"\w+"</span>, text)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>re.findall(<span class="vs">r"\w+"</span>, text.lower())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -489,7 +495,7 @@ I travelled to  travelled</code></pre>
 <li>match objects</li>
 <li>x a match object: x[0] returns the match; x.span() returns (start, end) of the match</li>
 </ul>
-<div id="b729fe8c" class="cell" data-execution_count="6">
+<div id="b8b33659" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> re.finditer(<span class="vs">r"\w+"</span>, text):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(x[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -538,7 +544,7 @@ Anonymous
 <section id="counter" class="level2">
 <h2 class="anchored" data-anchor-id="counter">Counter</h2>
 <p>Counter creates a dictionary that counts the number of occurrences of elements of a list.</p>
-<div id="b69d7b7e" class="cell" data-execution_count="7">
+<div id="d5597780" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>words <span class="op">=</span> re.findall(<span class="vs">r"\b\w\w+\b"</span>, text.lower())</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> Counter(words)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>sorted_words <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">sorted</span>(counts.items(), key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">0</span>], reverse<span class="op">=</span><span class="va">True</span>))</span>

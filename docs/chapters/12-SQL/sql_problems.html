@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Jeremy Teitelbaum">
 
-<title>Fundamentals of Machine Learning - Pandas Grouping and Summarizing</title>
+<title>Fundamentals of Machine Learning - Databases and SQL - some exercises</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -100,6 +101,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -358,13 +362,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Pandas Grouping and Summarizing</h1>
+<h1 class="title">Databases and SQL - some exercises</h1>
+<p class="subtitle lead">Fundamentals of Data Science</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jeremy Teitelbaum </p>
+          </div>
+  </div>
     
   
     
@@ -375,18 +386,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="47d9d4c4" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<p>Using the <code>sakila</code> database (R or python, your choice):</p>
+<ol type="1">
+<li>Retrieve the list of actors first and last names, with their actor ids, into a pandas dataframe. (They are in the table <code>actor</code>).</li>
+<li>Retrieve the list of actors sorted by last name.</li>
+<li>Retrieve just a count of the number of actors.</li>
+<li>The function <code>substring</code> returns a substring so <code>substring(last_name, 1,1)</code> refers to the first letter of the last_name. Retrieve all the actors whose last name starts with “A” (hint: you can use <code>where substring(...)=...</code>)</li>
+<li>Do problem 4, but sort them in alphabetical order by their first name. (hint: use <code>order by substring(...)...</code>)</li>
+<li>Retrieve a count of the number of actors grouped by the first letter of their last name. Which is the most common?</li>
+<li>Consider the following two tables in a hypothetical database:</li>
+</ol>
+<div id="e9a0ddb2" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>employee <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"empId"</span>: [<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>],</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"name"</span>: [<span class="st">"Brad"</span>, <span class="st">"John"</span>, <span class="st">"Dan"</span>, <span class="st">"Sue"</span>],</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"supervisor"</span>: [<span class="va">None</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>],</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"salary"</span>: [<span class="dv">4000</span>, <span class="dv">1000</span>, <span class="dv">2000</span>, <span class="dv">4000</span>],</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>).set_index(<span class="st">"empId"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>bonus <span class="op">=</span> pd.DataFrame({<span class="st">"empId"</span>: [<span class="dv">2</span>, <span class="dv">4</span>], <span class="st">"bonus"</span>: [<span class="dv">500</span>, <span class="dv">2000</span>]}).set_index(<span class="st">"empId"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="58f60cee" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>abnb <span class="op">=</span> pd.read_csv(<span class="st">"data/AB_NYC_2019.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="exercise" class="level2">
-<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
-<p>Are there missing values? If so, where?</p>
-<p>Suppose you want to study the price differential by neighborhood. To start, make a pivot table showing average price by neighborhood and room type.</p>
-<p>Do these exercises in R as well.</p>
+<p>You want to extract a table of the employee’s names and bonuses for employees whose bonus was less than or equal to 1000 dollars, <em>including</em> those employees whose bonus is zero (and therefore they don’t appear in the bonus table).</p>
+<p>How would you do this? (hint: joins)</p>
 
 
 </section>

@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Jeremy Teitelbaum">
 
-<title>Fundamentals of Machine Learning - Pandas Grouping and Summarizing</title>
+<title>Fundamentals of Machine Learning - A brief introduction to Databases and SQL</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,9 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      Fundamentals of Machine Learning
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/00-OrientationProject/orientation-project.html">Contents</a></li><li class="breadcrumb-item"><a href="../../chapters/12-SQL/sql.html">A brief introduction to Databases and SQL</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -253,7 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/12-SQL/sql.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/12-SQL/sql.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">A brief introduction to Databases and SQL</span></a>
   </div>
 </li>
@@ -356,15 +355,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/00-OrientationProject/orientation-project.html">Contents</a></li><li class="breadcrumb-item"><a href="../../chapters/12-SQL/sql.html">A brief introduction to Databases and SQL</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Pandas Grouping and Summarizing</h1>
+<h1 class="title">A brief introduction to Databases and SQL</h1>
+<p class="subtitle lead">Fundamentals of Data Science</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jeremy Teitelbaum </p>
+          </div>
+  </div>
     
   
     
@@ -375,18 +381,93 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="47d9d4c4" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>In this unit we will do some very basic work with a cloud database. We will:</p>
+<ul>
+<li>give a brief introduction to relational databases</li>
+<li>illustrate how one can download information from such a database into R tibbles or python dataframes</li>
+<li>discuss the <code>join</code> operation on the R/python level</li>
+<li>give a brief introduction to SQL</li>
+<li>write some SQL queries</li>
+</ul>
+<p>There are many types of relational databases. For these examples we will work specifically with MySQL version 8.0 on Amazon Web Services. Most of what we will do would carry over with minor changes to any of the major relational databases.</p>
+</section>
+<section id="rdbs-in-very-brief" class="level2">
+<h2 class="anchored" data-anchor-id="rdbs-in-very-brief">RDBs in (very brief)</h2>
+<p>A relational database is an efficient means of storing data in a way that allows one to carry out the same family of operations that we have used with tibbles and dataframes: selecting, filtering, grouping, summarizing, ordering, and synthesizing new data.</p>
+<p>Databases are generally designed to operate at a much larger scale than the tabular data structures we’ve used in Python and R. Instead of storing data in a single big table, relational databases break up the data into many tables which may have many rows but generally have relatively few columns. A family of indexes link the different tables together.</p>
+<p>For a very simple example, imagine we have a dataframe with 10000 people’s names and addresses. The city column in this dataframe probably contains many repetitions (lots of occurrences of say, New York City). In a database, one would typically replace the city name column with an index into another table that just contains a list of cities.</p>
+<p>For another example, in the <code>sakila</code> database (which is a database of films and actors often used for demo purposes) there is a table called <code>language</code> that contains a number which is a<code>language_id</code> and a <code>name</code> which is 20 text characters. In the <code>film</code> table, there is a <code>language_id</code> field which points into the <code>language</code> table so one can find the name of the film’s language.</p>
+<p>The most fundamental trick to working with relational databases is learning how to put the information together from the different tables in order to obtain the specific information you are interested in.</p>
+<p>The relationship among all the tables is presented in what’s called an entity-relationship diagram.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/wb-sakila-eer.png" class="img-fluid figure-img"></p>
+<figcaption>Sakila Database ER Diagram (<a href="https://docs.oracle.com/cd/E17952_01/workbench-en/wb-documenting-sakila.html">from the MySQL Documentation</a>)</figcaption>
+</figure>
 </div>
-<div id="58f60cee" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>abnb <span class="op">=</span> pd.read_csv(<span class="st">"data/AB_NYC_2019.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this diagram, the box for <code>film_actor</code> shows that each row of the table is defined by the combination of an <code>actor_id</code> and a <code>film_id</code>. Notice that the <code>film</code> table has two <code>language_id</code> fields, one for the original language and one for the language of the particular version.</p>
+<p>The database had its origins in an inventory tracking system for a video rental store (yes, it’s that old) and that’s where the inventory/rental tables come from.</p>
+</section>
+<section id="setting-up" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up">Setting up</h2>
+<p>Setting up for this lesson could be complicated. We need the following tools.</p>
+<p>For Python, we need:</p>
+<ul>
+<li>the <code>sqlalchemy</code> python library.<br>
+</li>
+<li>the <code>pymysql</code> odbc connector package.</li>
+</ul>
+<p>These can be installed via the GUI package manager provided as part of anaconda Navigator, or using the <code>conda</code> shell command. If you use <code>conda</code>, execute the following commands in a terminal window.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>$ conda install sqlalchemy</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>$ conda install pymysql</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="exercise" class="level2">
-<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
-<p>Are there missing values? If so, where?</p>
-<p>Suppose you want to study the price differential by neighborhood. To start, make a pivot table showing average price by neighborhood and room type.</p>
-<p>Do these exercises in R as well.</p>
+<p>In Anaconda Navigator, you will see the “Environments” tab on the left side of the start up screen. You can select “All” from the dropdown on the top right, and search for <code>pymysql</code>; click the checkbox to install it.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./img/pymysql.png" class="img-fluid figure-img"></p>
+<figcaption>Installing via Anaconda Navigator</figcaption>
+</figure>
+</div>
+<p>To verify that you have the packages properly installed, start a jupyter notebook and run the following commands.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlalchemy <span class="im">as</span> sqla</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymysql</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If these commands fail, or you don’t want to deal with installing this software, you can use a Google colab notebook opened through Google Drive. In the colab notebook, you should already have sqlalchemy available. You can use <code>!pip</code> to install pymysql. The code here should work:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlalchemy <span class="im">as</span> sqla</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pymysql</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymysql</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For <code>R</code>, we need:</p>
+<ul>
+<li>The <code>dbplyr</code> package (which gives database functionality to <code>dplyr</code>)</li>
+<li>The <code>DBI</code> package which handles communication</li>
+<li>The <code>RMariaDB</code> package which gives the MySQL interface</li>
+</ul>
+<p>In RStudio, you should be able to run the following commands.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"dbplyr"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"DBI"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"RMariaDB"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dbplyr)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RMariaDB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To work through some examples using both <code>python</code> and <code>R</code>:</p>
+<ul>
+<li><a href="../../chapters/12-SQL/sql_python.html">SQL and Python</a></li>
+<li><a href="../../chapters/12-SQL/sql_r.html">SQL and R</a></li>
+</ul>
+<p>A key concept in working with databases (and tabular data generally) is the notion of a <code>join</code>. We look at <code>joins</code> here:</p>
+<ul>
+<li><a href="../../chapters/12-SQL/sql_joins.html">Joins (examples in Python)</a></li>
+<li><a href="../../chapters/12-SQL/sql_joins_r.html">Joins (examples in R)</a></li>
+</ul>
+<p>A few additional topics (HAVING and WITH) are discussed <a href="../../chapters/12-SQL/sql_additional.html">here</a>.</p>
 
 
 </section>
