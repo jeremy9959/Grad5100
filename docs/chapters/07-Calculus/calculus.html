@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jeremy Teitelbaum">
+
+<title>Fundamentals of Machine Learning - Key ideas from calculus</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/00-OrientationProject/orientation-project.html">Contents</a></li><li class="breadcrumb-item"><a href="../../chapters/07-Calculus/calculus.html">Key ideas from calculus</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Fundamentals of Machine Learning</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Contents</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/00-OrientationProject/orientation-project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Orientation Project</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01-SettingUp/setting-up.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Key Tools for Data Science</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-JupyterBasics/jupyter-walkthrough.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Jupyter Lab and Python Walkthrough</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-RBasics/r-walkthrough.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R Notebook Walkthrough</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/04-StatBasics/stat-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/05-WorkingWithData/pythonAndR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Structures and Functions in R and Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/06-LinearAlgebra/linear_algebra.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Essential Linear Algebra</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/07-Calculus/calculus.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Key ideas from calculus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/08-Summarizing/grouping_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Grouping and Summarizing in Pandas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/08-Summarizing/groupingR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Grouping and Summarizing in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/09-Regexps/pythonFiles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading and Writing to Files in Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/09-Regexps/Rfiles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading from and Writing to Files in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/09-Regexps/regexpsPython.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python regexps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/09-Regexps/regexpsR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regexps in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/09-Regexps/RegexProblems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises with Regexps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/10-Shell/UnixCommandLine.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The UNIX command line</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/11-Git/Git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Version Control and Git</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/13-Plotting/Plotting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plotting (in Python)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Problems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/999-Problems/HW1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework One</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/999-Problems/Distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes on Probability in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/999-Problems/HW2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework Two</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/999-Problems/HW2-clean_up_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Comments on HW2 - String Clean Up</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/999-Problems/HW2-Iteration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Comments on HW2 - iteration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/999-Problems/HW2-Poisson.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HW2 - Comments on Poisson</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/999-Problems/HW3Assignment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/999-Problems/HW4Assignment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/999-Problems/HW5Assignment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework 5</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Resources</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/99-Resources/Cheatsheets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cheatsheets and other References</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/00-OrientationProject/orientation-project.html">Contents</a></li><li class="breadcrumb-item"><a href="../../chapters/07-Calculus/calculus.html">Key ideas from calculus</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Key ideas from calculus</h1>
+<p class="subtitle lead">Fundamentals of Data Science</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jeremy Teitelbaum </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="feca9e4f" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'seaborn-v0_8-dark'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="key-ideas-from-calculus" class="level1">
+<h1>Key ideas from calculus</h1>
+<section id="why-calculus-in-data-science" class="level2">
+<h2 class="anchored" data-anchor-id="why-calculus-in-data-science">Why Calculus in data science?</h2>
+<p>The central application of calculus in data science is in the problem of “optimization.” ML algorithms generally ask for the “best fit” of something, and the “best fit” usually means finding the parameters where a measure of error, a <em>loss function</em>, is as small as possible.</p>
+<p>(Differential) calculus is the most powerful tool we have for finding the minimal (or maximum) values of functions.</p>
+<p>Calculus also plays a key role in Probability and Statistics, because questions about probability in continuous settings relies on the idea of an integral.</p>
+</section>
+<section id="one-variable-differential-calculus" class="level2">
+<h2 class="anchored" data-anchor-id="one-variable-differential-calculus">One-variable differential calculus</h2>
+<ul>
+<li>Simple function with one input variable and one output variable</li>
+<li>Derivative measures rate of change of output with respect to input</li>
+<li>Famous formula: given a function <span class="math inline">\(f:\mathbf{R}\to\mathbf{R}\)</span>, the derivative is defined by <span class="math display">\[
+f'(x) = \lim_{h\to 0}\frac{f(x+h)-f(x)}{h}
+\]</span></li>
+</ul>
+</section>
+<section id="interpretations-of-the-derivative" class="level2">
+<h2 class="anchored" data-anchor-id="interpretations-of-the-derivative">Interpretations of the derivative</h2>
+<ul>
+<li>“Slope of the curve”</li>
+<li>“Rate of change”</li>
+</ul>
+<div id="d6be739f" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="dv">0</span>,<span class="dv">1</span>, <span class="dv">100</span>)</span>
+<span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>x<span class="op">**</span><span class="dv">3</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>x)<span class="op">**</span><span class="dv">5</span></span>
+<span id="annotated-cell-2-3"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-4" class="code-annotation-target"><a href="#annotated-cell-2-4" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> (y[<span class="dv">41</span>]<span class="op">-</span>y[<span class="dv">40</span>])<span class="op">/</span><span class="fl">.01</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-2-5" class="code-annotation-target"><a href="#annotated-cell-2-5" aria-hidden="true" tabindex="-1"></a>ytan <span class="op">=</span> y[<span class="dv">40</span>]<span class="op">+</span>m<span class="op">*</span>(x<span class="op">-</span>x[<span class="dv">40</span>])</span>
+<span id="annotated-cell-2-6"><a href="#annotated-cell-2-6" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="annotated-cell-2-7"><a href="#annotated-cell-2-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="annotated-cell-2-8"><a href="#annotated-cell-2-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'y'</span>)</span>
+<span id="annotated-cell-2-9"><a href="#annotated-cell-2-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'$x^3(1-x)^5$ with tangent line at $x=.4$'</span>)</span>
+<span id="annotated-cell-2-10"><a href="#annotated-cell-2-10" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> plt.plot(x,ytan)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="4" data-code-annotation="1">Here we compute the (approximate) slope/derivative <code>m</code> at the point <code>(x[40],y[40])</code></span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="5" data-code-annotation="2">This is the equation of the line through that point with the computed slope.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="calculus_files/figure-html/cell-3-output-1.png" width="595" height="447" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Key facts:</p>
+<ul>
+<li>Derivative is <em>positive</em> means function is <em>increasing</em></li>
+<li>Derivative is <em>negative</em> means function is <em>decreasing</em></li>
+<li>Derivative is zero means a <em>critical point</em>, often a <em>local maximum</em> or <em>local minimum</em>.</li>
+</ul>
+</section>
+<section id="an-example" class="level2">
+<h2 class="anchored" data-anchor-id="an-example">An example</h2>
+<div id="89d635c6" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, sharey<span class="op">=</span><span class="st">"row"</span>)</span>
+<span id="annotated-cell-3-2"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a>fig.set_size_inches(<span class="dv">8</span>, <span class="dv">4</span>)</span>
+<span id="annotated-cell-3-3"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ----</span></span>
+<span id="annotated-cell-3-4"><a href="#annotated-cell-3-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">100</span>)</span>
+<span id="annotated-cell-3-5"><a href="#annotated-cell-3-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x<span class="op">**</span><span class="dv">3</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> x) <span class="op">**</span> <span class="dv">5</span></span>
+<span id="annotated-cell-3-6"><a href="#annotated-cell-3-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(x, y)</span>
+<span id="annotated-cell-3-7"><a href="#annotated-cell-3-7" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> axes[<span class="dv">0</span>].set_title(<span class="vs">r"$f(x)=x^3(1-x)^5$"</span>)</span>
+<span id="annotated-cell-3-8"><a href="#annotated-cell-3-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].grid()</span>
+<span id="annotated-cell-3-9"><a href="#annotated-cell-3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ----</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-10" class="code-annotation-target"><a href="#annotated-cell-3-10" aria-hidden="true" tabindex="-1"></a>yprime <span class="op">=</span> (y[<span class="dv">1</span>:] <span class="op">-</span> y[:<span class="op">-</span><span class="dv">1</span>]) <span class="op">/</span> <span class="fl">0.01</span></span>
+<span id="annotated-cell-3-11"><a href="#annotated-cell-3-11" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(x[<span class="dv">1</span>:], yprime)</span>
+<span id="annotated-cell-3-12"><a href="#annotated-cell-3-12" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].grid()</span>
+<span id="annotated-cell-3-13"><a href="#annotated-cell-3-13" aria-hidden="true" tabindex="-1"></a>t2 <span class="op">=</span> axes[<span class="dv">1</span>].set_title(<span class="vs">r"$f'(x)$"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="10" data-code-annotation="1">The array <code>y</code> has the y values corresponding to the x values in the array <code>x</code>. So the difference <code>y[1:]-y[:-1]</code> is <span class="math inline">\(f(x+h)-f(x)\)</span>. Since there are 100 x values between 0 and 1, <span class="math inline">\(h=.01\)</span>.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="calculus_files/figure-html/cell-4-output-1.png" width="660" height="355" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="some-key-reminders-from-differential-calculus" class="level2">
+<h2 class="anchored" data-anchor-id="some-key-reminders-from-differential-calculus">Some key reminders from differential calculus</h2>
+<ul>
+<li>The derivative is linear, so the derivative of a sum is the sum of the derivatives and the derivative <span class="math inline">\((af(x))'\)</span> is <span class="math inline">\(af'(x)\)</span>.</li>
+<li>The derivative of a constant is zero.</li>
+<li>The derivative of <span class="math inline">\(x^{n}\)</span> is <span class="math inline">\(nx^{n-1}\)</span>.<br>
+</li>
+<li>The derivative of <span class="math inline">\(e^{x}\)</span> is <span class="math inline">\(e^{x}\)</span>.</li>
+<li>The derivative of <span class="math inline">\(\log(x)\)</span> is <span class="math inline">\(1/x\)</span> (natural logarithm).</li>
+</ul>
+</section>
+<section id="notation" class="level2">
+<h2 class="anchored" data-anchor-id="notation">Notation</h2>
+<p>Sometimes we write <span class="math inline">\(f'(x)\)</span>, sometimes <span class="math inline">\(\frac{df}{dx}\)</span>.</p>
+</section>
+<section id="the-product-rule" class="level2">
+<h2 class="anchored" data-anchor-id="the-product-rule">The product rule</h2>
+<p>The derivative of a product of functions <span class="math inline">\(fg\)</span> satisfies the product rule <span class="math display">\[
+(fg)'=fg'+f'g
+\]</span></p>
+</section>
+<section id="the-chain-rule" class="level2">
+<h2 class="anchored" data-anchor-id="the-chain-rule">The chain rule</h2>
+<p>The chain rule is a key fact from one variable calculus. Its simple form is</p>
+<p><span class="math display">\[
+\frac{d}{dt}f(x+th)|_{t=0}=hf'(x)
+\]</span></p>
+<p>and more generally</p>
+<p><span class="math display">\[
+\frac{d}{dx}(f(g(x))) = f'(g(x))g'(x)
+\]</span></p>
+</section>
+<section id="functions-of-several-variables" class="level2">
+<h2 class="anchored" data-anchor-id="functions-of-several-variables">Functions of several variables</h2>
+<p>In data science, we generally want to look at functions that depend on many variables, rather than just one.</p>
+<p>For example, let us consider the problem of finding the line of best fit to a collection of points <span class="math inline">\((x,y)\)</span>.</p>
+<p>First we generate some random data to work with.</p>
+<div id="0e90b0de" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">20</span>)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-4-2" class="code-annotation-target"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span><span class="dv">3</span><span class="op">*</span>x<span class="op">+</span><span class="dv">1</span><span class="op">+</span>np.random.normal(<span class="dv">0</span>,<span class="dv">2</span>,size<span class="op">=</span>x.shape[<span class="dv">0</span>])</span>
+<span id="annotated-cell-4-3"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(x,y)</span>
+<span id="annotated-cell-4-4"><a href="#annotated-cell-4-4" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="annotated-cell-4-5"><a href="#annotated-cell-4-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"$y=3+1+\epsilon$ where $\epsilon$ is a normal error"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="2" data-code-annotation="1">Here we find <span class="math inline">\(y=3x+1+\epsilon\)</span> where <span class="math inline">\(\epsilon\)</span> is drawn from a normal random variable with standard deviation <span class="math inline">\(2\)</span>.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>Text(0.5, 1.0, '$y=3+1+\\epsilon$ where $\\epsilon$ is a normal error')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="calculus_files/figure-html/cell-5-output-2.png" width="560" height="426" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The line of best fit has the equation <span class="math inline">\(y=mx+b\)</span> where <span class="math inline">\(m\)</span> and <span class="math inline">\(b\)</span> are the unknowns. The “error” is <span class="math display">\[
+E(m,b) = \frac{1}{N}\sum_{i=1}^{N} (y_i-mx_i-b)^2
+\]</span></p>
+<p>The <span class="math inline">\(x_i\)</span> and <span class="math inline">\(y_i\)</span> are the data, and <span class="math inline">\(m\)</span> and <span class="math inline">\(b\)</span> are the things we want to find. So this is a function of <em>two variables</em>.</p>
+<p>It is a (possibly very big) quadratic function of <span class="math inline">\(m\)</span> and <span class="math inline">\(b\)</span>.</p>
+<p>But in more general regression problems we may have many slopes <span class="math inline">\(m_{i}\)</span> so our error depends on many variables.</p>
+<p>In neural networks there may be billions of parameters.</p>
+</section>
+<section id="visualization-of-functions-of-two-variables" class="level2">
+<h2 class="anchored" data-anchor-id="visualization-of-functions-of-two-variables">Visualization of functions of two variables</h2>
+<p>Contour plots are a way to represent a function of two variables. For example suppose <span class="math inline">\(f(x,y)=3x^2+2xy+5y^22\)</span>.</p>
+<div id="96e16f1d" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a>fig,ax <span class="op">=</span> plt.subplots()</span>
+<span id="annotated-cell-5-2"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="op">-</span><span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">40</span>)</span>
+<span id="annotated-cell-5-3"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>np.linspace(<span class="op">-</span><span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">40</span>)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-4" class="code-annotation-target"><a href="#annotated-cell-5-4" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-5-5" class="code-annotation-target"><a href="#annotated-cell-5-5" aria-hidden="true" tabindex="-1"></a>xx,yy <span class="op">=</span> np.meshgrid(x,y)</span>
+<span id="annotated-cell-5-6"><a href="#annotated-cell-5-6" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="dv">3</span><span class="op">*</span>xx<span class="op">**</span><span class="dv">2</span><span class="op">+</span><span class="dv">2</span><span class="op">*</span>xx<span class="op">*</span>yy<span class="op">+</span><span class="dv">5</span><span class="op">*</span>yy<span class="op">**</span><span class="dv">2</span></span>
+<span id="annotated-cell-5-7"><a href="#annotated-cell-5-7" aria-hidden="true" tabindex="-1"></a>ax.contour(xx,yy,z)</span>
+<span id="annotated-cell-5-8"><a href="#annotated-cell-5-8" aria-hidden="true" tabindex="-1"></a>ax.grid()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="4" data-code-annotation="1">Why do you need this?</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="5" data-code-annotation="2">meshgrid changes two one-dimensional arrays into two two dimensional arrays - examine them to see what happens.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="calculus_files/figure-html/cell-6-output-1.png" width="412" height="410" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="7797203f" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>fig,ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">50</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>np.linspace(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">50</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>xx,yy <span class="op">=</span> np.meshgrid(x,y)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="dv">3</span><span class="op">*</span>norm.pdf(np.sqrt((xx<span class="op">-</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span><span class="op">+</span>(xx<span class="op">-</span><span class="dv">2</span>)<span class="op">*</span>(yy<span class="op">-</span><span class="dv">3</span>)<span class="op">+</span>(yy<span class="op">-</span><span class="dv">3</span>)<span class="op">**</span><span class="dv">2</span>))<span class="op">-</span><span class="dv">5</span><span class="op">*</span>norm.pdf(np.sqrt((xx<span class="op">+</span><span class="dv">3</span>)<span class="op">**</span><span class="dv">2</span><span class="op">+</span>(yy<span class="op">+</span><span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>P<span class="op">=</span>ax.contourf(xx,yy,z,levels<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>Q<span class="op">=</span>ax.contour(xx,yy,z,levels<span class="op">=</span>np.linspace(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">19</span>),colors<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span>ax.clabel(Q,inline<span class="op">=</span><span class="va">True</span>,fontsize<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span>ax.set_title(<span class="st">"Contour Plot of sum of two Gaussians"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="calculus_files/figure-html/cell-7-output-1.png" width="591" height="425" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="plotting-in-3d" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-in-3d">Plotting in 3d</h2>
+<p>Generally 3d plots aren’t that useful, but sometimes you just really want one.</p>
+<div id="9141fa13" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>fig.set_size_inches(<span class="dv">20</span>,<span class="dv">10</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">211</span>,projection<span class="op">=</span><span class="st">'3d'</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">30</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">30</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>xx,yy <span class="op">=</span> np.meshgrid(x,y)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> norm.pdf(np.sqrt(xx<span class="op">**</span><span class="dv">2</span><span class="op">+</span>yy<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>ax.plot_wireframe(xx,yy,z,cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">212</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>Q<span class="op">=</span>ax.contour(xx,yy,z)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>ax.clabel(Q)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="calculus_files/figure-html/cell-8-output-1.png" width="397" height="775" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="2869a014" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fig.set_size_inches(<span class="dv">20</span>,<span class="dv">10</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">211</span>,projection<span class="op">=</span><span class="st">'3d'</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">30</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">30</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>xx,yy <span class="op">=</span> np.meshgrid(x,y)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> xx<span class="op">**</span><span class="dv">2</span><span class="op">-</span>yy<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>ax.plot_wireframe(xx,yy,z,cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">212</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>Q<span class="op">=</span>ax.contour(xx,yy,z,levels<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>ax.clabel(Q)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>ax.grid()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="calculus_files/figure-html/cell-9-output-1.png" width="392" height="775" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="vectors-and-functions" class="level2">
+<h2 class="anchored" data-anchor-id="vectors-and-functions">Vectors and functions</h2>
+<p>It’s useful to think of a function of multiple variables <span class="math inline">\(x_1,\ldots, x_n\)</span> as a function of a vector <span class="math inline">\(\mathbf{x}=(x_1,\ldots, x_n)\)</span>.</p>
+<p>If <span class="math inline">\(x_0\)</span> is a point in <span class="math inline">\(\mathbf{R}^{n}\)</span> (thought of as a vector) and <span class="math inline">\(v\)</span> is another vector, then the points <span class="math display">\[
+\ell(t) = x_0+tv
+\]</span></p>
+<p>trace out a line as <span class="math inline">\(t\)</span> varies.</p>
+<p>For example if <span class="math inline">\(x_0=(1,1)\)</span> and <span class="math inline">\(v=(-2,3)\)</span> then <span class="math display">\[
+\ell(t) = (1-2t,2+3t)
+\]</span></p>
+<div id="8fa39151" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-9-1" class="code-annotation-target"><a href="#annotated-cell-9-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">1</span>]).reshape(<span class="dv">2</span>,<span class="dv">1</span>)</span>
+<span id="annotated-cell-9-2"><a href="#annotated-cell-9-2" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">2</span>,<span class="dv">3</span>]).reshape(<span class="dv">2</span>,<span class="dv">1</span>)</span>
+<span id="annotated-cell-9-3"><a href="#annotated-cell-9-3" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span>np.arange(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span>
+<span id="annotated-cell-9-4"><a href="#annotated-cell-9-4" aria-hidden="true" tabindex="-1"></a>pts <span class="op">=</span> x<span class="op">+</span>t<span class="op">*</span>v</span>
+<span id="annotated-cell-9-5"><a href="#annotated-cell-9-5" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="annotated-cell-9-6"><a href="#annotated-cell-9-6" aria-hidden="true" tabindex="-1"></a>plt.plot(pts[<span class="dv">0</span>,:],pts[<span class="dv">1</span>,:],color<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="annotated-cell-9-7"><a href="#annotated-cell-9-7" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">1</span>],[<span class="dv">1</span>],marker<span class="op">=</span><span class="st">"*"</span>,markersize<span class="op">=</span><span class="dv">12</span>,color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="annotated-cell-9-8"><a href="#annotated-cell-9-8" aria-hidden="true" tabindex="-1"></a>plt.arrow(<span class="dv">1</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">2</span>,<span class="dv">3</span>,color<span class="op">=</span><span class="st">'blue'</span>,width<span class="op">=</span><span class="fl">.4</span>)</span>
+<span id="annotated-cell-9-9"><a href="#annotated-cell-9-9" aria-hidden="true" tabindex="-1"></a>plt.scatter(pts[<span class="dv">0</span>,:],pts[<span class="dv">1</span>,:])</span>
+<span id="annotated-cell-9-10"><a href="#annotated-cell-9-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Vector form of a line from (1,1) towards v=(-2,3)"</span>)</span>
+<span id="annotated-cell-9-11"><a href="#annotated-cell-9-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="annotated-cell-9-12"><a href="#annotated-cell-9-12" aria-hidden="true" tabindex="-1"></a>_<span class="op">=</span>plt.ylabel(<span class="st">'y'</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="1" data-code-annotation="1">To see why x and v need to be column vectors, try this without the reshape and look at the error you get.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="calculus_files/figure-html/cell-10-output-1.png" width="585" height="442" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In this version, the vector <span class="math inline">\(v\)</span> represents the <em>velocity</em> of a point travelling along the line. So the dots are the position of the object at different times <span class="math inline">\(t\)</span>.</p>
+<p>If we scale <span class="math inline">\(v\)</span> by a constant:</p>
+<ul>
+<li>the line stays the same</li>
+<li>the speed is different</li>
+</ul>
+<p>The speed is <span class="math inline">\(\|v\|\)</span>.</p>
+</section>
+<section id="directional-derivatives" class="level2">
+<h2 class="anchored" data-anchor-id="directional-derivatives">Directional Derivatives</h2>
+<p>For a function of multiple variables, the <em>directional derivative</em> is the rate of change in a particular direction.</p>
+<p><span class="math display">\[
+D_{v}(f)(\mathbf{x}) = \frac{d}{dt}f(\mathbf{x}+t\mathbf{v})|_{t=0}
+\]</span></p>
+<p>This means: how fast is <span class="math inline">\(f\)</span> at time zero as you travel through space in a straight line with velocity <span class="math inline">\(v\)</span> passing through point <span class="math inline">\(x\)</span>.</p>
+<p>Depends on direction <em>and</em> magnitude of <span class="math inline">\(v\)</span>.</p>
+<p>Suppose that <span class="math inline">\(f(\overline{x})=x_1^2-x_0^2\)</span>, that <span class="math inline">\(\mathbf{x}=(1,1)\)</span> and that <span class="math inline">\(v=(-.4,.6)\)</span> Then</p>
+<p><span class="math display">\[
+\mathbf{x}+t\mathbf{v} = (1-.4t,1+.6t)
+\]</span></p>
+<p>and <span class="math display">\[
+f(\mathbf{x}+t\mathbf{v}) = (1-.4t)^2-(1+.6t)^2
+\]</span></p>
+<div id="d892228b" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fig.set_size_inches(<span class="dv">20</span>,<span class="dv">10</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">211</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'contour plot with path'</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">30</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">30</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>xx,yy <span class="op">=</span> np.meshgrid(x,y)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> xx<span class="op">**</span><span class="dv">2</span><span class="op">-</span>yy<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>Q<span class="op">=</span>ax.contour(xx,yy,z,levels<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>ax.clabel(Q)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>ax.grid()</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">1</span>]).reshape(<span class="dv">2</span>,<span class="dv">1</span>) </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.array([<span class="op">-</span><span class="fl">.4</span>,<span class="fl">.6</span>]).reshape(<span class="dv">2</span>,<span class="dv">1</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span>np.arange(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">1</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>pts <span class="op">=</span> x<span class="op">+</span>t<span class="op">*</span>v</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>ax.set_xlim((<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>))</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>ax.set_ylim((<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>))</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>ax.plot(pts[<span class="dv">0</span>,:],pts[<span class="dv">1</span>,:],color<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="dv">1</span>],[<span class="dv">1</span>],marker<span class="op">=</span><span class="st">"*"</span>,markersize<span class="op">=</span><span class="dv">12</span>,color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>ax.arrow(<span class="dv">1</span>,<span class="dv">1</span>,<span class="op">-</span><span class="fl">.4</span>,<span class="fl">.6</span>,color<span class="op">=</span><span class="st">'blue'</span>,width<span class="op">=</span><span class="fl">.2</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>ax.scatter(pts[<span class="dv">0</span>,:],pts[<span class="dv">1</span>,:])</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> fig.add_subplot(<span class="dv">212</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>ax1.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>ax1.set_xticks(np.arange(<span class="op">-</span><span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">4</span>))</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'Height vs time along path'</span>)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>ht <span class="op">=</span> <span class="op">-</span>(<span class="dv">1</span><span class="op">+</span><span class="fl">0.6</span><span class="op">*</span>t)<span class="op">**</span><span class="dv">2</span><span class="op">+</span>(<span class="dv">1</span><span class="op">-</span><span class="fl">0.4</span><span class="op">*</span>t)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>ax1.plot(np.arange(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">1</span>),ht)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>ax1.plot([<span class="dv">0</span>],[<span class="dv">0</span>],marker<span class="op">=</span><span class="st">'*'</span>,markersize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>ax1.grid()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="calculus_files/figure-html/cell-11-output-1.png" width="375" height="795" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="partial-derivatives" class="level2">
+<h2 class="anchored" data-anchor-id="partial-derivatives">Partial Derivatives</h2>
+<p>The partial derivatives of a function are the special cases of the directional derivative in the direction of coordinate axes.</p>
+<p>So if <span class="math inline">\(f\)</span> is a function of <span class="math inline">\(\mathbf{x}=(x_0,\ldots, x_{n-1})\)</span> and if <span class="math inline">\(\mathbf{e}_{i}\)</span> is the vector <span class="math display">\[
+e_{i} = (0,0,\ldots,0,1,0,\ldots, 0)
+\]</span> where the <span class="math inline">\(1\)</span> is in the <span class="math inline">\(i^{th}\)</span> position, then <span class="math display">\[
+\frac{\partial f}{\partial x_{i}}=D_{e_{i}}f.
+\]</span></p>
+<p>You can compute the partial derivatives using calculus rules where you treat all of the variables except <span class="math inline">\(x_{i}\)</span> as constants.</p>
+</section>
+<section id="the-vector-chain-rule" class="level2">
+<h2 class="anchored" data-anchor-id="the-vector-chain-rule">The vector chain rule</h2>
+<p>The vector chain rule says that <span class="math display">\[
+\frac{d}{dt}f(x_1(t),x_2(t),\ldots, x_n(t))=\frac{\partial f}{\partial x_1}\frac{d x_1}{d t}+\frac{\partial f}{\partial x_2}\frac{d x_2}{d t}+\cdots+\frac{\partial f}{\partial x_n}\frac{d x_n}{d t}
+\]</span></p>
+<p>Here <span class="math inline">\((x_1(t),\ldots,x_n(t))\)</span> can be thought of as a <em>path</em> where the <span class="math inline">\(x_i\)</span> vary with time <span class="math inline">\(t\)</span>.</p>
+</section>
+<section id="the-gradient" class="level2">
+<h2 class="anchored" data-anchor-id="the-gradient">The gradient</h2>
+<p>Suppose that <span class="math inline">\(f\)</span> is a function of variables <span class="math inline">\(x_1,\ldots, x_n\)</span>. The <strong>gradient</strong> of <span class="math inline">\(f\)</span>, written <span class="math inline">\(\nabla f\)</span>, is a vector valued function where</p>
+<p><span class="math display">\[
+\nabla f (x) = \left[\begin{matrix} \frac{\partial f}{\partial x_0} &amp; \frac{\partial f}{\partial x_1} &amp; \cdots &amp; \frac{\partial f}{\partial x_n} \end{matrix}\right]
+\]</span></p>
+<p>The gradient of <span class="math inline">\(f\)</span> gives a <em>vector at each point</em>.</p>
+</section>
+<section id="key-property-of-the-gradient" class="level2">
+<h2 class="anchored" data-anchor-id="key-property-of-the-gradient">Key property of the gradient</h2>
+<p><strong>Theorem:</strong> If <span class="math inline">\(v\)</span> is any vector, then the directional derivative <span class="math inline">\(D_{v}(f)=\nabla f \cdot v\)</span>. As a result of this fact:</p>
+<ol type="1">
+<li>The gradient points in the direction where <span class="math inline">\(f\)</span> increases most rapidly.</li>
+<li><span class="math inline">\(-\nabla f\)</span> points in the direction where <span class="math inline">\(f\)</span> decreases most rapidly.</li>
+<li>The gradient is perpendicular to the contour lines of the function.</li>
+<li>The gradient is zero at local minima and maxima of a function (but possibly also at other places)</li>
+</ol>
+<p>These facts follow from the chain rule and properties of the dot product.</p>
+<p>First of all, <span class="math display">\[
+D_{v}(f)(\mathbf{x}) = \frac{d}{dt}f(\mathbf{x}+t\mathbf{v})=f(x_1+tv_1,x_2+tv_2,\ldots, x_n+tv_n)|_{t=0}
+\]</span></p>
+<p>From the vector chain rule this is the same as</p>
+<p><span class="math display">\[
+D_{v}(f)(\mathbf{x}) = \frac{\partial f}{\partial x_1}v_1+\frac{\partial f}{\partial x_2}v_2+\cdots+\frac{\partial f}{\partial x_n}v_{n}|_{t=0}
+\]</span> which is</p>
+<p><span class="math display">\[
+(\nabla f)(\mathbf{x})\cdot \mathbf{v}.
+\]</span></p>
+<p>But the dot product satisfies</p>
+<p><span class="math display">\[
+(\nabla f)(\mathbf{x})\cdot \mathbf{v} = \|(\nabla f)(\mathbf{x})\|\|v\|\cos(\theta)
+\]</span></p>
+<p>where <span class="math inline">\(\theta\)</span> is the angle between the gradient and the vector <span class="math inline">\(v\)</span>. This is maximum when <span class="math inline">\(\theta=0\)</span>, and minimum when <span class="math inline">\(\theta=\pi\)</span>.</p>
+<p>To see the significance of this, check out <a href="./GDanimate_js.html">this page.</a>.</p>
+</section>
+<section id="functions-from-mathbfrm-to-mathbfrn-and-their-derivatives" class="level2">
+<h2 class="anchored" data-anchor-id="functions-from-mathbfrm-to-mathbfrn-and-their-derivatives">Functions from <span class="math inline">\(\mathbf{R}^{m}\)</span> to <span class="math inline">\(\mathbf{R}^{n}\)</span> and their derivatives</h2>
+<p>The most general situation we might want to consider is a function that converts a point in <span class="math inline">\(\mathbf{R}^{m}\)</span> to a point in <span class="math inline">\(\mathbf{R}^{n}\)</span>:</p>
+<p><span class="math display">\[
+F:\mathbf{R}^{m}\to \mathbf{R}^{n}
+\]</span></p>
+<p>Here is an example. Suppose we have <span class="math inline">\(28\times 28\)</span> images represented as arrays of pixel values. And suppose that we know that this image is a handwritten number between <span class="math inline">\(0\)</span> and <span class="math inline">\(9\)</span>.</p>
+<p>An image recognition neural network takes such an image an outputs a vector of length <span class="math inline">\(10\)</span> of the form <span class="math inline">\((p_0,\ldots, p_{9})\)</span> where <span class="math inline">\(p_i\)</span> is the probability that the image represents the digit <span class="math inline">\(i\)</span>.</p>
+<p>This neural network is a function <span class="math inline">\(F:\mathbf{R}^{784}\to \mathbf{R}^{10}\)</span>.</p>
+<p>Such a function is actually given by <span class="math inline">\(10\)</span> (or, more generally, <span class="math inline">\(n\)</span>) “coordinate functions” <span class="math inline">\(f_{i}\)</span>, each of which is a function of <span class="math inline">\(m\)</span> variables. So the neural network function <span class="math inline">\(F\)</span> consists of functions <span class="math display">\[
+p_{i} = F_{i}(x_0,\ldots, x_{783})\quad i=0,\ldots, 9
+\]</span></p>
+<p>Each of these functions has a gradient which measures how <span class="math inline">\(p_{i}\)</span> changes if you modify the <span class="math inline">\(x_i\)</span>. The <em>total</em> derivative of <span class="math inline">\(F\)</span> is made up of all of these gradients. You can think of this as a column vector of row vectors: <span class="math display">\[
+DF = \left[\begin{matrix} \nabla F_{0} \\ \nabla F_{1} \\  \cdots \\ \nabla F_{n}\end{matrix}\right]
+\]</span></p>
+<p>where each <span class="math inline">\(\nabla F_{i}\)</span> is a row with <span class="math inline">\(m\)</span> entries.</p>
+<p>But this is really a matrix called the total derivative <span class="math inline">\(DF\)</span> of <span class="math inline">\(F\)</span> of size <span class="math inline">\(n\times m\)</span>.</p>
+<p>The total derivative tells us how a small step in <span class="math inline">\(\mathbf{R}^{m}\)</span> translates to a step in <span class="math inline">\(\mathbf{R}^{m}\)</span> when you apply the function <span class="math inline">\(F:\mathbf{R}^{m}\to mathbf{R}^{n}\)</span>.</p>
+</section>
+<section id="linear-functions" class="level2">
+<h2 class="anchored" data-anchor-id="linear-functions">Linear functions</h2>
+<p>A very special case of a function from <span class="math inline">\(F:\mathbf{R}^{m}\to mathbf{R}^{n}\)</span> is the situation where <span class="math display">\[
+F(x) = Ax
+\]</span> for an <span class="math inline">\(n\times m\)</span> matrix.</p>
+<p>In this special case, the total derivative <span class="math inline">\(DF\)</span> of <span class="math inline">\(F\)</span> is the matrix <span class="math inline">\(A\)</span>.</p>
+</section>
+<section id="the-chain-rule-in-the-general-case" class="level2">
+<h2 class="anchored" data-anchor-id="the-chain-rule-in-the-general-case">The chain rule in the general case</h2>
+<p>If <span class="math inline">\(F:\mathbf{R}^{m}\to\mathbf{R}^{n}\)</span> is a function, and <span class="math inline">\(G:\mathbf{R}^{n}\to\mathbf{R}^{k}\)</span> is another function, then it makes sense to compute <span class="math inline">\(G(F(x))\)</span> for <span class="math inline">\(x\in \mathbf{R}^{m}\)</span>, and the result is in <span class="math inline">\(\mathbf{R}^{k}\)</span>.</p>
+<p>The chain rule in general says that the derivative of <span class="math inline">\(G(F(x))\)</span> is the product of the matrices corresponding to <span class="math inline">\(DG\)</span> and <span class="math inline">\(DF\)</span>. Here <span class="math inline">\(DG\)</span> is <span class="math inline">\(k\times n\)</span> and <span class="math inline">\(DF\)</span> is <span class="math inline">\(n\times m\)</span> so <span class="math inline">\((DG)(DF)\)</span> is <span class="math inline">\(k\times m\)</span> as it should be.</p>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
