@@ -396,7 +396,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <p>This diagram says that the table <code>film_actor</code> has a pair of key fields in it: <code>actor_id</code> and <code>film_id</code>. The <code>actor_id</code> points into the <code>actor</code> table, and the <code>film_id</code> points into the film table. So a combination (<code>actor_id</code>,<code>film_id</code>) in the <code>film_actor</code> table says that a particular actor appeared in a particular film.</p>
-<div id="56d0d333" class="cell" data-execution_count="1">
+<div id="5f0ece73" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlalchemy <span class="im">as</span> sqla</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymysql</span>
@@ -407,7 +407,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>awsresource <span class="op">=</span> <span class="st">""</span>  <span class="co"># get this from the instructor</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>port <span class="op">=</span> <span class="dv">3306</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="5bb49dd5" class="cell" data-execution_count="3">
+<div id="cdcfbf75" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dbname <span class="op">=</span> <span class="st">"sakila"</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dburi <span class="op">=</span> <span class="ss">f"mysql+pymysql://</span><span class="sc">{</span>username<span class="sc">}</span><span class="ss">:</span><span class="sc">{</span>password<span class="sc">}</span><span class="ss">@</span><span class="sc">{</span>awsresource<span class="sc">}</span><span class="ss">:</span><span class="sc">{</span>port<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>dbname<span class="sc">}</span><span class="ss">"</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>engine <span class="op">=</span> sqla.create_engine(dburi)</span>
@@ -428,7 +428,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s look at a few sample lines from the <code>film_actor</code> table.</p>
-<div id="983fc07e" class="cell" data-execution_count="4">
+<div id="dbdf5012" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>film_actor_sample <span class="op">=</span> df_select(</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"select actor_id,film_id from film_actor limit 10;"</span>, engine</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -449,7 +449,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>As you can see, actor number 1 appeared in a bunch of films. If we wanted to see all the films in which he or she appeared, we can use a <code>where</code> query.</p>
-<div id="709badcc" class="cell" data-execution_count="5">
+<div id="c826ce08" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>actor_one <span class="op">=</span> df_select(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"select actor_id, film_id from film_actor where actor_id=1;"</span>, engine</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -479,7 +479,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>On the other hand, a bunch of actors appeared in film 23, so we can ask for the list of actors appearing there.</p>
-<div id="db4e3d73" class="cell" data-execution_count="6">
+<div id="4e3550e1" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>film_23 <span class="op">=</span> df_select(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"select actor_id, film_id from film_actor where film_id = 23"</span>, engine</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -496,7 +496,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Of course, this isn’t very informative. Who exactly is actor 1? And what is film_23?</p>
 <p>For that, we have to look in the actor and film table.</p>
-<div id="919af0b5" class="cell" data-execution_count="7">
+<div id="c1181614" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"---actor---"</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>actor_fields <span class="op">=</span> run_sql(<span class="st">"describe actor;"</span>, engine)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> actor_fields:</span>
@@ -531,7 +531,7 @@ last_update</code></pre>
 </div>
 </div>
 <p>To get actor number 1’s name, we use:</p>
-<div id="9802a4ff" class="cell" data-execution_count="8">
+<div id="de477baa" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>actor_one_info <span class="op">=</span> df_select(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"select first_name, last_name from actor where actor_id=1"</span>, engine</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -543,7 +543,7 @@ last_update</code></pre>
 </div>
 </div>
 <p>To get film number 23’s name we use:</p>
-<div id="178203bd" class="cell" data-execution_count="9">
+<div id="a825ad00" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>film_23_info <span class="op">=</span> df_select(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"select title, release_year, length, rating from film where film_id = 23;"</span>, engine</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -562,7 +562,7 @@ last_update</code></pre>
 <ol type="1">
 <li><strong>Inner Joins</strong> If you inner join table one (T1) and table two (T2) on the common key field K you make a new table whose rows are made by choosing a row from T1 with a particular value of K and a row from table T2 with the same value of K and making a new row (K, stuff from T1 row at K, stuff from T2 row at K). This is called an <em>inner</em> join because the rows of the joined table only appear if the key K appears in <em>both</em> T1 and <em>T2</em>.</li>
 </ol>
-<div id="fbb1937d" class="cell" data-execution_count="10">
+<div id="efcf81c5" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>T1 <span class="op">=</span> pd.DataFrame({<span class="st">"K"</span>: [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>], <span class="st">"D"</span>: [<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>]})</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(T1)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"--------</span><span class="ch">\n</span><span class="st">"</span>)</span>
@@ -585,7 +585,7 @@ last_update</code></pre>
 </div>
 </div>
 <p>In pandas, you use the <code>merge</code> function to make the join.</p>
-<div id="494cea3d" class="cell" data-execution_count="11">
+<div id="c0806ce0" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>J_inner <span class="op">=</span> T1.merge(T2, left_on<span class="op">=</span><span class="st">"K"</span>, right_on<span class="op">=</span><span class="st">"K"</span>, how<span class="op">=</span><span class="st">"inner"</span>, suffixes<span class="op">=</span>(<span class="st">"_T1"</span>, <span class="st">"_T2"</span>))</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(J_inner)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -604,7 +604,7 @@ last_update</code></pre>
 <ol start="2" type="1">
 <li><strong>Left Joins</strong> In a left join, you use all the keys on the left; if something is missing on the right, you get rows with missing values.</li>
 </ol>
-<div id="bb847215" class="cell" data-execution_count="12">
+<div id="91a4fe2d" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>J_left <span class="op">=</span> T1.merge(T2, left_on<span class="op">=</span><span class="st">"K"</span>, right_on<span class="op">=</span><span class="st">"K"</span>, how<span class="op">=</span><span class="st">"left"</span>, suffixes<span class="op">=</span>(<span class="st">"_T1"</span>, <span class="st">"_T2"</span>))</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(J_left)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -620,7 +620,7 @@ last_update</code></pre>
 <ol start="3" type="1">
 <li><strong>Right Joins</strong> In a right join, you use all the keys on the right, and get missing values if there’s no corresponding entry on the left.</li>
 </ol>
-<div id="21bda8fa" class="cell" data-execution_count="13">
+<div id="c9f7c9a5" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>J_right <span class="op">=</span> T1.merge(T2, left_on<span class="op">=</span><span class="st">"K"</span>, right_on<span class="op">=</span><span class="st">"K"</span>, how<span class="op">=</span><span class="st">"right"</span>, suffixes<span class="op">=</span>(<span class="st">"_T1"</span>, <span class="st">"_T2"</span>))</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(J_right)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -632,7 +632,7 @@ last_update</code></pre>
 4  6  NaN  Y</code></pre>
 </div>
 </div>
-<div id="ff5ed980" class="cell" data-execution_count="14">
+<div id="869e81db" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>J_left <span class="op">=</span> T1.merge(T2, left_on<span class="op">=</span><span class="st">"K"</span>, right_on<span class="op">=</span><span class="st">"K"</span>, how<span class="op">=</span><span class="st">"left"</span>, suffixes<span class="op">=</span>(<span class="st">"_T1"</span>, <span class="st">"_T2"</span>))</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(J_left)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -647,7 +647,7 @@ last_update</code></pre>
 <ol start="4" type="1">
 <li><strong>Outer Joins</strong> In an outer join, you include rows from <em>both</em> left and right, even if there is no corresponding row on the other side.</li>
 </ol>
-<div id="82daeb8d" class="cell" data-execution_count="15">
+<div id="becbf8d8" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>J_outer <span class="op">=</span> T1.merge(T2, left_on<span class="op">=</span><span class="st">"K"</span>, right_on<span class="op">=</span><span class="st">"K"</span>, how<span class="op">=</span><span class="st">"outer"</span>, suffixes<span class="op">=</span>(<span class="st">"_T1"</span>, <span class="st">"_T2"</span>))</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(J_outer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -663,7 +663,7 @@ last_update</code></pre>
 <p>The syntax of a join in SQL is:</p>
 <pre><code>select (fields) from (table join table) on key1 = key2</code></pre>
 <p>To be completely explicit, let’s go back to actors and films. We’ll start by joining actors and the <code>film_actor</code> table. The following query fills in the actor names and, since it’s ordered by film, shows us which actors are in each film.</p>
-<div id="74e020e9" class="cell" data-execution_count="16">
+<div id="d4d0ad3e" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>actor_names <span class="op">=</span> df_select(</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"select first_name, last_name, film_id, actor.actor_id from actor join film_actor on actor.actor_id = film_actor.actor_id order by film_id limit 50"</span>,</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    engine,</span>
@@ -725,7 +725,7 @@ last_update</code></pre>
 </div>
 </div>
 <p>If we want to combine <em>both</em> film titles and actor names, we need a double join. This is done in SQL by nesting. The inner query is the one we did above, which we have given the alias T1; then we join that with film on the film_id field.</p>
-<div id="93ac47ff" class="cell" data-execution_count="17">
+<div id="f6c5a0e2" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"""</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="st">    select film.film_id, actor_id, first_name, last_name, title, length, rating</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="st">    from </span></span>
@@ -767,7 +767,7 @@ last_update</code></pre>
 </div>
 </div>
 <p>By default, MySQL joins are inner. You can add “left”, “right”, or “cross” (which is what MySQL calls an OUTER join) to specify other options.</p>
-<div id="47a22185" class="cell" data-execution_count="18">
+<div id="340e49d7" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"""</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="st">    select film.film_id, actor_id, first_name, last_name, title, length, rating from </span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="st">    (select first_name, last_name, film_id, actor.actor_id from actor cross join film_actor on actor.actor_id = film_actor.actor_id) T1  join film on T1.film_id = film.film_id order by title </span></span>

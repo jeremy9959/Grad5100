@@ -388,7 +388,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>the HAVING clause. This allows you to put conditions on summary variables. For example, suppose we want to find all actors in the <code>sakila</code> database that appear in only one film. Remember that the relationship between films and actors is captured in the <code>film_actor</code> table.</li>
 </ol>
 <p>First, we can make a table showing, for each actor_id, how many films that actor appears in.</p>
-<div id="4e96dd1e" class="cell" data-execution_count="2">
+<div id="dc81fbaa" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"""</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="st">select actor_id, count(film_id) as num  from film_actor group by film_id order by num limit 5</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
@@ -398,7 +398,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>To pick out the ones where <code>num</code> is one, we use the <code>having</code> clause. (Notice that we include a limit clause to reduce the amount of output).</p>
-<div id="798f790b" class="cell" data-execution_count="3">
+<div id="9752357e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"""</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">select actor_id, count(film_id) as num  from film_actor group by film_id   having count(film_id)=1 limit 5</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
@@ -413,7 +413,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>Suppose you want to find the actors that appear in the most films, it’s a bit trickier One way is to first find the largest number of films, and then join with the table of film counts to pick out those actors having that number of films.</p>
 <p>The <code>with</code> clause allows you to nest queries like this.</p>
-<div id="d2712e80" class="cell" data-execution_count="4">
+<div id="2d99924e" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"""</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="st">with filmcounts as</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="st">    (select actor_id, count(film_id) as num from film_actor group by film_id),</span></span>
@@ -428,7 +428,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>Excercise:</strong> Extend this to include the actor names for these most prolific actors. .</p>
 <p>If you want the actors with the second largest number of films, you can try this.</p>
-<div id="3cef7bf4" class="cell" data-execution_count="5">
+<div id="3c3959f1" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"""</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="st">with filmcounts as</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="st">    (select actor_id, count(film_id) as num from film_actor group by film_id),</span></span>
