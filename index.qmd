@@ -1,4 +1,4 @@
-# Grad 5100: Fundamentals of Data Science
+# Grad 5100: Fundamentals of Data Science Fall 2023
 
 ## Introduction
 
@@ -8,6 +8,9 @@ statistics, linear algebra, and multivariate calculus that the core and
 elective courses in the program rely on. The course will run intensively
 during the first few weeks of the semester and then drop back to a
 regular weekly schedule.
+
+**Note:** This material refers to the Fall 2023 version of Grad5100. See [HuskyCT](https://huskyct.uconn.edu) for the current version.  Access to HuskyCT is limited to students
+enrolled in the course.
 
 ## References
 
