@@ -1,0 +1,69 @@
+---
+title: Regexps in R
+author: Jeremy Teitelbaum
+subtitle: Fundamentals of Data Science
+format: html
+---
+
+## Regexps in R
+
+The language is the same, but the wrapper functions are different. 
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+str_view(c("Help", "Hero", "Hello", "Friend"), "Hel")
+```
+
+```{r}
+str_view(c("Help", "Hero", "Hello", "Friend"), "He.*l")
+```
+
+```{r}
+str_view(c("Now is the time for us to rise up"), "[A-Za-z]+[a-z]?")
+```
+
+```{r}
+str_detect(c("Now is the", "time to rise up"), "\\b\\w+\\b")
+str_view(c("Now is the", "time to rise up"), "\\b\\w+\\b")
+```
+
+```{r}
+str_count(c("Now is the", "time to rise up"), "\\b\\w+\\b")
+```
+
+```{r}
+gettysburg <- read_lines("data/gettysburg.txt")
+str_extract(gettysburg, "\\b(\\w+)\\b")
+```
+
+```{r}
+# str_match_all is inconvenient -- output is a list
+words <- str_match_all(gettysburg[1], "\\b\\w+\\b")
+```
+
+```{r}
+
+filenames <- read_lines("data/filenames.txt")
+matches <- str_match_all(filenames, ".*_([a-z]{3}[0-9]{5})_.*\\.(qmd|Rmd|pdf)")
+```
+
+```{r}
+# separate_wider_regex works with tibbles
+# note also separate_wider_delim
+
+filenames <- read_lines("data/filenames.txt")
+filenames <- tibble(names = filenames)
+filenames <- filenames |> separate_wider_regex(names, patterns = c(
+    ".*_",
+    netid = "[a-z]{3}[0-9]{5}",
+    "_.*\\.",
+    extension = "qmd|Rmd|pdf"
+), cols_remove = FALSE)
+# matches have to fill the line
+# use too_few = "debug" to get extra info if this fails (omit pdf from extension for example)
+filenames |> mutate(new_name = str_c(netid, ".", extension))
+```
+

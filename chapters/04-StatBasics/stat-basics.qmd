@@ -2,12 +2,14 @@
 title: "Statistical Basics"
 subtitle: "Fundamentals of Data Science"
 author: "Jeremy Teitelbaum"
-format: html
+format: revealjs
 title-block-style: plain
 ---
 ```{r echo=FALSE}
 library(tidyverse)
 library(glue)
+# library(reticulate)
+# use_python("/home/jet08013/anaconda3/bin/python")
 ```
 
 # Populations and Samples
@@ -93,6 +95,17 @@ Then:
 - $X=1$ is the same as the event $H$
 - $P(X=1)$=p
 
+
+## Independence
+
+Two events are independent if the chance of both occurring is the product of
+the chances of them occurring separately.
+
+$$
+P(X\cap Y)=P(X)P(Y)
+$$
+
+
 ## Binomial Example
 
 A binomial random variable (with parameters $n$ and $p$) is the sum of $n$
@@ -127,6 +140,9 @@ ggplot() +
 
 In the continuous case, probability is measured by a probability density function $P(x)$. The classic example is the normal (bell-shaped) curve.
 
+
+
+
 ## Density Functions
 If $P(x)$ is the density function, then:
 
@@ -155,7 +171,6 @@ A normal curve is defined by two parameters:
 
 - the mean $\mu$, which sets the *location*
 - the standard deviation $\sigma$ or its square, the variance $\sigma^2$, which sets the *scale*.
-
 
 ## Z-score
 
@@ -194,6 +209,57 @@ is $q$.
 - The median of $x$ is the $.5$ quantile for $x$ because half of the population has values less than the median.
 
 - One can read quantiles from the cumulative distribution.
+
+## Distributions in R
+
+There are many distributions in R.  We've talked about the binomial (discrete) and normal (continuous).
+
+- `rnorm` (`rbinom`) draws samples from the distribution
+- `dnorm` (`dbinom`) gives the value of the probability density function
+- `pnorm` (`pbinom`) gives the value of the cumulative density function
+- `qnorm` (`qbinom`) gives the quantiles, that is, `qnorm(p)` gives the value of the parameter so that
+the probability of getting a result less than that parameter is `p`.
+
+## Examples in R
+
+```{r echo=TRUE}
+samples <- rnorm(10, mean = 0, sd = 1)
+
+densityfn <- dnorm(1, mean = 0, sd = 1)
+cdf <- pnorm(1, mean = 0, sd = 1)
+quant <- qnorm(.05, mean = 0, sd = 1)
+cat("samples: ", samples, "\n")
+cat("Density=", densityfn, " CDF value=", cdf, " Quantile=", quant)
+```
+
+
+## Distributions in Python
+
+
+In python the distributions are available in the `scipy.stats` library. Assuming `import scipy.stats as sps`:
+
+- `sps.norm.rvs` draws from the distribution
+- `sps.norm.pdf` is the density
+- `sps.norm.cdf` is the cumulative distribution
+- `sps.norm.ppf` are the quantiles 
+
+## Examples in Python
+
+```{python echo=TRUE}
+import scipy.stats as sps
+
+samples = sps.norm.rvs(0, 1, size=10)
+
+densityfn = sps.norm.pdf(1, 0, 1)
+cdf = sps.norm.cdf(1, 0, 1)
+quant = sps.norm.ppf(0.05, 0, 1)
+print(
+    ("samples = [ " + "{:.3f} " * len(samples)).format(*samples) + "]",
+    "Density={:.3f} CDF value={:.3f} Quantile={:.3f}".format(densityfn, cdf, quant),
+)
+``` 
+
+
 
 ## Order Statistics
 
@@ -334,7 +400,8 @@ $$
 \sigma^2 = np(1-p).
 $$
 
-Note: there are easier ways to get this formula.
+Note: there are easier ways to get this formula.  If two random variables are independent, then
+the variance of their sum is the sum of their variances. 
 
 ## Sampling
 
@@ -355,11 +422,15 @@ $$
 \overline{x} = \frac{1}{N-1}\sum (x_{i}-\overline{x})^2
 $$
 
-are called the sample mean and variance; they are estimates of the mean and variance of the underlying random variable. 
+## Sample Mean and Variance
+
+The formulae above are called the sample mean and variance; they are estimates of the mean and variance of the underlying random variable. 
 
 The law of large numbers says that, as $N\to\infty$, these estimates converge to the true values. 
 
 In general these values are also random (they depend on the particular choices drawn from the distribution) and follow their own probabilility distribution.
+
+## Distribution of sample mean and variance
 
 So for example, if you sample a Bernoulli random variable $10$ times, the mean is
 $$
@@ -371,11 +442,18 @@ where $k$ is the number of heads.
 
 This mean follows a binomial distribution.
 
+## Sampling Distribution
+
+
 ```{r}
-p <- dbinom(seq(0,10),10,.3)
-ggplot()+geom_bar(aes(x=seq(0,1,1/10),y=10*p),stat="identity")+xlab("x")+ylab("P(x)")+ggtitle("Distribution of sample mean for 10 bernoulli flips with p=.3")
+p <- dbinom(seq(0, 10), 10, .3)
+ggplot() +
+    geom_bar(aes(x = seq(0, 1, 1 / 10), y = 10 * p), stat = "identity") +
+    xlab("x") +
+    ylab("P(x)") +
+    ggtitle("Distribution of sample mean for 10 bernoulli flips with p=.3")
 ```
-)
+
 
 By looking at sample means (or other *sample statistics*) we can try to uncover information
 about the underlying probability distribution. 

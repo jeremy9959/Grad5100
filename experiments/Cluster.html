@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Jeremy Teitelbaum">
 
-<title>cluster</title>
+<title>Jupyter on UConn’s HPC cluster</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -106,10 +107,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Jupyter on UConn’s HPC cluster</h1>
+<p class="subtitle lead">Fundamentals of Data Science</p>
+</div>
 
 
-<section id="to-start-jupyter-on-the-cluster" class="level2">
-<h2 class="anchored" data-anchor-id="to-start-jupyter-on-the-cluster">To start jupyter on the cluster</h2>
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jeremy Teitelbaum </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
 <ol type="1">
 <li><strong>On your local machine:</strong> Login to the login node:</li>
 </ol>
@@ -138,6 +159,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>On your local machine:</strong> Open a web browser and point it at localhost:8888.</li>
 </ol>
 <p>With luck, you’re running jupyter on a node in the cluster!</p>
+<section id="moving-a-file-to-the-cluster" class="level2">
+<h2 class="anchored" data-anchor-id="moving-a-file-to-the-cluster">Moving a file to the cluster</h2>
+<p>If you can login to the cluster successfully using <code>ssh</code> then you can transfer a file to the cluster from your laptop using <code>rsync</code>. From a shell on your <strong>local machine:</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> filename <span class="op">&lt;</span>netID<span class="op">&gt;</span>@hpc2.storrs.hpc.uconn.edu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="getting-a-file-from-the-cluster" class="level2">
+<h2 class="anchored" data-anchor-id="getting-a-file-from-the-cluster">Getting a file from the cluster</h2>
+<p>To transfer a file from the cluster to your local machine, run the following command from a shell <em>on your local machine.</em></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> <span class="op">&lt;</span>netID<span class="op">&gt;</span>@hpc2.storrs.hpc.uconn.edu:filename .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 
 </main>

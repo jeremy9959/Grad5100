@@ -3,16 +3,25 @@ project:
   output-dir: docs
   render:
     - index.qmd
+    - chapters/00-OrientationProject/orientation-project.qmd
     - chapters/01-SettingUp/setting-up.qmd
+    - chapters/01-SettingUp/Cluster.md
     - chapters/02-JupyterBasics/jupyter-walkthrough.qmd
     - chapters/03-RBasics/r-walkthrough.qmd
     - chapters/04-StatBasics/stat-basics.qmd
-    - chapters/05-WorkingWithData/pythonAndR.qmd
-    - chapters/05-WorkingWithData/r_penguins.qmd
-    - chapters/05-WorkingWithData/pandas_penguins.qmd
+    - chapters/05-WorkingWithData/*.qmd
     - chapters/06-LinearAlgebra/linear_algebra.qmd  
     - chapters/06-LinearAlgebra/linear_algebra_python.qmd
     - chapters/06-LinearAlgebra/linear_algebra_r.qmd
+    - chapters/07-Calculus/*.qmd
+    - chapters/08-Summarizing/*.qmd
+    - chapters/09-Regexps/*.qmd
+    - chapters/10-Shell/*.qmd
+    - chapters/11-Git/*.qmd
+    - chapters/12-SQL/*.qmd
+    - chapters/13-Plotting/*.qmd
+    - chapters/99-Resources/*.qmd
+    - chapters/999-Problems/*.qmd
 
 website:
   title: "Fundamentals of Machine Learning"
@@ -20,17 +29,43 @@ website:
     contents:
       - section: "Contents"
         contents:
+        - chapters/00-OrientationProject/orientation-project.qmd
         - chapters/01-SettingUp/setting-up.qmd  
         - chapters/02-JupyterBasics/jupyter-walkthrough.qmd
         - chapters/03-RBasics/r-walkthrough.qmd
         - chapters/04-StatBasics/stat-basics.qmd  
         - chapters/05-WorkingWithData/pythonAndR.qmd
         - chapters/06-LinearAlgebra/linear_algebra.qmd
-  
+        - chapters/07-Calculus/calculus.qmd
+        - chapters/08-Summarizing/grouping_pandas.qmd
+        - chapters/08-Summarizing/groupingR.qmd
+        - chapters/09-Regexps/pythonFiles.qmd
+        - chapters/09-Regexps/Rfiles.qmd
+        - chapters/09-Regexps/regexpsPython.qmd
+        - chapters/09-Regexps/regexpsR.qmd
+        - chapters/09-Regexps/RegexProblems.qmd
+        - chapters/10-Shell/UnixCommandLine.qmd
+        - chapters/11-Git/Git.qmd
+        - chapters/12-SQL/sql.qmd
+        - chapters/13-Plotting/Plotting.qmd
+      - section: "Problems"
+        contents:
+        - chapters/999-Problems/HW1.qmd
+        - chapters/999-Problems/Distributions.qmd
+        - chapters/999-Problems/HW2.qmd
+        - chapters/999-Problems/HW2-clean_up_function.qmd
+        - chapters/999-Problems/HW2-Iteration.qmd
+        - chapters/999-Problems/HW2-Poisson.qmd
+        - chapters/999-Problems/HW3Assignment.qmd
+        - chapters/999-Problems/HW4Assignment.qmd
+        - chapters/999-Problems/HW5Assignment.qmd
+      - section: "Resources"
+        contents:
+        - chapters/99-Resources/Cheatsheets.qmd
 
-  
+
 format:
   html:
-    theme: cosmo
+    theme: lumen
     code-block-bg: true
 

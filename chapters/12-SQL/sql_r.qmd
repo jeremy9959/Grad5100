@@ -1,0 +1,150 @@
+---
+title: Databases and SQL - Selection - R
+subtitle: Fundamentals of Data Science
+author: Jeremy Teitelbaum
+format: html
+---
+
+The R/SQL interface through the `tidyverse` is based on the `dbplyr` package.
+While the python tools we used basically download information from the database,
+the `dbplyr` package creates a datastructure on your local computer that interacts
+with the database in the background as you manipulate it.  As a result, you can
+(somewhat) avoid explicit SQL.  
+
+```{r message=FALSE}
+# you need these packages installed
+library(tidyverse)
+library(dbplyr)
+library(DBI) # this is the general DB interface library.
+library(RMariaDB) # this is the library for MySQL databases.
+```
+
+As with the python library, we create a connection to the database we are interested.
+
+```{r echo=FALSE, message=FALSE}
+
+info <- read_csv(paste0(fs::path_expand("~"), "/.rds"), col_names = c("user", "password", "resource"))
+awsresource <- info$resource
+username <- info$user
+password <- info$password
+```
+
+
+```{r}
+con <- DBI::dbConnect(RMariaDB::MariaDB(),
+    host = awsresource, # get this from the instructor
+    user = username, # get this from the instructor
+    password = password, # get this from the instructor
+    dbname = "sakila"
+)
+```
+
+If you want to submit an SQL query directly, you use the `DBI::dbGetQuery` command.
+So to list the tables in the `sakila` database, you send a "show tables" command (the `result` 
+is a base R dataframe, so we make it a tibble):
+
+```{r}
+query <- "show tables"
+result <- DBI::dbGetQuery(con, query)
+print(as_tibble(result))
+```
+
+To see the fields in the `actor` table, you send a "describe actor" command.
+
+```{r}
+query <- "describe actor"
+result <- DBI::dbGetQuery(con, query)
+print(as_tibble(result))
+```
+
+The `dbplyr` interface mimics the `dplyr` interface, and it's similar to the python one.
+To access a table,
+we use the `tbl` command.
+
+
+```{r}
+actor <- tbl(con, "actor")
+film <- tbl(con, "film")
+```
+
+The data structures `actor` and `film` "look like tibbles" but in fact they are a sort of window
+into the database.
+
+```{r}
+actor |> head()
+```
+
+Notice the description at the top says "Source: SQL" and includes a reference to the database.
+Still, you can use the usual `tidyverse` style commands to work with this object.
+
+For example, if you want to see how often the various first names occur in the actor table,
+you can use the `group_by`, `count`, and `arrange` functions:
+
+```{r}
+actor |>
+    group_by(`first_name`) |>
+    count() |>
+    arrange(desc(n))
+```
+
+What's interesting here is that this computation is actually done on the database using SQL.
+In fact, if you use the `show_query` command, you can see what command was used. 
+
+```{r}
+actor |>
+    group_by(`first_name`) |>
+    count() |>
+    arrange(desc(n)) |>
+    show_query()
+```
+
+To see another example, let's look at one of the queries we used in the python
+example.  Suppose we want the "G" rated films from the film table.
+
+In `tidyverse` syntax we'd write that like this. 
+
+```{r}
+G_rated <- film |> filter(`rating` == "G")
+print(G_rated)
+```
+
+Notice in the output here that the header *does not tell us how many rows are present*. 
+it says "Source: [?? x 13]".  That's because the code *has not yet downloaded everything*
+from the data base; just the first few rows to show you what's going on.  This is called
+"Lazy Evaluation."
+
+To see the query and the associated `select...where`, we use `show_query()`.
+
+```{r}
+G_rated |> show_query()
+```
+
+The strategy here is that you develop your query until you are satisfied and then
+pull the results down all at once.  Suppose we want to do another of our python
+exercises by computing the minimum, average, std deviation, and maximum length
+of films grouped by rating.  
+
+In tidyverse world, this is:
+
+```{r}
+summary <- film |>
+    select(`rating`, `length`) |>
+    group_by(`rating`) |>
+    summarize(mean = mean(`length`), minlen = min(`length`), maxlen = max(`length`), stdlen = sd(`length`)) |>
+    arrange(desc(`mean`))
+summary |> head()
+```
+
+Now we can see what the SQL query looked like.
+
+```{r}
+summary |> show_query()
+```
+
+When you are ready to work locally with the data, you use the `collect` command.
+Notice that `actor_local` is a tibble.
+
+```{r}
+actor_local <- actor |> collect()
+actor_local |> head()
+```

@@ -1,0 +1,119 @@
+---
+title: "Grouping and Summarizing in R"
+subtitle: "Fundamentals of Data Science"
+author: "Jeremy Teitelbaum"
+format: html
+title-block-style: plain
+---
+
+## Loading the penguins from csv
+
+```{r}
+library(tidyverse)
+penguins = read_csv("data/penguins-raw.csv")
+```
+
+```{r}
+penguins |> summarise_all(class)
+```
+
+2. Focus on the relevant numerical variables
+
+```{r}
+focus <- c('Species','Island','Sex','Culmen Length (mm)','Culmen Depth (mm)','Flipper Length (mm)','Body Mass (g)')
+simplified <- penguins |> select(all_of(focus))
+```
+
+
+3. Clean up the column names
+
+Using a named vector
+
+```{r}
+edited_columns <- c(species = "Species", island = "Island", culmen_length='Culmen Length (mm)', culmen_depth = 'Culmen Depth (mm)', flipper_length = 'Flipper Length (mm)', body_mass = 'Body Mass (g)')
+rename(simplified, all_of(edited_columns))
+```
+
+Renaming with a function:.  Note the escape codes (double \).
+
+```{r}
+fixer <- function(n) {
+        a <- gsub(" \\(mm\\)","",n)
+        a <- gsub(" \\(g\\)","",a)
+        a <- gsub(" ","_",a)
+        return(tolower(a))
+}
+simplified <- rename_with(simplified,fixer)
+```
+
+4. Simplify factor names
+
+```{r}
+species <- simplified |>
+    select(`species`) |>
+    unique()
+simplified <- simplified |> mutate(`species` = tolower(word(`species`, 1)))
+simplified <- simplified |> mutate(`island` = tolower(`island`))
+simplified <- simplified |> mutate(`sex` = tolower(`sex`))
+```
+
+5. Missing Values
+
+Note use of anonymous function.
+
+
+```{r}
+simplified |> summarize_all(\(x) sum(is.na(x)))
+```
+
+```{r}
+simplified |> summarize(across(culmen_length:body_mass,  \(x) sum(is.na(x))))
+```
+
+```{r}
+simplified <- simplified |> filter(if_all(names(simplified), \(x) !is.na(x)))
+```
+
+6. Standardizing
+
+R can do it pretty efficiently using `across` and `mutate`.
+
+```{r}
+simplified |> mutate(across(culmen_length:body_mass, list(std=\(x) (x-mean(x))/sd(x))))
+```
+
+7. Grouping
+
+```{r}
+simplified |> select(sex:body_mass) |> group_by(sex) |> summarize(across(culmen_length:body_mass,mean))
+```
+
+```{r}
+by_sex_and_species <- simplified |> group_by(species,sex) |> summarize(across(culmen_length:body_mass,mean))
+```
+
+You can select using filter.
+
+```{r}
+by_sex_and_species |> filter(sex=='male')
+```
+
+
+8. Making a pivot table.
+
+```{r}
+by_sex_and_species |>
+    select(species, sex, culmen_length) |>
+    pivot_wider(names_from = species, values_from = culmen_length)
+```
+
+9.  Making a function for each possibility
+
+```{r}
+ptable <- function(value) {
+    by_sex_and_species |>
+        select(species, sex, {{ value }}) |>
+        pivot_wider(names_from = species, values_from = {{ value }})
+}
+ptable("body_mass")
+```

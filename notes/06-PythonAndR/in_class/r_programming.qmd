@@ -1,0 +1,318 @@
+---
+title: "Basics of Programming in R"
+subtitle: "Fundamentals of Data Science"
+author: "Jeremy Teitelbaum"
+format: html
+title-block-style: plain
+---
+
+## Some basic characteristics of R
+
+- The assignment operator in R is `<-`
+- There is no built-in "dictionary" datatype.
+-  The basic datatype in R is the vector, which  contains
+objects *of the same type*.  
+- Vectors are indexed from 1.
+
+
+```{r}
+# n
+x <- c("Hello", 1)
+class(x)
+```
+
+Notice that x is now all characters, and in fact if you now
+compute `2*x[2]` you will get an error. 
+
+
+- Ranges are *inclusive*
+
+```{r}
+1:10
+```
+
+- TRUE and FALSE instead of True and False
+
+- indentation *does not matter* and you can use `;` to string multiple statements together.
+
+```{r}
+x <- 1
+y <- 1
+z <- 1
+```
+
+- `length` gives the length of a vector, `nchar` gives the number of characters of a string.
+
+```{r}
+length("Hello")
+```
+
+```{r}
+length(c("Hello", "GoodBye"))
+```
+
+```{r}
+nchar("Hello")
+```
+
+```{r}
+nchar(c("Hello", "GoodBye"))
+```
+
+- You need to use `substr` to extract substrings, not subscripts.
+
+```{r}
+s <- "Hello"
+s[1]
+```
+
+- Convert a vector to a string
+
+```{r}
+s <- paste(c("A", "B", "C"), collapse = "")
+t <- paste(c("A", "B", "C"), c("D", "E", "F"), sep = ",", collapse = " ")
+print(s)
+print(t)
+```
+
+
+## Lists
+
+A list can contain objects of different types.
+
+```{r}
+lst <- list("a", 1.5)
+```
+
+In particular, a list can contain vectors and can have named entries. 
+
+```{r}
+lst <- list(first = c(1, 2, 3), second = c(4, 5, 6))
+print(lst)
+```
+
+The presence of [[]] indicates a list.
+
+```{r}
+print(lst[[1]])
+print(lst$first)
+```
+
+
+```{r}
+class(lst[1])
+class(lst[[1]])
+```
+
+- Split a string to a list
+
+```{r}
+a <- strsplit("This is a string", split = " ")
+b <- strsplit("this is a string split into letters", split = "")
+print(a)
+print(b)
+```
+
+
+## Functions
+
+Functions are constructed like this:
+
+```{r}
+f <- function(n) {
+    n**2
+}
+f(5)
+```
+
+The last evaluated expression is the value of the function but it is better style to actually use the return statement.
+
+```{r}
+f <- function(n) {
+    return(n**2)
+}
+f(10)
+```
+
+Functions are automatically "vectorized."
+
+```{r}
+f(1:10)
+```
+
+R automatically "recyles" when things fit. 
+
+```{r}
+1:3 + 1:6
+```
+
+The principle of `scope` is essentially the same as discussed in the [python programming](python_programming.html) notes. 
+
+## More on vectorization
+
+Vectorization is very powerful.
+
+```{r}
+tolower(LETTERS)
+```
+
+```{r}
+x<-rnorm(20,15,2)
+z<-(x-15)/2. # move normal samples to z-scores
+```
+
+
+- pull out every other letter from a string
+
+```{r}
+s <- "This is a string of letters"
+t <- substr(rep(s, nchar(s) / 2), seq(1, nchar(s), 2), seq(1, nchar(s), 2))
+paste(t, collapse = "")
+```
+
+## Iteration in R
+
+```{r}
+y <- 0
+for (x in c(1, 2, 3, 10)) {
+    print(x)
+    y <- y + x
+}
+cat("y=", y)
+```
+
+```{r}
+y<-0
+while(y<10) {
+    cat("y = ",y," ",sep="")
+    y <- y+1
+}
+```
+
+Often iteration in R is unnecessary; you can achieve it with vectorization and recycling.
+
+```{r}
+cat(paste("y =",seq(0,9),collapse=" "))
+```
+
+
+```{r}
+f <- function(n) {
+    s <- 0
+    for (i in seq(1, n)) {
+        s <- s + i^2
+    }
+    return(s)
+}
+f(10)
+```
+
+```{r}
+f <- function(n) {
+    return(sum(seq(1, n)^2))
+}
+f(10)
+```
+
+
+
+
+## Logical statements
+```{r}
+if(substr("Hesterday",1,1)=="H") {
+    print("Yes")
+} else {
+    print("No")
+}
+```
+
+```{r}
+less_than_one <- function(x) {
+if (any(x<1)) {
+    print("Yes")
+} 
+else {
+    print("No")
+}
+}
+```
+
+Again you can avoid iteration.
+
+```{r}
+x <- rnorm(20)
+x[x < 1]
+```
+
+
+## Example
+
+Take a string and make its first character upper case and the rest lower.
+
+```{r}
+f<-function(s) {
+    a<-paste(toupper(substr(s,1,1)),substr(s,2,nchar(s)),sep="")
+    return(a)
+}
+```
+
+You can assign to substrings.
+
+```{r}
+f<-function(s) {
+    substr(s,1,1)<-toupper(substr(s,1,1))
+    return(s)
+}
+```
+
+## Problems
+
+1.  Write a function which takes a string and standardizes it by:
+    - removes all characters which are not letters, numbers, or spaces
+    - makes all the letters lower case
+    - replacing all spaces by underscore '_'
+
+Hint: convert the string to a vector of letters
+
+2. The object `penguins_raw` is a "tibble", which is a fancy type of tabular layout. 
+It has named columns that you can extract with $.  
+
+```{r}
+library(palmerpenguins)
+# view(penguins_raw)
+colnames(penguins_raw)
+```
+
+By assigning to colnames you can change the column names. (In other words, `colnames(penguins_raw)<-c(...)` replaces the column names from the given vector.  Use your function
+from part(1) to simplify the column names of this tibble. 
+
+3.  You can access a column of the tibble using `$`, so for example `penguins_raw$species`
+should give you the vector of species.  Replace this column with just the first word of the species name (Gentoo, Adelie, Chinstrap).
+
+4.  Let $n$ be a positive real number and let $x_0$ be 1.  The iteration
+$$
+x_{k+1} = x_{k}/2+n/(2x_k)
+$$
+
+converges to the square root of $n$.  (This is Newton's Method).  Write an R
+function which computes the square root using this iteration.  You should continue to iterate
+until $x_{k+1}$ is within $10^{-6}$ of $x_{k}$. 
+
+```{r}
+s<-function(n) {
+    x<-1
+    tol<-1
+    while(tol>1e-6) {
+        xnew<- x/2+n/(2*x)
+        tol<-abs(xnew-x)
+        x<-xnew
+    }
+    return(x)
+}
+```
+
+Suppose you want to save the successive values you computed during the iteration for plotting purposes.  How could you do that (and return them)?
+
+Suppose you want the tolerance (here $10^{6}$) to be a parameter?
+
+Suppose you want to set a maximum number of iterations, in case something goes wrong, to prevent an infinite loop?

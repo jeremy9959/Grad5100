@@ -1,0 +1,677 @@
+---
+title: The UNIX command line
+author: Jeremy Teitelbaum
+subtitle: Fundamentals of Data Science
+format: html
+engine: knitr
+execute:
+    eval: false
+code-block-background: true
+---
+
+## Why learn the command line?
+
+1. Access to remote servers is generally purely CLI
+2. Process automation often relies on CLI
+3. CLI is a quick and efficient way to work with files and directories
+
+## UNIX
+
+*UNIX* is a generic term for a family of operating systems dating back to the
+1960's.  Many systems today are in the UNIX family.  The most notable examples are
+
+1. Linux (actually a whole family of Linux OS's) -- derived from an open source system created
+by Linus Torvalds
+2. MacOS 
+
+In addition, Microsoft now supports a system called WSL (Windows subsystem for Linux) that
+allows you to work with Linux on a windows machine. 
+
+## The GNU project
+
+The GNU project is a collection of open source tools written (primarily) for the UNIX ecosystem.
+The GNU project includes shells (`bash`), compilers (`gcc`), text editors (`emacs`), and many
+other resources.  Most Linux systems are closely integrated with GNU tools.
+
+## The UNIX shell
+
+
+The *shell* is a program that provides access to a range of tools for working with files
+and directoriees, and which can launch other programs that can do pretty much anything.
+
+One can write programs for the shell to execute (these are called *shell scripts*) or one
+can use the shell interactively.
+
+There are many shells available but the three you are most likely to encounter are:
+
+- the bourne shell (`sh`).  This is the simplest shell program and mostly occurs in shell scripts.
+It is the "lowest common denominator" of UNIX shells.
+- `bash` is the standard shell that is associated with the GNU toolkit
+- `zsh` has become a popular shell because of its flexibility and its many customization options.
+
+On Windows, the [gitbash package](https://gitforwindows.org) provides a bash shell that runs in the
+Windows environment.  
+
+Most interactive commands are the same regardless of which shell you use, but the programming
+languages for each shell are similar but definitely not the same.
+
+
+## Which shell am I running?
+
+When you launch a terminal window on Linux or MacOS, the system starts a shell program in
+that window and you interact with that shell.  On MacOS, the default shell is `zsh`. On most
+Linux installations, it is `bash`.  
+
+To see what's happening on your computer, run the following command in a terminal window. Here,
+and later, the initial '$' stands for the prompt you receive from the shell. Yours may be fancier.
+We'll see later how to customize it.
+
+```{bash}
+$ echo $0
+```
+
+(Note: for a whole range of technical reasons this isn't 100% guaranteed to work but it is almost certainly correct!)
+
+## Navigation
+
+Your shell process always has a notion of "current directory." This is the folder/directory
+that will be accessed by default when you run commands.  
+
+When you start a shell, the current directory is your home directory.
+
+Files and directories are referred to by paths that (in UNIX derived OS's) always use the '/' character.
+
+
+
+**Three important conventions**
+
+1. The current working directory is abbreviated as '.'
+2. The *parent* of the current working directory is abbreviated as '..'
+3. Your *home directory* is abbreviated as '~'.
+
+### Key Navigation Commands
+
+The key commands for navigation through the file system are:
+
+1. `pwd` prints the current working directory
+2. `ls` lists the files in the current directory
+3. `cd` changes the working directory
+4. `mkdir` creates a new directory
+5. `rmdir` deletes a directory, assuming it is empty.
+
+Note: The '#' symbol means to treat everything following as a comment, not to be executed.
+
+```{bash}
+$ pwd
+/home/jeremy9959
+```
+
+```{bash}
+$ ls
+data/  model.py  notes/
+```
+
+```{bash}
+$ cd data # change working directory to data
+$ pwd # check our working directory
+/home/jeremy9959/data
+$ ls # list files
+test.csv  training.csv
+$ cd .. # change to parent directory
+$ pwd # confirm our location
+/home/jeremy9959
+```
+
+### Options
+
+Unix commands typically take (many) options.  The general structure of these options are either 
+`-` followed by a letter, or `--word`. Sometimes you specify the option as `--word=value`.
+
+```{bash}
+$ (command) -a -b -c --name --option=whatever
+```
+
+You can usually run commands together like this:
+
+```{bash}
+$ (command) -abc
+```
+
+The `ls` command has many options and variations.  These vary from system to system. 
+
+```{bash}
+$ ls --help  # sometimes this works, but not always
+$ man ls # this opens a manual page for the ls command which may tell you more than you want to know
+```
+
+Some important special cases that (almost always) work.
+
+```{bash}
+$ ls -l # long form listing
+drwxrwxr-x - jet08013 11 Oct 09:21 data  # permissions/size/owner/group/modification date
+.rw-rw-r-- 0 jet08013 11 Oct 09:20 model.py
+drwxrwxr-x - jet08013 11 Oct 09:21 notes
+```
+
+```{bash}
+$ ls -a # show  "hidden files" (names start with .)
+.settings  data  model.py  notes
+```
+
+```{bash}
+$ ls -F # 
+data/ model.py notes/
+```
+
+```{bash}
+$ ls data  # lists the contents of the directory
+test.csv training.csv
+$ ls -F -d data  # list the directory name
+data/
+```
+
+You can also use wildcards.
+
+```{bash}
+$ ls *.py
+model.py
+$ ls -Fd d* # what happens if you just do ls -F?
+data/
+```
+### Making and removing directories
+
+You can always create a directory, but the system won't let you remote directories that aren't empty.
+
+```{bash}
+$ ls 
+data  model.py  notes
+$ mkdir report
+$ ls -F
+data/  model.py  notes/  report/
+$ cd report
+$ pwd
+/home/jeremy9959/report
+$ ls 
+(nothing)
+$ cd ..
+$ pwd
+/home/jeremy9959
+$ rmdir report
+$ ls -F
+data/ model.py notes/
+$ rmdir data
+rmdir: failed to remote `data`: Directory not empty
+$ ls data
+test.csv  training.csv
+```
+
+### Working with files
+
+Key commands for working with files.
+
+- `nano` is a tiny text editor that works from the command line and is very easy to use. Other options
+are `vi` and `emacs`.  `vscode` has options allowing you to work remotely as well.
+- `cp` copy a file
+- `mv` rename/move a file or directory
+- `cat` type a file onto the terminal (or more generally combine files)
+- `more` and `less` list files page by page
+- `head` and `tail` look at first and last lines of a file
+- `rm` remove/delete a file.
+
+```{bash}
+$ cd data
+$ cp test.csv test_2.csv # make a new copy called test_2.csv
+$ ls
+test.csv test_2.csv training.csv
+$ mv test_2.csv new_test.csv # rename test_2.csv to new_test.csv
+$ ls
+new_test.csv test.csv training.csv
+$ cat test.csv
+(... bunch of stuff)
+$ head test.csv
+(first ten lines)
+$ tail test.csv
+(last ten lines)
+$ head -5 test.csv # first 5 lines
+(first 5 lines)
+$ tail -5 test.csv # last 5 lines
+(last 5 lines)
+$ tail  +2 test.csv # start with line 2 and go to the end
+(lots of lines)
+$ ls 
+new_test.csv test.csv training.csv
+$ rm new_test.csv
+rm: remove regular file 'new_test.csv'? y # you may not see this
+$ ls
+test.csv training.csv
+```
+
+### Notes and variations
+
+1. You can copy a bunch of files to a directory if the target of the copy is a directory.
+You can use wildcards if you want.
+```{bash}
+$ cp file1 file2 file3 ... filen directory 
+$ cp *.csv directory # copy all .csv files into the specified directory
+```
+
+2. The `mv` command will work on directories to rename them.
+```{bash}
+$ ls -F
+data/ model.py notes/
+$ mv data old_data
+$ ls -F
+model.py old_data/ notes/
+```
+
+3.  The `cp` command doesn't work on directories unless you use the `-r` or `--recursive` flag,
+in which case it copies the entire directory tree.
+
+4. You should assume that these operations are *irrevocable* and *destructive*. **There is no
+trash can in UNIX** So for example
+if you rename file1 ontop of another file2 , you delete the existing file2.  You can prevent this (and get warnings) with the `-i` flag.
+
+```{bash}
+$ rm -i model.py
+rm: remove regular file `model.py`? n # cancel the operation
+$  cp model.py model2.py 
+$  mv model.py model2.py # this will overwrite model2.py 
+$  ls -failed
+data/ model2.py notes/
+```
+
+5. The -f flag means "force" and will override any warnings.  So `cp -f` will do a copy
+over an existing file without a warning. In particular, `rm -f` will remove
+a directory and its contents *even if the directory is nonempty*.  Use with extreme caution!
+
+6. The shell wildcards are * (which matches anything) and ? which matches one character.
+
+7. The `ls -R` command lists the contents of all subdirectories as well as the directory itself. 
+The `tree` command (which isn't always available) gives you a nicer picture. 
+
+```{bash}
+$ tree 
+.
+├── data
+│   ├── test.csv
+│   └── training.csv
+├── model.py
+└── notes
+    ├── algorithm_notes.txt
+    └── to_do.txt
+```
+
+### Exercise
+
+You receive the following note from your boss together with [this attachment](joe.zip).
+
+```{md}
+Hi, one of our analysts just quit and he sent me the attached zip file of his work so far
+on one of our projects.  Can you get it organized?
+```
+
+Unzip the attachment.  Using the command line, organize the data into appropriate directories
+and standardize the file names in a reasonable way.
+
+A few notes:
+
+To unzip the attachment on the command line, use the `unzip` command.
+
+```{bash}
+$ unzip joe.zip
+```
+
+To create a `zip` file you use the `zip` command.  The `-r` option
+means to descend into directories as well.
+
+```{bash}
+$ zip -r zipfile.zip ...files and directories to zip...
+```
+
+To run a python program from the command line, use the `python` command:
+
+```{bash}
+$ python program.py 
+...program runs
+```
+
+
+## Redirection, Pipes, and Filters
+
+### Standard input and standard output
+
+When a UNIX command runs, it typically has three I/O pathways associated to it:
+
+- an input stream called *the standard input.*
+- an output stream called the *standard output.*
+- an output stream called the *standard error output.*
+
+Programs which *read from standard input* and *write to standard output* are called *filters*.
+
+Some key commands for this section:
+
+1. `cat` combines the files given as arguments and outputs them to standard output chained together. Without any files, reads from standard input and outputs to standard output. 
+2. `wc` counts words, characters, and lines from the file on the command line,
+or from standard input, and outputs to standard output.  `wc -c`, `wc -l`, and `wc -w` give the individual numbers.
+3. `cut` extracts a field from the file on the command line (or from standard input) and outputs to standard output.
+5. `echo` sends its command line to standard output.
+6. `sort` sorts files or standard input, outputs to standard output.
+7. `grep` looks for matching patterns in files or standard input, outputs matching lines to standard output.
+8. `uniq` finds unique lines in a sorted file or standard input. 
+
+### Redirection
+ 
+One of the most powerful features of the shell is its ability to *redirect* standard input, standard
+output, and standard error to other files, and thereby construct pipelines.
+
+#### Redirection of output
+
+```{bash}
+$ ls > files.txt # the > sign sends standard output to the given file.
+$ cat files.txt # cat types the file to standard output
+data
+files.txt
+model2.py 
+notes
+$ ls -F # notice that files.txt has been created
+data/ files.txt model2.py notes/
+```
+
+
+
+Ordinarily, redirecting output using `>` overwrites the target.  But if you use `>>` you can append to the end of a file.
+
+
+#### Pipes
+
+A pipe between commands is written with `|`.  A pipe means the output from the first command should be sent
+as input to the second command.
+
+First, let's look at the `wc` command.
+
+```{bash}
+$ wc files.txt
+4 4 31 files.txt # lines words characters in files.txt
+$ wc -l files.txt # just the lines please
+4
+```
+
+Now we put `wc` into  a pipeline with `ls` to count the number of files in our directory.
+
+```{bash}
+$ ls | wc -l  # the output of ls (one file per line) goes to wc -l which counts lines 
+4
+```
+
+Here we combine the training and test files and count the number of characters.
+
+```{bash}
+$ ls data/*
+test.csv training.csv
+$ cat data/* | wc -l 
+151
+```
+
+### The standard input
+
+Commands like `wc` and `cat` *either* use files specified as arguments or, if there aren't any, they read from standard input.  
+
+```{bash}
+$ wc 
+Here, wc is reading this stuff (which comes from the terminal, i.e. standard input)
+and is counting words, lines and so on.
+I use CTRL-D to send an end of file to tell wc that I'm done.
+^D 
+3 37 86
+```
+
+You can redirect standard input using `<`.  
+
+```{bash}
+$ wc < files.txt
+4 4 31
+```
+
+The output is the line/word/character counts, but there's no file name because the data comes
+from standard input via the '<' operator.
+
+*Check-in:* Explain what these commands do and why.
+
+```{bash}
+$ echo "Hello There"
+$ echo "Hello There" > hello.txt
+$ echo "Hello There" | wc 
+```
+
+Two useful commands are `sort` and `cut`.  
+
+The `cut` command extracts fields from a delimited file.  You can specify
+the field separator and the fields you want. The default delimiter for `cut`
+is the TAB character.
+
+**WARNING:** `cut` (and `sort`) are not sophisticated about quoted fields that contain commas,
+unlike, say, pandas or the tidyverse.  So you may not always get what you are expecting if you have quoted
+fields that contain commas.
+
+```{bash}
+$ cut -f4 -d, data/training.csv | head
+Region
+Anvers
+Anvers
+Anvers
+Anvers
+Anvers
+Anvers
+Anvers
+Anvers
+Anvers
+$ cut -f1-4 -d, data/test.csv | tail -3
+PAL0910,66,Chinstrap penguin (Pygoscelis antarctica),Anvers
+PAL0910,67,Chinstrap penguin (Pygoscelis antarctica),Anvers
+PAL0910,68,Chinstrap penguin (Pygoscelis antarctica),Anvers
+$ ls -l  | cut  -f1 -d' ' # here we use space as a delimiter.
+$ cut -c1-10 data/training.csv | head -2 # first 10 characters.
+studyName,
+PAL0708,1,
+```
+
+The `sort` command sorts (not surprisingly). You can specify the file
+on the command line or use `sort` as a filter. Ordinarily it sorts on the entire line.  
+
+```{bash}
+$ sort data/titanic_train.csv > data/titanic_train_sorted.csv
+$ ls data
+test.csv  titanic_test.csv  titanic_train.csv  titanic_train_sorted.csv  training.csv
+$ head -3 data/titanic_train_sorted.csv
+100,0,2,"Kantor, Mr. Sinai",male,34,1,0,244367,26,,S
+101,0,3,"Petranec, Miss. Matilda",female,28,0,0,349245,7.8958,,S
+10,1,2,"Nasser, Mrs. Nicholas (Adele Achem)",female,14,1,0,237736,30.0708,,C
+```
+
+You can specify fields (sort key) with `-f`, numerical sort with `-n`,
+reverse with `-r`, case folding with `-f`, and a field separator with `-t`.
+*The quoted names throw things off here!*
+
+```{bash}
+$ sort -k4 -t, data/titanic_train.csv | head -3 # field four, sep=,
+846,0,3,"Abbing, Mr. Anthony",male,42,0,0,C.A. 5547,7.55,,S
+747,0,3,"Abbott, Mr. Rossmore Edward",male,16,1,1,C.A. 2673,20.25,,S
+280,1,3,"Abbott, Mrs. Stanton (Rosa Hunt)",female,35,1,1,C.A. 2673,20.25,,S
+$ sort -k4 -r -t, data/titanic_train.csv | head -2
+423,0,3,"Zimmerman, Mr. Leo",male,29,0,0,315082,7.875,,S
+241,0,3,"Zabour, Miss. Thamine",female,,1,0,2665,14.4542,,C
+```
+
+Sorting is normally done "alphabetically" in which case the order
+might not be what you expect for numbers.  The `-n` flag forces
+numeric values to be used.
+
+```{bash}
+$ sort  data/titanic_train.csv | cut -f1 -d, | head -5 # alphabetical
+100
+101
+10
+102
+103
+$ sort -n data/titanic_train.csv | cut -f1 -d, | head -5 # numerical
+PassengerId
+1
+2
+3
+4
+```
+
+#### Searching
+
+The `grep` command searches for matches in its input and outputs any that it finds.  There are several variants of grep and there are many, many options
+to the command.  
+
+The basics:
+
+```{bash}
+$ grep 'William' data/titanic_train.csv | head -5  
+5,0,3,"Allen, Mr. William Henry",male,35,0,0,373450,8.05,,S
+13,0,3,"Saundercock, Mr. William Henry",male,20,0,0,A/5. 2151,8.05,,S
+18,1,2,"Williams, Mr. Charles Eugene",male,,0,0,244373,13,,S
+24,1,1,"Sloper, Mr. William Thompson",male,28,0,0,113788,35.5,A6,S
+32,1,1,"Spencer, Mrs. William Augustus (Marie Eugenie)",female,,1,0,PC 17569,146.5208,B78,C
+$ grep '^8' data/titanic_train.csv | head -5
+8,0,3,"Palsson, Master. Gosta Leonard",male,2,3,1,349909,21.075,,S
+80,1,3,"Dowdell, Miss. Elizabeth",female,30,0,0,364516,12.475,,S
+81,0,3,"Waelens, Mr. Achille",male,22,0,0,345767,9,,S
+82,1,3,"Sheerlinck, Mr. Jan Baptist",male,29,0,0,345779,9.5,,S
+83,1,3,"McDermott, Miss. Brigdet Delia",female,,0,0,330932,7.7875,,Q
+$ grep '\bWilliam\b' data/titanic_train.csv | tail -5
+803,1,1,"Carter, Master. William Thornton II",male,11,1,2,113760,120,B96 B98,S
+811,0,3,"Alexander, Mr. William",male,26,0,0,3474,7.8875,,S
+865,0,2,"Gill, Mr. John William",male,24,0,0,233866,13,,S
+881,1,2,"Shelley, Mrs. William (Imanita Parrish Hall)",female,25,0,1,230433,26,,S
+886,0,3,"Rice, Mrs. William (Margaret Norton)",female,39,0,5,382652,29.125,,Q
+$ grep '\bWilliam\b' data/titanic_train.csv | wc -l
+```
+
+You can do a lot of useful stuff by combining grep with other tools.
+
+```{bash}
+$ grep female data/titanic_train.csv > data/females_train.csv
+$ head data/females_train.csv
+2,1,1,"Cumings, Mrs. John Bradley (Florence Briggs Thayer)",female,38,1,0,PC 17599,71.2833,C85,C
+3,1,3,"Heikkinen, Miss. Laina",female,26,0,0,STON/O2. 3101282,7.925,,S
+4,1,1,"Futrelle, Mrs. Jacques Heath (Lily May Peel)",female,35,1,0,113803,53.1,C123,S
+9,1,3,"Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg)",female,27,0,2,347742,11.1333,,S
+10,1,2,"Nasser, Mrs. Nicholas (Adele Achem)",female,14,1,0,237736,30.0708,,C
+```
+
+UNIX tools aren't as powerful as the `csv` tools in, for example, pandas, but you can still be clever.
+Suppose we want to get at the names in the titanic file.  They have embedded commas but are set off with quotations
+
+```{bash}
+$ cut -f2 -d\" data/titanic_train.csv
+PassengerId,Survived,Pclass,Name,Sex,Age,SibSp,Parch,Ticket,Fare,Cabin,Embarked
+Braund, Mr. Owen Harris
+Cumings, Mrs. John Bradley (Florence Briggs Thayer)
+Heikkinen, Miss. Laina
+Futrelle, Mrs. Jacques Heath (Lily May Peel)
+$ cut -d\" -f3 data/titanic_train.csv | cut -f2 -d, | head -2
+Survived
+male
+female
+```
+
+The `uniq` command can be used to see the different elements in the field. 
+
+```{bash}
+$ cut -d\" -f3 data/titanic_train.csv | cut -f2 -d, | sort | uniq 
+
+female
+male
+Survived
+$ cut -d\" -f3 data/titanic_train.csv | cut -f2 -d, | sort | uniq -c
+ 53 
+ 282 female
+ 556 male
+ 1 Survived
+```
+
+### Exercise
+
+1. Use UNIX tools to determine:
+    - how many of each type of penguin there are in the `penguins_training.csv` and `penguins_test.csv` files.
+    - how many males and females there are in each file. 
+2. Combine the training and test files for the penguins into a single file (`penguins.csv`).  Then make a file `male_penguins.csv` containing just the males. 
+
+  
+## Variables and Loops
+
+#### Variables
+
+You use names for variables (like `x`), but to refer to the value of a variable you use `$x$`.
+
+```{zsh}
+$ x="hello" # no spaces!
+$ echo $x
+hello
+```
+
+The various UNIX shells are programming languages and they have the full set of capabilities: variables, logical statements, loops....
+
+The syntax for loops is different for `zsh` and `bash` unfortunately.
+
+```{bash}
+$ for x in *.csv # bash
+> do
+> echo $x
+> done
+```
+
+```{zsh}
+$ for x in *.csv # zsh
+cmdor cursh cmdand cursh then else> echo $x
+```
+
+You can use loops to (for example) rename a bunch of files.
+
+```{zsh}
+$ mkdir bkup
+$ for x in *.csv 
+cmdor cursh cmdand cursh then else> cp $x bkup/$x
+```
+
+```{bash}
+$ mkdir bkup
+$ for x in *.csv
+> do
+> cp $x bkup/$x
+> done
+```
+
+## Scripts
+
+A *shell script* is a file containing a sequence of shell commands.  When a shell starts, it executes a startup script
+stored in `.zshrc` or `.bashrc`.  This is where you can put commands to customize your shell.
+
+## The environment
+
+Every shell has an *environment* which is a bunch of variables that are used by programs.  Elements of the environment
+are called *environment variables*.  Sometimes you have to set an environment variable.  
+
+Some common and important shell environment variables are:
+
+```{bash}
+$ echo $HOME # home directory
+$ echo $PATH # search path for commands
+$ echo $USER # your user id
+$ echo $PS1 # the shell prompt
+$ env # print the entire environment
+```
+
+
+## Other topics
+
+- Using `wget` to get information from the web.
+- Using `ssh` to make a remote connection.
+- Using `rsync` to copy files across computers.
+- Using `tar` or `gzip` to compress and uncompress archives of files.
+
+
+

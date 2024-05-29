@@ -1,0 +1,123 @@
+---
+title: HW2 - Comments on Poisson
+subtitle: Fundamentals of Data Science
+author: Jeremy Teitelbaum
+format: html
+---
+
+## The Poisson Distribution
+
+The Poisson distribution measures the probability of $k$ events occurring
+in a given time interval, assuming:
+
+- the interarrival times are independent of one another
+- the mean number of arrivals in any interval is a constant $\lambda$.
+
+```{r}
+#| echo: false
+#| output: false
+library(ggplot2)
+library(dplyr)
+library(gridExtra)
+
+```
+
+```{r}
+pdata <- tibble(
+    x = seq(0, 20),
+)
+plts <- list()
+i <- 1
+
+for (n in seq(1, 10, 2)) {
+    cname <- paste0("y", n)
+    pdata <- pdata |> mutate({{ cname }} := dpois(`x`, n))
+}
+
+p1 <- ggplot(data = pdata, aes(x = x)) +
+    geom_col(aes(y = y1)) +
+    ggtitle("mean=1")
+p3 <- ggplot(data = pdata, aes(x = x)) +
+    geom_col(aes(y = y3)) +
+    ggtitle("mean=3")
+p5 <- ggplot(data = pdata, aes(x = x)) +
+    geom_col(aes(y = y5)) +
+    ggtitle("mean=5")
+p7 <- ggplot(data = pdata, aes(x = x)) +
+    geom_col(aes(y = y7)) +
+    ggtitle("mean=7")
+p9 <- ggplot(data = pdata, aes(x = x)) +
+    geom_col(aes(y = y9)) +
+    ggtitle("mean=9")
+grid.arrange(p1, p3, p5, p7, p9)
+```
+
+## The Exponential Distribution
+
+The exponential distribution is a continuous probability distribution
+given by an exponential function with a fixed rate $\lambda$.
+
+```{r}
+x <- seq(0, 3, .01)
+y <- dexp(x, 1)
+ggplot() +
+    geom_line(aes(x = x, y = y)) +
+    ggtitle("Exponential Distribution with parameter 1")
+```
+
+
+## Poisson Process
+
+In a "Poisson Process", events occur randomly in time.  The interval between two consecutive events is chosen (independently) from an exponential distribution.
+
+```{r}
+#| warning: false
+t <- rexp(100, 1)
+arrivals <- cumsum(t)
+ggplot() +
+    geom_col(aes(x = arrivals, y = 1), width = .015, color = "black") +
+    ggtitle("Arrival Times in a Poisson Process")
+```
+
+```{r}
+sum(arrivals < 25)
+sum(arrivals < 50)
+sum(arrivals > 25 & arrivals < 50)
+```
+
+
+```{r}
+#| echo: false
+#| output: false
+```{r}
+#| echo: false
+#| output: false
+# programmatic solution
+
+library(ggplot2)
+library(dplyr)
+library(gridExtra)
+
+
+pdata <- tibble(
+    x = seq(0, 20),
+)
+
+
+for (n in seq(1, 12, 2)) {
+    cname <- paste0("y", n)
+    pdata <- pdata |> mutate({{ cname }} := dpois(`x`, n))
+
+}
+ps<-list()
+i=1
+for (n in seq(1,12,2)) {
+    cname <-paste0("y",n)
+    p<-ggplot(data=pdata)+geom_col(aes(x=x,y=.data[[cname]]))+ggtitle(paste0("Poisson with mean ",n))
+    print(class(p), length(p))
+    ps[[i]]<-p
+    print(length(ps))
+    i<-i+1
+}
+grid.arrange(grobs=ps)
+```

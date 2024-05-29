@@ -1,3 +1,5 @@
+ferpa/
+online/
 .vscode/
 .DS_store
 .ipynb_checkpoints/
@@ -5,4 +7,4 @@ resources/
 .Rproj.user
 blackboard/
 /.quarto/
-
+Grad5100-Final/

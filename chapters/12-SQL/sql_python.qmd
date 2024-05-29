@@ -1,0 +1,269 @@
+---
+title: Databases and SQL - Selection - Python
+subtitle: Fundamentals of Data Science
+author: Jeremy Teitelbaum
+format: html
+---
+
+
+
+## Connecting to the database using sqlalchemy
+
+Our first task is to make a connection to our database using python and the
+sqlalchemy package.  
+
+
+```{python}
+#
+import sqlalchemy as sqla
+import pymysql
+import pandas as pd
+import os
+
+username = ""  # get this from the instructor
+password = ""  # get this from the instructor
+awsresource = ""  # get this from the instructor
+port = 3306
+```
+
+
+```{python}
+# | echo: false
+homedir = os.path.expanduser("~")
+with open(f"{homedir}/.rds") as f:
+    info = f.read()
+
+username, password, awsresource = info.strip().split(",")
+```
+
+
+```{python}
+dbname = "sakila"
+dburi = f"mysql+pymysql://{username}:{password}@{awsresource}:{port}/{dbname}"
+engine = sqla.create_engine(dburi)
+
+
+```
+
+The following functions make it more convenient to run SQL commands.
+
+
+```{python}
+def run_sql(sql, engine):
+    "send sql to database given by engine and return the result"
+    with engine.connect() as conn:
+        result = conn.execute(sqla.text(sql))
+    return result.all()
+
+
+def df_select(sql, engine):
+    "send sql to database given by engine and return the result as a pandas dataframe"
+    with engine.connect() as conn:
+        result = pd.read_sql(sqla.text(sql), con=conn)
+    print(f"Retrieved {result.shape[0]} records")
+    return result
+
+
+```
+
+To test the connection, let's use the `show` command to list the tables in the
+`sakila` database.
+
+```{python}
+tables = run_sql("show tables;", engine)
+for x in tables:
+    print(x)
+```
+
+Now let's take a closer look at one of these tables using the `describe` command.  The most important info we learn here are the names of the
+fields in the `actor` table, and their datatypes.
+
+```{python}
+actor_info = run_sql("describe actor;", engine)
+for x in actor_info[:10]:
+    print(x)
+```
+
+## Select and select where
+
+The fundamental SQL command is `select`.  The syntax for the `select` command
+is
+
+```
+select field, field, field from table;
+```
+
+In our case, let's select some information from the `actor` table.
+
+```{python}
+actor_data = run_sql("select actor_id, first_name, last_name from actor;", engine)
+for x in actor_data[:10]:
+    print(x)  # result is a list of tuples
+```
+
+It's a lot more convenient to get this in the form of a pandas dataframe.
+One could convert it "by hand", but pandas actually gives us a direct method
+for this.  It needs a connection as an argument.
+
+The function `sqla.text` turns an SQL string into the appropriate format for
+passing to the pandas function.
+
+```{python}
+with engine.connect() as conn:
+    actor_df = pd.read_sql(
+        sqla.text("SELECT actor_id, first_name, last_name FROM actor;"), conn
+    )
+actor_df.head()
+```
+
+For another example, let's look at the `film` table.
+
+```{python}
+film_info = run_sql("describe film;", engine)
+for x in film_info:
+    print(x)
+```
+
+Using what we already know, the simplest way to work with these tables
+is to move them into a pandas dataframe locally and work there.  For
+example, suppose we want to look at the film ratings.
+
+```{python}
+with engine.connect() as conn:
+    film_df = pd.read_sql(sqla.text("select film_id, title, rating from film;"), conn)
+film_df["rating"].value_counts()
+```
+
+And, of course, if we want to pick out the 'G'-rated films:
+
+```{python}
+GFilms = film_df[film_df["rating"] == "G"]
+GFilms.shape
+```
+
+But suppose there are a huge number of films, and we don't want to download all of them just to throw away the ones that aren't G-rated.  Then we can use
+a `where` clause.
+
+In this example we also use the `film_id` as the table index.
+
+```{python}
+with engine.connect() as conn:
+    g_film_df = pd.read_sql(
+        sqla.text("select film_id, title, rating from film where rating='G'"),
+        conn,
+        index_col="film_id",
+    )
+print(f"retrieved {g_film_df.shape[0]} records")
+```
+
+What about films between 90 minutes and two hours?  And what if we
+want the result sorted by length?
+
+```{python}
+with engine.connect() as conn:
+    midlength_df = pd.read_sql(
+        sqla.text(
+            "select film_id, title, length from film where length>=90 and length<=120 order by length;"
+        ),
+        conn,
+        index_col="film_id",
+    )
+print(f"retrieved {midlength_df.shape[0]} records")
+```
+
+For simplicity we can use the df_select function.
+
+```{python}
+midlength_df = df_select(
+    "Select film_id, title, length from film where length>=90 and length<=120 order by length desc;",
+    engine,
+)
+```
+
+So to summarize, we have
+
+```
+select f1, f2, ... fn from table where condition order by field;
+select f1, f2, ... fn from table where condition order by field desc; 
+```
+
+## Grouping and Summarizing
+
+The grouping and summarizing operations in pandas are modeled on those from 
+SQL.  The `group by` clause in SQL does the grouping, and then
+one can apply summarizing functions to fields.  For example, suppose
+we want to count the number of movies with each rating.
+
+We say:
+```
+select count(rating) from film group by rating; 
+```
+
+```{python}
+run_sql("select rating, count(rating) from film group by rating;", engine)
+```
+
+We have the usual summary functions (`count`, `avg`, `min`, `max`,...)
+
+```{python}
+run_sql(
+    "select rating, min(length), avg(length), stddev(length), max(length) from film group by rating;",
+    engine,
+)
+```
+
+You can of course put this in a dataframe.
+
+```{python}
+df_select(
+    "select rating, min(length), avg(length), stddev(length), max(length) from film group by rating;",
+    engine,
+)
+```
+
+You can rename the columns *inside* the SQL query:
+
+```{python}
+df_select(
+    "select rating, min(length) as minlen, avg(length) as avlen, stddev(length) as stdlen, max(length) as maxlen from film group by rating;",
+    engine,
+)
+```
+
+And you can sort the result:
+
+```{python}
+df_select(
+    "select rating, min(length) as minlen, avg(length) as avlen, stddev(length) as stdlen, max(length) as maxlen from film group by rating order by avlen;",
+    engine,
+)
+```
+
+So to summarize we have:
+
+```
+select group_field, summary(f1) as name1, summary(f2) as name2,... from table 
+group by group_field order by name1
+```
+
+#### Two extras: distinct and limit
+
+Finally, if you just want to see the *possible* values in a field,
+or you only want to consider distinct values in a sum, you can use the `DISTINCT` keyword.
+
+```{python}
+run_sql("Select distinct rating from film", engine)
+```
+
+
+```{python}
+run_sql("select count(distinct rating) from film", engine)
+```
+
+If you only want to retrieve, say, 20 records, you can use the `LIMIT` keyword.
+
+```{python}
+run_sql("select title, length from film limit 20", engine)
+```
+
+

@@ -1,4 +1,9 @@
-## To start jupyter on the cluster
+---
+title: Jupyter on UConn's HPC cluster
+author: Jeremy Teitelbaum
+subtitle: Fundamentals of Data Science
+---
+
 
 
 1. **On your local machine:** Login to the login node:

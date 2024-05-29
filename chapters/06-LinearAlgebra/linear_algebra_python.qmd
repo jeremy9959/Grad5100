@@ -1,3 +1,10 @@
+---
+jupyter: 
+    kernelspec: 
+        name: "base"
+        language: "python"
+        display_name: "python3"
+---
 ## Overview of linear algebra operations in python
 
 The `numpy` library is the main tool for linear algebra in python.
@@ -93,6 +100,13 @@ print("axis=0 yields row norms: {}".format(y))
 y = np.linalg.norm(x, axis=1)
 print("axis=1 yields column norms: {}".format(y))
 ```
+
+## Rank
+```{python}
+x = np.array([[1,2],[3,4]])
+np.linalg.matrix_rank(x)
+```
+
 
 ## Dataframes and matrices
 

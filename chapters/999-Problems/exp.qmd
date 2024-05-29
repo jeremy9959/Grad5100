@@ -1,0 +1,30 @@
+```{r}
+#| echo: false
+#| output: false
+library(ggplot2)
+library(dplyr)
+library(gridExtra)
+
+
+pdata <- tibble(
+    x = seq(0, 20),
+)
+
+
+for (n in seq(1, 12, 2)) {
+    cname <- paste0("y", n)
+    pdata <- pdata |> mutate({{ cname }} := dpois(`x`, n))
+
+}
+ps<-list()
+i=1
+for (n in seq(1,12,2)) {
+    cname <-paste0("y",n)
+    p<-ggplot(data=pdata)+geom_col(aes(x=x,y=.data[[cname]]))+ggtitle(paste0("Poisson with mean ",n))
+    print(class(p), length(p))
+    ps[[i]]<-p
+    print(length(ps))
+    i<-i+1
+}
+grid.arrange(grobs=ps)
+```

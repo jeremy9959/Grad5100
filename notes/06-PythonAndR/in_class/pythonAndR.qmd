@@ -1,0 +1,47 @@
+---
+title: "Data Structures and Functions in R and Python"
+subtitle: "Fundamentals of Data Science"
+author: "Jeremy Teitelbaum"
+format: html
+title-block-style: plain
+---
+
+## Basic data structures for analysis
+
+Both R and Python have  data structures like excel spreadsheets
+that are the basic way to organize tabular data.
+
+In R, these tools are packaged together in a family of libraries
+called the `tidyverse`.
+
+In Python they are packaged in two closely related libraries,
+`numpy` (which handles numerical linear algebra) and `pandas` which
+handles tabular data.
+
+In Python, these tabular data structures are called *dataframes*;
+in R they are called *tibbles* (there are dataframes in R as well but
+the tidyverse package mainly uses tibbles.)
+
+## Features
+
+The basic operations that both R and Python offer are
+
+- *mapping* a function to a column of data and creating a new column
+- *selecting* a particular column
+- *filtering* to select rows where column entries meet a condition
+- *grouping* rows by keys 
+- *summarizing* data by computing sums, counts, averages, variances, and so on.
+
+## Visualization
+
+In addition, both R and Python have plotting libraries that rely on dataframes/tibbles as input and libraries that apply ML algorithms to tabular data stored in dataframes/tibbles.
+
+## Walkthroughs
+
+- [R/basics of R programming](r_programming.qmd)
+- [R/tidyverse walkthrough](r_penguins.qmd)
+- [Python/basics of python programming](python_programming.qmd)
+- [Python/pandas walkthrough](pandas_penguins.qmd)
+
+
+

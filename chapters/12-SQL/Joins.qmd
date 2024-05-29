@@ -1,0 +1,13 @@
+---
+title: Join Operations
+subtitle: Fundamentals of Data Science
+format: html
+author: Jeremy Teitelbaum
+---
+
+## Joins
+
+So far we have worked with data that is derived from a single csv file and loads into
+a single pandas dataframe.
+
+In "real" applications, data typically begins in many separate tables.  

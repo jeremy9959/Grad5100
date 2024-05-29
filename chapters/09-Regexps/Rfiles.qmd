@@ -1,0 +1,51 @@
+---
+title: Reading from and Writing to Files in R
+subtitle: Fundamentals of Data Science
+author: Jeremy Teitelbaum
+format: html
+---
+
+The R/tidyverse library `readr` is the main tool for reading various
+types of data files. 
+
+```{r}
+library(readr)
+```
+
+
+```{r}
+file <- read_file("data/gettysburg.txt")
+```
+
+```{r}
+line <- read_lines("data/gettysburg.txt", n_max = 1)
+```
+
+
+```{r}
+lines <- read_lines("data/gettysburg.txt")
+```
+
+```{r}
+text <- c("Now is the time", "for us to rise up", "against our robot overlords")
+write_lines(text, "data/robots.txt", sep = "-")
+```
+
+```{r}
+# write_file overwrites.  Use the append flag to append
+write_file(paste0(text, collapse = " ")[1], "data/robots.txt", append = TRUE)
+```
+
+### File operations
+
+The `fs` library allows you to do file manipulations.
+
+```{r}
+library(fs)
+# file_create
+# file_move
+# file_copy
+# file_ls to list directory
+# file_exists
+# file_show
+```

@@ -1,0 +1,61 @@
+---
+title: Cheatsheets and other References
+author: Jeremy Teitelbaum
+subtitle: Fundamentals of Data Science
+format: html
+---
+
+## Cheatsheets
+
+This is a compilation of resources from various sites on the web. 
+
+### Pandas
+
+From the [pandas home page](https://pandas.pydata.org).
+
+1. [pandas cheatsheet](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf)
+
+### Matplotlib
+
+Thanks to [the matplotlib home page](https://matplotlib.org).
+
+1. [beginner cheatsheet](https://matplotlib.org/cheatsheets/_images/handout-beginner.png)
+2. [intermediate cheatsheet](https://matplotlib.org/cheatsheets/_images/handout-intermediate.png)
+3. [tip sheet](https://matplotlib.org/cheatsheets/_images/handout-tips.png)
+4. [complete (front)](https://matplotlib.org/cheatsheets/_images/cheatsheets-1.png)
+5. [complete (back)](https://matplotlib.org/cheatsheets/_images/cheatsheets-2.png)
+6. [styles](https://matplotlib.org/stable/gallery/style_sheets/style_sheets_reference.html)
+
+### Seaborn
+
+Seaborn is a fancier interface to matplotlib that offers high quality statistical plots of various types. 
+
+1. [seaborn cheatsheet](https://s3.amazonaws.com/assets.datacamp.com/blog_assets/Python_Seaborn_Cheat_Sheet.pdf)
+
+### R
+
+From the [posit home page](https://posit.co/resources/cheatsheets/)
+
+1. [base r cheatsheet](https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf)
+2. [tidyverse cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+3. [r markdown cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+
+### GGPlot
+
+From the [posit home page](https://posit.co/resources/cheatsheets/)
+
+1. [ggplot cheatsheet](https://rstudio.github.io/cheatsheets/data-visualization.pdf)
+
+### Vscode
+
+From the [vscode home page](https://code.visualstudio.com)
+
+1. [windows keybindings](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
+2. [mac keybindings](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf)
+3. [linux keybindings](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf)
+
+
+
+### Markdown
+
+1. [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/)

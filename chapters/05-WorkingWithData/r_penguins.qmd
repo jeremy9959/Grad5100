@@ -5,12 +5,13 @@ author: "Jeremy Teitelbaum"
 format: "html"
 ---
 
+## Working with Data in R
 
-## load the required libraries
+#### load the required libraries
 
 ```{r}
 library(tidyverse)
-
+library(palmerpenguins)
 ```
 
 ```{r}
@@ -18,139 +19,148 @@ cat(paste(R.version$version.string, "\n"))
 ```
 
 
-## read the penguins data from a csv file
+#### read the penguins data from a csv file
 ```{r}
 penguins <- read_csv("data/penguins-raw.csv")
 ```
 
-## print the number of rows and columns in the data frame
+#### print the number of rows and columns in the data frame
 
 ```{r}
 cat("Rows:", nrow(penguins), ", Columns:", ncol(penguins), "\n")
 ```
 
-## print the column names
+#### print the column names
 ```{r}
 cat("Columns:\n")
 print(colnames(penguins))
 ```
 
-## select a subset of columns
+#### select a subset of columns
 ```{r}
-simpler <- penguins |> select(Species, `Body Mass (g)`, `Flipper Length (mm)`)
+simpler <- penguins |> select(`Species`, `Body Mass (g)`, `Flipper Length (mm)`)
 head(simpler)
 ```
 
-## print the index
+#### print the index
 ```{r}
 print(rownames(penguins))
 ```
 
 
-## print the 23rd row
+#### print the 23rd row
 ```{r}
 penguins[23, ]
 ```
 
-## print the value of the "Culmen Length (mm)" column in the 23rd row
+#### print the value of the "Culmen Length (mm)" column in the 23rd row
 ```{r}
 penguins[23, "Culmen Length (mm)"]
 ```
 
-## print the "Sex" and "Date Egg" columns for rows 23 to 28 (remember that r numbers rows from !)
+#### print the "Sex" and "Date Egg" columns for rows 23 to 28 (remember that r numbers rows from !)
 ```{r}
 penguins[23:28, c("Sex", "Date Egg")]
 ```
 
-## count the number of occurrences of each value in the "Island" column
+#### count the number of occurrences of each value in the "Island" column
 ```{r}
 penguins |> count(Island)
 ```
 
-## count the number of occurrences of each value in the "Species" column
+#### count the number of occurrences of each value in the "Species" column
 ```{r}
 penguins |> count(Species)
 ```
 
-## filter the data to keep only rows where "Sex" is "FEMALE"
+#### filter the data to keep only rows where "Sex" is "FEMALE"
 ```{r}
 females <- penguins |> filter(Sex == "FEMALE")
 head(females)
 ```
 
 
-## filter the data to keep only rows where "Flipper Length (mm)" is greater than "Body Mass (g)" divided by 20
+#### filter the data to keep only rows where "Flipper Length (mm)" is greater than "Body Mass (g)" divided by 20
 ```{r}
 penguins |> filter(`Flipper Length (mm)` > `Body Mass (g)` / 20)
 ```
 
-## count the number of missing values in each column
+#### count the number of missing values in each column
 ```{r}
 colSums(is.na(penguins))
 ```
 
-## drop the "Comments" column
+#### drop the "Comments" column
 ```{r}
 penguins <- penguins |> select(-Comments)
 ```
 
-## drop rows with missing values
+#### drop rows with missing values
 ```{r}
 penguins_nona <- penguins |> drop_na()
 dim(penguins_nona)
 ```
 
-## impute missing values in the "Culmen Length (mm)" column with the mean value
+#### impute missing values in the "Culmen Length (mm)" column with the mean value
 ```{r}
 penguins_imputed <- penguins |>
     mutate(`Culmen Length (mm)` = if_else(is.na(`Culmen Length (mm)`), mean(`Culmen Length (mm)`, na.rm = TRUE), `Culmen Length (mm)`))
 ```
 
-## set the "Sex" column as a categorical variable
+#### set the "Sex" column as a categorical variable
 ```{r}
 penguins <- penguins |> mutate(Sex = as.factor(Sex))
 ```
 
-## create a new column "SimpleSpecies" by extracting the first word from the "Species" column
+#### Use this factor to get a plot of the number of each sex
+
+```{r}
+ggplot(data = penguins, aes(x = Sex)) +
+    geom_bar()
+```
+
+#### create a new column "SimpleSpecies" by extracting the first word from the "Species" column
 ```{r}
 penguins <- penguins |> mutate(SimpleSpecies = word(Species, 1))
 ```
 
-## create a new column "Body Mass (kg)" by dividing the "Body Mass (g)" column by 1000
+
+
+#### create a new column "Body Mass (kg)" by dividing the "Body Mass (g)" column by 1000
 ```{r}
 penguins <- penguins |> mutate(`Body Mass (kg)` = `Body Mass (g)` / 1000)
 ```
-## sort the data by "Body Mass (g)" in ascending order
+#### sort the data by "Body Mass (g)" in ascending order
 ```{r}
 penguins_small <- penguins |> select(Species, Island, `Body Mass (g)`)
 penguins_small |> arrange(`Body Mass (g)`)
 ```
 
-## group the data by "Species"
+#### group the data by "Species"
 ```{r}
 penguins_by_species <- penguins |> group_by(Species)
-```
-## summarize the "Body Mass (g)" column for each group
+#### summarize the "Body Mass (g)" column for each group
 ```{r}
-penguins_by_species |> summarize(mean = mean(`Body Mass (g)`), sd = sd(`Body Mass (g)`), n = n())
+penguins_by_species |> drop_na()|> summarize(mean = mean(`Body Mass (g)`), sd = sd(`Body Mass (g)`), n = n())
 ```
-## group the data by "Sex" and "Species"
+#### group the data by "Sex" and "Species"
 ```{r}
 penguins_by_sex_and_species <- penguins |> group_by(Sex, Species)
 ```
 
-## summarize the "Body Mass (g)" column for each group
+#### summarize the "Body Mass (g)" column for each group
 ```{r}
 penguins_by_sex_and_species |> summarize(mean = mean(`Body Mass (g)`), sd = sd(`Body Mass (g)`), n = n())
 ```
 
-## create a pivot table of the mean "Body Mass (g)" for each combination of "Sex" and "Species"
+#### create a pivot table of the mean "Body Mass (g)" for each combination of "Sex" and "Species"
 ```{r}
 penguins_by_sex_and_species |>
     summarize(mean = mean(`Body Mass (g)`)) |>
     pivot_wider(names_from = Species, values_from = mean)
 ```
-## plot a histogram of "Body Mass (g)" for female Adelie and Gentoo penguins
+
+#### plot a histogram of "Body Mass (g)" for female Adelie and Gentoo penguins
 ```{r}
 penguins |>
     filter(Species %in% c("Adelie Penguin (Pygoscelis adeliae)", "Gentoo penguin (Pygoscelis papua)"), Sex == "FEMALE") |>
@@ -159,7 +169,15 @@ penguins |>
     facet_wrap(~Species)
 ```
 
-## excel files
+```{r}
+penguins |>
+    filter(Species %in% c("Adelie Penguin (Pygoscelis adeliae)", "Gentoo penguin (Pygoscelis papua)"), Sex == "FEMALE") |>
+    ggplot(aes(x = `Body Mass (g)`)) +
+    geom_histogram(bins = 30) +
+    facet_wrap(~Species)
+```
+
+#### excel files
 
 One can also work with excel files.  You need the `readxl` library.
 

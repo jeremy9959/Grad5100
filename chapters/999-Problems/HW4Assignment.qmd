@@ -1,0 +1,65 @@
+---
+title: Homework 4
+subtitle: Fundamentals of Data Science
+author: Jeremy Teitelbaum
+format: html
+---
+
+## Homework 4
+
+Please submit your solution to this problem on Husky CT by Monday, October 30th at 8:00 AM. 
+
+[This zip file](./hhg.zip) contains the first few chapters of "The Hitchiker's Guide to the Galaxy" by Douglas Adams in text format in a file called `hhg.txt`.
+
+a. What shell command will tell you if the word "adorable" occurs in this file?
+(does it?)
+b. What shell command will tell you how many lines are in the file?
+(how many are there?)
+
+
+Next, using whatever tools you prefer, create 26 text files called `hhgX.txt` where X runs from A to Z.
+Each file should contain all of the words from `hhg.txt` that begin with the corresponding letter, one word per line,
+in alphabetical order, in lower case.  Each word should occur only once in `hhgX.txt` regardless of how many times it occurs
+in the original text. 
+
+Next, answer the following questions:
+
+c. What shell command would combine all of the `hhgX.txt` files into a single file called `hhgwords.txt`?
+d. What shell commands would carry out the following:
+
+    - create a directory called `orig`
+    - move the original files `hhg.zip` and `hhg.txt` into this directory.
+
+Create a file that contains your answers to a,b,c,d called `shell_answers.sh`.
+This file should contain *only four lines*.
+
+Create *a single zip file* called `hhg-exploded.zip` which, when uncompressed, yields:
+
+- a directory called `first_last` where `first` and `last` are your first and last names. Inside that directory, there should be:
+
+- a file `report.txt` that explains your method for creating the `hhgX.txt` files (*briefly*)
+- the file `shell_answers.sh` 
+- a subdirectory whose name is `hhg-exploded`, and whose contents are the 26 files described above.
+- a subdirectory called `bkup` which contains the original text file
+`hhg.txt` as well as the original zip file `hhg.zip`.
+    
+To illustrate (although I've only put the ABC files in hhg-exploded)
+your zip file should unpack to this:
+
+
+```{verbatim}
+jeremy_teitelbaum
+├── bkup
+│   ├── hhg.txt
+│   └── hhg.zip
+├── hhg-exploded
+│   ├── hhgA.txt
+│   ├── hhgB.txt
+│   ├── hhgC.txt
+│   
+├── report.txt
+└── shell_answers.sh
+```
+
+
+

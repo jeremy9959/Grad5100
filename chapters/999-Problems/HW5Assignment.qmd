@@ -1,0 +1,54 @@
+---
+title: Homework 5
+subtitle: Fundamentals of Data Science
+format: html
+author: Jeremy Teitelbaum
+---
+
+## Homework 5
+
+This homework is due by the end of the day on November 20th.
+You should submit an ipynb or qmd file.  At the top of the
+file you should provide a link to your github repo where the
+first question is answered; the rest of the file should be your answers
+to the second problem. 
+
+### Git
+
+I have created a github repository called [Grad5100-HW5](https://github.com/jeremy9959/Grad5100-HW5).
+It (currently) contains two files and was built with four commits.  It is public, so you can clone it to your home machine.
+
+Your assignment is to make *your own* github repository called Grad5100-HW5 in your github account that is *an exact duplicate*
+of my repository, with the exception that *whenever my name appears, you should substitute yours.*  
+
+So for example, in the file current version of the README.md file, there is a line that reads "This is HW5 for Grad5100.  My name is Jeremy Teitelbaum."
+Your version should say "This is HW5 for Grad5100. My name is [your name]."
+
+Notice that when I say *exact duplicate* I mean that, not only must you reproduce the current state of my repository, but your repository
+should also:
+
+- have 4 commits
+- each commit should match the corresponding one in my repo, with the name change mentioned above
+- the state of the directory should be the same for each commit
+- the commit messages should be identical
+Of course, the commit labels will be different since those are unique and can't be changed. 
+
+To accomplish this, you will *not* be able to copy my repo and edit it, because the result will be to add *more* commits.
+Instead, you'll need to reverse engineer my repo and build yours from scratch to match it.
+
+You will submit the URL of your repository to complete this assignment.
+
+### SQL/Databases
+
+You may do this assignment in either python  or R, your choice.  Ultimately you will submit an `ipynb` or a `qmd` file that I can execute to make sure that it works.  
+
+1.  Make a connection to the Amazon RDS database that we used in class. 
+2.  Use an appropriate SQL query (or dbplyr construction) to retrieve the
+id, first, and last name of all the actors in the sakila database, sorted by last name, as a dataframe or tibble. 
+3.  How many languages are there in the `language` table?
+4.  How many different languages appear in the film table?
+5.  The SQL function `substring` returns a part of a string, so that for example
+`substring(last_name, 1,5)` retrieves the first five letters of the last name. Retrieve all actors whose last name begins with `B` in a dataframe or tibble. (Hint: you can do `where substring(....)=...`)
+6.  Make a dataframe or tibble that shows the number of actors whose last name starts with a given letter. (Hint: you can `group by substring...`)
+7.  Make a dataframe or tibble that shows all of the customers `customer_id`, `first_name`, `last_name` and `phone` number.  To get the phone number you will have to do a join with the address table.
+

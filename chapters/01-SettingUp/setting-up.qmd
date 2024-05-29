@@ -22,7 +22,7 @@ Anaconda includes:
 - anaconda navigator: a GUI gateway to anaconda tools
 - lots of other stuff
 
-## Verify Anaconda
+## Verify Jupyter
 
 - Verify JupyterLab
 
@@ -47,6 +47,11 @@ import sys
 
 print(sys.version)
 ```
+
+## Optional: Jupyter on UConn's HPC Cluster
+
+1. [Some notes on how to run Jupyter on the HPC cluster](./Cluster.md)
+
 
 ## R and Rstudio Install for R
 

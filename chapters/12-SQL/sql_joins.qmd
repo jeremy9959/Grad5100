@@ -1,0 +1,254 @@
+---
+title: SQL and Databases - Joins
+subtitle: Fundamentals of Data Science
+author: Jeremy Teitelbaum
+format: html
+---
+
+## Joins
+
+What really makes a relational database both efficient and "relational" is the use
+of the `join` operation.
+
+To understand what this is, let's look back at the sakila database, which
+tracks films and actors, among other things.
+
+One feature of this problem is that the relationship between actors and films is
+"many-to-many". That is, a given actor may appear in many films; and a given film
+includes many actors.
+
+This is captured by the following small part of the "entity relationship" diagram
+that we considered at the beginning of this lesson.
+
+![actors and films eer](img/actor_film.png)
+
+This diagram says that the table `film_actor` has a pair of key fields in it:
+`actor_id` and `film_id`.  The `actor_id` points into the `actor` table,
+and the `film_id` points into the film table.  So a combination
+(`actor_id`,`film_id`) in the `film_actor` table says that a particular actor appeared
+in a particular film.
+
+
+
+```{python}
+#
+import sqlalchemy as sqla
+import pymysql
+import pandas as pd
+
+username = ""  # get this from the instructor
+password = ""  # get this from the instructor
+awsresource = ""  # get this from the instructor
+port = 3306
+```
+
+
+```{python}
+# | echo: false
+with open("/home/jet08013/.rds") as f:
+    info = f.read()
+
+username, password, awsresource = info.strip().split(",")
+```
+
+
+```{python}
+dbname = "sakila"
+dburi = f"mysql+pymysql://{username}:{password}@{awsresource}:{port}/{dbname}"
+engine = sqla.create_engine(dburi)
+
+
+def run_sql(sql, engine):
+    "send sql to database given by engine and return the result"
+    with engine.connect() as conn:
+        result = conn.execute(sqla.text(sql))
+    return result.all()
+
+
+def df_select(sql, engine):
+    "send sql to database given by engine and return the result as a pandas dataframe"
+    with engine.connect() as conn:
+        result = pd.read_sql(sqla.text(sql), con=conn)
+    print(f"Retrieved {result.shape[0]} records")
+    return result
+
+
+```
+
+Let's look at a few sample lines from the `film_actor` table.
+
+```{python}
+film_actor_sample = df_select(
+    "select actor_id,film_id from film_actor limit 10;", engine
+)
+print(film_actor_sample)
+```
+
+As you can see, actor number 1 appeared in a bunch of films.  If we wanted to see 
+all the films in which he or she appeared, we can use a `where` query.
+
+```{python}
+actor_one = df_select(
+    "select actor_id, film_id from film_actor where actor_id=1;", engine
+)
+print(actor_one)
+```
+
+On the other hand, a bunch of actors appeared in film 23, so we can ask for the list
+of actors appearing there.
+
+```{python}
+film_23 = df_select(
+    "select actor_id, film_id from film_actor where film_id = 23", engine
+)
+print(film_23)
+```
+
+Of course, this isn't very informative.  Who exactly is actor 1? And what is film_23?
+
+For that, we have to look in the actor and film table.
+
+```{python}
+print("---actor---")
+actor_fields = run_sql("describe actor;", engine)
+for x in actor_fields:
+    print(x[0])
+print("\n")
+print("---film---")
+film_fields = run_sql("describe film;", engine)
+for x in film_fields:
+    print(x[0])
+
+
+```
+
+To get actor number 1's name, we use:
+
+```{python}
+actor_one_info = df_select(
+    "select first_name, last_name from actor where actor_id=1", engine
+)
+print(actor_one_info)
+```
+
+To get film number 23's name we use:
+
+```{python}
+film_23_info = df_select(
+    "select title, release_year, length, rating from film where film_id = 23;", engine
+)
+print(film_23_info)
+```
+
+But suppose we want to construct a table of film information for *all* of actor one (Penelope Guiness's) films.    Or suppose we want to information of all the actors
+appearing in "Anaconda Confessions"?  We need to somehow combine the relationships
+captured in the `film_actor` table with the information about the individual films (in `film`) and actors (in `actor`).
+
+The solution to this problem is called a join.
+
+Suppose you have two tables -- for concreteness, let's say they are the `film_actor` table  the `actor` table.  Suppose the two tables have a "key field" that links the information in them together in some way.  In this case, `film_actor` has an `actor_id` field that corresponds to the info about the row labelled with that `actor_id` in the `actor` table.
+
+A *join* operation makes a new table whose rows are constructed out of the information
+in the two original tables using the places where the common key field is the same.
+
+There are some variations on this, so let's look at some special cases.  
+
+1. **Inner Joins** If you inner join table one (T1) and table two (T2) on the common key field K you make a new table whose rows are made by choosing a row from T1 with a particular value of K and a row from table T2 with the same value of K and making
+a new row (K, stuff from T1 row at K, stuff from T2 row at K). This is called an *inner*
+join because the rows of the joined table only appear if the key K appears in *both* T1 and *T2*.
+
+```{python}
+T1 = pd.DataFrame({"K": [1, 1, 2, 3, 4], "D": ["A", "B", "C", "D", "E"]})
+print(T1)
+print("--------\n")
+T2 = pd.DataFrame({"K": [1, 2, 3, 6], "D2": ["U", "V", "W", "Y"]})
+print(T2)
+```
+
+In pandas, you use the `merge` function to make the join.
+
+```{python}
+J_inner = T1.merge(T2, left_on="K", right_on="K", how="inner", suffixes=("_T1", "_T2"))
+print(J_inner)
+```
+
+Notice that:
+
+- There are two rows with K=1 (why?)
+- There is no row with K=4 (because in an inner join, the key has to appear in both parts)
+
+2.  **Left Joins** In a left join, you use all the keys on the left; if something is missing on the right, you get rows with missing values. 
+
+```{python}
+J_left = T1.merge(T2, left_on="K", right_on="K", how="left", suffixes=("_T1", "_T2"))
+print(J_left)
+```
+
+Here you have a row with K=4, but an NA value in D2.
+
+3. **Right Joins** In a right join, you use all the keys on the right, and get missing values if there's no corresponding entry on the left. 
+
+```{python}
+J_right = T1.merge(T2, left_on="K", right_on="K", how="right", suffixes=("_T1", "_T2"))
+print(J_right)
+```
+
+```{python}
+J_left = T1.merge(T2, left_on="K", right_on="K", how="left", suffixes=("_T1", "_T2"))
+print(J_left)
+```
+
+4. **Outer Joins** In an outer join, you include rows from *both* left and right,
+even if there is no corresponding row on the other side.
+```{python}
+J_outer = T1.merge(T2, left_on="K", right_on="K", how="outer", suffixes=("_T1", "_T2"))
+print(J_outer)
+```
+
+The syntax of a join in SQL is:
+
+```
+select (fields) from (table join table) on key1 = key2
+```
+
+To be completely explicit, let's go back to actors and films. We'll start by joining
+actors and the `film_actor` table. The following query fills in the actor names
+and, since it's ordered by film, shows us which actors are in each film.
+
+```{python}
+actor_names = df_select(
+    "select first_name, last_name, film_id, actor.actor_id from actor join film_actor on actor.actor_id = film_actor.actor_id order by film_id limit 50",
+    engine,
+)
+print(actor_names)
+```
+
+If we want to combine *both* film titles and actor names, we need a double join.
+This is done in SQL by nesting.  The inner query is the one we did above,
+which we have given the alias T1; then we join that with film on the film_id field. 
+
+```{python}
+query = """
+    select film.film_id, actor_id, first_name, last_name, title, length, rating
+    from 
+        (select first_name, last_name, film_id, actor.actor_id from actor join film_actor on actor.actor_id = film_actor.actor_id) T1  
+    join 
+        film on T1.film_id = film.film_id order by title 
+    """
+combined = df_select(query, engine)
+print(combined)
+```
+
+By default, MySQL joins are inner.  You can add "left", "right", or "cross" (which is
+what MySQL calls an OUTER join) to 
+specify other options.
+
+
+```{python}
+query = """
+    select film.film_id, actor_id, first_name, last_name, title, length, rating from 
+    (select first_name, last_name, film_id, actor.actor_id from actor cross join film_actor on actor.actor_id = film_actor.actor_id) T1  join film on T1.film_id = film.film_id order by title 
+    """
+combined = df_select(query, engine)
+print(combined)
+```

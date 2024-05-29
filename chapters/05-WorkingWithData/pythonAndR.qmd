@@ -1,5 +1,5 @@
 ---
-title: "Data Structures in R and Python"
+title: "Data Structures and Functions in R and Python"
 subtitle: "Fundamentals of Data Science"
 author: "Jeremy Teitelbaum"
 format: html
@@ -38,7 +38,10 @@ In addition, both R and Python have plotting libraries that rely on dataframes/t
 
 ## Walkthroughs
 
-- [Python/pandas walkthrough](pandas_penguins.qmd)
+- [R/basics of R programming](r_programming.qmd)
 - [R/tidyverse walkthrough](r_penguins.qmd)
+- [Python/basics of python programming](python_programming.qmd)
+- [Python/pandas walkthrough](pandas_penguins.qmd)
 
-
+To download the materials including the data so you can work with them 
+locally, [follow this link](programming.zip).

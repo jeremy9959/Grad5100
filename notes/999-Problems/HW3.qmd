@@ -1,0 +1,21 @@
+```{r}
+library(tidyverse)
+
+data <- read_csv("/Users/jeremy9959/Grad5100-Working/HW3/Amazon Books Data.csv")
+
+data <- data |> select(`title`:`price`)
+data <- data |> filter(!is.na(`title`))
+data <- data |> filter(!is.na(author))
+data <- data |> filter(!is.na(price))
+data <- data |> filter(!is.na(`rating`))
+data <- data |> mutate(price = as.numeric(gsub("\\$", "", `price`)))
+data <- data |> mutate(rating = as.numeric(gsub("\\$", "", `rating`)))
+data <- data |> mutate(python=ifelse(grepl('Python|python',`title`),1,0))
+data <- data |> mutate(quality = ifelse(`rating` < 3.8, "Fair",
+    ifelse(`rating` >= 3.8 & `rating` < 4.5, "Good", "Excellent")
+))
+by_quality <- data |>
+    group_by(`quality`,`python`) |>
+    summarize(count = n(), mean = mean(`price`))
+by_quality|> select(mean,python) |> pivot_wider(names_from=python,values_from=mean)
+```

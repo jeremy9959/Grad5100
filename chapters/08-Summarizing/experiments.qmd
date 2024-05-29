@@ -1,0 +1,29 @@
+---
+title: "Pandas Grouping and Summarizing"
+format: html
+jupyter:
+    kernelspec:
+        name: "base"
+        language: "python"
+        display_name: "python3"
+---
+
+```{python}
+import pandas as pd
+import numpy as np
+```
+
+
+```{python}
+abnb = pd.read_csv("data/AB_NYC_2019.csv")
+```
+
+## Exercise
+
+Are there missing values? If so, where?
+
+Suppose you want to study the price differential by neighborhood.
+To start, make a pivot table showing average price
+by neighborhood and room type.
+
+Do these exercises in R as well.

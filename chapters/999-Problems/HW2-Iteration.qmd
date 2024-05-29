@@ -1,0 +1,46 @@
+---
+title: Comments on HW2 - iteration
+author: Jeremy Teitelbaum
+subtitle: Fundamentals of Data Science
+format: html
+---
+
+```{python}
+def sq(n, threshold=1e-6, max_iter=1000):
+    x = 1
+    tol = 1 + threshold  # make sure the tolerance starts bigger than the threshold
+    iterations = 0
+
+    while tol > threshold and iterations < max_iter:
+        xnew = 0.5 * (x + n / x)
+        tol = np.abs(xnew - x)
+        x = xnew
+        iterations = iterations + 1
+
+    if iterations >= max_iter:
+        print("Failed to converge")
+        return None
+    else:
+        return x
+
+
+```
+
+```{python}
+def sq(n, tol=1e-6, max_iter=1000):
+    x = 1
+    tol = 1
+    iterations = 0
+
+    while tol > threshold:
+        xnew = 0.5 * (x + n / x)
+        tol = np.abs(xnew - x)
+        x = xnew
+        iterations = iterations + 1
+        if iterations > max_iter:
+            print("Failed to converge")
+            return None
+    return x
+
+
+```

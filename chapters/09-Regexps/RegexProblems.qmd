@@ -1,0 +1,35 @@
+---
+title: Exercises with Regexps
+format: html
+subtitle: Fundamentals of Data Science
+author: Jeremy Teitelbaum
+---
+
+The following exercises were taken from Chapter 15 of *R for Data Science* by Wickham, *et. al.*  See the [online version](https://r4ds.hadley.nz/regexps#exercises-2).
+
+## First Batch
+
+You can use either R or Python to approach these problems.
+The file `words.txt` contains about 1000 common English words.
+You can read that file into Python or, in R, use the variable `stringr::words` to get them.
+
+1.  Find all the words that start with "y".
+2.  Find all the words that end with "x".
+3.  Find all the words that are exactly 3 letters long. 
+4.  Contain a vowel followed by a consonant.
+5.  Contain at least two vowel-consonant pairs in a row.
+
+## Second Batch
+
+Use the `filenames.txt` file.  We saw how to extract the netid and the file extension from these files.  Now extract the date/time info.
+
+Suppose the we want to obscure the netids by making up "fake" netids
+and substituting those into the filenames.  How do you do that?
+
+
+
+## Third batch
+
+Use the pandas `pd.read_csv` function or the tidyverse `read_csv` function to load the `data/aircrashesFullData.csv` dataset.  Then use one of the file I/O functions from R or python to load the file.  Compare the results.
+For example, how many rows does the dataframe have?  How many lines did you read? Why the difference?
+
