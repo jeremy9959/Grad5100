@@ -410,7 +410,7 @@ window.Quarto = {
 </header>
 
 
-<div id="e76b18b2" class="cell" data-execution_count="1">
+<div id="8a922859" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'seaborn-v0_8-dark'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -439,7 +439,7 @@ f'(x) = \lim_{h\to 0}\frac{f(x+h)-f(x)}{h}
 <li>“Slope of the curve”</li>
 <li>“Rate of change”</li>
 </ul>
-<div id="e2b0e5fa" class="cell" data-execution_count="2">
+<div id="42b417f5" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="dv">0</span>,<span class="dv">1</span>, <span class="dv">100</span>)</span>
 <span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>x<span class="op">**</span><span class="dv">3</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>x)<span class="op">**</span><span class="dv">5</span></span>
 <span id="annotated-cell-2-3"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y)</span>
@@ -479,7 +479,7 @@ f'(x) = \lim_{h\to 0}\frac{f(x+h)-f(x)}{h}
 </section>
 <section id="an-example" class="level2">
 <h2 class="anchored" data-anchor-id="an-example">An example</h2>
-<div id="73e88df1" class="cell" data-execution_count="3">
+<div id="654e2fe7" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, sharey<span class="op">=</span><span class="st">"row"</span>)</span>
 <span id="annotated-cell-3-2"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a>fig.set_size_inches(<span class="dv">8</span>, <span class="dv">4</span>)</span>
 <span id="annotated-cell-3-3"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ----</span></span>
@@ -547,7 +547,7 @@ f'(x) = \lim_{h\to 0}\frac{f(x+h)-f(x)}{h}
 <p>In data science, we generally want to look at functions that depend on many variables, rather than just one.</p>
 <p>For example, let us consider the problem of finding the line of best fit to a collection of points <span class="math inline">\((x,y)\)</span>.</p>
 <p>First we generate some random data to work with.</p>
-<div id="54417558" class="cell" data-execution_count="4">
+<div id="82709b41" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">20</span>)</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-4-2" class="code-annotation-target"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span><span class="dv">3</span><span class="op">*</span>x<span class="op">+</span><span class="dv">1</span><span class="op">+</span>np.random.normal(<span class="dv">0</span>,<span class="dv">2</span>,size<span class="op">=</span>x.shape[<span class="dv">0</span>])</span>
 <span id="annotated-cell-4-3"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(x,y)</span>
@@ -583,7 +583,7 @@ E(m,b) = \frac{1}{N}\sum_{i=1}^{N} (y_i-mx_i-b)^2
 <section id="visualization-of-functions-of-two-variables" class="level2">
 <h2 class="anchored" data-anchor-id="visualization-of-functions-of-two-variables">Visualization of functions of two variables</h2>
 <p>Contour plots are a way to represent a function of two variables. For example suppose <span class="math inline">\(f(x,y)=3x^2+2xy+5y^22\)</span>.</p>
-<div id="ed02698e" class="cell" data-execution_count="5">
+<div id="1fed8e70" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a>fig,ax <span class="op">=</span> plt.subplots()</span>
 <span id="annotated-cell-5-2"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="op">-</span><span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">40</span>)</span>
 <span id="annotated-cell-5-3"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>np.linspace(<span class="op">-</span><span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">40</span>)</span>
@@ -612,7 +612,7 @@ E(m,b) = \frac{1}{N}\sum_{i=1}^{N} (y_i-mx_i-b)^2
 </div>
 </div>
 </div>
-<div id="50f8654f" class="cell" data-execution_count="6">
+<div id="3dd9866b" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>fig,ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">50</span>)</span>
@@ -635,7 +635,7 @@ E(m,b) = \frac{1}{N}\sum_{i=1}^{N} (y_i-mx_i-b)^2
 <section id="plotting-in-3d" class="level2">
 <h2 class="anchored" data-anchor-id="plotting-in-3d">Plotting in 3d</h2>
 <p>Generally 3d plots aren’t that useful, but sometimes you just really want one.</p>
-<div id="daaca1fc" class="cell" data-execution_count="7">
+<div id="a86d7c23" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
@@ -658,7 +658,7 @@ E(m,b) = \frac{1}{N}\sum_{i=1}^{N} (y_i-mx_i-b)^2
 </div>
 </div>
 </div>
-<div id="2cf7d5fa" class="cell" data-execution_count="8">
+<div id="aee913cb" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fig.set_size_inches(<span class="dv">20</span>,<span class="dv">10</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">211</span>,projection<span class="op">=</span><span class="st">'3d'</span>)</span>
@@ -691,7 +691,7 @@ E(m,b) = \frac{1}{N}\sum_{i=1}^{N} (y_i-mx_i-b)^2
 <p>For example if <span class="math inline">\(x_0=(1,1)\)</span> and <span class="math inline">\(v=(-2,3)\)</span> then <span class="math display">\[
 \ell(t) = (1-2t,2+3t)
 \]</span></p>
-<div id="5065882c" class="cell" data-execution_count="9">
+<div id="bbb710f5" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-9-1" class="code-annotation-target"><a href="#annotated-cell-9-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">1</span>]).reshape(<span class="dv">2</span>,<span class="dv">1</span>)</span>
 <span id="annotated-cell-9-2"><a href="#annotated-cell-9-2" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">2</span>,<span class="dv">3</span>]).reshape(<span class="dv">2</span>,<span class="dv">1</span>)</span>
 <span id="annotated-cell-9-3"><a href="#annotated-cell-9-3" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span>np.arange(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span>
@@ -743,7 +743,7 @@ D_{v}(f)(\mathbf{x}) = \frac{d}{dt}f(\mathbf{x}+t\mathbf{v})|_{t=0}
 <p>and <span class="math display">\[
 f(\mathbf{x}+t\mathbf{v}) = (1-.4t)^2-(1+.6t)^2
 \]</span></p>
-<div id="c8888a62" class="cell" data-execution_count="10">
+<div id="1ea65d1c" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fig.set_size_inches(<span class="dv">20</span>,<span class="dv">10</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">211</span>)</span>
