@@ -281,12 +281,6 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/12-SQL/sql.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">A brief introduction to Databases and SQL</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../chapters/13-Plotting/Plotting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Plotting (in Python)</span></a>
   </div>
@@ -410,7 +404,7 @@ window.Quarto = {
 </header>
 
 
-<div id="b08f865c" class="cell" data-execution_count="1">
+<div id="41fc811a" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -450,7 +444,7 @@ window.Quarto = {
 </section>
 <section id="addition" class="level2">
 <h2 class="anchored" data-anchor-id="addition">Addition</h2>
-<div id="73551a2d" class="cell" data-execution_count="2">
+<div id="f37300ad" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> make_plot(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">12</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Vector Addition"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> draw_arrow(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">5</span>, ax)</span>
@@ -469,7 +463,7 @@ window.Quarto = {
 </section>
 <section id="scalar-multiplication" class="level2">
 <h2 class="anchored" data-anchor-id="scalar-multiplication">Scalar Multiplication</h2>
-<div id="5f32bac8" class="cell" data-execution_count="3">
+<div id="a0a1a247" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> make_plot(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">12</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Scalar Multiplication"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> draw_arrow(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">5</span>, ax)</span>
@@ -490,7 +484,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="feature-space">Feature Space</h2>
 <p>Each ‘dimension’ in feature space corresponds to a ‘feature’ or measurement of the data. <em>Here we are assuming for now that the features are continuous and measured by real numbers</em>.</p>
 <p>Let’s choose some numerical features of the penguins dataset.</p>
-<div id="fb25fc82" class="cell" data-execution_count="4">
+<div id="1c4c5812" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"data/penguins-raw.csv"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> (</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    data[</span>
@@ -506,7 +500,7 @@ window.Quarto = {
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Each penguin is represented by a vector in <span class="math inline">\(\mathbf{R}^{4}\)</span>. So for example penguin number 34 is represented as follows.</p>
-<div id="c657c51a" class="cell" data-execution_count="5">
+<div id="94be53c8" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">34</span>, :]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>array([  39.2,   21.1,  196. , 4150. ])</code></pre>
@@ -522,7 +516,7 @@ window.Quarto = {
 <section id="image-embeddings" class="level2">
 <h2 class="anchored" data-anchor-id="image-embeddings">Image Embeddings</h2>
 <p>Each sample in the MNIST database is a <span class="math inline">\(28x28\)</span> gray scale image, represented by a <span class="math inline">\(28\times 28\)</span> array of integers between 0 and 255.</p>
-<div id="8b625c63" class="cell" data-execution_count="6">
+<div id="ee5671bc" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data/train-images.idx3-ubyte"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    f.read(<span class="dv">16</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    buf <span class="op">=</span> f.read(<span class="dv">28</span> <span class="op">*</span> <span class="dv">28</span>)</span>
@@ -658,7 +652,7 @@ window.Quarto = {
 <p>Our intuition misleads us when we think about high dimensional space. There is just vastly more “space” in high dimensional space then we expect.</p>
 <p>One way to see this is to compare the unit sphere in <span class="math inline">\(\mathbf{R}^{n}\)</span> and the unit cube in <span class="math inline">\(\mathbf{R}^{n}\)</span>.</p>
 <p>In the plane, the unit cube has volume 4 and the unit circle has volume 3.14. So the unit circle fills up most of the cube. Given vectors with coordinates <span class="math inline">\((x,y)\)</span> between <span class="math inline">\(-1\)</span> and <span class="math inline">\(1\)</span>, about 75 percent are within distance one of the origin.</p>
-<div id="6561a281" class="cell" data-execution_count="7">
+<div id="a913ac45" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng()</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hypercube(n,d):</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> rng.uniform(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,size<span class="op">=</span>(n,d))</span>
@@ -681,12 +675,12 @@ window.Quarto = {
 \frac{\pi^{10}}{10!}=.025
 \]</span></p>
 <p>If you compare the distribution you see that most of the points are very far from the origin; basically none are within the unit sphere.</p>
-<div id="325fd82d" class="cell" data-execution_count="8">
+<div id="02b4af8b" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>hypercube(<span class="dv">10000</span>,<span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="linear_algebra_files/figure-html/cell-9-output-1.png" width="576" height="449" class="figure-img"></p>
+<p><img src="linear_algebra_files/figure-html/cell-9-output-1.png" width="571" height="449" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -720,15 +714,15 @@ b_1v_1+...+b_kv_k=0
 </section>
 <section id="linear-relations-in-python" class="level2">
 <h2 class="anchored" data-anchor-id="linear-relations-in-python">Linear relations in python</h2>
-<div id="9e3af7c4" class="cell" data-execution_count="9">
+<div id="33bb158f" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>vectors <span class="op">=</span> [np.random.uniform(size<span class="op">=</span><span class="dv">8</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)]  <span class="co"># 10 random vectors</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>scalars <span class="op">=</span> [np.random.normal() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)]  <span class="co"># 10 random scalars</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>prods <span class="op">=</span> [scalars[i] <span class="op">*</span> vectors[i] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)]  <span class="co"># products</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="bu">sum</span>(prods)  <span class="co"># sum of products</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[-2.6761901  -1.21276799 -1.41555297 -1.75219929 -1.69833795 -1.9286697
- -1.21460095 -2.77754581]</code></pre>
+<pre><code>[0.33587957 0.91692119 0.72692985 0.63306026 0.03864674 0.88773759
+ 1.01912383 0.74088351]</code></pre>
 </div>
 </div>
 </section>
@@ -740,7 +734,7 @@ b_1v_1+...+b_kv_k=0
 \mathrm{mpg}-\overline{\mathrm{mpg}} = -.0603(\mathrm{disp}-\overline{\mathrm{disp}})
 \]</span></p>
 <p>So we don’t learn much new from ‘mpg’ that isn’t already in ‘displacement’.</p>
-<div id="78191137" class="cell" data-execution_count="10">
+<div id="f31464f7" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>mpg <span class="op">=</span> pd.read_csv(<span class="st">"data/auto-mpg.csv"</span>)</span>
@@ -792,7 +786,7 @@ b_1v_1+...+b_kv_k=0
 <section id="mean-squared-error-in-vector-form" class="level2">
 <h2 class="anchored" data-anchor-id="mean-squared-error-in-vector-form">Mean Squared Error in vector form</h2>
 <p>Remember our example the “almost” dependence of mpg and displacement.</p>
-<div id="c7c69e60" class="cell" data-execution_count="11">
+<div id="c5618da2" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>mpg0 <span class="op">=</span> mpg[<span class="st">"mpg"</span>] <span class="op">-</span> np.mean(mpg[<span class="st">"mpg"</span>])</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>disp0 <span class="op">=</span> mpg[<span class="st">"displacement"</span>] <span class="op">-</span> np.mean(mpg[<span class="st">"displacement"</span>])</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>predicted <span class="op">=</span> <span class="op">-</span><span class="fl">0.0603</span> <span class="op">*</span> disp0</span>
@@ -914,7 +908,7 @@ r_{vw} = \frac{\sigma_{vw}}{\sigma_{v}\sigma_{w}}=\frac{|(v-\overline{v}E)\cdot(
 <p>An (affine) hyperplane is given by an equation of the form <span class="math display">\[
 v\cdot x = b
 \]</span> for some constant <span class="math inline">\(b\)</span></p>
-<div id="af4af2a5" class="cell" data-execution_count="12">
+<div id="5e74d61b" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">10</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">2</span> <span class="op">/</span> <span class="dv">3</span> <span class="op">*</span> x</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y)</span>
@@ -950,7 +944,7 @@ D = \frac{w\cdot v-b}{\|v\|}.
 <p><span class="math display">\[
 (w-x)\cdot\frac{v}{\|v\|} =\frac{(w\cdot v -x\cdot v)}{\|v\|} = \frac{(w\cdot v - b)}{\|v\|}
 \]</span></p>
-<div id="c66f314c" class="cell" data-execution_count="13">
+<div id="3ff91a10" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">10</span>)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">2</span> <span class="op">/</span> <span class="dv">3</span> <span class="op">*</span> x</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y)</span>
@@ -1024,7 +1018,7 @@ MN = \left[\begin{matrix} MN[:,0] \\ MN[:,1] \\\vdots\\MN[:,k]\end{matrix}\right
 <section id="python-1" class="level2">
 <h2 class="anchored" data-anchor-id="python-1">Python</h2>
 <p>The ‘@’ sign gives matrix multiplication in python. In R, it’s %*%.</p>
-<div id="a7cec782" class="cell" data-execution_count="14">
+<div id="9bde743a" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>], [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]])</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.array([[<span class="op">-</span><span class="dv">1</span>], [<span class="dv">0</span>], [<span class="dv">1</span>]])</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(M)</span>
@@ -1066,7 +1060,7 @@ Compare -M[:,0]+M[:,2] with M@v
 <p>Let <span class="math inline">\(X_{0}\)</span> be the matrix whose columns are <span class="math inline">\(v_{i}-\overline{v_{i}}\)</span>.</p>
 <p>Then <span class="math inline">\(\frac{1}{N}X_{0}^{T}X_{0}\)</span> is <span class="math inline">\(n\times n\)</span> and called the <em>covariance matrix</em>.</p>
 <p>If <span class="math inline">\(Y_{0}\)</span> is obtained from <span class="math inline">\(X_{0}\)</span> by dividing each column by its norm, then <span class="math inline">\(Y_{0}^{T}Y_{0}\)</span> is the correlation matrix – ones on the diagonal, correlation coefficients off diagonal.</p>
-<div id="fac06b34" class="cell" data-execution_count="15">
+<div id="8eda5b9c" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"data/penguins-raw.csv"</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> (</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    data[</span>
@@ -1109,7 +1103,7 @@ Compare -M[:,0]+M[:,2] with M@v
 </div>
 </div>
 </div>
-<div id="781dbe7a" class="cell" data-execution_count="16">
+<div id="3fcb356c" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(x<span class="op">=</span>data0[:, <span class="dv">2</span>], y<span class="op">=</span>data0[:, <span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>

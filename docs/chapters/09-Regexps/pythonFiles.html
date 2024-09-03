@@ -252,12 +252,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/12-SQL/sql.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">A brief introduction to Databases and SQL</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../chapters/13-Plotting/Plotting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Plotting (in Python)</span></a>
   </div>
@@ -384,14 +378,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We have already seen how to use the read_csv commands (in R and python/pandas) to read data from files into dataframes/tibbles. But sometimes we need to work directly with text files.</p>
 <section id="the-basics" class="level2">
 <h2 class="anchored" data-anchor-id="the-basics">The basics</h2>
-<div id="907d9b3e" class="cell" data-execution_count="1">
+<div id="1490548b" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#with open("path","r") as f:</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#    (put logic to read file here)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This structure guarantees that the file will be properly closed when you’re done.</p>
 <section id="slurp-up-the-whole-file-into-a-string." class="level4">
 <h4 class="anchored" data-anchor-id="slurp-up-the-whole-file-into-a-string.">Slurp up the whole file into a string.</h4>
-<div id="0f279cf0" class="cell" data-execution_count="2">
+<div id="a91568da" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data/gettysburg.txt"</span>,<span class="st">"r"</span>) <span class="im">as</span> f:</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> f.read()</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -399,7 +393,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>1477</code></pre>
 </div>
 </div>
-<div id="60825e2a" class="cell" data-execution_count="3">
+<div id="784a5d9e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>lines <span class="op">=</span> data.split(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> lines[:<span class="dv">10</span>]:</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -415,7 +409,7 @@ But, in a larger sense, we can not dedicate -- we can not consecrate -- we can n
 </section>
 <section id="read-the-file-line-by-line" class="level4">
 <h4 class="anchored" data-anchor-id="read-the-file-line-by-line">Read the file line by line</h4>
-<div id="7798d39d" class="cell" data-execution_count="4">
+<div id="4d9e12db" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data/gettysburg.txt"</span>,<span class="st">"r"</span>) <span class="im">as</span> f:</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> f:</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(line) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -435,7 +429,7 @@ But, in a larger sense, we can not dedicate -- we can not consecrate -- we can n
 </section>
 <section id="read-a-line-from-the-file" class="level4">
 <h4 class="anchored" data-anchor-id="read-a-line-from-the-file">Read a line from the file</h4>
-<div id="14398d22" class="cell" data-execution_count="5">
+<div id="d46519c2" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data/gettysburg.txt"</span>,<span class="st">"r"</span>) <span class="im">as</span> f:</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    line <span class="op">=</span> f.readline()</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(line)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -447,7 +441,7 @@ But, in a larger sense, we can not dedicate -- we can not consecrate -- we can n
 </section>
 <section id="slurp-the-file-into-a-list" class="level4">
 <h4 class="anchored" data-anchor-id="slurp-the-file-into-a-list">Slurp the file into a list</h4>
-<div id="5f244628" class="cell" data-execution_count="6">
+<div id="baf8e11c" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data/gettysburg.txt"</span>,<span class="st">"r"</span>) <span class="im">as</span> f:</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    line_list <span class="op">=</span> f.readlines()</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -466,12 +460,12 @@ But, in a larger sense, we can not dedicate -- we can not consecrate -- we can n
 <section id="writing-to-a-file" class="level2">
 <h2 class="anchored" data-anchor-id="writing-to-a-file">Writing to a file</h2>
 <p>An entire string to the file. <strong>This will overwrite what is in the file.</strong></p>
-<div id="b9e5dfba" class="cell" data-execution_count="7">
+<div id="e303ad61" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data/gettysburg_lower.txt"</span>,<span class="st">"w"</span>) <span class="im">as</span> f:</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>.join(lowercase))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>One line at a time. <strong>This will overwrite what is in the file.</strong></p>
-<div id="413590ea" class="cell" data-execution_count="8">
+<div id="34740a88" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data/gettysburg_lower.txt"</span>,<span class="st">"w"</span>) <span class="im">as</span> f:</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x <span class="kw">in</span> lowercase:</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        f.write(x<span class="op">+</span><span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -479,14 +473,14 @@ But, in a larger sense, we can not dedicate -- we can not consecrate -- we can n
 </section>
 <section id="appending-to-a-file" class="level2">
 <h2 class="anchored" data-anchor-id="appending-to-a-file">Appending to a file</h2>
-<div id="88d6ff52" class="cell" data-execution_count="9">
+<div id="060b1ca1" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data/gettysburg_lower.txt"</span>,<span class="st">"a"</span>) <span class="im">as</span> f:</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"This goes at the end</span><span class="ch">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="working-with-directories-folders" class="level2">
 <h2 class="anchored" data-anchor-id="working-with-directories-folders">Working with directories (folders)</h2>
-<div id="399989d5" class="cell" data-execution_count="10">
+<div id="45e1454e" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shutil</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#os.getcwd()</span></span>

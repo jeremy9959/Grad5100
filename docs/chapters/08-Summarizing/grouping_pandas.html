@@ -254,12 +254,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/12-SQL/sql.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">A brief introduction to Databases and SQL</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../chapters/13-Plotting/Plotting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Plotting (in Python)</span></a>
   </div>
@@ -390,12 +384,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="grouping-and-summarizing" class="level2">
 <h2 class="anchored" data-anchor-id="grouping-and-summarizing">Grouping and Summarizing</h2>
-<div id="6665c71b" class="cell" data-execution_count="1">
+<div id="06f1817d" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span>  numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Our first pass will be with our old friends the penguins.</p>
-<div id="7ebcdea9" class="cell" data-execution_count="2">
+<div id="70a95349" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> pd.read_csv(<span class="st">"data/penguins-raw.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -404,7 +398,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Data types</li>
 </ol>
-<div id="52803a7f" class="cell" data-execution_count="3">
+<div id="f6ff6b96" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>penguins.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>studyName               object
@@ -430,21 +424,21 @@ dtype: object</code></pre>
 <ol start="2" type="1">
 <li>Focus on Species, Island, Sex, Culmen Length/Depth, Flipper Length, Body Mass.</li>
 </ol>
-<div id="05f4fb5b" class="cell" data-execution_count="4">
+<div id="8ae4f0af" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>focus <span class="op">=</span> [<span class="st">'Species'</span>,<span class="st">'Island'</span>,<span class="st">'Sex'</span>,<span class="st">'Culmen Length (mm)'</span>,<span class="st">'Culmen Depth (mm)'</span>,<span class="st">'Flipper Length (mm)'</span>, <span class="st">'Body Mass (g)'</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>simplified <span class="op">=</span> penguins[focus]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="3" type="1">
 <li>Clean up column names</li>
 </ol>
-<div id="aa0fed27" class="cell" data-execution_count="5">
+<div id="be777b84" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>edited_columns <span class="op">=</span> [<span class="st">'species'</span>,<span class="st">'island'</span>,<span class="st">'sex'</span>,<span class="st">'culmen_length'</span>, <span class="st">'culmen_depth'</span>,<span class="st">'flipper_length'</span>,<span class="st">'body_mass'</span>]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>simplified.columns <span class="op">=</span> edited_columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="4" type="1">
 <li>Simplify factor names. (Note use of dictionary)</li>
 </ol>
-<div id="69f6e6c4" class="cell" data-execution_count="6">
+<div id="56f93f54" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>species <span class="op">=</span> simplified[<span class="st">'species'</span>].unique()</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>simple_species_dict<span class="op">=</span>{x:x.split(<span class="st">' '</span>)[<span class="dv">0</span>].lower() <span class="cf">for</span> x <span class="kw">in</span> species}</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>simplified[<span class="st">'species'</span>].<span class="bu">map</span>(simple_species_dict)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -466,30 +460,30 @@ Name: species, Length: 344, dtype: object</code></pre>
 <ol start="5" type="1">
 <li>Remaking a column (watch out!)</li>
 </ol>
-<div id="0f113f14" class="cell" data-execution_count="7">
+<div id="0df989d9" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#simplified['species'] = simplified['species'].map(simple_species_dict)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Old option: use .loc.</p>
-<div id="c1623326" class="cell" data-execution_count="8">
+<div id="81d2f2fd" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#simplified.loc[:,'species'] = simplified['species'].map(simple_species_dict)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Newer option: use .assign(). Notice that .assign() <em>returns a dataframe.</em></p>
-<div id="0f9e127d" class="cell" data-execution_count="9">
+<div id="23a389ff" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>simplified <span class="op">=</span> simplified.assign(species <span class="op">=</span> <span class="kw">lambda</span> x: x[<span class="st">'species'</span>].<span class="bu">map</span>(simple_species_dict))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Fix some other factor variables:</p>
-<div id="1caeeeed" class="cell" data-execution_count="10">
+<div id="7ac891dd" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>simplified  <span class="op">=</span> simplified.assign(island <span class="op">=</span> <span class="kw">lambda</span> x: x.island.<span class="bu">str</span>.lower())</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>simplified <span class="op">=</span> simplified.assign(sex <span class="op">=</span> <span class="kw">lambda</span> x: x[<span class="st">'sex'</span>].<span class="bu">str</span>.lower())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="5" type="1">
 <li>Standardize the variables - column by column</li>
 </ol>
-<div id="9525a57b" class="cell" data-execution_count="11">
+<div id="f3dc361b" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#simplified = simplified.assign(culmen_length_std = lambda x: (x.culmen_length-x.culmen_length.mean())/x.culmen_length.std())</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>or make a standardization function. (note use of **)</p>
-<div id="6df5f365" class="cell" data-execution_count="12">
+<div id="c0247e11" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> standardize(x):</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x<span class="op">-</span>x.mean())<span class="op">/</span>x.std()</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>simplified <span class="op">=</span> simplified.assign(</span>
@@ -499,7 +493,7 @@ Name: species, Length: 344, dtype: object</code></pre>
 <ol start="6" type="1">
 <li>Missing Values</li>
 </ol>
-<div id="902c9021" class="cell" data-execution_count="13">
+<div id="a6d73c9f" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>simplified.isna().<span class="bu">sum</span>()</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>simplified <span class="op">=</span> simplified.dropna(axis<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -507,21 +501,21 @@ Name: species, Length: 344, dtype: object</code></pre>
 <li>Grouping</li>
 </ol>
 <p>Grouping combines with aggregation.</p>
-<div id="5d485236" class="cell" data-execution_count="14">
+<div id="c8b68bd1" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>numerical_variables <span class="op">=</span> [<span class="st">'culmen_length'</span>,<span class="st">'culmen_depth'</span>,<span class="st">'flipper_length'</span>,<span class="st">'body_mass'</span>]</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>by_sex_mean <span class="op">=</span> simplified[[<span class="st">'sex'</span>]<span class="op">+</span>numerical_variables].groupby(<span class="st">'sex'</span>).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Alternatively one can use .agg</p>
-<div id="a533bbe4" class="cell" data-execution_count="15">
+<div id="c8154de0" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>numerical_variables <span class="op">=</span> [<span class="st">'culmen_length'</span>,<span class="st">'culmen_depth'</span>,<span class="st">'flipper_length'</span>,<span class="st">'body_mass'</span>]</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>by_sex <span class="op">=</span> simplified[[<span class="st">'sex'</span>]<span class="op">+</span>numerical_variables].groupby(<span class="st">'sex'</span>).agg(<span class="st">'mean'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And then get multiple aggregations.</p>
-<div id="e6f97147" class="cell" data-execution_count="16">
+<div id="061282f6" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>by_sex <span class="op">=</span> simplified[[<span class="st">'sex'</span>]<span class="op">+</span>numerical_variables].groupby(<span class="st">'sex'</span>).agg([<span class="st">'count'</span>,<span class="st">'mean'</span>,<span class="st">'std'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To access individual elements, use tuples as names.</p>
-<div id="746d722c" class="cell" data-execution_count="17">
+<div id="d831d0af" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>by_sex.loc[:,(<span class="st">'culmen_depth'</span>,<span class="st">'mean'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>sex
@@ -531,7 +525,7 @@ Name: (culmen_depth, mean), dtype: float64</code></pre>
 </div>
 </div>
 <p>One can also group on multiple factors.</p>
-<div id="ce4ddb23" class="cell" data-execution_count="18">
+<div id="5dcb7641" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>by_sex_and_species <span class="op">=</span> (</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    simplified[[<span class="st">"sex"</span>, <span class="st">"species"</span>] <span class="op">+</span> numerical_variables]</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    .groupby([<span class="st">"sex"</span>, <span class="st">"species"</span>])</span>
@@ -541,7 +535,7 @@ Name: (culmen_depth, mean), dtype: float64</code></pre>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>males_by_species <span class="op">=</span> by_sex_and_species.loc[(<span class="st">"male"</span>,)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can skip levels in the hierarchy using <code>slice(None)</code>:</p>
-<div id="5378282a" class="cell" data-execution_count="19">
+<div id="8f6c5ea6" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>by_sex_and_species.loc[(<span class="bu">slice</span>(<span class="st">'female'</span>),<span class="bu">slice</span>(<span class="st">'adelie'</span>,<span class="st">'chinstrap'</span>)),:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <div>
@@ -591,7 +585,7 @@ Name: (culmen_depth, mean), dtype: float64</code></pre>
 <ol start="8" type="1">
 <li>Pivot tables</li>
 </ol>
-<div id="a0c009b4" class="cell" data-execution_count="20">
+<div id="0b6222eb" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>expanded <span class="op">=</span> by_sex_and_species.reset_index()</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>expanded.pivot(index<span class="op">=</span><span class="st">'sex'</span>,columns<span class="op">=</span><span class="st">'species'</span>,values<span class="op">=</span><span class="st">'culmen_length'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
@@ -632,7 +626,7 @@ Name: (culmen_depth, mean), dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="4ecf7ee6" class="cell" data-execution_count="21">
+<div id="9100c2de" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>pd.pivot_table(simplified,values<span class="op">=</span><span class="st">'culmen_length'</span>,index<span class="op">=</span><span class="st">'sex'</span>,columns<span class="op">=</span><span class="st">'species'</span>,aggfunc<span class="op">=</span><span class="st">'mean'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <div>
@@ -675,7 +669,7 @@ Name: (culmen_depth, mean), dtype: float64</code></pre>
 <ol start="9" type="1">
 <li>Making a function</li>
 </ol>
-<div id="78442f30" class="cell" data-execution_count="22">
+<div id="1eb63b81" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ptable(value, aggfunc<span class="op">=</span><span class="st">"mean"</span>):</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.pivot_table(</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>        simplified, values<span class="op">=</span>value, index<span class="op">=</span><span class="st">"sex"</span>, columns<span class="op">=</span><span class="st">"species"</span>, aggfunc<span class="op">=</span>aggfunc</span>

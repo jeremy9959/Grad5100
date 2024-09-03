@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Jeremy Teitelbaum">
 
-<title>Fundamentals of Machine Learning - A brief introduction to Databases and SQL</title>
+<title>Fundamentals of Machine Learning - Notes on Probability in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -114,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/00-OrientationProject/orientation-project.html">Contents</a></li><li class="breadcrumb-item"><a href="../../chapters/12-SQL/sql.html">A brief introduction to Databases and SQL</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/999-Problems/HW1.html">Problems</a></li><li class="breadcrumb-item"><a href="../../chapters/999-Problems/Distributions.html">Notes on Probability in R</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -252,12 +251,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/12-SQL/sql.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">A brief introduction to Databases and SQL</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../chapters/13-Plotting/Plotting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Plotting (in Python)</span></a>
   </div>
@@ -281,7 +274,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/999-Problems/Distributions.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/999-Problems/Distributions.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Notes on Probability in R</span></a>
   </div>
 </li>
@@ -355,22 +348,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/00-OrientationProject/orientation-project.html">Contents</a></li><li class="breadcrumb-item"><a href="../../chapters/12-SQL/sql.html">A brief introduction to Databases and SQL</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/999-Problems/HW1.html">Problems</a></li><li class="breadcrumb-item"><a href="../../chapters/999-Problems/Distributions.html">Notes on Probability in R</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">A brief introduction to Databases and SQL</h1>
-<p class="subtitle lead">Fundamentals of Data Science</p>
+<h1 class="title">Notes on Probability in R</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Jeremy Teitelbaum </p>
-          </div>
-  </div>
     
   
     
@@ -381,93 +367,155 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>In this unit we will do some very basic work with a cloud database. We will:</p>
-<ul>
-<li>give a brief introduction to relational databases</li>
-<li>illustrate how one can download information from such a database into R tibbles or python dataframes</li>
-<li>discuss the <code>join</code> operation on the R/python level</li>
-<li>give a brief introduction to SQL</li>
-<li>write some SQL queries</li>
-</ul>
-<p>There are many types of relational databases. For these examples we will work specifically with MySQL version 8.0 on Amazon Web Services. Most of what we will do would carry over with minor changes to any of the major relational databases.</p>
-</section>
-<section id="rdbs-in-very-brief" class="level2">
-<h2 class="anchored" data-anchor-id="rdbs-in-very-brief">RDBs in (very brief)</h2>
-<p>A relational database is an efficient means of storing data in a way that allows one to carry out the same family of operations that we have used with tibbles and dataframes: selecting, filtering, grouping, summarizing, ordering, and synthesizing new data.</p>
-<p>Databases are generally designed to operate at a much larger scale than the tabular data structures we’ve used in Python and R. Instead of storing data in a single big table, relational databases break up the data into many tables which may have many rows but generally have relatively few columns. A family of indexes link the different tables together.</p>
-<p>For a very simple example, imagine we have a dataframe with 10000 people’s names and addresses. The city column in this dataframe probably contains many repetitions (lots of occurrences of say, New York City). In a database, one would typically replace the city name column with an index into another table that just contains a list of cities.</p>
-<p>For another example, in the <code>sakila</code> database (which is a database of films and actors often used for demo purposes) there is a table called <code>language</code> that contains a number which is a<code>language_id</code> and a <code>name</code> which is 20 text characters. In the <code>film</code> table, there is a <code>language_id</code> field which points into the <code>language</code> table so one can find the name of the film’s language.</p>
-<p>The most fundamental trick to working with relational databases is learning how to put the information together from the different tables in order to obtain the specific information you are interested in.</p>
-<p>The relationship among all the tables is presented in what’s called an entity-relationship diagram.</p>
-<div class="quarto-figure quarto-figure-center">
+<section id="things-i-did-in-class-on-friday-september-1." class="level2">
+<h2 class="anchored" data-anchor-id="things-i-did-in-class-on-friday-september-1.">Things I did in class on Friday, September 1.</h2>
+<section id="the-four-functions" class="level3">
+<h3 class="anchored" data-anchor-id="the-four-functions">The four functions</h3>
+<p>As I mentioned in class, every probability distribution in R comes with 4 functions. In the case of the binomial distribution, they are:</p>
+<ol type="1">
+<li><code>rbinom</code> – draws random samples</li>
+<li><code>dbinom</code> – computes the probability distribution</li>
+<li><code>pbinom</code> – gives the cumulative distribution</li>
+<li><code>qbinom</code> – gives the quantile function</li>
+</ol>
+<p>Also, we need ggplot2.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Examples</strong></p>
+<ol type="1">
+<li>Suppose that the probability of heads is .3 and we flip a coin 15 times. What’s the chance of getting 6 heads?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="fu">dbinom</span>(<span class="dv">6</span>,<span class="dv">15</span>,.<span class="dv">3</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"The chance is "</span>,p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The chance is  0.147236</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Let’s find the probabilities of each number of heads.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>xs<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>) <span class="co"># x holds 0,1,...,10</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fs<span class="ot">&lt;-</span><span class="fu">dbinom</span>(xs,<span class="dv">10</span>,.<span class="dv">3</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 0.0282475249 0.1210608210 0.2334744405 0.2668279320 0.2001209490
+ [6] 0.1029193452 0.0367569090 0.0090016920 0.0014467005 0.0001377810
+[11] 0.0000059049</code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Let’s plot this. We’ll use ggplot. This is a very simple use of ggplot to make a bar chart. We’ll talk about ggplot more comprehensively later. For now, you can use this as a “black box”. In the part that says <code>aes(x=?,y=?)</code> you put the data for the x and y coordinates. The <code>scale_x_continous(break=?)</code> says where to put the x-ticks. The <code>xlab("?")</code> labels the x-axis. The <code>ylab</code> labels the y-axis.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span><span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x=</span>xs,<span class="at">y=</span>fs))<span class="sc">+</span><span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>))<span class="sc">+</span><span class="fu">xlab</span>(<span class="st">"Number of Heads"</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">"Probability"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
 <figure class="figure">
-<p><img src="img/wb-sakila-eer.png" class="img-fluid figure-img"></p>
-<figcaption>Sakila Database ER Diagram (<a href="https://docs.oracle.com/cd/E17952_01/workbench-en/wb-documenting-sakila.html">from the MySQL Documentation</a>)</figcaption>
+<p><img src="Distributions_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
-<p>In this diagram, the box for <code>film_actor</code> shows that each row of the table is defined by the combination of an <code>actor_id</code> and a <code>film_id</code>. Notice that the <code>film</code> table has two <code>language_id</code> fields, one for the original language and one for the language of the particular version.</p>
-<p>The database had its origins in an inventory tracking system for a video rental store (yes, it’s that old) and that’s where the inventory/rental tables come from.</p>
+</div>
+</div>
+<ol start="4" type="1">
+<li>Let’s sample this distribution. We’ll flip a coin with p=.3 10 times, and we’ll repeat this experiment 100 times, counting how many heads we get each repetition.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>heads <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">100</span>,<span class="dv">10</span>,.<span class="dv">3</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>heads</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] 5 4 0 1 2 1 2 5 0 3 1 3 4 3 5 2 4 5 4 1 3 4 3 4 2 2 2 5 1 3 4 4 2 3 7 1 0
+ [38] 5 1 3 4 1 1 2 8 2 3 4 2 1 2 4 1 1 2 3 2 1 4 3 2 2 5 2 3 3 3 3 2 6 5 4 1 5
+ [75] 3 3 2 1 0 7 4 4 1 3 2 4 4 3 1 3 2 1 4 2 3 5 4 5 3 1</code></pre>
+</div>
+</div>
+<p>Now let’s make a histogram. Again, here is a “black box” command for ggplot. Again, you put the data in <code>aes(x=?)</code> and you put the location for the x-ticks in <code>scale_x_continous(breaks=?)</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x=</span>heads),<span class="at">stat=</span><span class="st">'count'</span>)<span class="sc">+</span><span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>))<span class="sc">+</span><span class="fu">xlab</span>(<span class="st">"Number of Heads"</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">"Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in geom_histogram(aes(x = heads), stat = "count"): Ignoring unknown
+parameters: `binwidth`, `bins`, and `pad`</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Distributions_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="5" type="1">
+<li>Suppose we flip the coin 80 times (and p=.3). What’s the chance of getting between 20 and 40 heads? This is what pbinom is for. <code>pbinom(40,80,.3)</code> is the chance of getting <em>fewer than or equal to 40</em> heads. If we want <em>20 to 40 inclusive</em> we need to look at <code>pbinom(41,80,.3)</code>.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>chance<span class="ot">&lt;-</span><span class="fu">pbinom</span>(<span class="dv">40</span>,<span class="dv">80</span>,.<span class="dv">3</span>)<span class="sc">-</span><span class="fu">pbinom</span>(<span class="dv">19</span>,<span class="dv">80</span>,.<span class="dv">3</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Chance  of between 40 and 20 inclusive is "</span>,chance)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Chance  of between 40 and 20 inclusive is  0.86472</code></pre>
+</div>
+</div>
+<ol start="6" type="1">
+<li>Among the number of heads in 100 flips of a coin with .3, what’s the 25th percentile for the number of heads? That’s what <code>qbinom</code> is for.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>twentyFifth<span class="ot">&lt;-</span><span class="fu">qbinom</span>(.<span class="dv">25</span>,<span class="dv">100</span>,.<span class="dv">3</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">"The 25th percentile is "</span>,twentyFifth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "The 25th percentile is  27"</code></pre>
+</div>
+</div>
+<p>Let’s check.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>check<span class="ot">&lt;-</span><span class="fu">pbinom</span>(twentyFifth,<span class="dv">100</span>,.<span class="dv">3</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>check</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2963662</code></pre>
+</div>
+</div>
+<p>This says that the chance of fewer than 27 heads is actually a bit more than .25 but the chance of fewer than 26 heads is less than .25.</p>
+<ol start="7" type="1">
+<li>An experiment</li>
+</ol>
+<p>Let’s sample from the binomial 10000 times and look at the 25th percentile.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span><span class="fu">rbinom</span>(<span class="dv">10000</span>,<span class="dv">100</span>,.<span class="dv">3</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>t1<span class="ot">&lt;-</span><span class="fu">sum</span>(data<span class="sc">&lt;</span>twentyFifth)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>t2<span class="ot">&lt;-</span><span class="fu">sum</span>(data<span class="sc">&lt;</span>twentyFifth<span class="sc">+</span><span class="dv">1</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Number less than "</span>,twentyFifth, <span class="st">"is "</span>,t1,<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Number less than  27 is  2259 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Number less than "</span>,twentyFifth<span class="sc">+</span><span class="dv">1</span>,<span class="st">"is"</span>,t2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Number less than  28 is 2944</code></pre>
+</div>
+</div>
+<p>These numbers show that the 25th percentile (2500 heads) is somewhere between these two values.</p>
 </section>
-<section id="setting-up" class="level2">
-<h2 class="anchored" data-anchor-id="setting-up">Setting up</h2>
-<p>Setting up for this lesson could be complicated. We need the following tools.</p>
-<p>For Python, we need:</p>
-<ul>
-<li>the <code>sqlalchemy</code> python library.<br>
+</section>
+<section id="practice-note-these-are-now-assigned-in-hw-2" class="level2">
+<h2 class="anchored" data-anchor-id="practice-note-these-are-now-assigned-in-hw-2">Practice (note: these are now assigned in HW 2)</h2>
+<ol type="1">
+<li>Let X be a binomial random variable with n=50 and p=.7.<br>
 </li>
-<li>the <code>pymysql</code> odbc connector package.</li>
-</ul>
-<p>These can be installed via the GUI package manager provided as part of anaconda Navigator, or using the <code>conda</code> shell command. If you use <code>conda</code>, execute the following commands in a terminal window.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>$ conda install sqlalchemy</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>$ conda install pymysql</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>In Anaconda Navigator, you will see the “Environments” tab on the left side of the start up screen. You can select “All” from the dropdown on the top right, and search for <code>pymysql</code>; click the checkbox to install it.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./img/pymysql.png" class="img-fluid figure-img"></p>
-<figcaption>Installing via Anaconda Navigator</figcaption>
-</figure>
-</div>
-<p>To verify that you have the packages properly installed, start a jupyter notebook and run the following commands.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlalchemy <span class="im">as</span> sqla</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymysql</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>If these commands fail, or you don’t want to deal with installing this software, you can use a Google colab notebook opened through Google Drive. In the colab notebook, you should already have sqlalchemy available. You can use <code>!pip</code> to install pymysql. The code here should work:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlalchemy <span class="im">as</span> sqla</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pymysql</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymysql</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>For <code>R</code>, we need:</p>
-<ul>
-<li>The <code>dbplyr</code> package (which gives database functionality to <code>dplyr</code>)</li>
-<li>The <code>DBI</code> package which handles communication</li>
-<li>The <code>RMariaDB</code> package which gives the MySQL interface</li>
-</ul>
-<p>In RStudio, you should be able to run the following commands.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"dbplyr"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"DBI"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"RMariaDB"</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dbplyr)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RMariaDB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>To work through some examples using both <code>python</code> and <code>R</code>:</p>
-<ul>
-<li><a href="../../chapters/12-SQL/sql_python.html">SQL and Python</a></li>
-<li><a href="../../chapters/12-SQL/sql_r.html">SQL and R</a></li>
-</ul>
-<p>A key concept in working with databases (and tabular data generally) is the notion of a <code>join</code>. We look at <code>joins</code> here:</p>
-<ul>
-<li><a href="../../chapters/12-SQL/sql_joins.html">Joins (examples in Python)</a></li>
-<li><a href="../../chapters/12-SQL/sql_joins_r.html">Joins (examples in R)</a></li>
-</ul>
-<p>A few additional topics (HAVING and WITH) are discussed <a href="../../chapters/12-SQL/sql_additional.html">here</a>.</p>
+</ol>
+<ol type="a">
+<li>Draw 1000 samples from X. How many of your sampled values are less than 30?</li>
+<li>Based on the probability distribution, how many sampled values would you expect to see that are less than 30?</li>
+<li>Plot a histogram of your sampled values.</li>
+</ol>
+<ol start="2" type="1">
+<li>The poisson distribution is a discrete probability distribution that arises in queuing theory (and many other places). For example, imagine that customers arrive at a server at a rate so that, in a typical one hour period, 20 customers come. But the intervals between customers are random and independent of one another. Then in a randomly chosen hour, the probability of k customers arriving is <code>dpois(k,20)</code>.<br>
+</li>
+</ol>
+<ol type="a">
+<li>Sample this distribution 1000 times (hint: use <code>rpois</code>). What is the largest number of people who arrive in an one of these random hours? What is the smallest?</li>
+<li>Suppose you want to design your system so that it can handle the number of arriving customers 95% of the time. How many people should you design for? (Hint: use <code>qpois</code>).</li>
+<li>What’s the chance that between 18 and 22 people arrive in a given hour? (Hint: use <code>ppois</code>).</li>
+<li>Plot the Poisson distribution probabilities. (Hint: use <code>dpois</code>).</li>
+</ol>
 
 
 </section>

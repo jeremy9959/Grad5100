@@ -10,6 +10,7 @@ Missing values are a common challenge in datasets.  Let's look at some
 examples for ways to work with them.
 
 ```{r}
+library(tidyverse)
 library(palmerpenguins)
 df<-data.frame(penguins)
 df
@@ -38,8 +39,8 @@ We can leave out rows with NA values.
 ```{r}
 df_no_na <- na.omit(df)
 colSums(is.na(df_no_na))
-```
-We can also replace NA with something.
+```  
+We can also replace NA with something. This function comes from the tidyverse library which we added above. 
 
 ```{r}
 replace_na(df,list(bill_length_mm=mean(df$bill_length_mm,na.rm=T)))
