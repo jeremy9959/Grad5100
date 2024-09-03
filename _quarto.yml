@@ -22,6 +22,7 @@ project:
     - chapters/13-Plotting/*.qmd
     - chapters/99-Resources/*.qmd
     - chapters/999-Problems/*.qmd
+    - chapters/9999-Miscellaneous/*.qmd
 
 website:
   title: "Fundamentals of Machine Learning"
@@ -62,7 +63,6 @@ website:
       - section: "Resources"
         contents:
         - chapters/99-Resources/Cheatsheets.qmd
-
 
 format:
   html:
